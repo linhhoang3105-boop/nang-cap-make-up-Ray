@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111215">
+  <meta name="description" content="RAY PHOTO Makeup Engine V2 – bản kiểm thử độc lập, không kết nối RAY PHOTO hiện hành.">
+  <title>RAY PHOTO | Makeup Lab V2</title>
+  <style>
+[hidden]{display:none!important}
+:root{color-scheme:dark;--bg:#0d0e11;--panel:#17181c;--panel2:#202127;--line:#383636;--gold:#d3ad69;--gold2:#f2d8a0;--paper:#f2eadc;--muted:#a8a5a4;--green:#8ed1b0;--danger:#e6a29c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--paper);min-height:100dvh}button,input,select{font:inherit}button{cursor:pointer;transition:background .17s,border .17s}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,label:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}button{color:inherit;background:none;border:0}h1,h2,h3,p{margin:0}.topbar{height:68px;padding:0 28px;display:flex;gap:20px;align-items:center;border-bottom:1px solid #34302a;background:#141416}.brand{text-decoration:none;color:var(--gold);min-width:205px;display:flex;flex-direction:column;line-height:1}.brand strong{font-family:Georgia,serif;letter-spacing:.19em;font-size:21px;font-weight:500}.brand strong span{color:#f4e6c7}.brand small{font-family:Georgia,serif;letter-spacing:.13em;font-size:10px;color:#d6bd8d;text-align:right;padding:6px 22px 0 0}.lab-badge{letter-spacing:.15em;font-size:10px;color:#cfc1a6;display:flex;gap:8px;align-items:center}.lab-badge b{font-weight:600;border:1px solid #766440;padding:3px 6px;border-radius:4px}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #8ed1b022}.header-actions{margin-left:auto;display:flex;gap:8px}.primary{border:1px solid #ebc483;background:var(--gold);color:#221b0e;border-radius:8px;font-weight:700;padding:11px 18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}.primary:hover:not(:disabled){background:#ebcc92}.outline{background:#242429;border:1px solid #5d5547;color:#f3eadb;border-radius:8px;padding:10px 12px}.outline:hover:not(:disabled){border-color:var(--gold);background:#323033}.small{font-size:12px;padding:9px 14px}.big{padding:14px 22px}.block{width:100%;justify-content:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:calc(100dvh - 68px)}.photo-panel{display:flex;flex-direction:column;min-width:0;min-height:0;background:#0d0e10}.toolbar{min-height:64px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid #2b2b2d}.toolbar .outline,.toolbar .upload-button{font-size:12px;white-space:nowrap}.upload-button{background:var(--gold);color:#21190b;padding:11px 13px;font-weight:700;border-radius:8px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}#upload{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0}.toggle{font-size:12px;display:inline-flex;gap:6px;align-items:center;color:#c7c3bd;cursor:pointer;user-select:none}.toggle input{accent-color:var(--gold);width:16px;height:16px}.stage-outer{min-height:390px;height:calc(100dvh - 215px);overflow:auto;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 43%,#222328 0,#15161a 49%,#101013 80%);padding:22px;position:relative;scrollbar-color:#49433c #111215}.empty{padding:40px 18px;max-width:500px;text-align:center;display:flex;align-items:center;flex-direction:column;gap:20px}.empty-circle{width:70px;height:70px;display:grid;place-items:center;color:var(--gold);border:1px solid #806b43;border-radius:50%;font-size:42px;font-weight:200}.empty h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(22px,3vw,35px);line-height:1.26}.empty em{color:var(--gold)}.empty p{font-size:13px;color:#b9b5b0;line-height:1.8}.empty small{font-size:11px;color:#929091}.canvas-holder{position:relative;flex:0 0 auto;box-shadow:0 20px 50px #0009;touch-action:pan-x pan-y}#photoCanvas{display:block;width:100%;height:100%;object-fit:fill}#guideCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto;touch-action:none;cursor:crosshair}.stage-footer{border-top:1px solid #343133;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.left-tools,.zoom-tools{display:flex;align-items:center;gap:7px}.stage-footer .outline{padding:8px 11px;font-size:12px}.mini{border:1px solid #514a44;border-radius:7px;font-size:15px;padding:6px 10px;min-width:33px;background:#242326;display:inline-grid;place-items:center}.mini:hover:not(:disabled){border-color:var(--gold)}#zoomLabel{font-size:11px;font-variant-numeric:tabular-nums;color:#d7c3a5;min-width:42px;text-align:center}#zoomReset{font-size:11px}.statusbar{padding:8px 18px;border-top:1px solid #272729;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#b1ada6}.settings-panel{background:var(--panel);border-left:1px solid #37312b;display:flex;flex-direction:column;min-width:0}.panel-head{padding:24px 22px 17px;display:flex;align-items:center;justify-content:space-between}.overline{font-size:9px;color:var(--gold);letter-spacing:.15em;font-weight:600}.panel-head h2{font-family:Georgia,serif;font-size:25px;font-weight:400;margin-top:7px}.lab-version{font-size:9px;color:#9c917d;letter-spacing:.08em;border:1px solid #66573c;padding:5px}.face-zone{padding:0 22px 14px;border-bottom:1px solid #39332e}.section-label{display:flex;align-items:center;justify-content:space-between;font-size:12px}.section-label b{font-weight:600}.section-label span{color:var(--gold)}.face-list{margin:10px 0;display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}.hint-empty{background:#222229;color:#9d9aa1;font-size:11px;padding:18px 12px;width:100%;border-radius:8px;text-align:center;line-height:1.6}.face-chip{flex:0 0 70px;padding:5px 5px 8px;background:#242329;border:1px solid #51473d;border-radius:9px;text-align:center}.face-chip.selected{border-color:var(--gold);background:#353027;box-shadow:0 0 0 1px #d3ad6955}.face-chip canvas{width:56px;height:63px;border-radius:5px;display:block;margin:0 auto 4px;object-fit:cover;background:#1a1716}.face-chip small{display:block;font-size:10px}.face-chip .warn{color:#e9ad8f}.mini-note{font-size:10px;color:#a6a5a3;line-height:1.55}.category-tabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#554638 transparent;padding:12px 20px 10px;border-bottom:1px solid #37302b}.tab{white-space:nowrap;font-size:12px;padding:9px 11px;border:1px solid #48403b;border-radius:7px;color:#b7b1a9;background:#202025}.tab.active{border-color:var(--gold);background:#4a3d2c;color:#ffe5b3}.control-area{padding:19px 22px;flex:1}.tool-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}.tool-heading h3{font-family:Georgia,serif;font-size:23px;font-weight:400}.tool-heading p{font-size:11px;color:#adacae;line-height:1.5;margin-top:4px}.text-button{color:var(--gold);font-size:11px;white-space:nowrap;padding:3px 0;text-decoration:underline;text-underline-offset:4px}.side-select{display:flex;gap:3px;border-radius:8px;background:#101013;padding:3px;margin:14px 0 15px}.side-select button{flex:1;font-size:11px;padding:8px 4px;color:#aaa5a0;border:1px solid transparent;border-radius:6px}.side-select button.selected{background:#3d3429;color:#fce4b9;border-color:#756043}.controls{display:flex;flex-direction:column;gap:14px}.control-group{display:flex;flex-direction:column;gap:8px}.control-head{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#d9d2c9}.control-head output{color:var(--gold);font-size:11px;font-variant-numeric:tabular-nums}.control-group input[type=range]{width:100%;accent-color:var(--gold);cursor:pointer}.control-group select,.control-group input[type=color]{border:1px solid #655844;border-radius:7px;color:#eee8df;background:#29282c;min-height:38px;padding:6px;width:100%}.color-line{display:flex;gap:8px;align-items:center}.color-line input[type=color]{width:48px;min-width:48px;padding:3px;height:40px;cursor:pointer}.color-hex{font-size:12px;color:#c3b9a9;letter-spacing:.08em}.swatches{display:flex;gap:6px;overflow-x:auto;padding:4px 1px 8px}.swatch{width:25px;height:25px;flex:0 0 25px;border:1px solid #ffffff44;border-radius:50%;box-shadow:0 0 0 2px transparent}.swatch.selected{box-shadow:0 0 0 2px var(--gold);border-color:#fff}.control-caption{font-size:10px;color:#95908b;line-height:1.6}.manual-hint{background:#2e2a23;border:1px solid #755e35;border-radius:8px;padding:10px;font-size:11px;line-height:1.6;color:#e8d6af;margin-top:15px}.panel-bottom{border-top:1px solid #36302d;padding:15px 22px 22px}.panel-bottom p{font-size:10px;color:#a6a3a1;line-height:1.7;margin-bottom:13px}.panel-bottom b{color:#cabba2}dialog{border:1px solid #766044;border-radius:13px;max-width:min(500px,calc(100vw - 24px));background:#212124;color:#eee5d9;box-shadow:0 20px 80px #000b;padding:24px}dialog::backdrop{background:#000a}.dialog-title{display:flex;align-items:center;justify-content:space-between;gap:8px}.dialog-title h2{font-family:Georgia,serif;font-size:23px;font-weight:400}dialog ol{padding-left:20px;font-size:13px;line-height:1.7;color:#d4cec9}dialog p{font-size:11px;color:#a39f9c;line-height:1.6;margin:12px 0 18px}@media(max-width:1080px){.workspace{grid-template-columns:minmax(0,1fr) 335px}.toolbar{gap:8px}}@media(max-width:760px){.topbar{padding:0 13px;gap:9px;height:60px}.brand{min-width:144px}.brand strong{font-size:15px}.brand small{font-size:8px;padding-right:12px}.lab-badge{display:none}.header-actions .outline{display:none}.header-actions .primary{padding:8px 10px;font-size:11px}.workspace{display:block}.toolbar{min-height:56px;padding:9px}.toolbar .outline,.toolbar .upload-button{padding:8px 9px}.toolbar .toggle{font-size:11px}.stage-outer{height:min(63dvh,520px);min-height:280px;padding:11px}.stage-footer,.statusbar{padding:8px 10px}.settings-panel{border-left:none;border-top:1px solid #605037}.panel-head{padding:20px 17px 14px}.face-zone,.control-area,.panel-bottom{padding-left:17px;padding-right:17px}.category-tabs{padding-left:12px}.empty h1{font-size:25px}.empty{padding:16px}.empty p{font-size:12px}}@media(max-width:380px){.toolbar .toggle span{font-size:10px}.stage-footer .outline{font-size:10px;padding:7px}.zoom-tools{gap:3px}.mini{padding:5px 8px}.statusbar{font-size:10px}}
+
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V2</b></div>
+    <div class="header-actions"><button class="outline small" id="btnHelp" type="button">Hướng dẫn</button><button class="primary small" id="btnExport" disabled type="button">Xuất PNG gốc</button></div>
+  </header>
+
+  <main class="workspace">
+    <section class="photo-panel" aria-label="Không gian ảnh">
+      <div class="toolbar">
+        <label for="upload" class="upload-button">＋ <span>Chọn ảnh</span></label>
+        <input id="upload" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/avif">
+        <button id="btnScan" class="outline" disabled type="button">◇ Nhận diện mặt</button>
+        <label class="toggle"><input id="showGuides" type="checkbox" checked> <span>Hiện đường viền</span></label>
+        <label class="toggle"><input id="manualMode" type="checkbox"> <span>Chỉnh viền thủ công</span></label>
+      </div>
+      <div class="stage-outer" id="stageOuter">
+        <div class="empty" id="empty">
+          <span class="empty-circle">◇</span>
+          <h1>Trang điểm bắt đầu từ <em>đường nét thật.</em></h1>
+          <p>Tải ảnh chân dung hoặc ảnh nhóm để kiểm tra nhận diện từng khuôn mặt. Ảnh được xử lý trong trình duyệt của bạn.</p>
+          <label for="upload" class="primary big">Chọn ảnh để thử nghiệm</label>
+          <small>Cần Internet ở lần chạy để tải MediaPipe. Không gửi ảnh lên máy chủ của RAY.</small>
+        </div>
+        <div class="canvas-holder" id="canvasHolder" hidden>
+          <canvas id="photoCanvas" aria-label="Ảnh và lớp makeup"></canvas>
+          <canvas id="guideCanvas" aria-label="Đường viền nhận diện và chọn người"></canvas>
+        </div>
+      </div>
+      <div class="stage-footer">
+        <div class="left-tools"><button id="btnCompare" class="outline" disabled type="button" title="Nhấn giữ để xem ảnh gốc">◉ Nhấn giữ xem gốc</button><button id="btnUndo" class="mini" disabled type="button" title="Hoàn tác">↶</button><button id="btnRedo" class="mini" disabled type="button" title="Làm lại">↷</button></div>
+        <div class="zoom-tools"><button id="zoomOut" class="mini" disabled type="button">−</button><output id="zoomLabel">100%</output><button id="zoomIn" class="mini" disabled type="button">＋</button><button id="zoomReset" class="mini" disabled type="button">Vừa khung</button></div>
+      </div>
+      <div class="statusbar"><span id="statusText" role="status" aria-live="polite">Sẵn sàng. Chưa mở ảnh.</span><span id="imageInfo"></span></div>
+    </section>
+
+    <aside class="settings-panel" aria-label="Điều khiển trang điểm">
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V2</span></div>
+      <div class="face-zone">
+        <div class="section-label"><b>Khuôn mặt</b><span id="faceCount">0 khuôn mặt</span></div>
+        <div id="faceList" class="face-list"><div class="hint-empty">Chọn ảnh, sau đó bấm “Nhận diện mặt”.</div></div>
+        <p class="mini-note" id="faceWarning">Kết quả nhận diện cần kiểm tra bằng đường viền trước khi trang điểm.</p>
+      </div>
+      <nav class="category-tabs" id="categoryTabs" aria-label="Nhóm trang điểm">
+        <button type="button" class="tab active" data-tab="brow">Chân mày</button>
+        <button type="button" class="tab" data-tab="lip">Môi</button>
+        <button type="button" class="tab" data-tab="blush">Má hồng</button>
+        <button type="button" class="tab" data-tab="shadow">Phấn mắt</button>
+        <button type="button" class="tab" data-tab="liner">Eyeliner</button>
+        <button type="button" class="tab" data-tab="lashes">Mi mắt</button>
+        <button type="button" class="tab" data-tab="skin">Da</button>
+      </nav>
+      <div class="control-area">
+        <div class="tool-heading"><div><h3 id="toolTitle">Chân mày</h3><p id="toolSummary">Giữ dáng mày thật, chỉnh độc lập hai bên.</p></div><button id="btnResetTool" class="text-button" disabled type="button">Khôi phục</button></div>
+        <div class="side-select" id="sideSelect"><button type="button" data-side="both" class="selected">Hai bên</button><button type="button" data-side="left">Trái ảnh</button><button type="button" data-side="right">Phải ảnh</button></div>
+        <div id="controls" class="controls"></div>
+        <div id="manualHint" class="manual-hint" hidden>Điểm màu vàng: có thể kéo để chỉnh đúng viền chân mày hoặc môi. Thay đổi được lưu riêng cho người đang chọn.</div>
+      </div>
+      <div class="panel-bottom"><p><b>Lưu ý:</b> Đây là module thử nghiệm độc lập. Viền sai phải chỉnh trước khi đánh giá màu makeup. Không liên kết, không sửa engine tóc hoặc preset phim của RAY PHOTO.</p><button type="button" id="btnResetFace" class="outline block" disabled>Khôi phục toàn bộ makeup người này</button></div>
+    </aside>
+  </main>
+  <dialog id="helpDialog">
+    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V2</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
+    <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>, chọn tab Chân mày/Môi và kéo điểm vàng.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Nhấn giữ <b>Xem gốc</b> để so sánh.</li><li>Thử hoàn tác/làm lại, chuyển giữa nhiều người và <b>Xuất PNG gốc</b>.</li></ol>
+    <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. Bản này chưa có xác minh ảnh thực tế trên tất cả thiết bị; không sử dụng làm bản production.</p>
+    <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
+  </dialog>
+  <script type="module">
+/* RAY PHOTO – Makeup Lab V2 (standalone research prototype)
+ * Copyright (c) 2026 RAY PHOTO – by Linh Linh.
+ * Face landmark inference: MediaPipe Tasks Vision (Apache-2.0), lazily loaded.
+ * No dependency on, nor modification to, the RAY PHOTO production application.
+ */
+'use strict';
+const $ = id => document.getElementById(id);
+const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const deepCopy = obj => JSON.parse(JSON.stringify(obj));
+const pair = (a,b,t=.5)=>({x:a.x*(1-t)+b.x*t,y:a.y*(1-t)+b.y*t});
+const length = (a,b)=>Math.hypot(a.x-b.x,a.y-b.y);
+const hasNum = p => p && Number.isFinite(p.x) && Number.isFinite(p.y);
+const OVAL=[10,338,297,332,284,251,389,356,454,323,361,288,397,365,379,378,400,377,152,148,176,149,150,136,172,58,132,93,234,127,162,21,54,103,67,109];
+const LIP_OUT=[61,146,91,181,84,17,314,405,321,375,291,409,270,269,267,0,37,39,40,185];
+const LIP_IN=[78,95,88,178,87,14,317,402,318,324,308,415,310,311,312,13,82,81,80,191];
+const EYE_LEFT=[33,7,163,144,145,153,154,155,133,173,157,158,159,160,161,246];
+const EYE_RIGHT=[263,249,390,373,374,380,381,382,362,398,384,385,386,387,388,466];
+const EYE_UPPER={left:[33,246,161,160,159,158,157,173,133],right:[263,466,388,387,386,385,384,398,362]};
+const BROWS={left:{top:[70,63,105,66,107],bottom:[55,65,52,53,46]},right:{top:[300,293,334,296,336],bottom:[285,295,282,283,276]}};
+const BROW_IDS=[...BROWS.left.top,...BROWS.left.bottom,...BROWS.right.top,...BROWS.right.bottom];
+const FACE_POINTS=[...OVAL,...LIP_OUT,...LIP_IN,...BROW_IDS,...EYE_LEFT,...EYE_RIGHT];
+const DEFAULT_SIDE={color:'#694b3d',intensity:0,shape:'natural',thickness:100,arch:0,length:100};
+const TABS={
+ brow:{title:'Chân mày',summary:'Dáng mày dựa trên đường viền thật, hai bên độc lập.',sides:true,controls:[
+  ['color','Màu chân mày','color'],['shape','Dáng chân mày','select',{natural:'Tự nhiên',straight:'Ngang mềm',soft:'Cong nhẹ',arch:'Cong cao',slim:'Thanh mảnh',defined:'Sắc nét'}],['intensity','Cường độ','range',0,100,1],['thickness','Độ dày','range',55,160,1],['arch','Độ cong bổ sung','range',-45,45,1],['length','Chiều dài','range',75,125,1]]},
+ lip:{title:'Son môi',summary:'Tô theo viền môi, chừa phần miệng hé và răng.',sides:false,controls:[
+  ['color','Màu son','color'],['finish','Chất son','select',{matte:'Lì',satin:'Satin',tint:'Tint trong',gloss:'Bóng'}],['intensity','Cường độ','range',0,100,1],['gloss','Độ bóng','range',0,100,1]]},
+ blush:{title:'Má hồng',summary:'Tán màu theo vị trí má của từng khuôn mặt.',sides:true,controls:[
+  ['color','Màu má','color'],['style','Cách đánh','select',{apple:'Tròn nhẹ',lifted:'Nâng gò má',draped:'Kéo thái dương',sun:'Ngang sống mũi'}],['intensity','Cường độ','range',0,100,1],['size','Diện tích','range',60,155,1],['lift','Dịch vị trí lên / xuống','range',-50,50,1]]},
+ shadow:{title:'Phấn mắt',summary:'Lớp màu mềm phía trên mí, giữ chi tiết mắt gốc.',sides:true,controls:[
+  ['color','Màu phấn','color'],['intensity','Cường độ','range',0,100,1],['spread','Phạm vi tán','range',60,150,1]]},
+ liner:{title:'Eyeliner',summary:'Kẻ sát đường mí trên, có đuôi mảnh.',sides:true,controls:[
+  ['color','Màu eyeliner','color'],['style','Kiểu kẻ','select',{natural:'Tự nhiên',classic:'Mảnh',wing:'Có đuôi',bold:'Sắc nét'}],['intensity','Cường độ','range',0,100,1],['width','Độ dày','range',50,160,1]]},
+ lashes:{title:'Mi mắt',summary:'Sợi mi vector nhẹ dựa trên hình dạng mí mắt.',sides:true,controls:[
+  ['color','Màu mi','color'],['style','Kiểu mi','select',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['intensity','Cường độ','range',0,100,1]]},
+ skin:{title:'Làm mịn da',summary:'Làm dịu nhiễu với mặt nạ bảo vệ mắt, môi và mày.',sides:false,controls:[['smooth','Mức làm mịn','range',0,100,1]]}
+};
+const COLOR_SWATCHES={
+ brow:['#201916','#45322c','#694b3d','#86634b','#ae8462','#d1b08f','#bd6268','#773b8a','#dbba69'],
+ lip:['#a42f42','#cf404e','#e75f6a','#bc657a','#dd897f','#a45838','#8e2b2e','#cc3d83','#9235a4'],
+ blush:['#e59b9a','#ec7d88','#d76b83','#e3a284','#c46e72','#d98ba8','#b76780'],
+ shadow:['#a88669','#704b50','#bd8da2','#ca9e70','#757ba1','#754a80','#b9a6a0'],
+ liner:['#181516','#38302f','#56403b','#4c3d70','#694b3a'],
+ lashes:['#161211','#322724','#624b43']};
+function makeDefaults(){return{
+ brow:{left:deepCopy(DEFAULT_SIDE),right:deepCopy(DEFAULT_SIDE)},
+ lip:{color:'#c34a59',finish:'satin',intensity:0,gloss:28},
+ blush:{left:{color:'#df8793',style:'lifted',intensity:0,size:100,lift:0},right:{color:'#df8793',style:'lifted',intensity:0,size:100,lift:0}},
+ shadow:{left:{color:'#ab796b',intensity:0,spread:100},right:{color:'#ab796b',intensity:0,spread:100}},
+ liner:{left:{color:'#302522',style:'natural',intensity:0,width:100},right:{color:'#302522',style:'natural',intensity:0,width:100}},
+ lashes:{left:{color:'#291f1e',style:'natural',intensity:0},right:{color:'#291f1e',style:'natural',intensity:0}},
+ skin:{smooth:0}};}
+const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,tab:'brow',side:'both',zoom:1,showGuides:true,manual:false,compare:false,busy:false,undo:[],redo:[],renderPending:false};
+const photo=$('photoCanvas'),guide=$('guideCanvas'),stage=$('stageOuter'),holder=$('canvasHolder');
+const pctx=photo.getContext('2d',{willReadFrequently:true}),gctx=guide.getContext('2d');
+let detector=null,modelPromise=null,dragging=null,comparePointer=null;
+function setStatus(msg,isError=false){$('statusText').textContent=msg;$('statusText').style.color=isError?'#e6a29c':'';}
+function newCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
+function pxy(landmark,W,H){return {x:landmark.x*W,y:landmark.y*H};}
+function points(face,ids,W,H){return ids.map(id=>pxy(face.landmarks[id],W,H));}
+function faceBounds(landmarks){const ps=OVAL.map(i=>landmarks[i]);return {l:Math.min(...ps.map(p=>p.x)),r:Math.max(...ps.map(p=>p.x)),t:Math.min(...ps.map(p=>p.y)),b:Math.max(...ps.map(p=>p.y))};}
+function faceQuality(lm){if(!lm||lm.length<468||!FACE_POINTS.every(i=>hasNum(lm[i])))return {ok:false,reason:'Thiếu điểm mốc'};const bb=faceBounds(lm),w=bb.r-bb.l,h=bb.b-bb.t;
+ if(w<.025||h<.035)return {ok:false,reason:'Khuôn mặt quá nhỏ'};
+ if(w<.095||h<.13)return {ok:true,warning:'Mặt nhỏ, độ chính xác có thể giảm'};
+ if(Math.abs(lm[1].x-(bb.l+bb.r)/2)>w*.32)return {ok:true,warning:'Mặt nghiêng: hãy kiểm tra viền'};
+ return {ok:true,warning:''};}
+function faceCenter(face){const b=faceBounds(face.landmarks);return {x:(b.l+b.r)/2,y:(b.t+b.b)/2,w:b.r-b.l,h:b.b-b.t};}
+function selectedFace(){return state.faces.find(f=>f.id===state.selectedId)||null;}
+function snapshot(){return deepCopy(state.faces.map(f=>({id:f.id,landmarks:f.landmarks,settings:f.settings})))}
+function checkpoint(){if(!state.faces.length)return;const snap=snapshot(),last=state.undo[state.undo.length-1];if(!last||JSON.stringify(last)!==JSON.stringify(snap)){state.undo.push(snap);if(state.undo.length>42)state.undo.shift();}state.redo.length=0;updateActions();}
+function restoreSnapshot(snap){for(const entry of snap){const f=state.faces.find(x=>x.id===entry.id);if(f){f.landmarks=deepCopy(entry.landmarks);f.settings=deepCopy(entry.settings);}}renderControls();scheduleRender();updateActions();}
+function undo(){if(!state.undo.length)return;const old=state.undo.pop();state.redo.push(snapshot());restoreSnapshot(old)}
+function redo(){if(!state.redo.length)return;const old=state.redo.pop();state.undo.push(snapshot());restoreSnapshot(old)}
+function updateActions(){const ready=!!state.img,has=!!selectedFace();for(const id of ['btnScan'])$(id).disabled=!ready||state.busy;for(const id of ['btnExport','btnCompare'])$(id).disabled=!ready;for(const id of ['btnResetFace','btnResetTool'])$(id).disabled=!has; $('btnUndo').disabled=!state.undo.length;$('btnRedo').disabled=!state.redo.length;
+ for(const id of ['zoomIn','zoomOut','zoomReset'])$(id).disabled=!ready;}
+function scheduleRender(){if(state.renderPending)return;state.renderPending=true;requestAnimationFrame(()=>{state.renderPending=false;try{renderPreview()}catch(e){console.error('Render error',e);setStatus('Lỗi render: '+e.message,true);}});}
+function updateFit(){if(!state.previewW)return;const cw=Math.max(240,stage.clientWidth-32),ch=Math.max(200,stage.clientHeight-32);const fit=Math.min(cw/state.previewW,ch/state.previewH,2.5),w=Math.max(60,Math.round(state.previewW*fit*state.zoom));holder.style.width=w+'px';holder.style.height=Math.round(w*state.previewH/state.previewW)+'px';stage.style.justifyContent=w>cw?'flex-start':'center';stage.style.alignItems=(w*state.previewH/state.previewW)>ch?'flex-start':'center';$('zoomLabel').textContent=Math.round(state.zoom*100)+'%';}
+function setZoom(val){state.zoom=clamp(val,.5,4);updateFit();renderGuides();}
+function getImageCoords(evt){const r=guide.getBoundingClientRect();return{x:(evt.clientX-r.left)*guide.width/r.width,y:(evt.clientY-r.top)*guide.height/r.height,scale:guide.width/r.width};}
+function pathPoly(ctx,pts){if(!pts?.length)return;ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();}
+function boundsPx(ps,W,H,pad=0){const p=ps.filter(hasNum);if(!p.length)return null;return{x0:clamp(Math.floor(Math.min(...p.map(q=>q.x))-pad),0,W),y0:clamp(Math.floor(Math.min(...p.map(q=>q.y))-pad),0,H),x1:clamp(Math.ceil(Math.max(...p.map(q=>q.x))+pad),0,W),y1:clamp(Math.ceil(Math.max(...p.map(q=>q.y))+pad),0,H)};}
+function colorRGB(hex){const str=String(hex||'').replace('#','');if(!/^[a-f\d]{6}$/i.test(str))return [128,80,80];return [0,2,4].map(i=>parseInt(str.slice(i,i+2),16));}
+function activeSides(){return state.side==='both'?['left','right']:[state.side];}
+async function loadImage(file){if(!file)return;if(!file.type.startsWith('image/')&&!/\.(jpe?g|png|webp|heic|heif|avif)$/i.test(file.name)){setStatus('Chỉ hỗ trợ ảnh hợp lệ.',true);return;}
+ const objUrl=URL.createObjectURL(file),img=new Image();setStatus('Đang đọc ảnh…');try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Không thể đọc định dạng ảnh này.'));img.src=objUrl;});
+ if(!img.naturalWidth||!img.naturalHeight)throw new Error('Ảnh không có kích thước hợp lệ.');
+ const prev=state.url;state.img=img;state.url=objUrl;state.file=file;state.width=img.naturalWidth;state.height=img.naturalHeight;state.faces=[];state.nextFaceId=1;state.selectedId=null;state.undo=[];state.redo=[];state.zoom=1;state.manual=false;state.compare=false;$('manualMode').checked=false;
+ // The image used for detection and preview has the same orientation & aspect as the decoded source.
+ const maxDim=window.innerWidth<720?1050:1440,scale=Math.min(1,maxDim/Math.max(state.width,state.height));state.previewW=Math.max(1,Math.round(state.width*scale));state.previewH=Math.max(1,Math.round(state.height*scale));photo.width=guide.width=state.previewW;photo.height=guide.height=state.previewH;holder.hidden=false;$('empty').hidden=true;
+ if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');
+ }catch(e){URL.revokeObjectURL(objUrl);setStatus('Không mở được ảnh: '+e.message,true);}}
+async function ensureDetector(){if(detector)return detector;if(modelPromise)return modelPromise;
+ modelPromise=(async()=>{setStatus('Đang tải MediaPipe Face Landmarker… cần kết nối Internet.');
+ const VERSION='1.2.2',root=`https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@${VERSION}`;
+ const mp=await import(root+'/vision_bundle.mjs');const resolver=await mp.FilesetResolver.forVisionTasks(root+'/wasm');
+ return mp.FaceLandmarker.createFromOptions(resolver,{baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task',delegate:'CPU'},runningMode:'IMAGE',numFaces:20,minFaceDetectionConfidence:.48,minFacePresenceConfidence:.48,outputFaceBlendshapes:false,outputFacialTransformationMatrixes:false});})();
+ try{detector=await modelPromise;return detector;}catch(e){modelPromise=null;throw e;}}
+async function detectFaces(){if(!state.img||state.busy)return;state.busy=true;updateActions();setStatus('Đang nhận diện và kiểm tra hình học…');const original=state.img;
+ try{const analysis=newCanvas(state.previewW,state.previewH),a=analysis.getContext('2d');a.drawImage(original,0,0,analysis.width,analysis.height);
+ // Local test injection is never enabled on production hosts.
+ const mock=location.hostname==='localhost'&&new URLSearchParams(location.search).get('test')==='1'&&window.__RAY_MAKEUP_TEST__;
+ const result=mock?await mock.detect(analysis):await(await ensureDetector()).detect(analysis);
+ if(original!==state.img)return;
+ const valid=(result.faceLandmarks||[]).map(l=>({lm:l.map(p=>({x:p.x,y:p.y,z:p.z||0})),quality:faceQuality(l)})).filter(x=>x.quality.ok);
+ const old=state.faces,used=new Set(),ordered=valid.sort((a,b)=>faceBounds(a.lm).l-faceBounds(b.lm).l),next=[];
+ for(let i=0;i<ordered.length;i++){
+  const item=ordered[i],bb=faceBounds(item.lm),center={x:(bb.l+bb.r)/2,y:(bb.t+bb.b)/2};let prev=null,best=.075;
+  for(const f of old){if(used.has(f.id))continue;const c=faceCenter(f),d=Math.hypot(c.x-center.x,c.y-center.y);if(d<best){best=d;prev=f;}}
+  if(prev)used.add(prev.id);
+  const raw=deepCopy(item.lm),landmarks=deepCopy(item.lm);
+  if(prev?.raw?.length===landmarks.length){for(let k=0;k<landmarks.length;k++){
+   landmarks[k].x=clamp(landmarks[k].x+prev.landmarks[k].x-prev.raw[k].x,-.05,1.05);
+   landmarks[k].y=clamp(landmarks[k].y+prev.landmarks[k].y-prev.raw[k].y,-.05,1.05);
+  }}
+  next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:prev?.settings||makeDefaults(),warning:item.quality.warning});
+ }
+ for(const f of old)if(!used.has(f.id))next.push({...f,warning:'Không nhận diện lại ở lần quét mới; giữ viền và thông số cũ.'});
+ state.faces=next;state.selectedId=next.find(f=>f.id===state.selectedId)?.id||next[0]?.id||null;state.undo=[];state.redo=[];
+ renderFaces();renderControls();scheduleRender();setStatus(next.length?`Đã phát hiện ${next.length} khuôn mặt. Kiểm tra viền vàng trước khi makeup.`:'Chưa phát hiện khuôn mặt đủ rõ. Hãy thử ảnh sáng hơn/chính diện.',!next.length);
+ }catch(e){console.error(e);setStatus('Không nhận diện được: '+e.message+'. Kiểm tra mạng/CDN hoặc thử lại.',true);}
+ finally{state.busy=false;updateActions();}}
+
+/* =============================================================
+   Geometry and image processing. ALL geometries use source-normalized
+   landmarks. No fixed pixel offsets between preview and output canvases.
+   ============================================================= */
+function maskPatch(c,W,H,box,painter,opts={}){
+ if(!box||!c)return;
+ const feather=opts.feather||0,pad=Math.ceil(feather*3+3);
+ const x=clamp(Math.floor(box.x0-pad),0,W),y=clamp(Math.floor(box.y0-pad),0,H),right=clamp(Math.ceil(box.x1+pad),0,W),bottom=clamp(Math.ceil(box.y1+pad),0,H),w=right-x,h=bottom-y;
+ if(w<=0||h<=0||w*h>20_000_000)return;
+ const mask=newCanvas(w,h),m=mask.getContext('2d',{willReadFrequently:true});m.save();m.translate(-x,-y);painter(m);m.restore();
+ const mdata=m.getImageData(0,0,w,h).data;let featherData=null;
+ if(feather>.6){const blur=newCanvas(w,h),b=blur.getContext('2d',{willReadFrequently:true});if('filter' in b){b.filter=`blur(${feather.toFixed(2)}px)`;b.drawImage(mask,0,0);b.filter='none';featherData=b.getImageData(0,0,w,h).data;}}
+ const original=c.getImageData(x,y,w,h),arr=original.data,strength=opts.strength??1,mode=opts.mode||'tint',rgb=colorRGB(opts.color||'#a04040');
+ for(let k=0;k<arr.length;k+=4){const a0=mdata[k+3]/255;if(a0<.003)continue;
+  // Multiplication by the hard mask prevents soft-edge leaks outside the lip/brow contour.
+  const fade=featherData?Math.min(a0,featherData[k+3]/255):a0;
+  const a=clamp(fade*strength,0,1);if(a<.003)continue;
+  const r=arr[k],g=arr[k+1],b=arr[k+2],lum=(r*.2126+g*.7152+b*.0722)/255;
+  let tr,tg,tb;
+  if(mode==='brow'){
+   const f=.40+lum*.72;tr=rgb[0]*f+r*.14;tg=rgb[1]*f+g*.14;tb=rgb[2]*f+b*.14;
+  }else if(mode==='gloss'){
+   tr=255;tg=249;tb=243;
+  }else if(mode==='blush'){
+   const f=.52+lum*.85;tr=rgb[0]*f;tg=rgb[1]*f;tb=rgb[2]*f;
+  }else{
+   const colLum=(rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722)/255;
+   const f=clamp((.19+lum*.92)/Math.max(.21,colLum),.47,1.58);
+   tr=rgb[0]*f;tg=rgb[1]*f;tb=rgb[2]*f;
+  }
+  arr[k]=r+(tr-r)*a;arr[k+1]=g+(tg-g)*a;arr[k+2]=b+(tb-b)*a;
+ }
+ c.putImageData(original,x,y);
+}
+function browPolygon(face,side,setting,W,H){const def=BROWS[side],top=def.top.map(i=>pxy(face.landmarks[i],W,H)),bottom=def.bottom.map(i=>pxy(face.landmarks[i],W,H));const browWidth=length(top[0],top[4]);
+ const shape=setting.shape||'natural';const variant={natural:{arch:0,thick:1},straight:{arch:-.55,thick:.94},soft:{arch:.18,thick:1},arch:{arch:.75,thick:.92},slim:{arch:0,thick:.70},defined:{arch:.22,thick:1.12}}[shape]||{arch:0,thick:1};
+ const alpha=clamp((Number(setting.thickness)||100)/100*.95, .50, 1.65)*variant.thick,extra=clamp(((Number(setting.arch)||0)/45+variant.arch)*browWidth*.018,-browWidth*.023,browWidth*.023),elongate=clamp((Number(setting.length)||100)/100,.70,1.3);
+ const baseCenters=top.map((t,i)=>pair(t,bottom[4-i]));const main=pair(baseCenters[0],baseCenters[4]);
+ const altered=top.map((t,i)=>{
+   const other=bottom[4-i],mid=baseCenters[i],shapeShift=-extra*Math.sin(Math.PI*i/4),center={x:main.x+(mid.x-main.x)*elongate,y:mid.y+shapeShift+(i-2)*browWidth*.0005};
+   return {hi:{x:center.x+(t.x-mid.x)*alpha,y:center.y+(t.y-mid.y)*alpha},lo:{x:center.x+(other.x-mid.x)*alpha,y:center.y+(other.y-mid.y)*alpha}};
+ });
+ return [...altered.map(p=>p.hi),...altered.slice().reverse().map(p=>p.lo)];
+}
+function lipContours(face,W,H){return {outer:points(face,LIP_OUT,W,H),inner:points(face,LIP_IN,W,H)};}
+function renderBrows(c,W,H,face){for(const side of ['left','right']){const s=face.settings.brow[side];if(s.intensity<=0)continue;const ps=browPolygon(face,side,s,W,H),w=length(ps[0],ps[4]);
+ const bb=boundsPx(ps,W,H,w*.035);maskPatch(c,W,H,bb,m=>{m.beginPath();pathPoly(m,ps);m.fillStyle='#fff';m.fill();},{color:s.color,mode:'brow',strength:s.intensity/100*.83,feather:clamp(w*.012,.5,3.5)});}}
+function renderLips(c,W,H,face){const s=face.settings.lip;if(s.intensity<=0)return;const {outer,inner}=lipContours(face,W,H),bb=boundsPx(outer,W,H,3),lipWidth=length(pxy(face.landmarks[61],W,H),pxy(face.landmarks[291],W,H));
+ const softness=clamp(lipWidth*.006,.6,3.0),opacity={matte:.87,satin:.78,tint:.57,gloss:.7}[s.finish]||.8;
+ maskPatch(c,W,H,bb,m=>{m.beginPath();pathPoly(m,outer);pathPoly(m,inner);m.fillStyle='#fff';m.fill('evenodd');},{color:s.color,strength:(s.intensity/100)*opacity,mode:'lip',feather:softness});
+ if((s.finish==='gloss'||s.finish==='satin')&&s.gloss>0){const up=pxy(face.landmarks[0],W,H),lower=pxy(face.landmarks[13],W,H),center=pair(up,lower,.62),w=lipWidth*.23,h=Math.max(1,lipWidth*.038);
+ maskPatch(c,W,H,bb,m=>{m.save();m.beginPath();pathPoly(m,outer);pathPoly(m,inner);m.clip('evenodd');m.translate(center.x,center.y);m.rotate(-.08);m.scale(1,.56);const gr=m.createRadialGradient(0,0,0,0,0,w);gr.addColorStop(0,'rgba(255,255,255,.9)');gr.addColorStop(.75,'rgba(255,255,255,.24)');gr.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=gr;m.beginPath();m.arc(0,0,w,0,Math.PI*2);m.fill();m.restore();},{color:'#fffaf5',mode:'gloss',strength:s.intensity/100*s.gloss/100*(s.finish==='gloss'?.5:.18),feather:0});
+ }
+}
+function clipOval(m,face,W,H){m.beginPath();pathPoly(m,points(face,OVAL,W,H));m.clip();}
+function renderBlush(c,W,H,face){const lp=face.landmarks;
+ for(const side of ['left','right']){const s=face.settings.blush[side];if(s.intensity<=0)continue;
+  const base=pxy(lp[side==='left'?117:346],W,H),eye=pxy(lp[side==='left'?33:263],W,H),nose=pxy(lp[1],W,H),mouth=pxy(lp[side==='left'?61:291],W,H),fw=length(pxy(lp[234],W,H),pxy(lp[454],W,H)),isLeft=side==='left'?1:-1;
+  const center=pair(base,pair(eye,mouth,.55),.34),dx={apple:0,lifted:-isLeft*.025,draped:-isLeft*.057,sun:isLeft*.026}[s.style]??0;
+  center.x+=dx*fw;center.y+=(Number(s.lift)||0)/50*fw*.07;
+  const rx=fw*.16*(Number(s.size)||100)/100*(s.style==='draped'?1.25:1),ry=fw*.105*(Number(s.size)||100)/100*(s.style==='sun'?.7:1),bb={x0:center.x-rx*1.35,y0:center.y-ry*1.55,x1:center.x+rx*1.35,y1:center.y+ry*1.55};
+  maskPatch(c,W,H,bb,m=>{m.save();clipOval(m,face,W,H);const angle=s.style==='lifted'||s.style==='draped'?(side==='left'?-.22:.22):0;m.translate(center.x,center.y);m.rotate(angle);m.scale(1,ry/rx);const gr=m.createRadialGradient(0,0,rx*.02,0,0,rx);gr.addColorStop(0,'rgba(255,255,255,.70)');gr.addColorStop(.45,'rgba(255,255,255,.38)');gr.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=gr;m.beginPath();m.arc(0,0,rx,0,Math.PI*2);m.fill();m.restore();},{color:s.color,mode:'blush',strength:s.intensity/100*.63,feather:0});
+ }
+}
+function upperPoints(face,side,W,H){return points(face,EYE_UPPER[side],W,H)}
+function renderShadow(c,W,H,face){for(const side of ['left','right']){const s=face.settings.shadow[side];if(s.intensity<=0)continue;
+ const eye=upperPoints(face,side,W,H),start=eye[0],end=eye[8],width=length(start,end),center=pair(start,end,.51),upperY=Math.min(...eye.map(p=>p.y)),y=upperY-width*.105;
+ const spread=clamp(s.spread/100,.6,1.5),rx=width*.64*spread,ry=width*.22*spread,bb={x0:center.x-rx*1.3,y0:y-ry*1.3,x1:center.x+rx*1.3,y1:y+ry*1.3};
+ maskPatch(c,W,H,bb,m=>{m.save();clipOval(m,face,W,H);const angle=Math.atan2(end.y-start.y,end.x-start.x);m.translate(center.x,y);m.rotate(angle);m.scale(1,ry/rx);const gr=m.createRadialGradient(0,0,rx*.04,0,0,rx);gr.addColorStop(0,'rgba(255,255,255,.9)');gr.addColorStop(.58,'rgba(255,255,255,.56)');gr.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=gr;m.beginPath();m.arc(0,0,rx,0,Math.PI*2);m.fill();m.restore();m.save();m.globalCompositeOperation='destination-out';m.beginPath();pathPoly(m,points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H));m.fillStyle='white';m.fill();m.restore();},{color:s.color,mode:'blush',strength:s.intensity/100*.73,feather:0});}}
+function strokeSmoothPath(c,ps){c.moveTo(ps[0].x,ps[0].y);for(let i=1;i<ps.length-1;i++){const mid=pair(ps[i],ps[i+1]);c.quadraticCurveTo(ps[i].x,ps[i].y,mid.x,mid.y);}c.lineTo(ps.at(-1).x,ps.at(-1).y);}
+function renderLiner(c,W,H,face){for(const side of ['left','right']){const s=face.settings.liner[side];if(s.intensity<=0)continue;const ps=upperPoints(face,side,W,H),eyeWidth=length(ps[0],ps[8]),width=clamp(eyeWidth*.018*(s.width/100)*(s.style==='bold'?1.8:.8),.55,12);c.save();c.globalAlpha=s.intensity/100*.88;c.strokeStyle=s.color;c.lineWidth=width;c.lineCap='round';c.lineJoin='round';c.beginPath();strokeSmoothPath(c,ps);c.stroke();
+ if(s.style==='wing'||s.style==='bold'){const outside=side==='left'?ps[0]:ps[0],inside=ps[8],sign=outside.x<inside.x?-1:1,wing={x:outside.x+sign*eyeWidth*.17,y:outside.y-eyeWidth*.072};c.beginPath();c.moveTo(inside.x,inside.y);c.quadraticCurveTo(outside.x,outside.y,wing.x,wing.y);c.lineWidth=width*.82;c.stroke();}c.restore();}}
+function renderLashes(c,W,H,face){for(const side of ['left','right']){const s=face.settings.lashes[side];if(s.intensity<=0)continue;const ps=upperPoints(face,side,W,H),w=length(ps[0],ps[8]);const gain=s.style==='length'?1.35:s.style==='volume'?1.15:1;const dense=s.style==='volume'?2:1;
+ c.save();c.globalAlpha=s.intensity/100*.75;c.strokeStyle=s.color;c.lineWidth=clamp(w*.008*(dense===2?1.2:1),.45,2.8);c.lineCap='round';for(let i=1;i<8;i++){
+ const p=ps[i],u=i/8,sign=side==='left'?-1:1;const h=w*(.032+.023*Math.sin(Math.PI*u))*gain;c.beginPath();c.moveTo(p.x,p.y);c.quadraticCurveTo(p.x+sign*h*.15,p.y-h*.55,p.x+sign*h*.40,p.y-h);c.stroke();}c.restore();}}
+function renderSkin(c,W,H,face){const strength=face.settings.skin.smooth/100;if(strength<=0)return;const oval=points(face,OVAL,W,H),bb=boundsPx(oval,W,H,8),fw=Math.max(15,bb.x1-bb.x0),radius=clamp(fw*.006,.75,5),x=bb.x0,y=bb.y0,w=Math.max(1,bb.x1-bb.x0),h=Math.max(1,bb.y1-bb.y0);if(w*h>12_000_000)return;
+ const raw=newCanvas(w,h),rc=raw.getContext('2d',{willReadFrequently:true});rc.drawImage(c.canvas,x,y,w,h,0,0,w,h);
+ const blur=newCanvas(w,h),bc=blur.getContext('2d',{willReadFrequently:true});bc.filter=`blur(${radius}px)`;bc.drawImage(raw,0,0);bc.filter='none';
+ const rawData=rc.getImageData(0,0,w,h),bd=bc.getImageData(0,0,w,h).data,rd=rawData.data,mask=newCanvas(w,h),mc=mask.getContext('2d',{willReadFrequently:true});mc.translate(-x,-y);mc.beginPath();pathPoly(mc,oval);
+ for(const ids of [LIP_OUT,EYE_LEFT,EYE_RIGHT,BROWS.left.top.concat(BROWS.left.bottom),BROWS.right.top.concat(BROWS.right.bottom)])pathPoly(mc,points(face,ids,W,H));mc.fillStyle='white';mc.fill('evenodd');const md=mc.getImageData(0,0,w,h).data;
+ for(let i=0;i<rd.length;i+=4){if(md[i+3]<1)continue;const a=md[i+3]/255*strength*.51;for(let k=0;k<3;k++)rd[i+k]+= (bd[i+k]-rd[i+k])*a;}
+ c.putImageData(rawData,x,y);
+}
+function renderMakeup(ctx,W,H){if(!state.faces.length)return;
+ // Render all people from the same immutable source. No makeup tool clears another tool.
+ for(const f of state.faces){renderSkin(ctx,W,H,f);renderBlush(ctx,W,H,f);renderShadow(ctx,W,H,f);renderLiner(ctx,W,H,f);renderLashes(ctx,W,H,f);renderBrows(ctx,W,H,f);renderLips(ctx,W,H,f);}
+}
+function renderPreview(){if(!state.img||!photo.width)return;pctx.setTransform(1,0,0,1,0,0);pctx.clearRect(0,0,photo.width,photo.height);pctx.drawImage(state.img,0,0,photo.width,photo.height);
+ if(!state.compare)renderMakeup(pctx,photo.width,photo.height);renderGuides();}
+
+/* =============================================================
+   Face selection, overlays, and manual geometry correction.
+   ============================================================= */
+function drawLine(ctx,face,ids,W,H,color,lineWidth=1){if(ids.some(id=>!hasNum(face.landmarks[id])))return;ctx.save();ctx.beginPath();pathPoly(ctx,points(face,ids,W,H));ctx.strokeStyle=color;ctx.lineWidth=lineWidth;ctx.stroke();ctx.restore();}
+function editableIds(){if(!state.manual||!selectedFace())return[];if(state.tab==='brow')return activeSides().flatMap(side=>[...BROWS[side].top,...BROWS[side].bottom]);if(state.tab==='lip')return [...LIP_OUT,...LIP_IN];return[];}
+function renderGuides(){gctx.clearRect(0,0,guide.width,guide.height);if(!state.showGuides||!state.faces.length)return;const W=guide.width,H=guide.height;for(let i=0;i<state.faces.length;i++){
+ const f=state.faces[i],selected=f.id===state.selectedId,b=faceBounds(f.landmarks),x=b.l*W,y=b.t*H,w=(b.r-b.l)*W,h=(b.b-b.t)*H;
+ gctx.save();gctx.strokeStyle=selected?'#f5cb7b':'#a9b0b7';gctx.lineWidth=selected?Math.max(1.5,W/950):1;gctx.setLineDash(selected?[]:[5,5]);gctx.strokeRect(x-4,y-4,w+8,h+8);gctx.setLineDash([]);
+ const lw=selected?Math.max(1.4,W/1000):1;drawLine(gctx,f,OVAL,W,H,selected?'#f8d59399':'#c4c5ca55',lw);
+ if(selected){drawLine(gctx,f,LIP_OUT,W,H,'#ff9b9b',lw);drawLine(gctx,f,LIP_IN,W,H,'#ff9b9b',lw);drawLine(gctx,f,[...BROWS.left.top,...BROWS.left.bottom],W,H,'#efc34d',lw);drawLine(gctx,f,[...BROWS.right.top,...BROWS.right.bottom],W,H,'#efc34d',lw);drawLine(gctx,f,EYE_LEFT,W,H,'#9bdcd9',lw);drawLine(gctx,f,EYE_RIGHT,W,H,'#9bdcd9',lw);}
+ const font=Math.max(10,Math.min(16,W/80));gctx.font=`600 ${font}px sans-serif`;const label='Người '+(i+1);const labelWidth=gctx.measureText(label).width+14,ly=Math.max(3,y-font-12);gctx.fillStyle=selected?'#d4ae69':'#373c41';gctx.fillRect(x,ly,labelWidth,font+9);gctx.fillStyle=selected?'#231b0d':'#fff';gctx.fillText(label,x+7,ly+font+1);gctx.restore();
+ }
+ const f=selectedFace();if(f){for(const idx of editableIds()){const p=pxy(f.landmarks[idx],W,H);gctx.beginPath();gctx.arc(p.x,p.y,Math.max(3,W/330),0,Math.PI*2);gctx.fillStyle='#fbd977';gctx.fill();gctx.lineWidth=1;gctx.strokeStyle='#33281d';gctx.stroke();}}
+}
+function renderFaces(){const area=$('faceList');area.replaceChildren();$('faceCount').textContent=state.faces.length+' khuôn mặt';
+ if(!state.faces.length){const empty=document.createElement('div');empty.className='hint-empty';empty.textContent='Chưa có nhận diện. Hãy chọn ảnh và bấm “Nhận diện mặt”.';area.append(empty);$('faceWarning').textContent='Cần kiểm tra viền trước khi áp hiệu ứng.';return;}
+ for(let i=0;i<state.faces.length;i++){const face=state.faces[i],b=faceBounds(face.landmarks),chip=document.createElement('button');chip.type='button';chip.className='face-chip'+(face.id===state.selectedId?' selected':'');chip.setAttribute('aria-label','Chỉnh riêng người '+(i+1));chip.setAttribute('aria-pressed',String(face.id===state.selectedId));const thumb=newCanvas(56,63),t=thumb.getContext('2d');
+ const bx=b.l*state.width,by=b.t*state.height,bw=(b.r-b.l)*state.width,bh=(b.b-b.t)*state.height;
+ const x=clamp(bx-bw*.24,0,state.width-1),y=clamp(by-bh*.35,0,state.height-1),w=Math.min(state.width-x,bw*1.48),h=Math.min(state.height-y,bh*1.70);
+ try{t.drawImage(state.img,x,y,Math.max(1,w),Math.max(1,h),0,0,56,63)}catch(e){console.warn('Thumbnail',e);}
+ const label=document.createElement('small');label.textContent='Người '+(i+1);chip.append(thumb,label);if(face.warning){const warn=document.createElement('small');warn.className='warn';warn.textContent='⚠ Kiểm tra';chip.append(warn);}chip.addEventListener('click',()=>selectPerson(face.id));area.append(chip);
+ }
+ $('faceWarning').textContent=state.faces.some(f=>f.warning)?'⚠ Có khuôn mặt nhỏ/nghiêng. Kiểm tra viền; kết quả AI không có điểm tin cậy riêng cho từng landmark.':'Nhấn vào ảnh chân dung hoặc chọn trực tiếp trên ảnh để chỉnh từng người.';
+}
+function selectPerson(id){if(!state.faces.some(f=>f.id===id))return;state.selectedId=id;renderFaces();renderControls();renderGuides();updateActions();setStatus('Đang chỉnh Người '+(state.faces.findIndex(f=>f.id===id)+1)+'; thông số được giữ riêng.');}
+function nearestFace(x,y){let matched=null,score=1e9;for(const f of state.faces){const b=faceBounds(f.landmarks),pad=.022;if(x>=b.l-pad&&x<=b.r+pad&&y>=b.t-pad&&y<=b.b+pad){const dist=(x-(b.l+b.r)/2)**2+(y-(b.t+b.b)/2)**2;if(dist<score){score=dist;matched=f;}}}return matched;}
+function startGuidePointer(e){if(!state.faces.length)return;const {x,y,scale}=getImageCoords(e),f=selectedFace(),ids=editableIds();
+ if(f&&ids.length){const dmax=Math.max(8,12*scale),W=guide.width,H=guide.height;let best=null,dist=dmax*dmax;
+ for(const index of ids){const p=pxy(f.landmarks[index],W,H),sq=(p.x-x)**2+(p.y-y)**2;if(sq<dist){best=index;dist=sq;}}
+ if(best!==null){checkpoint();dragging={id:f.id,index:best};guide.setPointerCapture(e.pointerId);e.preventDefault();return;}}
+ const clicked=nearestFace(x/guide.width,y/guide.height);if(clicked)selectPerson(clicked.id);
+}
+function moveGuidePointer(e){if(!dragging)return;const f=state.faces.find(q=>q.id===dragging.id);if(!f)return;const p=getImageCoords(e);f.landmarks[dragging.index].x=clamp(p.x/guide.width,-.03,1.03);f.landmarks[dragging.index].y=clamp(p.y/guide.height,-.03,1.03);scheduleRender();}
+function endGuidePointer(e){if(!dragging)return;dragging=null;try{if(guide.hasPointerCapture(e.pointerId))guide.releasePointerCapture(e.pointerId)}catch{}renderFaces();scheduleRender();}
+
+/* =============================================================
+   Controls: isolated parameters by face and by image-side.
+   ============================================================= */
+const percentFields=new Set(['intensity','gloss','smooth']);
+function uiSetting(){const f=selectedFace();if(!f)return null;const raw=f.settings[state.tab];return TABS[state.tab].sides?raw[state.side==='right'?'right':'left']:raw;}
+function formatValue(key,v){if(percentFields.has(key))return v+'%';if(['thickness','length','size','spread','width'].includes(key))return v+'%';if(key==='lift')return (v>0?'+':'')+v;if(key==='arch')return (v>0?'+':'')+v;return String(v);}
+function mutateValue(key,v){const f=selectedFace();if(!f)return;const tab=state.tab,def=TABS[tab];const settings=def.sides?activeSides().map(side=>f.settings[tab][side]):[f.settings[tab]];
+ for(const cfg of settings){cfg[key]=v;if(key==='color'&&'intensity' in cfg&&cfg.intensity===0)cfg.intensity=48;if(key==='shape'&&cfg.intensity===0)cfg.intensity=40;}
+ scheduleRender();}
+function renderControls(){const conf=TABS[state.tab],f=selectedFace(),area=$('controls');$('toolTitle').textContent=conf.title;$('toolSummary').textContent=conf.summary;const side=$('sideSelect');side.hidden=!conf.sides;for(const button of side.querySelectorAll('button'))button.classList.toggle('selected',state.side===button.dataset.side);
+ $('manualHint').hidden=!(state.manual&&(state.tab==='brow'||state.tab==='lip'));
+ area.replaceChildren();if(!f){const div=document.createElement('div');div.className='hint-empty';div.textContent='Hãy nhận diện và chọn khuôn mặt để sử dụng công cụ.';area.append(div);updateActions();return;}
+ const s=uiSetting();for(const [key,title,type,a,b,step] of conf.controls){const group=document.createElement('div');group.className='control-group';const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
+ if(type==='range'){const input=document.createElement('input');input.type='range';input.min=a;input.max=b;input.step=step||1;input.value=s[key]??0;let pointerHistory=false;
+ input.addEventListener('pointerdown',()=>{checkpoint();pointerHistory=true;});input.addEventListener('pointerup',()=>{pointerHistory=false;});
+ input.addEventListener('input',()=>{if(!pointerHistory)checkpoint();mutateValue(key,Number(input.value));out.textContent=formatValue(key,input.value);});group.append(input);
+ }else if(type==='select'){const select=document.createElement('select');for(const [value,label] of Object.entries(a)){const opt=new Option(label,value);select.add(opt);}select.value=s[key];select.addEventListener('change',()=>{checkpoint();mutateValue(key,select.value);renderControls();});group.append(select);
+ }else if(type==='color'){const line=document.createElement('div');line.className='color-line';const chooser=document.createElement('input');chooser.type='color';chooser.value=s[key];chooser.setAttribute('aria-label',title+' tùy chọn');const hex=document.createElement('span');hex.className='color-hex';hex.textContent=s[key].toUpperCase();let started=false;chooser.addEventListener('pointerdown',()=>{checkpoint();started=true;});chooser.addEventListener('input',()=>{if(!started)checkpoint();mutateValue(key,chooser.value);hex.textContent=chooser.value.toUpperCase();});chooser.addEventListener('change',()=>{started=false;renderControls();});line.append(chooser,hex);group.append(line);
+ const swatches=COLOR_SWATCHES[state.tab]||[];if(swatches.length){const row=document.createElement('div');row.className='swatches';for(const col of swatches){const btn=document.createElement('button');btn.type='button';btn.className='swatch'+(s[key].toLowerCase()===col.toLowerCase()?' selected':'');btn.style.background=col;btn.title=col;btn.setAttribute('aria-label','Chọn màu '+col);btn.addEventListener('click',()=>{checkpoint();mutateValue(key,col);renderControls();});row.append(btn);}group.append(row);}
+ }
+ area.append(group);}
+ if(state.manual&&(state.tab==='brow'||state.tab==='lip')){const btn=document.createElement('button');btn.type='button';btn.className='outline block';btn.textContent='Khôi phục các điểm mốc thủ công của '+(state.tab==='brow'?'chân mày':'môi');btn.addEventListener('click',()=>{
+  const ids=state.tab==='brow'?activeSides().flatMap(side=>[...BROWS[side].top,...BROWS[side].bottom]):[...LIP_OUT,...LIP_IN];checkpoint();for(const i of ids)f.landmarks[i]=deepCopy(f.raw[i]);scheduleRender();});area.append(btn);}
+ updateActions();renderGuides();}
+function resetCurrentTool(){const f=selectedFace();if(!f)return;checkpoint();const template=makeDefaults()[state.tab];if(TABS[state.tab].sides){for(const s of activeSides())f.settings[state.tab][s]=deepCopy(template[s]);}else f.settings[state.tab]=deepCopy(template);renderControls();scheduleRender();}
+function resetCurrentFace(){const f=selectedFace();if(!f)return;checkpoint();f.settings=makeDefaults();f.landmarks=deepCopy(f.raw);renderControls();scheduleRender();setStatus('Đã khôi phục makeup và đường viền của người đang chọn.');}
+
+/* =============================================================
+   Full-resolution export. Failure must be explicit: never silently
+   downscale the user's photo or claim to preserve unavailable metadata.
+   ============================================================= */
+async function exportOriginal(){if(!state.img||state.busy)return;state.busy=true;updateActions();setStatus('Đang dựng PNG tại '+state.width+' × '+state.height+' px…');
+ try{const out=newCanvas(state.width,state.height),oc=out.getContext('2d',{willReadFrequently:true});if(!oc)throw new Error('Thiết bị không cấp được canvas xuất ảnh.');oc.drawImage(state.img,0,0,state.width,state.height);renderMakeup(oc,state.width,state.height);
+ const blob=await new Promise((resolve,reject)=>out.toBlob(b=>b?resolve(b):reject(new Error('Không tạo được PNG. Có thể thiếu bộ nhớ.')),'image/png'));
+ const url=URL.createObjectURL(blob),link=document.createElement('a'),base=(state.file?.name||'ray-photo').replace(/\.[^.]+$/,'').replace(/[^\w\-\p{L}\p{N} ]/gu,'_');link.href=url;link.download=`${base}_MAKEUP_V2.png`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);
+ setStatus(`Đã tạo PNG ${state.width} × ${state.height}px. Metadata/ICC gốc không được giữ khi xuất qua canvas.`);
+ }catch(e){console.error('Export',e);setStatus('Xuất ảnh thất bại: '+e.message+'. Ảnh gốc không thay đổi.',true);}
+ finally{state.busy=false;updateActions();}}
+
+/* =============================================================
+   UI wiring. No interaction changes live RAY PHOTO state or files.
+   ============================================================= */
+$('upload').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)loadImage(file);e.target.value='';});
+$('btnScan').addEventListener('click',detectFaces);$('btnExport').addEventListener('click',exportOriginal);
+$('showGuides').addEventListener('change',e=>{state.showGuides=e.target.checked;renderGuides();});
+$('manualMode').addEventListener('change',e=>{state.manual=e.target.checked;if(state.manual){state.showGuides=true;$('showGuides').checked=true;}renderControls();renderGuides();});
+$('categoryTabs').addEventListener('click',e=>{const btn=e.target.closest('[data-tab]');if(!btn||!TABS[btn.dataset.tab])return;state.tab=btn.dataset.tab;for(const t of $('categoryTabs').querySelectorAll('.tab'))t.classList.toggle('active',t.dataset.tab===state.tab);renderControls();});
+$('sideSelect').addEventListener('click',e=>{const btn=e.target.closest('[data-side]');if(!btn)return;state.side=btn.dataset.side;renderControls();});
+$('btnResetTool').addEventListener('click',resetCurrentTool);$('btnResetFace').addEventListener('click',resetCurrentFace);
+$('btnUndo').addEventListener('click',undo);$('btnRedo').addEventListener('click',redo);
+$('zoomIn').addEventListener('click',()=>setZoom(state.zoom*1.25));$('zoomOut').addEventListener('click',()=>setZoom(state.zoom/1.25));$('zoomReset').addEventListener('click',()=>setZoom(1));
+$('btnCompare').addEventListener('pointerdown',e=>{if(!state.img)return;state.compare=true;comparePointer=e.pointerId;$('btnCompare').setPointerCapture(e.pointerId);scheduleRender();});
+const releaseCompare=()=>{if(!state.compare)return;state.compare=false;comparePointer=null;scheduleRender();};
+$('btnCompare').addEventListener('pointerup',releaseCompare);$('btnCompare').addEventListener('pointercancel',releaseCompare);$('btnCompare').addEventListener('lostpointercapture',releaseCompare);
+$('btnCompare').addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e.preventDefault();state.compare=true;scheduleRender();}});
+$('btnCompare').addEventListener('keyup',e=>{if(e.code==='Space'){e.preventDefault();releaseCompare();}});
+guide.addEventListener('pointerdown',startGuidePointer);guide.addEventListener('pointermove',moveGuidePointer);guide.addEventListener('pointerup',endGuidePointer);guide.addEventListener('pointercancel',endGuidePointer);
+window.addEventListener('resize',()=>{if(state.img)updateFit();});
+$('btnHelp').addEventListener('click',()=>$('helpDialog').showModal());$('btnCloseHelp').addEventListener('click',()=>$('helpDialog').close());$('btnOkHelp').addEventListener('click',()=>$('helpDialog').close());
+document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea')||e.target.isContentEditable)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();}});
+renderControls();updateActions();
+
+// Controlled smoke-test instrumentation, available only on localhost with ?test=1.
+if(location.hostname==='localhost'&&new URLSearchParams(location.search).get('test')==='1'){
+ window.RayMakeupV2Test={getState:()=>deepCopy({faces:state.faces,selectedId:state.selectedId,tab:state.tab,side:state.side}),getPreviewPixel:(x,y)=>[...pctx.getImageData(x,y,1,1).data],render:renderPreview,detect:detectFaces,select:selectPerson,exportImage:exportOriginal};
+}
+
+</script>
+</body>
+</html>
