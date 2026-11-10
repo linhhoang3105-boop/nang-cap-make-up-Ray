@@ -4,18 +4,47 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Engine V2 – bản kiểm thử độc lập, không kết nối RAY PHOTO hiện hành.">
-  <title>RAY PHOTO | Makeup Lab V2</title>
+  <meta name="description" content="RAY PHOTO Makeup Engine V2.2 – preset tổng thể, layout chân mày, da và nhuộm da độc lập.">
+  <title>RAY PHOTO | Makeup Lab V2.2 · Layout & Skin Tone</title>
   <style>
 [hidden]{display:none!important}
 :root{color-scheme:dark;--bg:#0d0e11;--panel:#17181c;--panel2:#202127;--line:#383636;--gold:#d3ad69;--gold2:#f2d8a0;--paper:#f2eadc;--muted:#a8a5a4;--green:#8ed1b0;--danger:#e6a29c;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--paper);min-height:100dvh}button,input,select{font:inherit}button{cursor:pointer;transition:background .17s,border .17s}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible,select:focus-visible,label:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}button{color:inherit;background:none;border:0}h1,h2,h3,p{margin:0}.topbar{height:68px;padding:0 28px;display:flex;gap:20px;align-items:center;border-bottom:1px solid #34302a;background:#141416}.brand{text-decoration:none;color:var(--gold);min-width:205px;display:flex;flex-direction:column;line-height:1}.brand strong{font-family:Georgia,serif;letter-spacing:.19em;font-size:21px;font-weight:500}.brand strong span{color:#f4e6c7}.brand small{font-family:Georgia,serif;letter-spacing:.13em;font-size:10px;color:#d6bd8d;text-align:right;padding:6px 22px 0 0}.lab-badge{letter-spacing:.15em;font-size:10px;color:#cfc1a6;display:flex;gap:8px;align-items:center}.lab-badge b{font-weight:600;border:1px solid #766440;padding:3px 6px;border-radius:4px}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px #8ed1b022}.header-actions{margin-left:auto;display:flex;gap:8px}.primary{border:1px solid #ebc483;background:var(--gold);color:#221b0e;border-radius:8px;font-weight:700;padding:11px 18px;display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none}.primary:hover:not(:disabled){background:#ebcc92}.outline{background:#242429;border:1px solid #5d5547;color:#f3eadb;border-radius:8px;padding:10px 12px}.outline:hover:not(:disabled){border-color:var(--gold);background:#323033}.small{font-size:12px;padding:9px 14px}.big{padding:14px 22px}.block{width:100%;justify-content:center}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 360px;min-height:calc(100dvh - 68px)}.photo-panel{display:flex;flex-direction:column;min-width:0;min-height:0;background:#0d0e10}.toolbar{min-height:64px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:12px 18px;border-bottom:1px solid #2b2b2d}.toolbar .outline,.toolbar .upload-button{font-size:12px;white-space:nowrap}.upload-button{background:var(--gold);color:#21190b;padding:11px 13px;font-weight:700;border-radius:8px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}#upload{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0}.toggle{font-size:12px;display:inline-flex;gap:6px;align-items:center;color:#c7c3bd;cursor:pointer;user-select:none}.toggle input{accent-color:var(--gold);width:16px;height:16px}.stage-outer{min-height:390px;height:calc(100dvh - 215px);overflow:auto;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 43%,#222328 0,#15161a 49%,#101013 80%);padding:22px;position:relative;scrollbar-color:#49433c #111215}.empty{padding:40px 18px;max-width:500px;text-align:center;display:flex;align-items:center;flex-direction:column;gap:20px}.empty-circle{width:70px;height:70px;display:grid;place-items:center;color:var(--gold);border:1px solid #806b43;border-radius:50%;font-size:42px;font-weight:200}.empty h1{font-family:Georgia,serif;font-weight:400;font-size:clamp(22px,3vw,35px);line-height:1.26}.empty em{color:var(--gold)}.empty p{font-size:13px;color:#b9b5b0;line-height:1.8}.empty small{font-size:11px;color:#929091}.canvas-holder{position:relative;flex:0 0 auto;box-shadow:0 20px 50px #0009;touch-action:pan-x pan-y}#photoCanvas{display:block;width:100%;height:100%;object-fit:fill}#guideCanvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:auto;touch-action:none;cursor:crosshair}.stage-footer{border-top:1px solid #343133;padding:10px 18px;display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.left-tools,.zoom-tools{display:flex;align-items:center;gap:7px}.stage-footer .outline{padding:8px 11px;font-size:12px}.mini{border:1px solid #514a44;border-radius:7px;font-size:15px;padding:6px 10px;min-width:33px;background:#242326;display:inline-grid;place-items:center}.mini:hover:not(:disabled){border-color:var(--gold)}#zoomLabel{font-size:11px;font-variant-numeric:tabular-nums;color:#d7c3a5;min-width:42px;text-align:center}#zoomReset{font-size:11px}.statusbar{padding:8px 18px;border-top:1px solid #272729;display:flex;justify-content:space-between;gap:12px;font-size:11px;color:#b1ada6}.settings-panel{background:var(--panel);border-left:1px solid #37312b;display:flex;flex-direction:column;min-width:0}.panel-head{padding:24px 22px 17px;display:flex;align-items:center;justify-content:space-between}.overline{font-size:9px;color:var(--gold);letter-spacing:.15em;font-weight:600}.panel-head h2{font-family:Georgia,serif;font-size:25px;font-weight:400;margin-top:7px}.lab-version{font-size:9px;color:#9c917d;letter-spacing:.08em;border:1px solid #66573c;padding:5px}.face-zone{padding:0 22px 14px;border-bottom:1px solid #39332e}.section-label{display:flex;align-items:center;justify-content:space-between;font-size:12px}.section-label b{font-weight:600}.section-label span{color:var(--gold)}.face-list{margin:10px 0;display:flex;gap:9px;overflow-x:auto;padding-bottom:4px}.hint-empty{background:#222229;color:#9d9aa1;font-size:11px;padding:18px 12px;width:100%;border-radius:8px;text-align:center;line-height:1.6}.face-chip{flex:0 0 70px;padding:5px 5px 8px;background:#242329;border:1px solid #51473d;border-radius:9px;text-align:center}.face-chip.selected{border-color:var(--gold);background:#353027;box-shadow:0 0 0 1px #d3ad6955}.face-chip canvas{width:56px;height:63px;border-radius:5px;display:block;margin:0 auto 4px;object-fit:cover;background:#1a1716}.face-chip small{display:block;font-size:10px}.face-chip .warn{color:#e9ad8f}.mini-note{font-size:10px;color:#a6a5a3;line-height:1.55}.category-tabs{display:flex;gap:5px;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#554638 transparent;padding:12px 20px 10px;border-bottom:1px solid #37302b}.tab{white-space:nowrap;font-size:12px;padding:9px 11px;border:1px solid #48403b;border-radius:7px;color:#b7b1a9;background:#202025}.tab.active{border-color:var(--gold);background:#4a3d2c;color:#ffe5b3}.control-area{padding:19px 22px;flex:1}.tool-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:14px}.tool-heading h3{font-family:Georgia,serif;font-size:23px;font-weight:400}.tool-heading p{font-size:11px;color:#adacae;line-height:1.5;margin-top:4px}.text-button{color:var(--gold);font-size:11px;white-space:nowrap;padding:3px 0;text-decoration:underline;text-underline-offset:4px}.side-select{display:flex;gap:3px;border-radius:8px;background:#101013;padding:3px;margin:14px 0 15px}.side-select button{flex:1;font-size:11px;padding:8px 4px;color:#aaa5a0;border:1px solid transparent;border-radius:6px}.side-select button.selected{background:#3d3429;color:#fce4b9;border-color:#756043}.controls{display:flex;flex-direction:column;gap:14px}.control-group{display:flex;flex-direction:column;gap:8px}.control-head{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#d9d2c9}.control-head output{color:var(--gold);font-size:11px;font-variant-numeric:tabular-nums}.control-group input[type=range]{width:100%;accent-color:var(--gold);cursor:pointer}.control-group select,.control-group input[type=color]{border:1px solid #655844;border-radius:7px;color:#eee8df;background:#29282c;min-height:38px;padding:6px;width:100%}.color-line{display:flex;gap:8px;align-items:center}.color-line input[type=color]{width:48px;min-width:48px;padding:3px;height:40px;cursor:pointer}.color-hex{font-size:12px;color:#c3b9a9;letter-spacing:.08em}.swatches{display:flex;gap:6px;overflow-x:auto;padding:4px 1px 8px}.swatch{width:25px;height:25px;flex:0 0 25px;border:1px solid #ffffff44;border-radius:50%;box-shadow:0 0 0 2px transparent}.swatch.selected{box-shadow:0 0 0 2px var(--gold);border-color:#fff}.control-caption{font-size:10px;color:#95908b;line-height:1.6}.manual-hint{background:#2e2a23;border:1px solid #755e35;border-radius:8px;padding:10px;font-size:11px;line-height:1.6;color:#e8d6af;margin-top:15px}.panel-bottom{border-top:1px solid #36302d;padding:15px 22px 22px}.panel-bottom p{font-size:10px;color:#a6a3a1;line-height:1.7;margin-bottom:13px}.panel-bottom b{color:#cabba2}dialog{border:1px solid #766044;border-radius:13px;max-width:min(500px,calc(100vw - 24px));background:#212124;color:#eee5d9;box-shadow:0 20px 80px #000b;padding:24px}dialog::backdrop{background:#000a}.dialog-title{display:flex;align-items:center;justify-content:space-between;gap:8px}.dialog-title h2{font-family:Georgia,serif;font-size:23px;font-weight:400}dialog ol{padding-left:20px;font-size:13px;line-height:1.7;color:#d4cec9}dialog p{font-size:11px;color:#a39f9c;line-height:1.6;margin:12px 0 18px}@media(max-width:1080px){.workspace{grid-template-columns:minmax(0,1fr) 335px}.toolbar{gap:8px}}@media(max-width:760px){.topbar{padding:0 13px;gap:9px;height:60px}.brand{min-width:144px}.brand strong{font-size:15px}.brand small{font-size:8px;padding-right:12px}.lab-badge{display:none}.header-actions .outline{display:none}.header-actions .primary{padding:8px 10px;font-size:11px}.workspace{display:block}.toolbar{min-height:56px;padding:9px}.toolbar .outline,.toolbar .upload-button{padding:8px 9px}.toolbar .toggle{font-size:11px}.stage-outer{height:min(63dvh,520px);min-height:280px;padding:11px}.stage-footer,.statusbar{padding:8px 10px}.settings-panel{border-left:none;border-top:1px solid #605037}.panel-head{padding:20px 17px 14px}.face-zone,.control-area,.panel-bottom{padding-left:17px;padding-right:17px}.category-tabs{padding-left:12px}.empty h1{font-size:25px}.empty{padding:16px}.empty p{font-size:12px}}@media(max-width:380px){.toolbar .toggle span{font-size:10px}.stage-footer .outline{font-size:10px;padding:7px}.zoom-tools{gap:3px}.mini{padding:5px 8px}.statusbar{font-size:10px}}
+
+/* V2.1: instant visual results, with independently authored look choices. */
+.looks-section{padding:17px 22px 15px;border-bottom:1px solid #433a30;background:linear-gradient(160deg,#1e1c1a,#18181c)}
+.looks-title{align-items:flex-start;gap:10px;margin-bottom:10px}.looks-title b{letter-spacing:.1em;color:#ebc787;font-size:10px}.looks-title span{color:#baa98a;font-size:10px;text-align:right}
+.look-list{display:flex;gap:9px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#806340 transparent;padding:4px 2px 10px}
+.look-card{flex:0 0 92px;min-width:92px;display:flex;flex-direction:column;align-items:center;gap:4px;padding:9px 6px 8px;background:#252328;border:1px solid #54483c;border-radius:12px;color:#efe4d5}
+.look-card:disabled{opacity:.45}.look-card.selected{background:#4a3728;border-color:#f2c981;box-shadow:inset 0 0 0 1px #e2b56b66,0 0 0 2px #e2b56b22}
+.look-card b{font-size:12px;white-space:nowrap}.look-card small{font-size:10px;color:#c3b4a4;white-space:nowrap}
+.look-sample{display:block;position:relative;width:49px;height:42px;border-radius:25px 25px 16px 16px;background:radial-gradient(ellipse at 28% 44%,var(--cheek) 0%,transparent 24%),radial-gradient(ellipse at 74% 44%,var(--cheek) 0%,transparent 24%),linear-gradient(145deg,#f1c9aa,#ca9276);border:1px solid #eac19f88;overflow:hidden}
+.look-sample:before{content:"";position:absolute;left:9px;top:13px;width:8px;height:4px;border-top:3px solid var(--eye);border-radius:50%;box-shadow:22px 0 0 -1px var(--eye)}
+.look-sample:after{content:"";position:absolute;left:19px;bottom:8px;width:14px;height:6px;background:var(--lip);border-radius:45% 45% 50% 50%;box-shadow:0 1px 2px #601c3455}
+.look-strength{margin-top:5px}.look-strength label{display:flex;justify-content:space-between;font-size:11px;color:#ddd2c4}.look-strength output{color:var(--gold)}.look-strength input{width:100%;accent-color:var(--gold);margin:9px 0 3px}
+.looks-note{font-size:10px;line-height:1.5;color:#a6a09a}.instant-hint{font-size:11px;display:flex;align-items:center;gap:7px;background:#242821;border:1px solid #45483a;color:#e0dbcc;border-radius:8px;padding:9px;margin-bottom:16px}.instant-hint .text-button{margin-left:auto;white-space:nowrap;text-decoration:none}
+.live-dot{background:#8fd1a4;border-radius:50%;width:7px;height:7px;flex:0 0 7px;box-shadow:0 0 0 3px #8fd1a422}
+.photo-feedback{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);pointer-events:none;white-space:nowrap;max-width:94%;overflow:hidden;text-overflow:ellipsis;background:#1b191dd9;color:#fbe8c6;display:flex;align-items:center;gap:8px;border:1px solid #b89d6e99;padding:7px 12px;border-radius:100px;box-shadow:0 6px 15px #0006;font-size:11px;z-index:3}
+@media(max-width:760px){
+ .looks-section{padding:14px 17px 10px}.look-card{flex-basis:88px;min-width:88px}.look-sample{width:46px;height:40px}
+ /* Show the result while the user browses palettes below, BeautyPlus-style. */
+ body.has-faces .photo-panel{position:sticky;top:0;z-index:15;box-shadow:0 7px 20px #000b}
+ body.has-faces .stage-outer{height:min(34dvh,290px);min-height:176px;padding:9px}
+ body.has-faces .toolbar{min-height:auto;padding:6px 10px;gap:9px}
+ body.has-faces .toolbar .outline,body.has-faces .toolbar .upload-button{padding:7px 8px;font-size:11px}
+ body.has-faces .stage-footer{padding:6px 9px}
+ body.has-faces .statusbar{padding:5px 10px}
+ .photo-feedback{bottom:7px;font-size:10px;padding:6px 9px}
+}
+@media(max-width:390px){.looks-title span{max-width:155px;font-size:9px}.instant-hint{font-size:10px}.look-card{min-width:82px;flex-basis:82px}}
+
+.option-pills{display:flex;flex-wrap:wrap;gap:8px}.option-pill{padding:8px 10px;border:1px solid #594b3d;background:#242329;border-radius:999px;font-size:11px;color:#d5cabc}.option-pill.selected{background:#4a3b2a;border-color:#d9b16c;color:#fff0d0}.swatch.skin-swatch{width:28px;height:28px;border-radius:9px}.control-note{font-size:10px;color:#9f998f;line-height:1.5}.tab[data-tab="skintone"]{min-width:max-content}
 
 </style>
 </head>
 <body>
   <header class="topbar">
     <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
-    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V2</b></div>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V2.2</b></div>
     <div class="header-actions"><button class="outline small" id="btnHelp" type="button">Hướng dẫn</button><button class="primary small" id="btnExport" disabled type="button">Xuất PNG gốc</button></div>
   </header>
 
@@ -40,6 +69,7 @@
           <canvas id="photoCanvas" aria-label="Ảnh và lớp makeup"></canvas>
           <canvas id="guideCanvas" aria-label="Đường viền nhận diện và chọn người"></canvas>
         </div>
+        <div id="photoFeedback" class="photo-feedback" role="status" aria-live="polite" hidden><span class="live-dot"></span><span id="photoFeedbackText">Đang xem makeup trực tiếp</span></div>
       </div>
       <div class="stage-footer">
         <div class="left-tools"><button id="btnCompare" class="outline" disabled type="button" title="Nhấn giữ để xem ảnh gốc">◉ Nhấn giữ xem gốc</button><button id="btnUndo" class="mini" disabled type="button" title="Hoàn tác">↶</button><button id="btnRedo" class="mini" disabled type="button" title="Làm lại">↷</button></div>
@@ -49,12 +79,24 @@
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V2</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V2.2</span></div>
       <div class="face-zone">
         <div class="section-label"><b>Khuôn mặt</b><span id="faceCount">0 khuôn mặt</span></div>
         <div id="faceList" class="face-list"><div class="hint-empty">Chọn ảnh, sau đó bấm “Nhận diện mặt”.</div></div>
         <p class="mini-note" id="faceWarning">Kết quả nhận diện cần kiểm tra bằng đường viền trước khi trang điểm.</p>
       </div>
+      <section class="looks-section" id="looksSection" aria-label="Phong cách makeup thử nhanh">
+        <div class="section-label looks-title"><b>PRESET TỔNG THỂ</b><span id="lookSummary">Bấm một look để xem ngay trên ảnh</span></div>
+        <div class="look-list" id="lookList" role="group" aria-label="Chọn phong cách trang điểm">
+          <button type="button" class="look-card" data-look="fresh" disabled><span class="look-sample" style="--eye:#775544;--lip:#d17c83;--cheek:#e7a1a3"></span><b>Trong trẻo</b><small>Hồng nhẹ</small></button>
+          <button type="button" class="look-card" data-look="peach" disabled><span class="look-sample" style="--eye:#886357;--lip:#d86365;--cheek:#ed9da0"></span><b>Hồng đào</b><small>Tươi tắn</small></button>
+          <button type="button" class="look-card" data-look="tea" disabled><span class="look-sample" style="--eye:#735248;--lip:#b26b52;--cheek:#cf9987"></span><b>Trà sữa</b><small>Nâu cam</small></button>
+          <button type="button" class="look-card" data-look="sun" disabled><span class="look-sample" style="--eye:#8b5b39;--lip:#c56542;--cheek:#e3a080"></span><b>Nắng cam</b><small>Ấm áp</small></button>
+          <button type="button" class="look-card" data-look="velvet" disabled><span class="look-sample" style="--eye:#5a3946;--lip:#9c263f;--cheek:#ba6c7e"></span><b>Đỏ nhung</b><small>Sắc sảo</small></button>
+        </div>
+        <div class="look-strength"><label for="lookStrength"><span>Độ đậm phong cách</span><output id="lookStrengthValue">—</output></label><input id="lookStrength" type="range" min="0" max="100" step="1" value="85" disabled></div>
+        <p class="looks-note">Preset chỉ là gợi ý tổng thể. Sau khi áp look, bà có thể vào từng mục ở dưới để đổi riêng môi, má, mày, mắt, da và nhuộm da.</p>
+      </section>
       <nav class="category-tabs" id="categoryTabs" aria-label="Nhóm trang điểm">
         <button type="button" class="tab active" data-tab="brow">Chân mày</button>
         <button type="button" class="tab" data-tab="lip">Môi</button>
@@ -63,19 +105,21 @@
         <button type="button" class="tab" data-tab="liner">Eyeliner</button>
         <button type="button" class="tab" data-tab="lashes">Mi mắt</button>
         <button type="button" class="tab" data-tab="skin">Da</button>
+        <button type="button" class="tab" data-tab="skintone">Nhuộm da</button>
       </nav>
       <div class="control-area">
+        <div class="instant-hint"><span class="live-dot"></span><span>Chỉnh tới đâu, ảnh đổi ngay tới đó. Preset là look tổng thể; từng tab bên dưới chỉnh độc lập.</span><button id="btnClearGuides" type="button" class="text-button">Ẩn đường viền</button></div>
         <div class="tool-heading"><div><h3 id="toolTitle">Chân mày</h3><p id="toolSummary">Giữ dáng mày thật, chỉnh độc lập hai bên.</p></div><button id="btnResetTool" class="text-button" disabled type="button">Khôi phục</button></div>
         <div class="side-select" id="sideSelect"><button type="button" data-side="both" class="selected">Hai bên</button><button type="button" data-side="left">Trái ảnh</button><button type="button" data-side="right">Phải ảnh</button></div>
         <div id="controls" class="controls"></div>
         <div id="manualHint" class="manual-hint" hidden>Điểm màu vàng: có thể kéo để chỉnh đúng viền chân mày hoặc môi. Thay đổi được lưu riêng cho người đang chọn.</div>
       </div>
-      <div class="panel-bottom"><p><b>Lưu ý:</b> Đây là module thử nghiệm độc lập. Viền sai phải chỉnh trước khi đánh giá màu makeup. Không liên kết, không sửa engine tóc hoặc preset phim của RAY PHOTO.</p><button type="button" id="btnResetFace" class="outline block" disabled>Khôi phục toàn bộ makeup người này</button></div>
+      <div class="panel-bottom"><p><b>Lưu ý:</b> Đây là module thử nghiệm độc lập. Viền sai phải chỉnh trước khi đánh giá màu makeup. Preset tổng thể và từng công cụ hoạt động tách riêng. Không liên kết, không sửa engine tóc hoặc preset phim của RAY PHOTO.</p><button type="button" id="btnResetFace" class="outline block" disabled>Khôi phục toàn bộ makeup người này</button></div>
     </aside>
   </main>
   <dialog id="helpDialog">
     <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V2</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
-    <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>, chọn tab Chân mày/Môi và kéo điểm vàng.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Nhấn giữ <b>Xem gốc</b> để so sánh.</li><li>Thử hoàn tác/làm lại, chuyển giữa nhiều người và <b>Xuất PNG gốc</b>.</li></ol>
+    <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>, chọn tab Chân mày/Môi và kéo điểm vàng.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Nhấn giữ <b>Xem gốc</b> để so sánh. Chọn <b>Thử makeup 1 chạm</b> để hiển thị kết quả ngay và tự ẩn đường viền nhận diện.</li><li>Thử hoàn tác/làm lại, chuyển giữa nhiều người và <b>Xuất PNG gốc</b>.</li></ol>
     <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. Bản này chưa có xác minh ảnh thực tế trên tất cả thiết bị; không sử dụng làm bản production.</p>
     <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
   </dialog>
@@ -101,21 +145,25 @@ const EYE_UPPER={left:[33,246,161,160,159,158,157,173,133],right:[263,466,388,38
 const BROWS={left:{top:[70,63,105,66,107],bottom:[55,65,52,53,46]},right:{top:[300,293,334,296,336],bottom:[285,295,282,283,276]}};
 const BROW_IDS=[...BROWS.left.top,...BROWS.left.bottom,...BROWS.right.top,...BROWS.right.bottom];
 const FACE_POINTS=[...OVAL,...LIP_OUT,...LIP_IN,...BROW_IDS,...EYE_LEFT,...EYE_RIGHT];
+
 const DEFAULT_SIDE={color:'#694b3d',intensity:0,shape:'natural',thickness:100,arch:0,length:100};
 const TABS={
- brow:{title:'Chân mày',summary:'Dáng mày dựa trên đường viền thật, hai bên độc lập.',sides:true,controls:[
-  ['color','Màu chân mày','color'],['shape','Dáng chân mày','select',{natural:'Tự nhiên',straight:'Ngang mềm',soft:'Cong nhẹ',arch:'Cong cao',slim:'Thanh mảnh',defined:'Sắc nét'}],['intensity','Cường độ','range',0,100,1],['thickness','Độ dày','range',55,160,1],['arch','Độ cong bổ sung','range',-45,45,1],['length','Chiều dài','range',75,125,1]]},
- lip:{title:'Son môi',summary:'Tô theo viền môi, chừa phần miệng hé và răng.',sides:false,controls:[
-  ['color','Màu son','color'],['finish','Chất son','select',{matte:'Lì',satin:'Satin',tint:'Tint trong',gloss:'Bóng'}],['intensity','Cường độ','range',0,100,1],['gloss','Độ bóng','range',0,100,1]]},
- blush:{title:'Má hồng',summary:'Tán màu theo vị trí má của từng khuôn mặt.',sides:true,controls:[
-  ['color','Màu má','color'],['style','Cách đánh','select',{apple:'Tròn nhẹ',lifted:'Nâng gò má',draped:'Kéo thái dương',sun:'Ngang sống mũi'}],['intensity','Cường độ','range',0,100,1],['size','Diện tích','range',60,155,1],['lift','Dịch vị trí lên / xuống','range',-50,50,1]]},
- shadow:{title:'Phấn mắt',summary:'Lớp màu mềm phía trên mí, giữ chi tiết mắt gốc.',sides:true,controls:[
+ brow:{title:'Chân mày',summary:'Chọn dáng mày theo layout, rồi chỉnh màu và độ dày riêng từng bên.',sides:true,controls:[
+  ['shape','Layout chân mày','choices',{natural:'Tự nhiên',straight:'Ngang mềm',soft:'Cong nhẹ',higharch:'Cong cao',slim:'Thanh mảnh',defined:'Sắc nét',feather:'Dày mềm',korean:'Hàn nhẹ',western:'Tây mềm',tailup:'Nâng đuôi'}],['color','Màu chân mày','color'],['intensity','Cường độ','range',0,100,1],['thickness','Độ dày','range',55,160,1],['arch','Độ cong bổ sung','range',-45,45,1],['length','Chiều dài','range',75,125,1]]},
+ lip:{title:'Môi',summary:'Đổi màu son riêng, không kéo theo má hoặc mày.',sides:false,controls:[
+  ['color','Màu son','color'],['finish','Chất son','choices',{matte:'Lì',satin:'Satin',tint:'Tint',gloss:'Bóng'}],['intensity','Cường độ','range',0,100,1],['gloss','Độ bóng','range',0,100,1]]},
+ blush:{title:'Má hồng',summary:'Bảng màu và layout má hồng tách riêng khỏi môi và chân mày.',sides:true,controls:[
+  ['style','Layout má hồng','choices',{apple:'Tròn nhẹ',lifted:'Nâng gò má',draped:'Kéo thái dương',sun:'Ngang sống mũi'}],['color','Màu má','color'],['intensity','Cường độ','range',0,100,1],['size','Diện tích','range',60,155,1],['lift','Dịch vị trí lên / xuống','range',-50,50,1]]},
+ shadow:{title:'Phấn mắt',summary:'Phấn mắt nhẹ, mềm, giữ nếp mí và ánh sáng gốc.',sides:true,controls:[
   ['color','Màu phấn','color'],['intensity','Cường độ','range',0,100,1],['spread','Phạm vi tán','range',60,150,1]]},
- liner:{title:'Eyeliner',summary:'Kẻ sát đường mí trên, có đuôi mảnh.',sides:true,controls:[
-  ['color','Màu eyeliner','color'],['style','Kiểu kẻ','select',{natural:'Tự nhiên',classic:'Mảnh',wing:'Có đuôi',bold:'Sắc nét'}],['intensity','Cường độ','range',0,100,1],['width','Độ dày','range',50,160,1]]},
- lashes:{title:'Mi mắt',summary:'Sợi mi vector nhẹ dựa trên hình dạng mí mắt.',sides:true,controls:[
-  ['color','Màu mi','color'],['style','Kiểu mi','select',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['intensity','Cường độ','range',0,100,1]]},
- skin:{title:'Làm mịn da',summary:'Làm dịu nhiễu với mặt nạ bảo vệ mắt, môi và mày.',sides:false,controls:[['smooth','Mức làm mịn','range',0,100,1]]}
+ liner:{title:'Eyeliner',summary:'Kẻ mí đúng đường, có các kiểu tự nhiên, mảnh, có đuôi hoặc đậm.',sides:true,controls:[
+  ['style','Kiểu kẻ','choices',{natural:'Tự nhiên',classic:'Mảnh',wing:'Có đuôi',bold:'Sắc nét'}],['color','Màu eyeliner','color'],['intensity','Cường độ','range',0,100,1],['width','Độ dày','range',50,160,1]]},
+ lashes:{title:'Mi mắt',summary:'Hiệu ứng mi tự nhiên, dài nhẹ hoặc dày nhẹ.',sides:true,controls:[
+  ['style','Kiểu mi','choices',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['color','Màu mi','color'],['intensity','Cường độ','range',0,100,1]]},
+ skin:{title:'Da',summary:'Làm đẹp da độc lập: mịn, sáng, glow, nhưng không phải nhuộm tone da.',sides:false,controls:[
+  ['smooth','Làm mịn','range',0,100,1],['brighten','Độ sáng da','range',0,100,1],['glow','Độ glow','range',0,100,1]]},
+ skintone:{title:'Nhuộm da',summary:'Đổi sắc độ da riêng: trắng hồng, be, mật ong, rám nắng… có thể kéo ấm/lạnh.',sides:false,controls:[
+  ['tone','Tone da','choices',{softivory:'Trắng ngà',rosefair:'Trắng hồng',coolfair:'Trắng lạnh',naturallight:'Sáng tự nhiên',beige:'Be sáng',honey:'Mật ong',warmtan:'Nâu ấm',cooltan:'Nâu lạnh',sunkissed:'Rám nắng'}],['color','Màu tùy chọn','color'],['intensity','Cường độ nhuộm','range',0,100,1],['brightness','Độ sáng','range',-40,40,1],['warmth','Độ ấm / lạnh','range',-40,40,1],['saturation','Sắc độ','range',0,100,1]]}
 };
 const COLOR_SWATCHES={
  brow:['#201916','#45322c','#694b3d','#86634b','#ae8462','#d1b08f','#bd6268','#773b8a','#dbba69'],
@@ -123,7 +171,32 @@ const COLOR_SWATCHES={
  blush:['#e59b9a','#ec7d88','#d76b83','#e3a284','#c46e72','#d98ba8','#b76780'],
  shadow:['#a88669','#704b50','#bd8da2','#ca9e70','#757ba1','#754a80','#b9a6a0'],
  liner:['#181516','#38302f','#56403b','#4c3d70','#694b3a'],
- lashes:['#161211','#322724','#624b43']};
+ lashes:['#161211','#322724','#624b43'],
+ skintone:['#f6dcc7','#f0d2c7','#f2d8bf','#ddc09b','#c99c74','#a56f4b','#8d5a43','#6a4431','#cc9d7a']
+};
+const SKIN_TONE_MAP={softivory:'#f5ddcf',rosefair:'#f1d0cb',coolfair:'#e6d4d6',naturallight:'#e6c9ac',beige:'#daba96',honey:'#c69163',warmtan:'#aa724d',cooltan:'#987161',sunkissed:'#bb825f'};
+const LOOKS={
+ fresh:{label:'Trong trẻo',brow:['#5b4039',54,'soft'],lip:['#cb7280',67,'tint'],blush:['#e39ca4',43,'apple'],shadow:['#bb998e',27],liner:24,lashes:28,skin:{smooth:18,brighten:14,glow:10},skintone:['naturallight',18,4,8,36]},
+ peach:{label:'Hồng đào',brow:['#63453b',63,'soft'],lip:['#d85c66',78,'satin'],blush:['#ea929a',67,'lifted'],shadow:['#bd8b92',44],liner:40,lashes:43,skin:{smooth:19,brighten:12,glow:11},skintone:['rosefair',26,6,10,40]},
+ tea:{label:'Trà sữa',brow:['#604539',61,'straight'],lip:['#b86a54',73,'matte'],blush:['#ce9284',53,'lifted'],shadow:['#a78068',47],liner:42,lashes:38,skin:{smooth:16,brighten:8,glow:7},skintone:['beige',24,1,8,34]},
+ sun:{label:'Nắng cam',brow:['#624332',65,'natural'],lip:['#ce633d',81,'satin'],blush:['#e29a7d',66,'draped'],shadow:['#b28051',51],liner:48,lashes:47,skin:{smooth:15,brighten:8,glow:10},skintone:['honey',28,3,18,44]},
+ velvet:{label:'Đỏ nhung',brow:['#3e2a30',72,'defined'],lip:['#9f2541',91,'matte'],blush:['#c17b86',56,'lifted'],shadow:['#80536b',62],liner:72,lashes:60,skin:{smooth:18,brighten:10,glow:8},skintone:['softivory',18,5,-4,28]}
+};
+const LOOK_DEFAULT_STRENGTH=85;
+function makeupLookSettings(id,strength=LOOK_DEFAULT_STRENGTH){
+ const l=LOOKS[id],s=makeDefaults();if(!l)return s;const alpha=clamp(Number(strength)||0,0,100)/100;
+ for(const side of ['left','right']){
+  Object.assign(s.brow[side],{color:l.brow[0],intensity:Math.round(l.brow[1]*alpha),shape:l.brow[2]});
+  Object.assign(s.blush[side],{color:l.blush[0],intensity:Math.round(l.blush[1]*alpha),style:l.blush[2]});
+  Object.assign(s.shadow[side],{color:l.shadow[0],intensity:Math.round(l.shadow[1]*alpha)});
+  Object.assign(s.liner[side],{intensity:Math.round(l.liner*alpha),style:'natural'});
+  Object.assign(s.lashes[side],{intensity:Math.round(l.lashes*alpha),style:'natural'});
+ }
+ Object.assign(s.lip,{color:l.lip[0],intensity:Math.round(l.lip[1]*alpha),finish:l.lip[2]});
+ Object.assign(s.skin,{smooth:Math.round((l.skin?.smooth||0)*alpha),brighten:Math.round((l.skin?.brighten||0)*alpha),glow:Math.round((l.skin?.glow||0)*alpha)});
+ Object.assign(s.skintone,{tone:l.skintone[0],color:SKIN_TONE_MAP[l.skintone[0]],intensity:Math.round(l.skintone[1]*alpha),brightness:Math.round(l.skintone[2]*alpha),warmth:Math.round(l.skintone[3]*alpha),saturation:Math.round((l.skintone[4]||0)*alpha)});
+ return s;
+}
 function makeDefaults(){return{
  brow:{left:deepCopy(DEFAULT_SIDE),right:deepCopy(DEFAULT_SIDE)},
  lip:{color:'#c34a59',finish:'satin',intensity:0,gloss:28},
@@ -131,7 +204,8 @@ function makeDefaults(){return{
  shadow:{left:{color:'#ab796b',intensity:0,spread:100},right:{color:'#ab796b',intensity:0,spread:100}},
  liner:{left:{color:'#302522',style:'natural',intensity:0,width:100},right:{color:'#302522',style:'natural',intensity:0,width:100}},
  lashes:{left:{color:'#291f1e',style:'natural',intensity:0},right:{color:'#291f1e',style:'natural',intensity:0}},
- skin:{smooth:0}};}
+ skin:{smooth:0,brighten:0,glow:0},
+ skintone:{tone:'naturallight',color:SKIN_TONE_MAP.naturallight,intensity:0,brightness:0,warmth:0,saturation:30}};}
 const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,tab:'brow',side:'both',zoom:1,showGuides:true,manual:false,compare:false,busy:false,undo:[],redo:[],renderPending:false};
 const photo=$('photoCanvas'),guide=$('guideCanvas'),stage=$('stageOuter'),holder=$('canvasHolder');
 const pctx=photo.getContext('2d',{willReadFrequently:true}),gctx=guide.getContext('2d');
@@ -148,9 +222,9 @@ function faceQuality(lm){if(!lm||lm.length<468||!FACE_POINTS.every(i=>hasNum(lm[
  return {ok:true,warning:''};}
 function faceCenter(face){const b=faceBounds(face.landmarks);return {x:(b.l+b.r)/2,y:(b.t+b.b)/2,w:b.r-b.l,h:b.b-b.t};}
 function selectedFace(){return state.faces.find(f=>f.id===state.selectedId)||null;}
-function snapshot(){return deepCopy(state.faces.map(f=>({id:f.id,landmarks:f.landmarks,settings:f.settings})))}
+function snapshot(){return deepCopy(state.faces.map(f=>({id:f.id,landmarks:f.landmarks,settings:f.settings,look:f.look})))}
 function checkpoint(){if(!state.faces.length)return;const snap=snapshot(),last=state.undo[state.undo.length-1];if(!last||JSON.stringify(last)!==JSON.stringify(snap)){state.undo.push(snap);if(state.undo.length>42)state.undo.shift();}state.redo.length=0;updateActions();}
-function restoreSnapshot(snap){for(const entry of snap){const f=state.faces.find(x=>x.id===entry.id);if(f){f.landmarks=deepCopy(entry.landmarks);f.settings=deepCopy(entry.settings);}}renderControls();scheduleRender();updateActions();}
+function restoreSnapshot(snap){for(const entry of snap){const f=state.faces.find(x=>x.id===entry.id);if(f){f.landmarks=deepCopy(entry.landmarks);f.settings=deepCopy(entry.settings);f.look=deepCopy(entry.look||null);}}renderControls();renderLooks();scheduleRender();updateActions();}
 function undo(){if(!state.undo.length)return;const old=state.undo.pop();state.redo.push(snapshot());restoreSnapshot(old)}
 function redo(){if(!state.redo.length)return;const old=state.redo.pop();state.undo.push(snapshot());restoreSnapshot(old)}
 function updateActions(){const ready=!!state.img,has=!!selectedFace();for(const id of ['btnScan'])$(id).disabled=!ready||state.busy;for(const id of ['btnExport','btnCompare'])$(id).disabled=!ready;for(const id of ['btnResetFace','btnResetTool'])$(id).disabled=!has; $('btnUndo').disabled=!state.undo.length;$('btnRedo').disabled=!state.redo.length;
@@ -169,7 +243,7 @@ async function loadImage(file){if(!file)return;if(!file.type.startsWith('image/'
  const prev=state.url;state.img=img;state.url=objUrl;state.file=file;state.width=img.naturalWidth;state.height=img.naturalHeight;state.faces=[];state.nextFaceId=1;state.selectedId=null;state.undo=[];state.redo=[];state.zoom=1;state.manual=false;state.compare=false;$('manualMode').checked=false;
  // The image used for detection and preview has the same orientation & aspect as the decoded source.
  const maxDim=window.innerWidth<720?1050:1440,scale=Math.min(1,maxDim/Math.max(state.width,state.height));state.previewW=Math.max(1,Math.round(state.width*scale));state.previewH=Math.max(1,Math.round(state.height*scale));photo.width=guide.width=state.previewW;photo.height=guide.height=state.previewH;holder.hidden=false;$('empty').hidden=true;
- if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');
+ if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();renderLooks();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');
  }catch(e){URL.revokeObjectURL(objUrl);setStatus('Không mở được ảnh: '+e.message,true);}}
 async function ensureDetector(){if(detector)return detector;if(modelPromise)return modelPromise;
  modelPromise=(async()=>{setStatus('Đang tải MediaPipe Face Landmarker… cần kết nối Internet.');
@@ -194,14 +268,49 @@ async function detectFaces(){if(!state.img||state.busy)return;state.busy=true;up
    landmarks[k].x=clamp(landmarks[k].x+prev.landmarks[k].x-prev.raw[k].x,-.05,1.05);
    landmarks[k].y=clamp(landmarks[k].y+prev.landmarks[k].y-prev.raw[k].y,-.05,1.05);
   }}
-  next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:prev?.settings||makeDefaults(),warning:item.quality.warning});
+  next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:prev?.settings||makeDefaults(),look:prev?.look||null,warning:item.quality.warning});
  }
  for(const f of old)if(!used.has(f.id))next.push({...f,warning:'Không nhận diện lại ở lần quét mới; giữ viền và thông số cũ.'});
  state.faces=next;state.selectedId=next.find(f=>f.id===state.selectedId)?.id||next[0]?.id||null;state.undo=[];state.redo=[];
- renderFaces();renderControls();scheduleRender();setStatus(next.length?`Đã phát hiện ${next.length} khuôn mặt. Kiểm tra viền vàng trước khi makeup.`:'Chưa phát hiện khuôn mặt đủ rõ. Hãy thử ảnh sáng hơn/chính diện.',!next.length);
+ renderFaces();renderControls();renderLooks();scheduleRender();setStatus(next.length?`Đã phát hiện ${next.length} khuôn mặt. Kiểm tra viền vàng trước khi makeup.`:'Chưa phát hiện khuôn mặt đủ rõ. Hãy thử ảnh sáng hơn/chính diện.',!next.length);
  }catch(e){console.error(e);setStatus('Không nhận diện được: '+e.message+'. Kiểm tra mạng/CDN hoặc thử lại.',true);}
  finally{state.busy=false;updateActions();}}
 
+/* =============================================================
+   BeautyPlus-inspired interaction: one-tap looks and immediate feedback.
+   All preview effects remain per-person and non-destructive.
+   ============================================================= */
+function renderLooks(){
+ const f=selectedFace(),look=f?.look?.id||null;
+ for(const b of document.querySelectorAll('.look-card')){
+  b.disabled=!f;b.classList.toggle('selected',b.dataset.look===look);b.setAttribute('aria-pressed',String(b.dataset.look===look));
+ }
+ // Keep the active preset visible when switching between faces; do not scroll the page itself.
+ const list=$('lookList'),active=look?list.querySelector(`.look-card[data-look="${look}"]`):null;
+ if(active){const left=active.offsetLeft-list.offsetLeft,right=left+active.offsetWidth;
+  if(left<list.scrollLeft)list.scrollLeft=left;
+  else if(right>list.scrollLeft+list.clientWidth)list.scrollLeft=right-list.clientWidth;
+ }
+ const strength=$('lookStrength'),caption=$('lookSummary'),value=$('lookStrengthValue');
+ strength.disabled=!f||!look;strength.value=f?.look?.strength??LOOK_DEFAULT_STRENGTH;
+ value.textContent=look?strength.value+'%':'—';
+ caption.textContent=!f?'Nhận diện trước khi thử':look?'Đang áp: '+LOOKS[look].label:'Chọn một phong cách';
+ const fdb=$('photoFeedback');
+ fdb.hidden=!f||!anyMakeup(f.settings);
+ if(!fdb.hidden)$('photoFeedbackText').textContent=look?'Đang xem · '+LOOKS[look].label:'Đang xem · Makeup tùy chỉnh';
+}
+function anyMakeup(s){if(!s)return false;return s.skin.smooth>0||s.skin.brighten>0||s.skin.glow>0||s.skintone.intensity>0||s.lip.intensity>0||['brow','blush','shadow','liner','lashes'].some(tab=>s[tab].left.intensity>0||s[tab].right.intensity>0);}
+function clearGuidesForMakeup(){
+ if(state.manual)return;
+ state.showGuides=false;$('showGuides').checked=false;$('btnClearGuides').textContent='Hiện đường viền';renderGuides();
+}
+function applyLook(id,strength=LOOK_DEFAULT_STRENGTH,saveHistory=true){
+ const f=selectedFace(),look=LOOKS[id];if(!f||!look)return;
+ if(saveHistory)checkpoint();
+ f.settings=makeupLookSettings(id,strength);f.look={id,strength};
+ clearGuidesForMakeup();renderLooks();renderControls();scheduleRender();
+ setStatus(`Đã áp dụng ${look.label} cho Người ${state.faces.indexOf(f)+1}. Kết quả đang hiện trên ảnh; giữ “Xem gốc” để so sánh.`);
+}
 /* =============================================================
    Geometry and image processing. ALL geometries use source-normalized
    landmarks. No fixed pixel offsets between preview and output canvases.
@@ -237,8 +346,8 @@ function maskPatch(c,W,H,box,painter,opts={}){
  c.putImageData(original,x,y);
 }
 function browPolygon(face,side,setting,W,H){const def=BROWS[side],top=def.top.map(i=>pxy(face.landmarks[i],W,H)),bottom=def.bottom.map(i=>pxy(face.landmarks[i],W,H));const browWidth=length(top[0],top[4]);
- const shape=setting.shape||'natural';const variant={natural:{arch:0,thick:1},straight:{arch:-.55,thick:.94},soft:{arch:.18,thick:1},arch:{arch:.75,thick:.92},slim:{arch:0,thick:.70},defined:{arch:.22,thick:1.12}}[shape]||{arch:0,thick:1};
- const alpha=clamp((Number(setting.thickness)||100)/100*.95, .50, 1.65)*variant.thick,extra=clamp(((Number(setting.arch)||0)/45+variant.arch)*browWidth*.018,-browWidth*.023,browWidth*.023),elongate=clamp((Number(setting.length)||100)/100,.70,1.3);
+ const shape=setting.shape||'natural';const variant={natural:{arch:0,thick:1},straight:{arch:-.55,thick:.94},soft:{arch:.18,thick:1},higharch:{arch:.75,thick:.92},slim:{arch:0,thick:.70},defined:{arch:.22,thick:1.12},feather:{arch:.06,thick:1.18},korean:{arch:-.18,thick:.92},western:{arch:.35,thick:1.02},tailup:{arch:.22,thick:.96,tail:1.18}}[shape]||{arch:0,thick:1};
+ const alpha=clamp((Number(setting.thickness)||100)/100*.95, .50, 1.65)*variant.thick,extra=clamp(((Number(setting.arch)||0)/45+variant.arch)*browWidth*.018,-browWidth*.023,browWidth*.023),elongate=clamp((Number(setting.length)||100)/100,.70,1.3)*(variant.tail||1);
  const baseCenters=top.map((t,i)=>pair(t,bottom[4-i]));const main=pair(baseCenters[0],baseCenters[4]);
  const altered=top.map((t,i)=>{
    const other=bottom[4-i],mid=baseCenters[i],shapeShift=-extra*Math.sin(Math.PI*i/4),center={x:main.x+(mid.x-main.x)*elongate,y:mid.y+shapeShift+(i-2)*browWidth*.0005};
@@ -277,17 +386,39 @@ function renderLiner(c,W,H,face){for(const side of ['left','right']){const s=fac
 function renderLashes(c,W,H,face){for(const side of ['left','right']){const s=face.settings.lashes[side];if(s.intensity<=0)continue;const ps=upperPoints(face,side,W,H),w=length(ps[0],ps[8]);const gain=s.style==='length'?1.35:s.style==='volume'?1.15:1;const dense=s.style==='volume'?2:1;
  c.save();c.globalAlpha=s.intensity/100*.75;c.strokeStyle=s.color;c.lineWidth=clamp(w*.008*(dense===2?1.2:1),.45,2.8);c.lineCap='round';for(let i=1;i<8;i++){
  const p=ps[i],u=i/8,sign=side==='left'?-1:1;const h=w*(.032+.023*Math.sin(Math.PI*u))*gain;c.beginPath();c.moveTo(p.x,p.y);c.quadraticCurveTo(p.x+sign*h*.15,p.y-h*.55,p.x+sign*h*.40,p.y-h);c.stroke();}c.restore();}}
-function renderSkin(c,W,H,face){const strength=face.settings.skin.smooth/100;if(strength<=0)return;const oval=points(face,OVAL,W,H),bb=boundsPx(oval,W,H,8),fw=Math.max(15,bb.x1-bb.x0),radius=clamp(fw*.006,.75,5),x=bb.x0,y=bb.y0,w=Math.max(1,bb.x1-bb.x0),h=Math.max(1,bb.y1-bb.y0);if(w*h>12_000_000)return;
+
+function renderSkin(c,W,H,face){
+ const cfg=face.settings.skin||{},strength=(cfg.smooth||0)/100,bright=(cfg.brighten||0)/100,glow=(cfg.glow||0)/100;
+ if(strength<=0&&bright<=0&&glow<=0)return;
+ const oval=points(face,OVAL,W,H),bb=boundsPx(oval,W,H,8),fw=Math.max(15,bb.x1-bb.x0),radius=clamp(fw*.006,.75,5),x=bb.x0,y=bb.y0,w=Math.max(1,bb.x1-bb.x0),h=Math.max(1,bb.y1-bb.y0);if(w*h>12_000_000)return;
  const raw=newCanvas(w,h),rc=raw.getContext('2d',{willReadFrequently:true});rc.drawImage(c.canvas,x,y,w,h,0,0,w,h);
  const blur=newCanvas(w,h),bc=blur.getContext('2d',{willReadFrequently:true});bc.filter=`blur(${radius}px)`;bc.drawImage(raw,0,0);bc.filter='none';
  const rawData=rc.getImageData(0,0,w,h),bd=bc.getImageData(0,0,w,h).data,rd=rawData.data,mask=newCanvas(w,h),mc=mask.getContext('2d',{willReadFrequently:true});mc.translate(-x,-y);mc.beginPath();pathPoly(mc,oval);
  for(const ids of [LIP_OUT,EYE_LEFT,EYE_RIGHT,BROWS.left.top.concat(BROWS.left.bottom),BROWS.right.top.concat(BROWS.right.bottom)])pathPoly(mc,points(face,ids,W,H));mc.fillStyle='white';mc.fill('evenodd');const md=mc.getImageData(0,0,w,h).data;
- for(let i=0;i<rd.length;i+=4){if(md[i+3]<1)continue;const a=md[i+3]/255*strength*.51;for(let k=0;k<3;k++)rd[i+k]+= (bd[i+k]-rd[i+k])*a;}
+ for(let i=0;i<rd.length;i+=4){if(md[i+3]<1)continue;const maskAlpha=md[i+3]/255;const smoothAlpha=maskAlpha*strength*.50;if(smoothAlpha>0){for(let k=0;k<3;k++)rd[i+k]+= (bd[i+k]-rd[i+k])*smoothAlpha;}
+  if(bright>0){rd[i]=clamp(rd[i]+28*bright*maskAlpha,0,255);rd[i+1]=clamp(rd[i+1]+24*bright*maskAlpha,0,255);rd[i+2]=clamp(rd[i+2]+18*bright*maskAlpha,0,255);}
+  if(glow>0){const lum=(rd[i]*.2126+rd[i+1]*.7152+rd[i+2]*.0722)/255,gain=.92+glow*.26+Math.max(0,(lum-.40))*.16;rd[i]=clamp(rd[i]*gain+4*glow,0,255);rd[i+1]=clamp(rd[i+1]*gain+3*glow,0,255);rd[i+2]=clamp(rd[i+2]*gain+2*glow,0,255);}
+ }
  c.putImageData(rawData,x,y);
 }
+function renderSkinTone(c,W,H,face){
+ const s=face.settings.skintone;if(!s||s.intensity<=0)return;
+ const oval=points(face,OVAL,W,H),bb=boundsPx(oval,W,H,8),x=bb.x0,y=bb.y0,w=Math.max(1,bb.x1-bb.x0),h=Math.max(1,bb.y1-bb.y0);if(w*h>12_000_000)return;
+ const source=newCanvas(w,h),sc=source.getContext('2d',{willReadFrequently:true});sc.drawImage(c.canvas,x,y,w,h,0,0,w,h);
+ const img=sc.getImageData(0,0,w,h),data=img.data,mask=newCanvas(w,h),mc=mask.getContext('2d',{willReadFrequently:true});mc.translate(-x,-y);mc.beginPath();pathPoly(mc,oval);
+ for(const ids of [LIP_OUT,EYE_LEFT,EYE_RIGHT,BROWS.left.top.concat(BROWS.left.bottom),BROWS.right.top.concat(BROWS.right.bottom)])pathPoly(mc,points(face,ids,W,H));mc.fillStyle='white';mc.fill('evenodd');const md=mc.getImageData(0,0,w,h).data;
+ let [tr,tg,tb]=colorRGB(s.color||SKIN_TONE_MAP[s.tone]||'#e3c0a3');
+ const warm=Number(s.warmth||0)/40,sat=clamp(Number(s.saturation||0)/100,0,1),bright=Number(s.brightness||0)/40,intensity=Number(s.intensity||0)/100;
+ tr=clamp(tr+warm*18+bright*18,0,255);tg=clamp(tg+bright*12,0,255);tb=clamp(tb-warm*16+bright*7,0,255);
+ for(let i=0;i<data.length;i+=4){const maskAlpha=md[i+3]/255;if(maskAlpha<.01)continue;const a=intensity*maskAlpha*.48;if(a<=0)continue;const r=data[i],g=data[i+1],b=data[i+2];
+  const lum=(r*.2126+g*.7152+b*.0722)/255,blend=0.55+lum*.45,rr=tr*blend,gg=tg*blend,bb2=tb*blend;
+  const avg=(r+g+b)/3;data[i]=clamp(r+(rr-r)*a + (avg-r)*(bright*.10),0,255);data[i+1]=clamp(g+(gg-g)*a + (avg-g)*(bright*.07),0,255);data[i+2]=clamp(b+(bb2-b)*a + (avg-b)*(bright*.04),0,255);
+  if(sat!==0.3){const mean=(data[i]+data[i+1]+data[i+2])/3;const satFactor=.78+sat*.74;data[i]=clamp(mean+(data[i]-mean)*satFactor,0,255);data[i+1]=clamp(mean+(data[i+1]-mean)*satFactor,0,255);data[i+2]=clamp(mean+(data[i+2]-mean)*satFactor,0,255);}
+ }
+ c.putImageData(img,x,y);
+}
 function renderMakeup(ctx,W,H){if(!state.faces.length)return;
- // Render all people from the same immutable source. No makeup tool clears another tool.
- for(const f of state.faces){renderSkin(ctx,W,H,f);renderBlush(ctx,W,H,f);renderShadow(ctx,W,H,f);renderLiner(ctx,W,H,f);renderLashes(ctx,W,H,f);renderBrows(ctx,W,H,f);renderLips(ctx,W,H,f);}
+ for(const f of state.faces){renderSkin(ctx,W,H,f);renderSkinTone(ctx,W,H,f);renderBlush(ctx,W,H,f);renderShadow(ctx,W,H,f);renderLiner(ctx,W,H,f);renderLashes(ctx,W,H,f);renderBrows(ctx,W,H,f);renderLips(ctx,W,H,f);}
 }
 function renderPreview(){if(!state.img||!photo.width)return;pctx.setTransform(1,0,0,1,0,0);pctx.clearRect(0,0,photo.width,photo.height);pctx.drawImage(state.img,0,0,photo.width,photo.height);
  if(!state.compare)renderMakeup(pctx,photo.width,photo.height);renderGuides();}
@@ -306,7 +437,7 @@ function renderGuides(){gctx.clearRect(0,0,guide.width,guide.height);if(!state.s
  }
  const f=selectedFace();if(f){for(const idx of editableIds()){const p=pxy(f.landmarks[idx],W,H);gctx.beginPath();gctx.arc(p.x,p.y,Math.max(3,W/330),0,Math.PI*2);gctx.fillStyle='#fbd977';gctx.fill();gctx.lineWidth=1;gctx.strokeStyle='#33281d';gctx.stroke();}}
 }
-function renderFaces(){const area=$('faceList');area.replaceChildren();$('faceCount').textContent=state.faces.length+' khuôn mặt';
+function renderFaces(){const area=$('faceList');area.replaceChildren();$('faceCount').textContent=state.faces.length+' khuôn mặt';document.body.classList.toggle('has-faces',!!state.faces.length);
  if(!state.faces.length){const empty=document.createElement('div');empty.className='hint-empty';empty.textContent='Chưa có nhận diện. Hãy chọn ảnh và bấm “Nhận diện mặt”.';area.append(empty);$('faceWarning').textContent='Cần kiểm tra viền trước khi áp hiệu ứng.';return;}
  for(let i=0;i<state.faces.length;i++){const face=state.faces[i],b=faceBounds(face.landmarks),chip=document.createElement('button');chip.type='button';chip.className='face-chip'+(face.id===state.selectedId?' selected':'');chip.setAttribute('aria-label','Chỉnh riêng người '+(i+1));chip.setAttribute('aria-pressed',String(face.id===state.selectedId));const thumb=newCanvas(56,63),t=thumb.getContext('2d');
  const bx=b.l*state.width,by=b.t*state.height,bw=(b.r-b.l)*state.width,bh=(b.b-b.t)*state.height;
@@ -316,7 +447,7 @@ function renderFaces(){const area=$('faceList');area.replaceChildren();$('faceCo
  }
  $('faceWarning').textContent=state.faces.some(f=>f.warning)?'⚠ Có khuôn mặt nhỏ/nghiêng. Kiểm tra viền; kết quả AI không có điểm tin cậy riêng cho từng landmark.':'Nhấn vào ảnh chân dung hoặc chọn trực tiếp trên ảnh để chỉnh từng người.';
 }
-function selectPerson(id){if(!state.faces.some(f=>f.id===id))return;state.selectedId=id;renderFaces();renderControls();renderGuides();updateActions();setStatus('Đang chỉnh Người '+(state.faces.findIndex(f=>f.id===id)+1)+'; thông số được giữ riêng.');}
+function selectPerson(id){if(!state.faces.some(f=>f.id===id))return;state.selectedId=id;renderFaces();renderControls();renderLooks();renderGuides();updateActions();setStatus('Đang chỉnh Người '+(state.faces.findIndex(f=>f.id===id)+1)+'; thông số được giữ riêng.');}
 function nearestFace(x,y){let matched=null,score=1e9;for(const f of state.faces){const b=faceBounds(f.landmarks),pad=.022;if(x>=b.l-pad&&x<=b.r+pad&&y>=b.t-pad&&y<=b.b+pad){const dist=(x-(b.l+b.r)/2)**2+(y-(b.t+b.b)/2)**2;if(dist<score){score=dist;matched=f;}}}return matched;}
 function startGuidePointer(e){if(!state.faces.length)return;const {x,y,scale}=getImageCoords(e),f=selectedFace(),ids=editableIds();
  if(f&&ids.length){const dmax=Math.max(8,12*scale),W=guide.width,H=guide.height;let best=null,dist=dmax*dmax;
@@ -330,29 +461,42 @@ function endGuidePointer(e){if(!dragging)return;dragging=null;try{if(guide.hasPo
 /* =============================================================
    Controls: isolated parameters by face and by image-side.
    ============================================================= */
-const percentFields=new Set(['intensity','gloss','smooth']);
+const percentFields=new Set(['intensity','gloss','smooth','brighten','glow','saturation']);
 function uiSetting(){const f=selectedFace();if(!f)return null;const raw=f.settings[state.tab];return TABS[state.tab].sides?raw[state.side==='right'?'right':'left']:raw;}
-function formatValue(key,v){if(percentFields.has(key))return v+'%';if(['thickness','length','size','spread','width'].includes(key))return v+'%';if(key==='lift')return (v>0?'+':'')+v;if(key==='arch')return (v>0?'+':'')+v;return String(v);}
+function formatValue(key,v){if(percentFields.has(key))return v+'%';if(['thickness','length','size','spread','width'].includes(key))return v+'%';if(['lift','arch','brightness','warmth'].includes(key))return (Number(v)>0?'+':'')+v;return String(v);}
 function mutateValue(key,v){const f=selectedFace();if(!f)return;const tab=state.tab,def=TABS[tab];const settings=def.sides?activeSides().map(side=>f.settings[tab][side]):[f.settings[tab]];
- for(const cfg of settings){cfg[key]=v;if(key==='color'&&'intensity' in cfg&&cfg.intensity===0)cfg.intensity=48;if(key==='shape'&&cfg.intensity===0)cfg.intensity=40;}
- scheduleRender();}
+ f.look=null; // Individual editing preserves all other effects; preset slider is no longer active.
+ for(const cfg of settings){
+  cfg[key]=v;
+  if(tab==='skintone'&&key==='tone'){cfg.color=SKIN_TONE_MAP[v]||cfg.color;}
+  if(key!=='intensity'&&key!=='smooth'&&'intensity' in cfg&&cfg.intensity===0){
+   cfg.intensity=tab==='brow'?78:tab==='lip'?82:tab==='blush'?70:tab==='shadow'?62:tab==='liner'?65:tab==='skintone'?48:68;
+  }
+ }
+ clearGuidesForMakeup();renderLooks();scheduleRender();
+ setStatus(`Đã cập nhật ${def.title} trên ảnh. Điều chỉnh cường độ để tăng hoặc giảm hiệu ứng.`);
+}
+
 function renderControls(){const conf=TABS[state.tab],f=selectedFace(),area=$('controls');$('toolTitle').textContent=conf.title;$('toolSummary').textContent=conf.summary;const side=$('sideSelect');side.hidden=!conf.sides;for(const button of side.querySelectorAll('button'))button.classList.toggle('selected',state.side===button.dataset.side);
  $('manualHint').hidden=!(state.manual&&(state.tab==='brow'||state.tab==='lip'));
  area.replaceChildren();if(!f){const div=document.createElement('div');div.className='hint-empty';div.textContent='Hãy nhận diện và chọn khuôn mặt để sử dụng công cụ.';area.append(div);updateActions();return;}
  const s=uiSetting();for(const [key,title,type,a,b,step] of conf.controls){const group=document.createElement('div');group.className='control-group';const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
  if(type==='range'){const input=document.createElement('input');input.type='range';input.min=a;input.max=b;input.step=step||1;input.value=s[key]??0;let pointerHistory=false;
  input.addEventListener('pointerdown',()=>{checkpoint();pointerHistory=true;});input.addEventListener('pointerup',()=>{pointerHistory=false;});
- input.addEventListener('input',()=>{if(!pointerHistory)checkpoint();mutateValue(key,Number(input.value));out.textContent=formatValue(key,input.value);});group.append(input);
- }else if(type==='select'){const select=document.createElement('select');for(const [value,label] of Object.entries(a)){const opt=new Option(label,value);select.add(opt);}select.value=s[key];select.addEventListener('change',()=>{checkpoint();mutateValue(key,select.value);renderControls();});group.append(select);
+ input.addEventListener('input',()=>{if(!pointerHistory)checkpoint();mutateValue(key,Number(input.value));out.textContent=formatValue(key,input.value);});
+ input.addEventListener('change',()=>{if(!['intensity','smooth','brighten','glow','saturation','brightness','warmth'].includes(key))renderControls();});group.append(input);
+ }else if(type==='choices'){const row=document.createElement('div');row.className='option-pills';for(const [value,label] of Object.entries(a)){const btn=document.createElement('button');btn.type='button';btn.className='option-pill'+(s[key]===value?' selected':'');btn.textContent=label;btn.setAttribute('aria-pressed',String(s[key]===value));btn.addEventListener('click',()=>{checkpoint();mutateValue(key,value);renderControls();});row.append(btn);}group.append(row);
  }else if(type==='color'){const line=document.createElement('div');line.className='color-line';const chooser=document.createElement('input');chooser.type='color';chooser.value=s[key];chooser.setAttribute('aria-label',title+' tùy chọn');const hex=document.createElement('span');hex.className='color-hex';hex.textContent=s[key].toUpperCase();let started=false;chooser.addEventListener('pointerdown',()=>{checkpoint();started=true;});chooser.addEventListener('input',()=>{if(!started)checkpoint();mutateValue(key,chooser.value);hex.textContent=chooser.value.toUpperCase();});chooser.addEventListener('change',()=>{started=false;renderControls();});line.append(chooser,hex);group.append(line);
- const swatches=COLOR_SWATCHES[state.tab]||[];if(swatches.length){const row=document.createElement('div');row.className='swatches';for(const col of swatches){const btn=document.createElement('button');btn.type='button';btn.className='swatch'+(s[key].toLowerCase()===col.toLowerCase()?' selected':'');btn.style.background=col;btn.title=col;btn.setAttribute('aria-label','Chọn màu '+col);btn.addEventListener('click',()=>{checkpoint();mutateValue(key,col);renderControls();});row.append(btn);}group.append(row);}
+ const swatches=COLOR_SWATCHES[state.tab]||[];if(swatches.length){const row=document.createElement('div');row.className='swatches';for(const col of swatches){const btn=document.createElement('button');btn.type='button';btn.className='swatch'+(state.tab==='skintone'?' skin-swatch':'')+(s[key].toLowerCase()===col.toLowerCase()?' selected':'');btn.style.background=col;btn.title=col;btn.setAttribute('aria-label','Chọn màu '+col);btn.addEventListener('click',()=>{checkpoint();mutateValue(key,col);renderControls();});row.append(btn);}group.append(row);}
  }
- area.append(group);}
+ if(state.tab==='skintone'&&key==='tone'){const note=document.createElement('div');note.className='control-note';note.textContent='Chọn tone sẵn hoặc kéo bảng màu/ thanh sắc độ để nhuộm da theo ý. Nhuộm da chỉ tác động vùng da mặt, không làm đổi son, mắt hay chân mày.';group.append(note);}
+ area.append(group);} 
  if(state.manual&&(state.tab==='brow'||state.tab==='lip')){const btn=document.createElement('button');btn.type='button';btn.className='outline block';btn.textContent='Khôi phục các điểm mốc thủ công của '+(state.tab==='brow'?'chân mày':'môi');btn.addEventListener('click',()=>{
-  const ids=state.tab==='brow'?activeSides().flatMap(side=>[...BROWS[side].top,...BROWS[side].bottom]):[...LIP_OUT,...LIP_IN];checkpoint();for(const i of ids)f.landmarks[i]=deepCopy(f.raw[i]);scheduleRender();});area.append(btn);}
- updateActions();renderGuides();}
-function resetCurrentTool(){const f=selectedFace();if(!f)return;checkpoint();const template=makeDefaults()[state.tab];if(TABS[state.tab].sides){for(const s of activeSides())f.settings[state.tab][s]=deepCopy(template[s]);}else f.settings[state.tab]=deepCopy(template);renderControls();scheduleRender();}
-function resetCurrentFace(){const f=selectedFace();if(!f)return;checkpoint();f.settings=makeDefaults();f.landmarks=deepCopy(f.raw);renderControls();scheduleRender();setStatus('Đã khôi phục makeup và đường viền của người đang chọn.');}
+  const ids=state.tab==='brow'?activeSides().flatMap(side=>[...BROWS[side].top,...BROWS[side].bottom]):[...LIP_OUT,...LIP_IN];checkpoint();for(const i of ids)f.landmarks[i]=deepCopy(f.raw[i]);scheduleRender();});area.append(btn);} 
+ updateActions();renderGuides();
+}
+function resetCurrentTool(){const f=selectedFace();if(!f)return;checkpoint();f.look=null;const template=makeDefaults()[state.tab];if(TABS[state.tab].sides){for(const s of activeSides())f.settings[state.tab][s]=deepCopy(template[s]);}else f.settings[state.tab]=deepCopy(template);renderControls();renderLooks();scheduleRender();}
+function resetCurrentFace(){const f=selectedFace();if(!f)return;checkpoint();f.settings=makeDefaults();f.look=null;f.landmarks=deepCopy(f.raw);renderControls();renderLooks();scheduleRender();setStatus('Đã khôi phục makeup và đường viền của người đang chọn.');}
 
 /* =============================================================
    Full-resolution export. Failure must be explicit: never silently
@@ -369,10 +513,23 @@ async function exportOriginal(){if(!state.img||state.busy)return;state.busy=true
 /* =============================================================
    UI wiring. No interaction changes live RAY PHOTO state or files.
    ============================================================= */
+$('lookList').addEventListener('click',e=>{const b=e.target.closest('[data-look]');if(!b||b.disabled)return;applyLook(b.dataset.look);});
+let lookStrengthDragging=false;
+$('lookStrength').addEventListener('pointerdown',()=>{if(selectedFace()?.look){checkpoint();lookStrengthDragging=true;}});
+$('lookStrength').addEventListener('pointerup',()=>{lookStrengthDragging=false;});
+$('lookStrength').addEventListener('input',e=>{
+ const f=selectedFace();if(!f?.look)return;
+ if(!lookStrengthDragging)checkpoint();
+ applyLook(f.look.id,Number(e.target.value),false);
+});
+$('btnClearGuides').addEventListener('click',()=>{
+ state.showGuides=!state.showGuides;$('showGuides').checked=state.showGuides;
+ $('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';renderGuides();
+});
 $('upload').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)loadImage(file);e.target.value='';});
 $('btnScan').addEventListener('click',detectFaces);$('btnExport').addEventListener('click',exportOriginal);
-$('showGuides').addEventListener('change',e=>{state.showGuides=e.target.checked;renderGuides();});
-$('manualMode').addEventListener('change',e=>{state.manual=e.target.checked;if(state.manual){state.showGuides=true;$('showGuides').checked=true;}renderControls();renderGuides();});
+$('showGuides').addEventListener('change',e=>{state.showGuides=e.target.checked;$('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';renderGuides();});
+$('manualMode').addEventListener('change',e=>{state.manual=e.target.checked;if(state.manual){state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';}renderControls();renderGuides();});
 $('categoryTabs').addEventListener('click',e=>{const btn=e.target.closest('[data-tab]');if(!btn||!TABS[btn.dataset.tab])return;state.tab=btn.dataset.tab;for(const t of $('categoryTabs').querySelectorAll('.tab'))t.classList.toggle('active',t.dataset.tab===state.tab);renderControls();});
 $('sideSelect').addEventListener('click',e=>{const btn=e.target.closest('[data-side]');if(!btn)return;state.side=btn.dataset.side;renderControls();});
 $('btnResetTool').addEventListener('click',resetCurrentTool);$('btnResetFace').addEventListener('click',resetCurrentFace);
@@ -387,11 +544,11 @@ guide.addEventListener('pointerdown',startGuidePointer);guide.addEventListener('
 window.addEventListener('resize',()=>{if(state.img)updateFit();});
 $('btnHelp').addEventListener('click',()=>$('helpDialog').showModal());$('btnCloseHelp').addEventListener('click',()=>$('helpDialog').close());$('btnOkHelp').addEventListener('click',()=>$('helpDialog').close());
 document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea')||e.target.isContentEditable)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();}});
-renderControls();updateActions();
+renderControls();renderLooks();updateActions();
 
 // Controlled smoke-test instrumentation, available only on localhost with ?test=1.
 if(location.hostname==='localhost'&&new URLSearchParams(location.search).get('test')==='1'){
- window.RayMakeupV2Test={getState:()=>deepCopy({faces:state.faces,selectedId:state.selectedId,tab:state.tab,side:state.side}),getPreviewPixel:(x,y)=>[...pctx.getImageData(x,y,1,1).data],render:renderPreview,detect:detectFaces,select:selectPerson,exportImage:exportOriginal};
+ window.RayMakeupV2Test={getState:()=>deepCopy({faces:state.faces,selectedId:state.selectedId,tab:state.tab,side:state.side}),getPreviewPixel:(x,y)=>[...pctx.getImageData(x,y,1,1).data],applyLook,previewData:()=>pctx.getImageData(0,0,photo.width,photo.height).data,render:renderPreview,detect:detectFaces,select:selectPerson,exportImage:exportOriginal};
 }
 
 </script>
