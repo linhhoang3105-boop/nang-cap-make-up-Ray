@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Engine V4.0 – Viền trán/thái dương và vùng mắt bám theo khuôn mặt.">
-  <title>RAY PHOTO | Makeup Lab V4.0 · Transparent Foundation</title>
+  <meta name="description" content="RAY PHOTO Makeup Engine V4.0.1 – Viền trán/thái dương và vùng mắt bám theo khuôn mặt.">
+  <title>RAY PHOTO | Makeup Lab V4.0.1 · Transparent Foundation</title>
   <style>
 
 [hidden]{display:none!important}
@@ -81,7 +81,7 @@
 <body>
   <header class="topbar">
     <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
-    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.0</b></div>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.0.1</b></div>
     <div class="header-actions"><button class="outline small" id="btnHelp" type="button">Hướng dẫn</button><button class="primary small" id="btnExport" disabled type="button">Xuất PNG gốc</button></div>
   </header>
 
@@ -91,7 +91,7 @@
         <label for="upload" class="upload-button">＋ <span>Chọn ảnh</span></label>
         <input id="upload" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/avif">
         <button id="btnScan" class="outline" disabled type="button">◇ Nhận diện mặt</button>
-        <label class="toggle"><input id="showGuides" type="checkbox" checked> <span>Hiện đường viền</span></label>
+        <label class="toggle"><input id="showGuides" type="checkbox"> <span>Hiện đường viền</span></label>
         <label class="toggle"><input id="manualMode" type="checkbox"> <span>Chỉnh viền thủ công</span></label>
       </div>
       <div class="stage-outer" id="stageOuter">
@@ -116,7 +116,7 @@
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.0</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.0.1</span></div>
       <div class="face-zone">
         <div class="section-label"><b>Khuôn mặt</b><span id="faceCount">0 khuôn mặt</span></div>
         <div id="faceList" class="face-list"><div class="hint-empty">Chọn ảnh, sau đó bấm “Nhận diện mặt”.</div></div>
@@ -157,7 +157,7 @@
         <button type="button" class="tab" data-tab="skintone">Nhuộm da</button>
       </nav>
       <div class="control-area">
-        <div class="instant-hint"><span class="live-dot"></span><span>Chỉnh tới đâu, ảnh đổi ngay tới đó. Chọn người → chọn lớp → chọn kiểu. Từng người giữ màu và lớp riêng. Tỷ lệ trán / thái dương chỉnh trực tiếp ở trên, áp dụng ngay vào vùng da mặt.</span><button id="btnClearGuides" type="button" class="text-button">Ẩn đường viền</button></div>
+        <div class="instant-hint"><span class="live-dot"></span><span>Chỉnh tới đâu, ảnh đổi ngay tới đó. Chọn người → chọn lớp → chọn kiểu. Vùng nhận diện tự ẩn sau khi quét để xem rõ màu makeup; bật “Hiện đường viền” khi cần kiểm tra.</span><button id="btnClearGuides" type="button" class="text-button">Hiện đường viền</button></div>
         <div class="tool-heading"><div><h3 id="toolTitle">Chân mày</h3><p id="toolSummary">Giữ dáng mày thật, chỉnh độc lập hai bên.</p></div><button id="btnResetTool" class="text-button" disabled type="button">Khôi phục</button></div>
         <div class="side-select" id="sideSelect"><button type="button" data-side="both" class="selected">Hai bên</button><button type="button" data-side="left">Trái ảnh</button><button type="button" data-side="right">Phải ảnh</button></div>
         <div id="controls" class="controls"></div>
@@ -167,14 +167,14 @@
     </aside>
   </main>
   <dialog id="helpDialog">
-    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.0</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
+    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.0.1</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
     <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>. Với Chân mày/Môi: kéo điểm vàng. Với Nền/Da/Nhuộm da/Che khuyết điểm/Tạo khối/Bắt sáng: chọn <b>Kéo viền</b> để kéo các điểm vàng của viền mặt lên đúng chân tóc, hoặc bút <b>Thêm / Xóa</b> để tô trực tiếp trên ảnh.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Bật <b>Xem vùng mask</b> để xem mặt nạ vàng. Nếu cần, bấm <b>Bật chỉnh mask thủ công</b> rồi chọn Kéo viền / Thêm / Xóa. Nhấn giữ <b>Xem gốc</b> để so sánh. Chọn <b>Preset tổng thể</b> hoặc vào Nền, Che khuyết điểm, Tạo khối, Bắt sáng, Môi, Má, Mắt để chỉnh từng lớp.</li><li>Thử hoàn tác/làm lại, chuyển giữa nhiều người và <b>Xuất PNG gốc</b>.</li></ol>
-    <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. V4.0: khung nhận diện (ROI) tách khỏi mask da; viền trán/thái dương được ước lượng theo trục hai mắt, có thanh chỉnh riêng và AI loại tóc/kính trong viền; vùng phấn mắt, kẻ mắt, mi bám theo mí mắt khi đầu xoay; kéo viền và bút Thêm / Xóa dùng được ở mọi tab dùng mask. Mặt + cổ / Toàn da lộ cần mô hình AI và chỉ bật cho ảnh một người. Nếu AI không tải được, Chỉ mặt vẫn hoạt động nhưng có thể lem tóc/kính. Chưa nghiệm thu trên Safari iPhone.</p>
+    <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. V4.0.1: khung nhận diện (ROI) tách khỏi mask da; viền trán/thái dương được ước lượng theo trục hai mắt, có thanh chỉnh riêng và AI loại tóc/kính trong viền; vùng phấn mắt, kẻ mắt, mi bám theo mí mắt khi đầu xoay; kéo viền và bút Thêm / Xóa dùng được ở mọi tab dùng mask. Mặt + cổ / Toàn da lộ cần mô hình AI và chỉ bật cho ảnh một người. Nếu AI không tải được, Chỉ mặt vẫn hoạt động nhưng có thể lem tóc/kính. Chưa nghiệm thu trên Safari iPhone.</p>
     <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
   </dialog>
   <script type="module">
 
-/* RAY PHOTO – Makeup Lab V4.0 (standalone research prototype)
+/* RAY PHOTO – Makeup Lab V4.0.1 (standalone research prototype)
  * Copyright (c) 2026 RAY PHOTO – by Linh Linh.
  * Face landmark inference: MediaPipe Tasks Vision (Apache-2.0), lazily loaded.
  * No dependency on, nor modification to, the RAY PHOTO production application.
@@ -310,11 +310,16 @@ function makeDefaults(){return withLayerDefaults({
  highlight:{layout:'natural',color:'#f8dfc2',intensity:0,spread:85},
  skin:{smooth:0,brighten:0,glow:0},
  skintone:{scope:'face',tone:'naturallight',color:SKIN_TONE_MAP.naturallight,intensity:0,brightness:0,warmth:0,saturation:30}});}
-const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,tab:'brow',side:'both',zoom:1,showGuides:true,manual:false,compare:false,busy:false,loading:false,undo:[],redo:[],renderPending:false,skinSeg:null,skinSegMessage:'Chưa có phân vùng da.',showSkinMask:false,skinBrush:false,skinBrushMode:'outline',regionSoft:true,skinBrushSize:8};
+const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,tab:'brow',side:'both',zoom:1,showGuides:false,manual:false,compare:false,busy:false,loading:false,undo:[],redo:[],renderPending:false,skinSeg:null,skinSegMessage:'Chưa có phân vùng da.',showSkinMask:false,skinBrush:false,skinBrushMode:'outline',regionSoft:true,skinBrushSize:8};
 const photo=$('photoCanvas'),guide=$('guideCanvas'),stage=$('stageOuter'),holder=$('canvasHolder');
 const pctx=photo.getContext('2d',{willReadFrequently:true}),gctx=guide.getContext('2d');
 let detector=null,modelPromise=null,skinSegmenter=null,skinSegPromise=null,dragging=null,comparePointer=null,imageLoadGeneration=0;
 function setStatus(msg,isError=false){$('statusText').textContent=msg;$('statusText').style.color=isError?'#e6a29c':'';}
+function hideRecognitionOverlays(){
+ state.showGuides=false;state.showSkinMask=false;state.manual=false;state.skinBrush=false;dragging=null;
+ $('showGuides').checked=false;$('manualMode').checked=false;$('btnClearGuides').textContent='Hiện đường viền';
+ gctx.clearRect(0,0,guide.width,guide.height);
+}
 function newCanvas(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c;}
 function pxy(landmark,W,H){return {x:landmark.x*W,y:landmark.y*H};}
 function points(face,ids,W,H){return ids.map(id=>pxy(face.landmarks[id],W,H));}
@@ -322,7 +327,7 @@ function faceBounds(landmarks){const ps=OVAL.map(i=>landmarks[i]);return {l:Math
 
 
 /* =============================================================
-   V4.0 — FACE ROI  ≠  FACE REGION  ≠  SKIN MASK
+   V4.0.1 — FACE ROI  ≠  FACE REGION  ≠  SKIN MASK
    • Face ROI    : khung bao khuôn mặt (gồm cả trán). CHỈ dùng để chọn người, zoom/focus,
                    hit-test và vùng cho phép đặt bút. Không bao giờ dùng để cắt makeup.
    • Face Region : đa giác viền mặt dựng theo HÌNH HỌC khuôn mặt, trong khung tọa độ xoay theo
@@ -465,7 +470,7 @@ async function loadImage(file){if(!file)return;if(!file.type.startsWith('image/'
  const generation=++imageLoadGeneration,objUrl=URL.createObjectURL(file),img=new Image();state.loading=true;updateActions();setStatus('Đang đọc ảnh…');try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Không thể đọc định dạng ảnh này.'));img.src=objUrl;});
  if(generation!==imageLoadGeneration){URL.revokeObjectURL(objUrl);return;}
  if(!img.naturalWidth||!img.naturalHeight)throw new Error('Ảnh không có kích thước hợp lệ.');
- const prev=state.url;state.img=img;state.url=objUrl;state.file=file;state.width=img.naturalWidth;state.height=img.naturalHeight;state.faces=[];state.nextFaceId=1;state.selectedId=null;state.undo=[];state.redo=[];state.skinSeg=null;state.showSkinMask=false;state.skinSegMessage='Chưa có phân vùng da';state.skinBrush=false;state.zoom=1;state.manual=false;state.compare=false;$('manualMode').checked=false;
+ const prev=state.url;state.img=img;state.url=objUrl;state.file=file;state.width=img.naturalWidth;state.height=img.naturalHeight;state.faces=[];state.nextFaceId=1;state.selectedId=null;state.undo=[];state.redo=[];state.skinSeg=null;state.skinSegMessage='Chưa có phân vùng da';state.zoom=1;state.compare=false;hideRecognitionOverlays();
  // The image used for detection and preview has the same orientation & aspect as the decoded source.
  const maxDim=window.innerWidth<720?1050:1440,scale=Math.min(1,maxDim/Math.max(state.width,state.height));state.previewW=Math.max(1,Math.round(state.width*scale));state.previewH=Math.max(1,Math.round(state.height*scale));photo.width=guide.width=state.previewW;photo.height=guide.height=state.previewH;holder.hidden=false;$('empty').hidden=true;
  if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();renderLooks();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');
@@ -587,8 +592,9 @@ async function detectFaces(){
    next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:prev?.settings||makeDefaults(),look:prev?.look||null,skinEdits:prev?.skinEdits||[],geometry:{...newGeometry(),...deepCopy(prev?.geometry||{})},regionEdits:deepCopy(prev?.regionEdits||{}),warning:item.quality.warning});
   }
   state.faces=next;state.selectedId=next.find(f=>f.id===state.selectedId)?.id||next[0]?.id||null;state.undo=[];state.redo=[];
-  state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';
+  hideRecognitionOverlays();
   renderFaces();renderControls();renderLooks();scheduleRender();await refreshSkinSegmentation(analysis,original);if(original!==state.img)return;
+  hideRecognitionOverlays();renderControls();renderGuides();
   setStatus(next.length?`Đã nhận diện ${next.length} người${next.length>=MAX_DETECTED_FACES?' (giới hạn '+MAX_DETECTED_FACES+' người/lần)':''}. Mỗi người có mask và lớp makeup riêng; viền trán/thái dương đã áp dụng.`:'Chưa tìm được mặt đủ rõ. Hãy dùng ảnh gốc, mặt ít nhất khoảng 24–34 px.',!next.length);
  }catch(e){console.error(e);if(original===state.img)setStatus('Không nhận diện được: '+e.message+'. Kiểm tra mạng/CDN hoặc thử lại.',true);}
  finally{state.busy=false;updateActions();}
@@ -1632,13 +1638,13 @@ $('lookStrength').addEventListener('input',e=>{
 });
 $('btnClearGuides').addEventListener('click',()=>{
  state.showGuides=!state.showGuides;$('showGuides').checked=state.showGuides;
- $('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';renderGuides();
+ $('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';if(!state.showGuides){hideRecognitionOverlays();renderControls();}renderGuides();
 });
 $('upload').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)loadImage(file);e.target.value='';});
 $('btnScan').addEventListener('click',detectFaces);$('btnExport').addEventListener('click',exportOriginal);
 $('btnEditRegion').addEventListener('click',()=>{if(!selectedFace())return;state.tab='skin';state.skinBrushMode='outline';for(const t of $('categoryTabs').querySelectorAll('.tab'))t.classList.toggle('active',t.dataset.tab==='skin');setMaskEditing(true);focusSelectedFace();});
-$('showGuides').addEventListener('change',e=>{state.showGuides=e.target.checked;$('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';renderGuides();});
-$('manualMode').addEventListener('change',e=>{state.manual=e.target.checked;if(state.manual){if(isMaskTab()){state.showSkinMask=true;state.skinBrush=true;applyToolGuides();}else{state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';}}else if(isMaskTab()){state.skinBrush=false;}renderControls();renderGuides();});
+$('showGuides').addEventListener('change',e=>{state.showGuides=e.target.checked;if(!state.showGuides){hideRecognitionOverlays();renderControls();}$('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';renderGuides();});
+$('manualMode').addEventListener('change',e=>{state.manual=e.target.checked;if(state.manual){if(isMaskTab()){state.showSkinMask=true;state.skinBrush=true;applyToolGuides();}else{state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';}}else{hideRecognitionOverlays();}renderControls();renderGuides();});
 $('categoryTabs').addEventListener('click',e=>{const btn=e.target.closest('[data-tab]');if(!btn||!TABS[btn.dataset.tab])return;state.tab=btn.dataset.tab;if(!isMaskTab())state.showSkinMask=false;if(state.manual){if(isMaskTab()){state.skinBrush=true;applyToolGuides();}else{state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';}}for(const t of $('categoryTabs').querySelectorAll('.tab'))t.classList.toggle('active',t.dataset.tab===state.tab);renderControls();if(window.innerWidth<760&&isMaskTab())focusSelectedFace();});
 $('sideSelect').addEventListener('click',e=>{const btn=e.target.closest('[data-side]');if(!btn)return;state.side=btn.dataset.side;renderControls();});
 $('btnResetTool').addEventListener('click',resetCurrentTool);$('btnResetFace').addEventListener('click',resetCurrentFace);
