@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Engine V4.2 – Viền trán/thái dương và vùng mắt bám theo khuôn mặt.">
-  <title>RAY PHOTO | Makeup Lab V4.2 · Skin Finish &amp; Layer Order</title>
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.3 – Lưu, chỉnh sửa và chia sẻ layout trang điểm; lưu ảnh và mở lại phiên chỉnh.">
+  <title>RAY PHOTO | Makeup Lab V4.3 · Layout trang điểm</title>
   <style>
 
 [hidden]{display:none!important}
@@ -79,13 +79,18 @@
 .edit-target{padding:9px 11px;border-left:3px solid var(--gold);background:#27231c;font-size:12px;color:#f4dcaf;line-height:1.5}
 @media(min-width:761px){.photo-panel{position:sticky;top:0;align-self:start;height:calc(100dvh - 68px)}.photo-panel .stage-outer{height:auto;flex:1;min-height:280px}.photo-panel .toolbar,.photo-panel .stage-footer,.photo-panel .statusbar{flex-shrink:0}}
 .finish-editor,.surface-editor{padding:12px;background:#24221e;border:1px solid #76603d;border-radius:9px;display:flex;flex-direction:column;gap:10px}.finish-editor>label,.surface-editor>label{font-size:12px;color:#ead2ab}.finish-editor select{background:#151517;border:1px solid #8f7149;color:#f3d7a6;border-radius:7px;padding:9px;font:inherit;width:100%}.skin-tool-links{display:flex;flex-wrap:wrap;gap:6px}.surface-editor input[type=range]{width:100%;accent-color:var(--gold)}.surface-editor b{font-size:11px;color:var(--gold2)}
+
+.recipe-section{padding:16px 18px;border-bottom:1px solid #514332;background:#201d1b}.recipe-section h3{font-size:13px;color:#edcc93}.recipe-section p{font-size:11px;line-height:1.6;color:#bbb1a5;margin:8px 0}.recipe-section .dirty{color:#efc681}.recipe-section .recipe-buttons,.session-actions{display:flex;gap:7px;flex-wrap:wrap}.session-actions{margin-top:10px}.session-actions button{flex:1;font-size:11px}.recipe-dialog{width:min(760px,calc(100vw - 24px));max-height:calc(100dvh - 28px);overflow:auto}.recipe-dialog h3{font-size:14px;color:#edcc93;margin:15px 0 10px}.recipe-dialog input[type=text],.recipe-dialog textarea,.add-layer select{width:100%;box-sizing:border-box;background:#121316;border:1px solid #746044;border-radius:7px;color:#f2eadc;padding:11px;font:inherit}.recipe-dialog label{display:block;font-size:12px;margin:10px 0}.recipe-dialog textarea{font-size:12px;line-height:1.5;resize:vertical}.recipe-dialog .dialog-actions,.recipe-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.recipe-dialog .dialog-actions button{min-height:38px}.recipe-card{padding:13px;border:1px solid #5d4c37;border-radius:9px;background:#201f22;margin:10px 0;overflow-wrap:anywhere}.recipe-card strong{font-size:14px}.recipe-card p{margin:6px 0;font-size:11px}.recipe-actions button{font-size:11px;padding:8px 10px}.recipe-message{font-size:12px;line-height:1.6;color:#a5d9b9;white-space:pre-wrap}.recipe-message.error{color:#efaaa0}.add-layer{display:flex;gap:7px;margin:12px 0}.add-layer select{width:auto;flex:1;min-width:0;font-size:11px;padding:8px}.layer-row{flex-wrap:wrap;padding:8px;border:1px solid #514332;border-radius:8px}.layer-row .layer-chip{flex-basis:calc(100% - 92px);min-width:80px}.layer-row .layer-toggle-label{font-size:11px;display:flex;align-items:center;gap:5px;flex:1}.layer-row input{accent-color:var(--gold);width:16px;height:16px}.layer-delete{font-size:11px;color:#e1aaa0;padding:6px 8px;border:1px solid #704d44;border-radius:6px}.layer-row.muted{opacity:.7}#recipeName{font-size:15px}#btnUndo,#btnRedo{font-size:11px}#saveImageDialog .save-success{color:#9bd5b2}.recipe-import{margin-top:18px;padding-top:12px;border-top:1px solid #514332}.recipe-file{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}.session-caption{font-size:10px!important;color:#a79f96!important}.save-file-label{display:inline-block!important;cursor:pointer;font-size:12px!important}
+@media(max-width:760px){.recipe-section{padding:15px 17px}.recipe-dialog{padding:17px}.recipe-dialog .dialog-title h2{font-size:21px}.recipe-dialog .dialog-actions button{flex:1}.recipe-actions button{flex:1}.topbar .header-actions{min-width:0}.topbar .header-actions .primary{white-space:nowrap}}
+.saved-layout-list{display:flex;gap:9px;overflow-x:auto;max-width:100%;padding:6px 0 12px}.saved-layout-card{flex:0 0 144px;max-width:144px;text-align:left;padding:10px;border:1px solid #67523b;border-radius:9px;background:#292420}.saved-layout-card.selected{border-color:#e1b56d;background:#453321}.saved-layout-card b{display:block;font-size:12px;line-height:1.4;overflow-wrap:anywhere;margin:7px 0}.saved-layout-card small{font-size:10px;color:#c4b397}.saved-layout-palette{display:flex;gap:4px}.saved-layout-palette i{width:24px;height:24px;border:1px solid #e2cfad55;border-radius:50%;display:block}
+@media(max-width:760px){.recipe-dialog .dialog-actions{display:grid;grid-template-columns:1fr}.recipe-dialog .dialog-actions button{width:100%;min-height:44px}.recipe-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.recipe-actions button{min-height:40px}}
 </style>
 </head>
 <body>
   <header class="topbar">
     <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
-    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.2</b></div>
-    <div class="header-actions"><button class="outline small" id="btnHelp" type="button">Hướng dẫn</button><button class="primary small" id="btnExport" disabled type="button">Xuất PNG gốc</button></div>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.3</b></div>
+    <div class="header-actions"><button class="outline small" id="btnHelp" type="button">Hướng dẫn</button><button class="primary small" id="btnExport" disabled type="button">Lưu ảnh</button></div>
   </header>
 
   <main class="workspace">
@@ -112,14 +117,14 @@
         <div id="photoFeedback" class="photo-feedback" role="status" aria-live="polite" hidden><span class="live-dot"></span><span id="photoFeedbackText">Đang xem makeup trực tiếp</span></div>
       </div>
       <div class="stage-footer">
-        <div class="left-tools"><button id="btnCompare" class="outline" disabled type="button" title="Nhấn giữ để xem ảnh gốc">◉ Nhấn giữ xem gốc</button><button id="btnUndo" class="mini" disabled type="button" title="Hoàn tác">↶</button><button id="btnRedo" class="mini" disabled type="button" title="Làm lại">↷</button></div>
+        <div class="left-tools"><button id="btnCompare" class="outline" disabled type="button" title="Nhấn giữ để xem ảnh gốc">◉ Nhấn giữ xem gốc</button><button id="btnUndo" class="mini" disabled type="button" title="Quay lại thao tác trước" aria-label="Quay lại thao tác trước">↶ Quay lại</button><button id="btnRedo" class="mini" disabled type="button" title="Làm lại thao tác" aria-label="Làm lại thao tác">↷ Làm lại</button></div>
         <div class="zoom-tools"><button id="zoomOut" class="mini" disabled type="button">−</button><output id="zoomLabel">100%</output><button id="zoomIn" class="mini" disabled type="button">＋</button><button id="zoomReset" class="mini" disabled type="button">Vừa khung</button><button id="btnFocusFace" class="mini face-focus" disabled type="button">Cận mặt</button></div>
       </div>
       <div class="statusbar"><span id="statusText" role="status" aria-live="polite">Sẵn sàng. Chưa mở ảnh.</span><span id="imageInfo"></span></div>
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.2</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.3</span></div>
       <div class="face-zone">
         <div class="section-label"><b>Khuôn mặt</b><span id="faceCount">0 khuôn mặt</span></div>
         <div id="faceList" class="face-list"><div class="hint-empty">Chọn ảnh, sau đó bấm “Nhận diện mặt”.</div></div>
@@ -129,8 +134,14 @@
         <button type="button" id="btnOpenAge" class="outline block small" disabled style="margin-top:8px">Trẻ / già da · Rãnh cười và nếp nhăn</button>
         <button type="button" id="btnOpenFinish" class="primary block small" disabled style="margin-top:8px">Chất liệu da · Pha theo vùng</button>
       </div>
+      <section class="recipe-section" aria-label="Công thức và phiên chỉnh">
+        <h3>Layout trang điểm</h3><p id="recipeSummary" role="status">Lưu, mở lại và chia sẻ look của bạn</p>
+        <div class="saved-layout-list" id="savedLayoutList" aria-label="Layout trang điểm đã lưu"></div><div class="recipe-buttons"><button id="btnRecipes" type="button" class="primary block small">Layout · Đặt tên / Lưu / Chia sẻ</button></div>
+        <div class="session-actions"><button id="btnSaveSession" type="button" class="outline" disabled>Lưu phiên chỉnh</button><button id="btnResumeSession" type="button" class="outline" disabled>Mở phiên đã lưu</button></div>
+        <p id="sessionSummary" class="session-caption">Phiên chỉnh giữ ảnh gốc và các lớp trên thiết bị này.</p><button id="btnDiscardSession" class="text-button" type="button" disabled>Xóa phiên đã lưu trên thiết bị</button>
+      </section>
       <section class="looks-section" id="looksSection" aria-label="Phong cách makeup thử nhanh">
-        <div class="section-label looks-title"><b>PRESET TỔNG THỂ</b><span id="lookSummary">Bấm một look để xem ngay trên ảnh</span></div>
+        <div class="section-label looks-title"><b>LAYOUT GỢI Ý</b><span id="lookSummary">Bấm một look để xem ngay trên ảnh</span></div>
         <div class="look-list" id="lookList" role="group" aria-label="Chọn phong cách trang điểm">
           <button type="button" class="look-card" data-look="fresh" disabled><span class="look-sample" style="--eye:#775544;--lip:#d17c83;--cheek:#e7a1a3"></span><b>Trong trẻo</b><small>Hồng nhẹ</small></button>
           <button type="button" class="look-card" data-look="peach" disabled><span class="look-sample" style="--eye:#886357;--lip:#d86365;--cheek:#ed9da0"></span><b>Hồng đào</b><small>Tươi tắn</small></button>
@@ -143,7 +154,8 @@
       </section>
       <section class="layer-section" aria-label="Quản lý lớp trang điểm">
         <details id="layerDetails"><summary><span>THỨ TỰ LỚP TRANG ĐIỂM</span><span id="layerSummary">0 lớp đang áp</span></summary>
-          <p>Lớp mới bật được phủ sau. Danh sách đi từ vẽ trước → phủ sau; dùng ↑ ↓ để đổi thứ tự cho người đang chọn. Chỉnh lại thông số giữ nguyên thứ tự. Các vùng không chồng nhau có thể giữ cùng kết quả.</p><button type="button" id="btnRecommendedOrder" class="outline small" disabled>Thứ tự gợi ý · nền trước, màu sau</button>
+          <p>Lớp mới thêm được phủ sau. Bật/tắt lớp giữ nguyên thứ tự. Danh sách đi từ vẽ trước → phủ sau; dùng ↑ ↓ để đổi thứ tự cho người đang chọn. Chỉnh lại thông số giữ nguyên thứ tự. Các vùng không chồng nhau có thể giữ cùng kết quả.</p><button type="button" id="btnRecommendedOrder" class="outline small" disabled>Thứ tự gợi ý · nền trước, màu sau</button>
+          <div class="add-layer"><select id="addLayerType" aria-label="Chọn hiệu ứng để thêm lớp" disabled></select><button id="btnAddLayer" class="outline small" type="button" disabled>＋ Thêm lớp</button></div>
           <div class="layer-strip" id="layerStrip"></div>
         </details>
       </section>
@@ -176,14 +188,33 @@
     </aside>
   </main>
   <dialog id="helpDialog">
-    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.2</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
-    <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>. Với Chân mày/Môi: kéo điểm vàng. Với Nền/Da/Nhuộm da/Che khuyết điểm/Tạo khối/Bắt sáng: chọn <b>Kéo viền</b> để kéo các điểm vàng của viền mặt lên đúng chân tóc, hoặc bút <b>Thêm / Xóa</b> để tô trực tiếp trên ảnh.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Bật <b>Xem vùng mask</b> để xem mặt nạ vàng. Nếu cần, bấm <b>Bật chỉnh mask thủ công</b> rồi chọn Kéo viền / Thêm / Xóa. Nhấn giữ <b>Xem gốc</b> để so sánh. Chọn <b>Preset tổng thể</b> hoặc vào Nền, Che khuyết điểm, Tạo khối, Bắt sáng, Môi, Má, Mắt để chỉnh từng lớp.</li><li>Thử hoàn tác/làm lại, chuyển giữa nhiều người và <b>Xuất PNG gốc</b>.</li></ol>
-    <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. V4.2: khung nhận diện (ROI) tách khỏi mask da; viền trán/thái dương được ước lượng theo trục hai mắt, có thanh chỉnh riêng và AI loại tóc/kính trong viền; vùng phấn mắt, kẻ mắt, mi bám theo mí mắt khi đầu xoay; kéo viền và bút Thêm / Xóa dùng được ở mọi tab dùng mask. Mặt + cổ / Toàn da lộ cần mô hình AI và chỉ bật cho ảnh một người. Nếu AI không tải được, Chỉ mặt vẫn hoạt động nhưng có thể lem tóc/kính. Chưa nghiệm thu trên Safari iPhone.</p>
+    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.3</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
+    <ol><li>Chọn ảnh JPG/PNG/WebP, bấm <b>Nhận diện mặt</b> (lần đầu cần mạng).</li><li>Kiểm tra đường viền màu, đặc biệt <b>chân mày</b> và <b>môi</b>. Chọn người bằng ảnh nhỏ hoặc bấm trực tiếp vào khuôn mặt.</li><li>Nếu lệch, bật <b>Chỉnh viền thủ công</b>. Với Chân mày/Môi: kéo điểm vàng. Với Nền/Da/Nhuộm da/Che khuyết điểm/Tạo khối/Bắt sáng: chọn <b>Kéo viền</b> để kéo các điểm vàng của viền mặt lên đúng chân tóc, hoặc bút <b>Thêm / Xóa</b> để tô trực tiếp trên ảnh.</li><li>Chỉnh từng công cụ; dùng <b>Trái ảnh / Phải ảnh</b> để sửa từng bên. Bật <b>Xem vùng mask</b> để xem mặt nạ vàng. Nếu cần, bấm <b>Bật chỉnh mask thủ công</b> rồi chọn Kéo viền / Thêm / Xóa. Nhấn giữ <b>Xem gốc</b> để so sánh. Chọn <b>Preset tổng thể</b> hoặc vào Nền, Che khuyết điểm, Tạo khối, Bắt sáng, Môi, Má, Mắt để chỉnh từng lớp.</li><li>Dùng <b>Quay lại / Làm lại</b> để thử các thay đổi. Trong <b>Thứ tự lớp trang điểm</b>, dùng ↑/↓, bật/tắt hoặc xóa lớp; <b>Thêm lớp</b> thêm hiệu ứng vào look.</li><li>Mở <b>Layout · Đặt tên / Lưu / Chia sẻ</b>, đặt tên rồi <b>Lưu thành layout mới</b>. Layout xuất hiện trong thư viện; chọn để dùng lại, sửa từng lớp rồi <b>Cập nhật layout</b>. Chia sẻ tệp/mã để người khác nhập và chỉnh tiếp.</li><li>Bấm <b>Lưu ảnh</b>, đặt tên PNG rồi lưu; <b>Quay lại chỉnh sửa</b> giữ nguyên các lớp. <b>Lưu phiên chỉnh</b> giữ ảnh gốc và mọi người trên thiết bị; <b>Mở phiên đã lưu</b> để tiếp tục sau khi đóng trang.</li></ol>
+    <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. V4.3: khung nhận diện (ROI) tách khỏi mask da; viền trán/thái dương được ước lượng theo trục hai mắt, có thanh chỉnh riêng và AI loại tóc/kính trong viền; vùng phấn mắt, kẻ mắt, mi bám theo mí mắt khi đầu xoay; kéo viền và bút Thêm / Xóa dùng được ở mọi tab dùng mask. Mặt + cổ / Toàn da lộ cần mô hình AI và chỉ bật cho ảnh một người. Nếu AI không tải được, Chỉ mặt vẫn hoạt động nhưng có thể lem tóc/kính. Chưa nghiệm thu trên Safari iPhone.</p>
     <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
+  </dialog>
+  <dialog id="recipeDialog" class="recipe-dialog" aria-labelledby="recipeDialogTitle">
+    <div class="dialog-title"><h2 id="recipeDialogTitle">Layout trang điểm</h2><button class="mini" type="button" data-close-dialog="recipeDialog" aria-label="Đóng công thức">✕</button></div>
+    <p id="recipeCurrentLabel"></p><label for="recipeName">Tên layout trang điểm</label><input id="recipeName" type="text" maxlength="80" value="Look của tôi" placeholder="Ví dụ: Satin hồng trong">
+    <div class="dialog-actions"><button id="btnSaveRecipe" type="button" class="primary">Lưu thành layout mới</button><button id="btnUpdateRecipe" type="button" class="outline" disabled>Cập nhật layout</button><button id="btnExportCurrentRecipe" type="button" class="outline" disabled>Chia sẻ layout đang chỉnh</button></div>
+    <p id="recipeMessage" class="recipe-message" role="status" aria-live="polite">Công thức lưu trên trình duyệt này. Tải tệp để sao lưu hoặc gửi cho người khác.</p>
+    <h3>Layout của bạn</h3><button id="btnUndoRecipeDelete" class="text-button" type="button" hidden>Khôi phục công thức vừa xóa</button><div id="recipeList"></div>
+    <div class="recipe-import"><h3>Nhập layout được chia sẻ</h3><label for="recipeImportFile" class="outline save-file-label">Chọn tệp layout</label><input id="recipeImportFile" type="file" class="recipe-file" accept=".json,.raymakeup,application/json"><label for="recipeImportText">Hoặc dán mã công thức</label><textarea id="recipeImportText" rows="3" spellcheck="false" placeholder="Dán mã công thức RAY Makeup tại đây"></textarea><button id="btnImportRecipeText" type="button" class="outline small">Nhập layout từ mã</button></div>
+    <div class="dialog-actions"><button type="button" class="primary" data-close-dialog="recipeDialog">Quay lại chỉnh ảnh</button></div>
+  </dialog>
+  <dialog id="shareRecipeDialog" class="recipe-dialog" aria-labelledby="shareRecipeTitle">
+    <div class="dialog-title"><h2 id="shareRecipeTitle">Chia sẻ layout trang điểm</h2><button type="button" class="mini" data-close-dialog="shareRecipeDialog" aria-label="Đóng chia sẻ">✕</button></div><h3 id="shareRecipeName"></h3><p id="shareRecipeMessage" role="status"></p>
+    <div class="dialog-actions"><button id="btnShareRecipeNative" type="button" class="primary">Chia sẻ qua ứng dụng</button><button id="btnDownloadSharedRecipe" type="button" class="outline">Tải tệp layout</button><button id="btnCopyRecipeCode" type="button" class="outline">Sao chép mã</button></div>
+    <label for="shareRecipeText">Mã công thức</label><textarea id="shareRecipeText" rows="7" readonly spellcheck="false"></textarea>
+  </dialog>
+  <dialog id="saveImageDialog" class="recipe-dialog" aria-labelledby="saveImageTitle">
+    <div class="dialog-title"><h2 id="saveImageTitle">Lưu ảnh</h2><button type="button" class="mini" data-close-dialog="saveImageDialog" aria-label="Đóng lưu ảnh">✕</button></div>
+    <p id="saveImageInfo"></p><label for="saveImageName">Tên ảnh</label><input id="saveImageName" type="text" maxlength="120"><p id="saveImageMessage" class="recipe-message" role="status">Ảnh PNG giữ nguyên kích thước nguồn. Sau khi lưu, bạn vẫn chỉnh tiếp được.</p>
+    <div class="dialog-actions"><button id="btnConfirmSaveImage" class="primary" type="button">Lưu ảnh PNG</button><button id="btnBackEdit" class="outline" type="button">Quay lại chỉnh sửa</button><button id="btnSaveRecipeAfterImage" class="outline" type="button">Lưu thành layout trang điểm</button></div>
   </dialog>
   <script type="module">
 
-/* RAY PHOTO – Makeup Lab V4.2 (standalone research prototype)
+/* RAY PHOTO – Makeup Lab V4.3 (standalone research prototype)
  * Copyright (c) 2026 RAY PHOTO – by Linh Linh.
  * Face landmark inference: MediaPipe Tasks Vision (Apache-2.0), lazily loaded.
  * No dependency on, nor modification to, the RAY PHOTO production application.
@@ -306,6 +337,7 @@ function makeupLookSettings(id,strength=LOOK_DEFAULT_STRENGTH){
 }
 function withLayerDefaults(settings){
  for(const [tab,raw] of Object.entries(settings)){
+  if(TABS[tab].sides&&raw.enabled===undefined)raw.enabled=true;
   const configs=TABS[tab].sides?[raw.left,raw.right]:[raw];
   for(const s of configs)for(const [key,value] of Object.entries({enabled:true,sheer:40,coverage:65,softness:65,texture:85}))if(s[key]===undefined)s[key]=value;
  }
@@ -339,12 +371,12 @@ function makeDefaults(){return withLayerDefaults({
 function hydrateSettings(saved){
  const next=makeDefaults();if(!saved)return next;
  for(const tab of Object.keys(TABS)){
-  if(TABS[tab].sides){for(const side of ['left','right'])Object.assign(next[tab][side],deepCopy(saved[tab]?.[side]||{}));}
+  if(TABS[tab].sides){for(const side of ['left','right'])Object.assign(next[tab][side],deepCopy(saved[tab]?.[side]||{}));next[tab].enabled=saved[tab]?.enabled!==false;}
   else {Object.assign(next[tab],deepCopy(saved[tab]||{}));if(tab==='finish')for(const id of Object.keys(UI_FINISH_REGIONS).filter(id=>id!=='face'))next.finish.regions[id]={...skinFinishDefaults().regions[id],...deepCopy(saved.finish?.regions?.[id]||{})};}
  }
  return next;
 }
-function ensureSettings(face){if(!face.settings||Object.keys(TABS).some(tab=>!face.settings[tab]))face.settings=hydrateSettings(face.settings);face.layerOrder=normalizeLayerOrder(face.layerOrder);return face.settings;}
+function ensureSettings(face){if(!face.settings||Object.keys(TABS).some(tab=>!face.settings[tab]))face.settings=hydrateSettings(face.settings);face.layerOrder=normalizeLayerOrder(face.layerOrder);if(!Array.isArray(face.layerList)){const defaults=makeDefaults();face.layerList=face.layerOrder.filter(tab=>JSON.stringify(face.settings[tab])!==JSON.stringify(defaults[tab]));}else face.layerList=[...new Set(face.layerList.filter(tab=>Object.hasOwn(TABS,tab)))];return face.settings;}
 const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,tab:'brow',side:'both',zoom:1,showGuides:false,manual:false,compare:false,busy:false,loading:false,undo:[],redo:[],renderPending:false,skinSeg:null,skinSegMessage:'Chưa có phân vùng da.',showSkinMask:false,skinBrush:false,skinBrushMode:'outline',regionSoft:true,skinBrushSize:8,finishRegion:'face',surfaceBrush:false,surfaceBrushMode:'add',surfaceBrushSize:8};
 const photo=$('photoCanvas'),guide=$('guideCanvas'),stage=$('stageOuter'),holder=$('canvasHolder');
 const pctx=photo.getContext('2d',{willReadFrequently:true}),gctx=guide.getContext('2d');
@@ -362,7 +394,7 @@ function faceBounds(landmarks){const ps=OVAL.map(i=>landmarks[i]);return {l:Math
 
 
 /* =============================================================
-   V4.2 — FACE ROI  ≠  FACE REGION  ≠  SKIN MASK
+   V4.3 — FACE ROI  ≠  FACE REGION  ≠  SKIN MASK
    • Face ROI    : khung bao khuôn mặt (gồm cả trán). CHỈ dùng để chọn người, zoom/focus,
                    hit-test và vùng cho phép đặt bút. Không bao giờ dùng để cắt makeup.
    • Face Region : đa giác viền mặt dựng theo HÌNH HỌC khuôn mặt, trong khung tọa độ xoay theo
@@ -473,13 +505,16 @@ function faceCenter(face){const b=faceBounds(face.landmarks);return {x:(b.l+b.r)
 function selectedFace(){return state.faces.find(f=>f.id===state.selectedId)||null;}
 function isMaskTab(tab=state.tab){return ['foundation','skin','age','finish','skinlight','skintexture','skintone','concealer','contour','highlight'].includes(tab);}
 function activeMaskScope(face){return state.tab==='skintone'?skinScope(face.settings.skintone):'face';}
-function snapshot(){return deepCopy(state.faces.map(f=>({id:f.id,landmarks:f.landmarks,settings:f.settings,layerOrder:normalizeLayerOrder(f.layerOrder),look:f.look,skinEdits:f.skinEdits||[],geometry:f.geometry||newGeometry(),regionEdits:f.regionEdits||{}})))}
+function snapshot(){return deepCopy(state.faces.map(f=>({id:f.id,landmarks:f.landmarks,settings:f.settings,layerList:deepCopy(f.layerList||[]),recipeRef:f.recipeRef||null,layerOrder:normalizeLayerOrder(f.layerOrder),look:f.look,skinEdits:f.skinEdits||[],geometry:f.geometry||newGeometry(),regionEdits:f.regionEdits||{}})))}
 function checkpoint(){if(!state.faces.length)return;const snap=snapshot(),last=state.undo[state.undo.length-1];if(!last||JSON.stringify(last)!==JSON.stringify(snap)){state.undo.push(snap);if(state.undo.length>42)state.undo.shift();}state.redo.length=0;updateActions();}
-function restoreSnapshot(snap){for(const entry of snap){const f=state.faces.find(x=>x.id===entry.id);if(f){f.landmarks=deepCopy(entry.landmarks);f.settings=hydrateSettings(entry.settings);f.layerOrder=normalizeLayerOrder(entry.layerOrder);f.look=deepCopy(entry.look||null);f.skinEdits=deepCopy(entry.skinEdits||[]);f.geometry=deepCopy(entry.geometry||newGeometry());f.regionEdits=deepCopy(entry.regionEdits||{});}}renderControls();renderLooks();scheduleRender();updateActions();}
+function restoreSnapshot(snap){for(const entry of snap){const f=state.faces.find(x=>x.id===entry.id);if(f){f.landmarks=deepCopy(entry.landmarks);f.settings=hydrateSettings(entry.settings);f.layerOrder=normalizeLayerOrder(entry.layerOrder);f.layerList=deepCopy(entry.layerList||[]);f.recipeRef=deepCopy(entry.recipeRef||null);f.look=deepCopy(entry.look||null);f.skinEdits=deepCopy(entry.skinEdits||[]);f.geometry=deepCopy(entry.geometry||newGeometry());f.regionEdits=deepCopy(entry.regionEdits||{});}}renderControls();renderLooks();scheduleRender();updateActions();}
 function undo(){if(!state.undo.length)return;const old=state.undo.pop();state.redo.push(snapshot());restoreSnapshot(old)}
 function redo(){if(!state.redo.length)return;const old=state.redo.pop();state.undo.push(snapshot());restoreSnapshot(old)}
 function updateActions(){const ready=!!state.img&&!state.loading,has=!!selectedFace()&&!state.loading;for(const id of ['btnScan'])$(id).disabled=!ready||state.busy;for(const id of ['btnExport','btnCompare'])$(id).disabled=!ready;for(const id of ['btnResetFace','btnResetTool','btnEditRegion','btnOpenAge','btnOpenFinish'])$(id).disabled=!has; $('btnFocusFace').disabled=!has;$('btnUndo').disabled=!state.undo.length;$('btnRedo').disabled=!state.redo.length;
- for(const id of ['zoomIn','zoomOut','zoomReset'])$(id).disabled=!ready;}
+ for(const id of ['zoomIn','zoomOut','zoomReset'])$(id).disabled=!ready;
+ $('btnExport').disabled=!ready||state.busy||workSessionBusy;$('btnConfirmSaveImage').disabled=!ready||state.busy||workSessionBusy;
+ $('btnSaveSession').disabled=!ready||state.busy||workSessionBusy;$('btnResumeSession').disabled=!workSessionAvailable||state.loading||state.busy||workSessionBusy;
+ document.querySelector('.settings-panel').inert=state.loading||workSessionBusy;guide.style.pointerEvents=state.loading||workSessionBusy?'none':'auto';$('upload').disabled=state.busy||state.loading||workSessionBusy;$('btnDiscardSession').disabled=!workSessionAvailable||state.loading||state.busy||workSessionBusy;$('btnRecipes').disabled=state.busy||state.loading||workSessionBusy;renderRecipeStatus();}
 function scheduleRender(){if(state.renderPending)return;state.renderPending=true;requestAnimationFrame(()=>{state.renderPending=false;try{renderPreview()}catch(e){console.error('Render error',e);setStatus('Lỗi render: '+e.message,true);}});}
 function updateFit(){if(!state.previewW)return;const cw=Math.max(240,stage.clientWidth-32),ch=Math.max(200,stage.clientHeight-32);const fit=Math.min(cw/state.previewW,ch/state.previewH,2.5),w=Math.max(60,Math.round(state.previewW*fit*state.zoom));holder.style.width=w+'px';holder.style.height=Math.round(w*state.previewH/state.previewW)+'px';stage.style.justifyContent=w>cw?'flex-start':'center';stage.style.alignItems=(w*state.previewH/state.previewW)>ch?'flex-start':'center';$('zoomLabel').textContent=Math.round(state.zoom*100)+'%';}
 function ensurePreviewDetail(){
@@ -510,15 +545,15 @@ function pathPoly(ctx,pts){if(!pts?.length)return;ctx.moveTo(pts[0].x,pts[0].y);
 function boundsPx(ps,W,H,pad=0){const p=ps.filter(hasNum);if(!p.length)return null;return{x0:clamp(Math.floor(Math.min(...p.map(q=>q.x))-pad),0,W),y0:clamp(Math.floor(Math.min(...p.map(q=>q.y))-pad),0,H),x1:clamp(Math.ceil(Math.max(...p.map(q=>q.x))+pad),0,W),y1:clamp(Math.ceil(Math.max(...p.map(q=>q.y))+pad),0,H)};}
 function colorRGB(hex){const str=String(hex||'').replace('#','');if(!/^[a-f\d]{6}$/i.test(str))return [128,80,80];return [0,2,4].map(i=>parseInt(str.slice(i,i+2),16));}
 function activeSides(){return state.side==='both'?['left','right']:[state.side];}
-async function loadImage(file){if(!file)return;if(!file.type.startsWith('image/')&&!/\.(jpe?g|png|webp|heic|heif|avif)$/i.test(file.name)){setStatus('Chỉ hỗ trợ ảnh hợp lệ.',true);return;}
+async function loadImage(file){if(!file)return;if(!file.type.startsWith('image/')&&!/\.(jpe?g|png|webp|heic|heif|avif)$/i.test(file.name)){setStatus('Chỉ hỗ trợ ảnh hợp lệ.',true);return false;}
  const generation=++imageLoadGeneration,objUrl=URL.createObjectURL(file),img=new Image();state.loading=true;updateActions();setStatus('Đang đọc ảnh…');try{await new Promise((resolve,reject)=>{img.onload=resolve;img.onerror=()=>reject(new Error('Không thể đọc định dạng ảnh này.'));img.src=objUrl;});
- if(generation!==imageLoadGeneration){URL.revokeObjectURL(objUrl);return;}
+ if(generation!==imageLoadGeneration){URL.revokeObjectURL(objUrl);return false;}
  if(!img.naturalWidth||!img.naturalHeight)throw new Error('Ảnh không có kích thước hợp lệ.');
  const prev=state.url;state.img=img;state.url=objUrl;state.file=file;state.width=img.naturalWidth;state.height=img.naturalHeight;state.faces=[];state.nextFaceId=1;state.selectedId=null;state.undo=[];state.redo=[];state.skinSeg=null;state.skinSegMessage='Chưa có phân vùng da';state.zoom=1;state.compare=false;hideRecognitionOverlays();
  // The image used for detection and preview has the same orientation & aspect as the decoded source.
  const maxDim=window.innerWidth<720?1050:1440,scale=Math.min(1,maxDim/Math.max(state.width,state.height));state.previewW=Math.max(1,Math.round(state.width*scale));state.previewH=Math.max(1,Math.round(state.height*scale));photo.width=guide.width=state.previewW;photo.height=guide.height=state.previewH;holder.hidden=false;$('empty').hidden=true;
- if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();renderLooks();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');
- }catch(e){URL.revokeObjectURL(objUrl);if(generation===imageLoadGeneration)setStatus('Không mở được ảnh: '+e.message,true);}
+ if(prev)URL.revokeObjectURL(prev);updateFit();renderFaces();renderControls();renderLooks();updateActions();scheduleRender();$('imageInfo').textContent=state.width+' × '+state.height+' px';setStatus('Đã mở ảnh. Bấm “Nhận diện mặt” để kiểm tra đường viền.');return true;
+ }catch(e){URL.revokeObjectURL(objUrl);if(generation===imageLoadGeneration)setStatus('Không mở được ảnh: '+e.message,true);return false;}
  finally{if(generation===imageLoadGeneration){state.loading=false;updateActions();}}}
 // A multi-face landmarker alone still uses a short-range locator internally.
 // Full-range proposals and overlapping source crops recover small group faces.
@@ -633,7 +668,7 @@ async function detectFaces(){
    if(prev?.raw?.length===landmarks.length)for(let k=0;k<landmarks.length;k++){
     landmarks[k].x=clamp(landmarks[k].x+prev.landmarks[k].x-prev.raw[k].x,-.05,1.05);landmarks[k].y=clamp(landmarks[k].y+prev.landmarks[k].y-prev.raw[k].y,-.05,1.05);
    }
-   next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:hydrateSettings(prev?.settings),layerOrder:normalizeLayerOrder(prev?.layerOrder),look:prev?.look||null,skinEdits:prev?.skinEdits||[],geometry:{...newGeometry(),...deepCopy(prev?.geometry||{})},regionEdits:deepCopy(prev?.regionEdits||{}),warning:item.quality.warning});
+   next.push({id:prev?.id||'person-'+(state.nextFaceId++),landmarks,raw,settings:hydrateSettings(prev?.settings),layerOrder:normalizeLayerOrder(prev?.layerOrder),layerList:prev?.layerList?deepCopy(prev.layerList):undefined,recipeRef:deepCopy(prev?.recipeRef||null),look:prev?.look||null,skinEdits:prev?.skinEdits||[],geometry:{...newGeometry(),...deepCopy(prev?.geometry||{})},regionEdits:deepCopy(prev?.regionEdits||{}),warning:item.quality.warning});
   }
   state.faces=next;state.selectedId=next.find(f=>f.id===state.selectedId)?.id||next[0]?.id||null;state.undo=[];state.redo=[];
   hideRecognitionOverlays();
@@ -753,17 +788,17 @@ function normalizeLayerOrder(order){
 }
 function faceLayerOrder(face){return normalizeLayerOrder(face?.layerOrder);}
 function recordLayerActivation(face,tab,wasActive){
- if(!wasActive&&layerEnabled(face.settings,tab))face.layerOrder=[...faceLayerOrder(face).filter(id=>id!==tab),tab];
+ face.layerList??=[];if(layerEnabled(face.settings,tab)&&!face.layerList.includes(tab)){face.layerList.push(tab);face.layerOrder=[...faceLayerOrder(face).filter(id=>id!==tab),tab];}
 }
 function moveLayer(tab,direction){
  const face=selectedFace();if(!face)return;
- const order=faceLayerOrder(face),active=order.filter(id=>layerEnabled(face.settings,id)),i=active.indexOf(tab),neighbor=active[i+(direction==='up'?-1:1)];
+ const order=faceLayerOrder(face),active=layerListOf(face),i=active.indexOf(tab),neighbor=active[i+(direction==='up'?-1:1)];
  if(!neighbor)return;checkpoint();const a=order.indexOf(tab),b=order.indexOf(neighbor);[order[a],order[b]]=[order[b],order[a]];face.layerOrder=order;
  clearGuidesForMakeup();renderLayerStrip();scheduleRender();setStatus('Đã đổi thứ tự lớp cho Người '+(state.faces.indexOf(face)+1)+'. Lớp ở dưới được phủ sau; giữ Xem gốc để so sánh.');
 }
 function recommendedLayerOrder(){const face=selectedFace();if(!face)return;checkpoint();face.layerOrder=LAYER_ORDER.map(([id])=>id);clearGuidesForMakeup();renderLayerStrip();scheduleRender();setStatus('Đã xếp lại các lớp theo thứ tự gợi ý cho người đang chọn.');}
 function layerEnabled(settings,tab){
- const s=settings?.[tab];if(!s)return false;
+ const s=settings?.[tab];if(!s||s.enabled===false)return false;
  if(!TABS[tab].sides)return layerConfigActive(s,tab);
  if(TABS[tab].sides)return ['left','right'].some(side=>s[side]?.enabled!==false&&(s[side]?.intensity||0)>0);
 }
@@ -787,17 +822,17 @@ function activateLayerConfig(s,tab){
 }
 function renderLayerStrip(){
  const container=$('layerStrip');if(!container)return;
- const face=selectedFace(),settings=face?.settings,order=faceLayerOrder(face),active=order.filter(id=>layerEnabled(settings,id)),labels=Object.fromEntries(LAYER_ORDER);
- $('layerSummary').textContent=face?active.length+' lớp · đổi thứ tự':'Chưa chọn khuôn mặt';$('btnRecommendedOrder').disabled=!face;
+ const face=selectedFace(),settings=face?.settings,order=faceLayerOrder(face),active=layerListOf(face),labels=Object.fromEntries(LAYER_ORDER);
+ $('layerSummary').textContent=face?active.length+' lớp · '+active.filter(id=>layerEnabled(settings,id)).length+' đang bật':'Chưa chọn khuôn mặt';$('btnRecommendedOrder').disabled=!face;
  container.replaceChildren();const inactive=document.createElement('div');inactive.className='layer-inactive';
  for(const id of order){
   const on=active.includes(id),button=document.createElement('button');button.type='button';button.dataset.layerSelect=id;
-  button.className='layer-chip'+(on?' on':'');button.textContent=(on?(active.indexOf(id)+1)+'. ':'○ ')+labels[id];button.disabled=!face;
+  button.className='layer-chip'+(on?' on':'');button.textContent=(on?(active.indexOf(id)+1)+'. ':'○ ')+labels[id]+(on&&!layerEnabled(settings,id)?' · Tắt / 0%':'');button.disabled=!face;
   button.addEventListener('click',()=>{if(state.tab!==id)stopSurfaceBrush();state.tab=id;if(!isMaskTab())state.showSkinMask=false;if(state.manual){if(isMaskTab())applyToolGuides();else{state.showGuides=true;$('showGuides').checked=true;$('btnClearGuides').textContent='Ẩn đường viền';}}for(const b of $('categoryTabs').querySelectorAll('.tab'))b.classList.toggle('active',b.dataset.tab===id);renderControls();$('categoryTabs').querySelector(`[data-tab="${id}"]`)?.scrollIntoView({behavior:'smooth',block:'nearest',inline:'center'});});
-  if(on){const row=document.createElement('div');row.className='layer-row';row.dataset.layer=id;row.append(button);
-   for(const [direction,label]of [['up','↑'],['down','↓']]){const move=document.createElement('button');move.type='button';move.className='layer-move';move.dataset.layer=id;move.dataset.layerMove=direction;move.textContent=label;move.setAttribute('aria-label',labels[id]+(direction==='up'?' vẽ sớm hơn':' phủ sau hơn'));move.disabled=direction==='up'?active[0]===id:active.at(-1)===id;move.addEventListener('click',()=>moveLayer(id,direction));row.append(move)}container.append(row);
+  if(on){const row=document.createElement('div');row.className='layer-row'+(!layerEnabled(settings,id)?' muted':'');row.dataset.layer=id;row.append(button);
+   for(const [direction,label]of [['up','↑'],['down','↓']]){const move=document.createElement('button');move.type='button';move.className='layer-move';move.dataset.layer=id;move.dataset.layerMove=direction;move.textContent=label;move.setAttribute('aria-label',labels[id]+(direction==='up'?' vẽ sớm hơn':' phủ sau hơn'));move.disabled=direction==='up'?active[0]===id:active.at(-1)===id;move.addEventListener('click',()=>moveLayer(id,direction));row.append(move)}const toggleLabel=document.createElement('label');toggleLabel.className='layer-toggle-label';const toggle=document.createElement('input');toggle.type='checkbox';toggle.checked=layerEnabled(settings,id);toggle.dataset.layerToggle=id;toggle.setAttribute('aria-label','Bật / tắt lớp '+labels[id]);toggle.addEventListener('change',()=>toggleMakeupLayer(id,toggle.checked));toggleLabel.append(toggle,document.createTextNode('Bật lớp'));const remove=document.createElement('button');remove.type='button';remove.className='layer-delete';remove.dataset.layerDelete=id;remove.textContent='Xóa lớp';remove.setAttribute('aria-label','Xóa lớp '+labels[id]);remove.addEventListener('click',()=>deleteMakeupLayer(id));row.append(toggleLabel,remove);container.append(row);
   }else inactive.append(button);
- }container.append(inactive);
+ }container.append(inactive);renderRecipeStatus();
 }
 function clearGuidesForMakeup(){
  state.showSkinMask=false;
@@ -808,7 +843,7 @@ function applyLook(id,strength=LOOK_DEFAULT_STRENGTH,saveHistory=true){
  const f=selectedFace(),look=LOOKS[id];if(!f||!look)return;
  if(saveHistory)checkpoint();
  const wasActive=Object.fromEntries(LAYER_ORDER.map(([tab])=>[tab,layerEnabled(f.settings,tab)]));
- const independent=Object.fromEntries(INDEPENDENT_SKIN_LAYERS.map(tab=>[tab,deepCopy(ensureSettings(f)[tab])]));f.settings=makeupLookSettings(id,strength);Object.assign(f.settings,independent);f.look={id,strength};for(const [tab]of LAYER_ORDER)recordLayerActivation(f,tab,wasActive[tab]);
+ const independent=Object.fromEntries(INDEPENDENT_SKIN_LAYERS.map(tab=>[tab,deepCopy(ensureSettings(f)[tab])]));f.settings=makeupLookSettings(id,strength);Object.assign(f.settings,independent);f.layerList=(f.layerList||[]).filter(tab=>INDEPENDENT_SKIN_LAYERS.includes(tab)||layerEnabled(f.settings,tab));f.look={id,strength};for(const [tab]of LAYER_ORDER)recordLayerActivation(f,tab,wasActive[tab]);
  clearGuidesForMakeup();renderLooks();renderControls();scheduleRender();
  setStatus(`Đã áp dụng ${look.label} cho Người ${state.faces.indexOf(f)+1}. Kết quả đang hiện trên ảnh; giữ “Xem gốc” để so sánh.`);
 }
@@ -1275,7 +1310,7 @@ function renderLashes(c,W,H,face){
    Previous V2.3 classified each pixel by similarity to two cheek samples,
    which cut clean skin into islands. V2.4 uses semantic skin segmentation.
    Without the model, 'face only' is a clearly labeled geometric fallback. */
-// BEGIN V4.2 SKIN ZONES
+// BEGIN V4.3 SKIN ZONES
 // Soft anatomical supports for Skin Finish, local lighting and texture work.
 // These weights do not grant skin coverage: paintSkinMaskInto remains the
 // authoritative contour/feature/occlusion mask for every effect.
@@ -1341,7 +1376,7 @@ function paintSkinLocalEdits(m,face,W,H,edits){
  m.restore();
 }
 
-// END V4.2 SKIN ZONES
+// END V4.3 SKIN ZONES
 function skinScope(s){
  let scope=s?.scope||'face';
  // Multi-person selfie segmenter does NOT provide instance IDs for neck/arms.
@@ -1535,7 +1570,7 @@ function renderHighlight(c,W,H,face){
 }
 
 
-// BEGIN V4.2 SKIN AGE
+// BEGIN V4.3 SKIN AGE
 // Local, deterministic guides for skin-detail retouching. These are effect
 // supports, not replacement facial landmarks; no face geometry is moved.
 function v41AgeGuides(face,W,H){
@@ -1663,8 +1698,8 @@ function renderSkinAge(c,W,H,face){
  }
 }
 
-// END V4.2 SKIN AGE
-// BEGIN V4.2 SKIN FINISH
+// END V4.3 SKIN AGE
+// BEGIN V4.3 SKIN FINISH
 // Skin Finish separates diffuse skin detail from a small material reflection.
 // Its lobe directions come from the facial frame and the photographed light;
 // the final contour/occlusion mask, never the rectangular analysis crop, grants
@@ -1781,8 +1816,8 @@ function renderSkinFinish(c,W,H,face){
  }
 }
 
-// END V4.2 SKIN FINISH
-// BEGIN V4.2 LOCAL SKIN TOOLS
+// END V4.3 SKIN FINISH
+// BEGIN V4.3 LOCAL SKIN TOOLS
 // Local skin illumination follows the photographed lighting and anatomical
 // selection. Brush marks use the owner's face frame, so copied settings move
 // with each person and are independent of preview/export resolution.
@@ -1954,7 +1989,7 @@ function renderSkinTexture(c,W,H,face){
  }
 }
 
-// END V4.2 LOCAL SKIN TOOLS
+// END V4.3 LOCAL SKIN TOOLS
 function renderSkin(c,W,H,face){applySkinLayer(c,W,H,face,'skin');}
 function renderSkinTone(c,W,H,face){applySkinLayer(c,W,H,face,'tone');}
 function renderFoundation(c,W,H,face){applySkinLayer(c,W,H,face,'foundation');}
@@ -2116,7 +2151,7 @@ function uiSetting(){const f=selectedFace();return f?editingConfigs(f)[0]:null;}
 function formatValue(key,v){if(['smileLines','wrinkles'].includes(key))return (Number(v)>0?'+':'')+v+'%';if(percentFields.has(key))return v+'%';if(['thickness','length','size','spread','width','coverage','softness'].includes(key))return v+'%';if(['lift','arch','brightness','warmth'].includes(key))return (Number(v)>0?'+':'')+v;return String(v);}
 function mutateValue(key,v){const f=selectedFace();if(!f)return;const tab=state.tab,def=TABS[tab],settings=editingConfigs(f),wasActive=layerEnabled(f.settings,tab);
  if(!INDEPENDENT_SKIN_LAYERS.includes(tab))f.look=null;
- if(tab==='finish')f.settings.finish.enabled=true;
+ if(tab==='finish')f.settings.finish.enabled=true;if(TABS[tab].sides)f.settings[tab].enabled=true;
  for(const cfg of settings){
   cfg.enabled=true;
   cfg[key]=v;
@@ -2162,14 +2197,14 @@ function renderFaceGeometry(face){
 }
 function toggleCurrentLayer(force){
  const f=selectedFace();if(!f)return;const configs=editingConfigs(f),wasActive=layerEnabled(f.settings,state.tab);
- checkpoint();const on=force??!configs.every(s=>editingConfigActive(f,s));for(const s of configs){if(on)activateLayerConfig(s,state.tab);else s.enabled=false;}if(on&&state.tab==='finish')f.settings.finish.enabled=true;recordLayerActivation(f,state.tab,wasActive);if(!INDEPENDENT_SKIN_LAYERS.includes(state.tab))f.look=null;renderControls();renderLooks();scheduleRender();if(on)focusIfSmall();
+ checkpoint();const on=force??!configs.every(s=>editingConfigActive(f,s));for(const s of configs){if(on)activateLayerConfig(s,state.tab);else s.enabled=false;}if(on&&(state.tab==='finish'||TABS[state.tab].sides))f.settings[state.tab].enabled=true;recordLayerActivation(f,state.tab,wasActive);if(!INDEPENDENT_SKIN_LAYERS.includes(state.tab))f.look=null;renderControls();renderLooks();scheduleRender();if(on)focusIfSmall();
 }
 function applyCurrentLayerToAll(){
  const source=selectedFace(),tab=state.tab;if(!source||state.faces.length<2||!layerEnabled(source.settings,tab))return;
  checkpoint();for(const face of state.faces){if(face.id===source.id)continue;ensureSettings(face);const wasActive=layerEnabled(face.settings,tab);
   if(TABS[tab].sides){for(const side of activeSides())face.settings[tab][side]=deepCopy(source.settings[tab][side]);}
   else if(tab==='finish'&&state.finishRegion!=='face'){face.settings.finish.regions[state.finishRegion]=deepCopy(source.settings.finish.regions[state.finishRegion]);face.settings.finish.enabled=true;}
-  else face.settings[tab]=deepCopy(source.settings[tab]);recordLayerActivation(face,tab,wasActive);if(!INDEPENDENT_SKIN_LAYERS.includes(tab))face.look=null;
+  else face.settings[tab]=deepCopy(source.settings[tab]);if(TABS[tab].sides)face.settings[tab].enabled=true;recordLayerActivation(face,tab,wasActive);if(!INDEPENDENT_SKIN_LAYERS.includes(tab))face.look=null;
  }
  hideRecognitionOverlays();setZoom(1);renderControls();renderLooks();scheduleRender();setStatus(`Đã áp dụng lớp ${TABS[tab].title} cho ${state.faces.length} người. Các lớp khác được giữ riêng; có thể Hoàn tác.`);
 }
@@ -2190,7 +2225,7 @@ function skinMaterialThumbnail(style){
  const g=c.createRadialGradient(25,10,0,25,10,radius);g.addColorStop(0,`rgba(255,244,223,${peak})`);g.addColorStop(1,'rgba(255,244,223,0)');c.fillStyle=g;c.beginPath();c.ellipse(25,10,radius,Math.min(12,radius*.7),-.3,0,Math.PI*2);c.fill();
  if(!matte){c.fillStyle='#fff4df';c.globalAlpha=style==='glass'?.7:.25;c.beginPath();c.ellipse(39,18,1.8,4,-.4,0,Math.PI*2);c.fill()}canvas.setAttribute('aria-hidden','true');return canvas;
 }
-function editingConfigActive(face,cfg,tab=state.tab){return !(tab==='finish'&&state.finishRegion!=='face'&&face.settings.finish.enabled===false)&&layerConfigActive(cfg,tab);}
+function editingConfigActive(face,cfg,tab=state.tab){if(TABS[tab].sides&&face.settings[tab].enabled===false)return false;return !(tab==='finish'&&state.finishRegion!=='face'&&face.settings.finish.enabled===false)&&layerConfigActive(cfg,tab);}
 function setFinishRegion(region){if(!UI_FINISH_REGIONS[region])return;state.finishRegion=region;state.surfaceBrush=false;renderControls();}
 function renderFinishEditor(area,face){
  const cfg=face.settings.finish,row=document.createElement('div');row.className='finish-editor';
@@ -2267,20 +2302,450 @@ function renderControls(){const conf=TABS[state.tab],f=selectedFace(),area=$('co
  updateActions();renderGuides();
 }
 function resetCurrentTool(){const f=selectedFace();if(!f)return;checkpoint();stopSurfaceBrush();if(!INDEPENDENT_SKIN_LAYERS.includes(state.tab))f.look=null;const template=makeDefaults()[state.tab];if(TABS[state.tab].sides){for(const s of activeSides())f.settings[state.tab][s]=deepCopy(template[s]);}else if(state.tab==='finish'&&state.finishRegion!=='face')f.settings.finish.regions[state.finishRegion]=deepCopy(template.regions[state.finishRegion]);else f.settings[state.tab]=deepCopy(template);renderControls();renderLooks();scheduleRender();}
-function resetCurrentFace(){const f=selectedFace();if(!f)return;checkpoint();stopSurfaceBrush();f.settings=makeDefaults();f.layerOrder=normalizeLayerOrder();f.look=null;f.landmarks=deepCopy(f.raw);f.skinEdits=[];f.geometry=newGeometry();f.regionEdits={};renderControls();renderLooks();scheduleRender();setStatus('Đã khôi phục makeup và đường viền của người đang chọn.');}
+function resetCurrentFace(){const f=selectedFace();if(!f)return;checkpoint();stopSurfaceBrush();f.settings=makeDefaults();f.layerOrder=normalizeLayerOrder();f.layerList=[];f.recipeRef=null;f.look=null;f.landmarks=deepCopy(f.raw);f.skinEdits=[];f.geometry=newGeometry();f.regionEdits={};renderControls();renderLooks();scheduleRender();setStatus('Đã khôi phục makeup và đường viền của người đang chọn.');}
 
 /* =============================================================
    Full-resolution export. Failure must be explicit: never silently
    downscale the user's photo or claim to preserve unavailable metadata.
    ============================================================= */
-async function exportOriginal(){if(!state.img||state.busy)return;state.busy=true;updateActions();setStatus('Đang dựng PNG tại '+state.width+' × '+state.height+' px…');
+async function exportOriginal(outputName){if(!state.img||state.busy)return;state.busy=true;updateActions();setStatus('Đang dựng PNG tại '+state.width+' × '+state.height+' px…');
  try{const out=newCanvas(state.width,state.height),oc=out.getContext('2d',{willReadFrequently:true});if(!oc)throw new Error('Thiết bị không cấp được canvas xuất ảnh.');oc.drawImage(state.img,0,0,state.width,state.height);renderMakeup(oc,state.width,state.height);
  const blob=await new Promise((resolve,reject)=>out.toBlob(b=>b?resolve(b):reject(new Error('Không tạo được PNG. Có thể thiếu bộ nhớ.')),'image/png'));
- const url=URL.createObjectURL(blob),link=document.createElement('a'),base=(state.file?.name||'ray-photo').replace(/\.[^.]+$/,'').replace(/[^\w\-\p{L}\p{N} ]/gu,'_');link.href=url;link.download=`${base}_MAKEUP_V4.png`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);
- setStatus(`Đã tạo PNG ${state.width} × ${state.height}px. Metadata/ICC gốc không được giữ khi xuất qua canvas.`);
- }catch(e){console.error('Export',e);setStatus('Xuất ảnh thất bại: '+e.message+'. Ảnh gốc không thay đổi.',true);}
+ const url=URL.createObjectURL(blob),link=document.createElement('a'),base=(typeof outputName==='string'&&outputName.trim()?outputName:state.file?.name||'ray-photo').replace(/\.(png|jpe?g|webp|avif|heic|heif)$/i,'').replace(/[^\w\-\p{L}\p{N} ]/gu,'_');link.href=url;link.download=`${base}.png`;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);
+ setStatus(`Đã tạo PNG ${state.width} × ${state.height}px. Metadata/ICC gốc không được giữ khi xuất qua canvas.`);return true;
+ }catch(e){console.error('Export',e);setStatus('Xuất ảnh thất bại: '+e.message+'. Ảnh gốc không thay đổi.',true);return false;}
  finally{state.busy=false;updateActions();}}
 
+// BEGIN V4.3 RECIPE CODEC
+// Uses the editor's TABS and makeDefaults; never stores image or face geometry.
+const RAY_RECIPE_CODEC=(()=>{
+ const KIND='ray-makeup-look',VERSION=1,MAX_BYTES=512*1024,MAX_STROKES=1200;
+ const FORBIDDEN=new Set(['__proto__','prototype','constructor']);
+ const own=(obj,key)=>Object.prototype.hasOwnProperty.call(obj,key);
+ const copy=value=>JSON.parse(JSON.stringify(value));
+ const fail=message=>{throw new Error('Công thức không hợp lệ: '+message)};
+ function record(value){if(!value||typeof value!=='object'||Array.isArray(value))return false;const p=Object.getPrototypeOf(value);return p===null||Object.getPrototypeOf(p)===null;}
+ function byteLength(text){let n=0;for(const ch of text){const p=ch.codePointAt(0);n+=p<=0x7f?1:p<=0x7ff?2:p<=0xffff?3:4;}return n;}
+ function safeTree(value,depth=0,seen=new Set()){
+  if(depth>20)fail('dữ liệu lồng quá sâu.');
+  if(value===null||['string','boolean'].includes(typeof value))return;
+  if(typeof value==='number'){if(!Number.isFinite(value))fail('hệ số phải là số hữu hạn.');return;}
+  if(typeof value!=='object')fail('kiểu dữ liệu không được hỗ trợ.');
+  if(seen.has(value))fail('dữ liệu có vòng lặp.');seen.add(value);
+  if(!Array.isArray(value)&&!record(value))fail('đối tượng dữ liệu không hợp lệ.');
+  if(Object.getOwnPropertySymbols(value).length)fail('khóa dữ liệu không được hỗ trợ.');
+  for(const key of Object.getOwnPropertyNames(value)){
+   if(FORBIDDEN.has(key))fail('khóa dữ liệu bị cấm.');
+   const desc=Object.getOwnPropertyDescriptor(value,key);if(desc.get||desc.set)fail('dữ liệu không được chứa hàm.');
+   if(Array.isArray(value)&&key==='length')continue;safeTree(value[key],depth+1,seen);
+  }
+  seen.delete(value);
+ }
+ function text(value,label,max,allowEmpty=false){if(typeof value!=='string')fail(label+' phải là văn bản.');const clean=value.normalize('NFC').trim();if(!allowEmpty&&!clean)fail(label+' không được để trống.');if([...clean].length>max||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/u.test(clean))fail(label+' quá dài hoặc có ký tự điều khiển.');return clean;}
+ function name(value){return text(value,'Tên công thức',80);}
+ function date(value,fallback){if(value===undefined)return fallback;if(typeof value!=='string'||value.length>40||!/^\d{4}-\d{2}-\d{2}T/.test(value)||!Number.isFinite(Date.parse(value)))fail('ngày lưu không hợp lệ.');return new Date(value).toISOString();}
+ function uid(){return globalThis.crypto?.randomUUID?.()||'look-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,12);}
+ function id(value){if(value===undefined)return uid();if(typeof value!=='string'||!value||value.length>128||!/^[-A-Za-z0-9_.:]+$/.test(value))fail('mã công thức không hợp lệ.');return value;}
+ function only(obj,allowed,label){for(const key of Object.keys(obj))if(!allowed.has(key))fail(label+': trường không được hỗ trợ “'+key+'”.');}
+ function strokes(value){
+  if(!Array.isArray(value)||value.length>MAX_STROKES)fail('vùng vẽ vượt giới hạn '+MAX_STROKES+' điểm.');
+  return value.map(point=>{
+   if(!record(point))fail('điểm vẽ không hợp lệ.');only(point,new Set(['s','t','size','mode']),'Điểm vẽ');
+   for(const key of ['s','t'])if(typeof point[key]!=='number'||!Number.isFinite(point[key])||Math.abs(point[key])>20)fail('tọa độ vùng vẽ không hợp lệ.');
+   if(typeof point.size!=='number'||!Number.isFinite(point.size)||point.size<2||point.size>25)fail('cỡ bút phải từ 2 đến 25%.');
+   if(!['add','erase'].includes(point.mode))fail('chế độ bút không hợp lệ.');
+   return {s:point.s,t:point.t,size:point.size,mode:point.mode};
+  });
+ }
+ function leaf(tab,input,template,regional=false){
+  if(!record(input))fail('thông số lớp '+tab+' không hợp lệ.');
+  const controls=new Map(TABS[tab].controls.map(control=>[control[0],control]));
+  const allowed=new Set([...Object.keys(template),...controls.keys(),'enabled']);
+  if(regional)allowed.delete('regions');only(input,allowed,'Lớp '+tab);
+  const result={};
+  // Default key order makes signatures deterministic even for reordered JSON.
+  for(const key of new Set([...Object.keys(template),...Object.keys(input)])){
+   if(key==='regions')continue;
+   const value=own(input,key)?input[key]:template[key];if(value===undefined)continue;
+   if(key==='edits'){result.edits=strokes(value);continue;}
+   const control=controls.get(key),kind=control?.[2];
+   if(key==='enabled'||kind==='toggle'||typeof template[key]==='boolean'){
+    if(typeof value!=='boolean')fail(tab+'.'+key+' phải bật hoặc tắt.');result[key]=value;
+   }else if(kind==='range'||typeof template[key]==='number'){
+    const min=kind==='range'?control[3]:0,max=kind==='range'?control[4]:100;
+    if(typeof value!=='number'||!Number.isFinite(value)||value<min||value>max)fail(tab+'.'+key+' phải từ '+min+' đến '+max+'.');result[key]=value;
+   }else if(kind==='choices'){
+    if(typeof value!=='string'||!own(control[3],value))fail(tab+'.'+key+' có lựa chọn không hợp lệ.');result[key]=value;
+   }else if(kind==='color'||typeof template[key]==='string'&&/^#[0-9a-f]{6}$/i.test(template[key])){
+    if(typeof value!=='string'||!/^#[0-9a-f]{6}$/i.test(value))fail(tab+'.'+key+' phải là màu HEX 6 chữ số.');result[key]=value.toLowerCase();
+   }else fail('trường cấu hình '+tab+'.'+key+' không được hỗ trợ.');
+  }
+  return result;
+ }
+ function config(tab,value,defaults){
+  if(!record(value))fail('thông số lớp '+tab+' không hợp lệ.');
+  if(TABS[tab].sides){only(value,new Set(['left','right','enabled']),'Lớp '+tab);const enabled=own(value,'enabled')?value.enabled:defaults.enabled??true;if(typeof enabled!=='boolean')fail(tab+'.enabled phải bật hoặc tắt.');const result={enabled};for(const side of ['left','right'])result[side]=leaf(tab,own(value,side)?value[side]:{},defaults[side]);return result;}
+  const result=leaf(tab,value,defaults);
+  if(tab==='finish'){
+   const regions=own(value,'regions')?value.regions:{};if(!record(regions))fail('vùng chất da không hợp lệ.');only(regions,new Set(Object.keys(defaults.regions)),'Vùng chất da');
+   result.regions={};for(const key of Object.keys(defaults.regions))result.regions[key]=leaf(tab,own(regions,key)?regions[key]:{},defaults.regions[key],true);
+  }
+  return result;
+ }
+ function validateRecipe(input){
+  safeTree(input);if(!record(input))fail('cần một đối tượng công thức.');
+  only(input,new Set(['kind','version','id','name','createdAt','updatedAt','layers','warnings']),'Công thức');
+  if(input.kind!==KIND||input.version!==VERSION)fail('khác định dạng hoặc phiên bản được hỗ trợ.');
+  const defaults=makeDefaults(),types=Object.keys(TABS);if(!Array.isArray(input.layers)||input.layers.length>types.length)fail('danh sách lớp vượt giới hạn.');
+  const seen=new Set(),layers=input.layers.map(layer=>{
+   if(!record(layer))fail('lớp không hợp lệ.');only(layer,new Set(['type','config']),'Lớp');
+   if(typeof layer.type!=='string'||!own(TABS,layer.type))fail('loại lớp không được hỗ trợ.');if(seen.has(layer.type))fail('mỗi hiệu ứng chỉ có một lớp.');seen.add(layer.type);
+   return {type:layer.type,config:config(layer.type,layer.config,defaults[layer.type])};
+  });
+  const now=new Date().toISOString(),result={kind:KIND,version:VERSION,id:id(input.id),name:name(input.name),createdAt:date(input.createdAt,now),updatedAt:date(input.updatedAt,now),layers};
+  // Imported warning strings are never displayed; regenerate trusted wording.
+  const warnings=getWarnings(result);if(warnings.length)result.warnings=warnings;
+  if(byteLength(JSON.stringify(result))>MAX_BYTES)fail('tệp vượt 512 KB.');return result;
+ }
+ function knownOrder(face){const ids=Object.keys(TABS),seen=new Set();return [...(Array.isArray(face.layerOrder)?face.layerOrder:[]),...ids].filter(type=>own(TABS,type)&&!seen.has(type)&&seen.add(type));}
+ function faceLayers(face){
+  if(!face||!record(face.settings))fail('chưa có cấu hình khuôn mặt.');
+  const defaults=makeDefaults(),list=Array.isArray(face.layerList)?face.layerList:knownOrder(face).filter(type=>JSON.stringify(face.settings[type]??defaults[type])!==JSON.stringify(defaults[type]));
+  const wanted=new Set(list);return knownOrder(face).filter(type=>wanted.has(type)).map(type=>({type,config:config(type,face.settings[type]??{},defaults[type])}));
+ }
+ function createRecipeFromFace(face,meta={}){
+  const now=new Date().toISOString();return validateRecipe({kind:KIND,version:VERSION,id:meta.id??uid(),name:meta.name??'Look mới',createdAt:meta.createdAt??now,updatedAt:meta.updatedAt??now,layers:faceLayers(face)});
+ }
+ function recipeToFaceSettings(input){const recipe=validateRecipe(input),settings=makeDefaults(),layerList=recipe.layers.map(layer=>layer.type);for(const layer of recipe.layers)settings[layer.type]=copy(layer.config);return {settings,layerOrder:normalizeLayerOrder(layerList),layerList:[...layerList]};}
+ function recipeSignature(input){return JSON.stringify(input?.kind===KIND?validateRecipe(input).layers:faceLayers(input));}
+ function parse(value){if(typeof value!=='string'||byteLength(value)>MAX_BYTES)fail('tệp vượt 512 KB hoặc không phải văn bản.');let input;try{input=JSON.parse(value)}catch{fail('JSON bị lỗi.')}return validateRecipe(input);}
+ function stringify(input){return JSON.stringify(validateRecipe(input),null,2);}
+ function getWarnings(input){
+  const layers=input?.layers||[];return layers.some(layer=>['skinlight','skintexture'].includes(layer.type)&&layer.config?.edits?.length)?['Vùng vẽ đặt theo tỷ lệ khuôn mặt; kiểm tra lại sau khi áp dụng trên người khác.']:[];
+ }
+ function filename(value){const clean=name(value).replace(/[^\p{L}\p{N} _.-]/gu,'_').replace(/^[. ]+|[. ]+$/g,'').slice(0,100)||'ray-look';return clean+'.raymakeup.json';}
+ return Object.freeze({KIND,VERSION,MAX_BYTES,MAX_STROKES,createRecipeFromFace,validateRecipe,recipeToFaceSettings,recipeSignature,parse,stringify,getWarnings,filename});
+})();
+// END V4.3 RECIPE CODEC
+
+// BEGIN V4.3 RECIPE LIBRARY AND LAYER EDITOR
+const RECIPE_STORAGE_KEY='ray.makeup.looks.v1';
+let recipeLibrary=[],recipeStorageError='',deletedRecipe=null,recipeNameTarget='',shareRecipeDraft=null,savedLayoutGalleryKey='';
+function recipeId(){return crypto.randomUUID?.()||'look-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);}
+function readRecipeLibrary(){
+ try{const raw=localStorage.getItem(RECIPE_STORAGE_KEY);if(!raw)return;const parsed=JSON.parse(raw);if(!Array.isArray(parsed)||parsed.length>100)throw new Error('Thư viện không hợp lệ.');const next=parsed.map(RAY_RECIPE_CODEC.validateRecipe);if(new Set(next.map(r=>r.id)).size!==next.length)throw new Error('Thư viện có mã trùng.');recipeLibrary=next;}
+ catch(e){recipeStorageError='Chưa đọc được thư viện trên thiết bị: '+e.message;}
+}
+function persistRecipes(next){
+ if(next.length>100)throw new Error('Thư viện tối đa 100 công thức. Tải bản sao rồi xóa bớt công thức cũ.');
+ const json=JSON.stringify(next);if(new Blob([json]).size>4_000_000)throw new Error('Thư viện gần đầy. Tải công thức ra tệp trước khi xóa bớt.');
+ localStorage.setItem(RECIPE_STORAGE_KEY,json);recipeLibrary=next;recipeStorageError='';
+}
+function recipeMessage(message,error=false){$('recipeMessage').textContent=message;$('recipeMessage').classList.toggle('error',error);setStatus(message,error);}
+function currentRecipe(name,id,createdAt){const face=selectedFace();if(!face)throw new Error('Chọn khuôn mặt trước khi lưu công thức.');ensureSettings(face);return RAY_RECIPE_CODEC.createRecipeFromFace(face,{name,id,createdAt});}
+function recipeIsDirty(face){if(!face?.recipeRef)return false;try{const saved=recipeLibrary.find(recipe=>recipe.id===face.recipeRef.id),signature=saved?RAY_RECIPE_CODEC.recipeSignature(saved):face.recipeRef.signature;return RAY_RECIPE_CODEC.recipeSignature(face)!==signature;}catch{return true;}}
+function attachRecipe(face,recipe){face.recipeRef={id:recipe.id,name:recipe.name,signature:RAY_RECIPE_CODEC.recipeSignature(recipe)};}
+function renderRecipeStatus(){
+ const face=selectedFace(),ref=face?.recipeRef,existing=recipeLibrary.find(r=>r.id===ref?.id),dirty=recipeIsDirty(face),target=(face?.id||'none')+':'+(ref?.id||'');
+ $('recipeSummary').textContent=!face?'Lưu, mở lại và chia sẻ layout trang điểm':ref?(existing?.name||ref.name)+(dirty?' · Đã chỉnh, chưa cập nhật':existing?' · Đã lưu':' · Bản chỉnh trên ảnh'):'Look đang chỉnh · Chưa lưu thành layout';
+ $('recipeSummary').dataset.dirty=String(dirty);$('recipeSummary').classList.toggle('dirty',dirty);
+ $('recipeCurrentLabel').textContent=face?'Đang chỉnh riêng Người '+(state.faces.indexOf(face)+1):'Chọn ảnh và nhận diện để áp dụng lên gương mặt.';
+ if(recipeNameTarget!==target){$('recipeName').value=existing?.name||ref?.name||'Look của tôi';recipeNameTarget=target;}
+ for(const id of ['btnSaveRecipe','btnExportCurrentRecipe'])$(id).disabled=!face||state.busy||state.loading;
+ $('btnUpdateRecipe').disabled=!face||!existing||state.busy||state.loading;
+ $('btnAddLayer').disabled=!face||state.busy||state.loading;$('addLayerType').disabled=!face;
+ if(recipeStorageError)$('recipeMessage').textContent=recipeStorageError;renderSavedLayoutGallery();
+}
+function renderSavedLayoutGallery(){
+ const container=$('savedLayoutList');if(!container)return;const face=selectedFace(),disabled=!face||state.busy||state.loading;
+ const key=JSON.stringify([recipeLibrary.map(recipe=>[recipe.id,recipe.updatedAt,recipe.name]),face?.id,face?.recipeRef?.id,disabled]);if(key===savedLayoutGalleryKey)return;savedLayoutGalleryKey=key;container.replaceChildren();
+ if(!recipeLibrary.length){const empty=document.createElement('p');empty.className='control-caption';empty.textContent='Lưu công thức thành layout riêng, rồi chọn lại ở đây để dùng cho ảnh khác.';container.append(empty);return;}
+ for(const recipe of recipeLibrary){const button=document.createElement('button');button.type='button';button.className='saved-layout-card'+(face?.recipeRef?.id===recipe.id?' selected':'');button.dataset.savedLayoutId=recipe.id;button.disabled=disabled;button.setAttribute('aria-label','Áp dụng layout '+recipe.name+' cho người đang chọn');button.setAttribute('aria-pressed',String(face?.recipeRef?.id===recipe.id));
+  const palette=document.createElement('span');palette.className='saved-layout-palette';palette.setAttribute('aria-hidden','true');for(const type of ['shadow','blush','lip']){const cfg=recipe.layers.find(layer=>layer.type===type)?.config,color=cfg?.left?.color||cfg?.color||'#706056',swatch=document.createElement('i');swatch.style.backgroundColor=color;palette.append(swatch);}
+  const title=document.createElement('b');title.textContent=recipe.name;const count=document.createElement('small');count.textContent=recipe.layers.length+' lớp · Có thể sửa';button.append(palette,title,count);button.addEventListener('click',()=>applySavedRecipe(recipe.id));container.append(button);
+ }
+}
+function saveCurrentRecipe(update=false){
+ const face=selectedFace();if(!face)return;
+ try{const existing=update?recipeLibrary.find(r=>r.id===face.recipeRef?.id):null;if(update&&!existing)throw new Error('Chọn công thức đã lưu để cập nhật.');
+  const recipe=currentRecipe($('recipeName').value,existing?.id,existing?.createdAt),next=existing?recipeLibrary.map(r=>r.id===existing.id?recipe:r):[recipe,...recipeLibrary];
+  persistRecipes(next);attachRecipe(face,recipe);renderRecipeStatus();renderRecipeLibrary();recipeMessage((update?'Đã cập nhật “':'Đã lưu layout mới “')+recipe.name+'” trên thiết bị này.');
+ }catch(e){recipeMessage('Không lưu được công thức: '+e.message,true);}
+}
+function editRecipeLayer(tab){
+ if(!selectedFace())return;if(state.tab!==tab)stopSurfaceBrush();state.tab=tab;state.side='both';if(tab==='finish')state.finishRegion='face';
+ for(const button of $('categoryTabs').querySelectorAll('[data-tab]'))button.classList.toggle('active',button.dataset.tab===tab);
+ renderControls();renderLayerStrip();$('layerDetails').open=true;
+}
+function applySavedRecipe(id){
+ const face=selectedFace(),recipe=recipeLibrary.find(r=>r.id===id);if(!face||!recipe)return;
+ try{const next=RAY_RECIPE_CODEC.recipeToFaceSettings(recipe);checkpoint();stopSurfaceBrush();Object.assign(face,next);face.look=null;attachRecipe(face,recipe);
+  hideRecognitionOverlays();renderControls();renderLooks();scheduleRender();renderRecipeLibrary();if($('recipeDialog').open)$('recipeDialog').close();$('layerDetails').open=true;
+  const first=next.layerList[0];if(first)editRecipeLayer(first);setStatus('Đã mở “'+recipe.name+'” cho Người '+(state.faces.indexOf(face)+1)+'. Có thể sửa từng lớp rồi Cập nhật hoặc Lưu thành layout mới.'+(RAY_RECIPE_CODEC.getWarnings(recipe).length?' '+RAY_RECIPE_CODEC.getWarnings(recipe)[0]:''));
+ }catch(e){recipeMessage('Không áp dụng được: '+e.message,true);}
+}
+function renameRecipe(id){
+ const found=recipeLibrary.find(r=>r.id===id);if(!found)return;const value=prompt('Tên mới của công thức',found.name);if(value===null)return;
+ try{const next=RAY_RECIPE_CODEC.validateRecipe({...found,name:value,updatedAt:new Date().toISOString()});persistRecipes(recipeLibrary.map(r=>r.id===id?next:r));
+  for(const face of state.faces)if(face.recipeRef?.id===id)face.recipeRef.name=next.name;recipeNameTarget='';renderRecipeStatus();renderRecipeLibrary();recipeMessage('Đã đổi tên thành “'+next.name+'”.');
+ }catch(e){recipeMessage('Không đổi tên được: '+e.message,true);}
+}
+function deleteRecipe(id){const recipe=recipeLibrary.find(r=>r.id===id);if(!recipe)return;try{persistRecipes(recipeLibrary.filter(r=>r.id!==id));deletedRecipe=recipe;renderRecipeLibrary();renderRecipeStatus();recipeMessage('Đã xóa công thức khỏi thư viện. Makeup đang chỉnh trên ảnh vẫn giữ nguyên.');}catch(e){recipeMessage('Không xóa được: '+e.message,true);}}
+function restoreDeletedRecipe(){if(!deletedRecipe)return;try{const restore={...deletedRecipe,id:recipeLibrary.some(r=>r.id===deletedRecipe.id)?recipeId():deletedRecipe.id};persistRecipes([restore,...recipeLibrary]);deletedRecipe=null;renderRecipeLibrary();renderRecipeStatus();recipeMessage('Đã khôi phục công thức vừa xóa.');}catch(e){recipeMessage(e.message,true);}}
+function downloadBlob(blob,filename){const url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);}
+function exportRecipe(recipe){const valid=RAY_RECIPE_CODEC.validateRecipe(recipe);downloadBlob(new Blob([RAY_RECIPE_CODEC.stringify(valid)],{type:'application/json'}),RAY_RECIPE_CODEC.filename(valid.name));recipeMessage('Đã tải công thức “'+valid.name+'”. Người nhận có thể Nhập công thức để sửa và dùng lại.');}
+function openShareRecipe(recipe){shareRecipeDraft=RAY_RECIPE_CODEC.validateRecipe(recipe);$('shareRecipeName').textContent=shareRecipeDraft.name;$('shareRecipeText').value=RAY_RECIPE_CODEC.stringify(shareRecipeDraft);$('shareRecipeMessage').textContent='Chia sẻ công thức và vùng vẽ theo tỷ lệ mặt; không kèm ảnh, điểm nhận diện hoặc viền cá nhân.';$('shareRecipeDialog').showModal();}
+async function shareRecipeNative(){
+ if(!shareRecipeDraft)return;const recipe=shareRecipeDraft,file=new File([RAY_RECIPE_CODEC.stringify(recipe)],RAY_RECIPE_CODEC.filename(recipe.name),{type:'application/json'});
+ try{if(navigator.canShare?.({files:[file]})&&navigator.share){await navigator.share({title:recipe.name,text:'Công thức makeup RAY PHOTO · '+recipe.name,files:[file]});$('shareRecipeMessage').textContent='Đã mở chia sẻ công thức.';}else{exportRecipe(recipe);$('shareRecipeMessage').textContent='Đã tải tệp công thức. Gửi tệp này qua ứng dụng bạn chọn.';}}
+ catch(e){$('shareRecipeMessage').textContent=e.name==='AbortError'?'Đã hủy chia sẻ.':'Chưa chia sẻ được. Bạn có thể tải tệp hoặc sao chép mã.';}
+}
+async function copyRecipeCode(){try{await navigator.clipboard.writeText($('shareRecipeText').value);$('shareRecipeMessage').textContent='Đã sao chép công thức. Người nhận dán vào Nhập công thức.';}catch{$('shareRecipeText').focus();$('shareRecipeText').select();$('shareRecipeMessage').textContent='Chọn toàn bộ mã bên dưới rồi sao chép để gửi.';}}
+function importRecipeText(text){
+ try{const parsed=RAY_RECIPE_CODEC.parse(text),imported=RAY_RECIPE_CODEC.validateRecipe({...parsed,id:recipeId(),updatedAt:new Date().toISOString()});persistRecipes([imported,...recipeLibrary]);renderRecipeLibrary();renderRecipeStatus();recipeMessage('Đã nhập “'+imported.name+'”. Chọn Mở / chỉnh để áp dụng; ảnh hiện tại chưa thay đổi.');return imported;}
+ catch(e){recipeMessage('Không nhập được công thức: '+e.message,true);return null;}
+}
+function renderRecipeLibrary(){
+ const container=$('recipeList');container.replaceChildren();$('btnUndoRecipeDelete').hidden=!deletedRecipe;
+ if(!recipeLibrary.length){const empty=document.createElement('p');empty.className='control-caption';empty.textContent='Chưa có layout. Đặt tên look đang chỉnh và Lưu thành layout mới, hoặc nhập layout được chia sẻ.';container.append(empty);}
+ for(const recipe of recipeLibrary){
+  const card=document.createElement('article');card.className='recipe-card';const title=document.createElement('strong');title.textContent=recipe.name;
+  const detail=document.createElement('p');detail.textContent=recipe.layers.length+' lớp · '+new Date(recipe.updatedAt).toLocaleDateString('vi-VN');const buttons=document.createElement('div');buttons.className='recipe-actions';
+  for(const [action,label]of [['apply','Mở / chỉnh layout'],['rename','Đổi tên'],['export','Tải layout'],['share','Chia sẻ'],['delete','Xóa']]){
+   const button=document.createElement('button');button.type='button';button.className='outline small';button.dataset.recipeId=recipe.id;button.dataset.recipeAction=action;button.textContent=label;button.disabled=action==='apply'&&(!selectedFace()||state.busy||state.loading);
+   button.addEventListener('click',()=>{if(action==='apply')applySavedRecipe(recipe.id);else if(action==='rename')renameRecipe(recipe.id);else if(action==='delete')deleteRecipe(recipe.id);else if(action==='export')exportRecipe(recipe);else openShareRecipe(recipe);});buttons.append(button);
+  }card.append(title,detail,buttons);container.append(card);
+ }
+}
+function openRecipes(){renderRecipeStatus();renderRecipeLibrary();$('recipeDialog').showModal();}
+function layerListOf(face){if(!face)return [];ensureSettings(face);return faceLayerOrder(face).filter(id=>face.layerList.includes(id));}
+function addMakeupLayer(tab=$('addLayerType').value){
+ const face=selectedFace();if(!face||!TABS[tab])return;ensureSettings(face);
+ if(face.layerList.includes(tab)){editRecipeLayer(tab);setStatus('Lớp này đã có. Đang mở thông số để chỉnh tiếp.');return;}
+ checkpoint();face.layerList.push(tab);face.layerOrder=[...faceLayerOrder(face).filter(id=>id!==tab),tab];
+ const cfg=face.settings[tab];if(TABS[tab].sides){cfg.enabled=true;for(const side of ['left','right'])activateLayerConfig(cfg[side],tab);}else activateLayerConfig(cfg,tab);
+ face.look=null;hideRecognitionOverlays();editRecipeLayer(tab);renderLooks();scheduleRender();setStatus('Đã thêm lớp '+TABS[tab].title+' sau các lớp đang có.');
+}
+function deleteMakeupLayer(tab){const face=selectedFace();if(!face||!face.layerList.includes(tab))return;checkpoint();stopSurfaceBrush();face.settings[tab]=deepCopy(makeDefaults()[tab]);face.layerList=face.layerList.filter(id=>id!==tab);face.look=null;renderControls();renderLooks();scheduleRender();setStatus('Đã xóa toàn bộ lớp '+TABS[tab].title+'. Có thể Quay lại để khôi phục.');}
+function toggleMakeupLayer(tab,on){const face=selectedFace();if(!face||!face.layerList.includes(tab))return;checkpoint();const cfg=face.settings[tab];cfg.enabled=on;if(on&&!layerEnabled(face.settings,tab)){if(TABS[tab].sides){for(const side of ['left','right'])activateLayerConfig(cfg[side],tab);}else activateLayerConfig(cfg,tab);}face.look=null;stopSurfaceBrush();renderControls();renderLooks();scheduleRender();}
+function syncLayerSelectors(){const select=$('addLayerType'),old=select.value;select.replaceChildren();for(const [id,label]of LAYER_ORDER){const option=document.createElement('option');option.value=id;option.textContent=label;select.append(option);}if(TABS[old])select.value=old;}
+readRecipeLibrary();
+// END V4.3 RECIPE LIBRARY AND LAYER EDITOR
+
+// BEGIN V4.3 LOCAL WORK SESSION
+// Explicit, device-local save. Source photos never enter shared look recipes.
+let workSessionBusy=false,workSessionAvailable=false,workSessionStorageReady=true;
+let workSessionOperation=0;
+const RAY_WORK_DB='ray-makeup-work-v1',RAY_WORK_STORE='sessions';
+function workSessionMessage(message){const node=$('sessionSummary');if(node)node.textContent=message;}
+function workSessionError(message){throw new Error('Phiên chỉnh không hợp lệ: '+message);}
+function workSessionRecord(value){return !!value&&typeof value==='object'&&!Array.isArray(value)&&[Object.prototype,null].includes(Object.getPrototypeOf(value));}
+function workSessionFinite(value,min,max){return typeof value==='number'&&Number.isFinite(value)&&value>=min&&value<=max;}
+function workSessionText(value,max,label){if(typeof value!=='string'||value.length>max||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/u.test(value))workSessionError(label);return value;}
+function workSessionId(value){workSessionText(value,128,'mã người/công thức');if(!/^[-A-Za-z0-9_.:]+$/.test(value))workSessionError('mã người/công thức');return value;}
+function workSessionKnownKeys(value,keys,label){if(!workSessionRecord(value)||Object.keys(value).some(key=>!keys.includes(key)))workSessionError(label);}
+function workSessionPoints(points){
+ if(!Array.isArray(points)||points.length<468||points.length>512)workSessionError('điểm mốc khuôn mặt');
+ return points.map(point=>{
+  workSessionKnownKeys(point,['x','y','z','visibility','presence'],'điểm mốc khuôn mặt');
+  if(!workSessionFinite(point.x,-4,5)||!workSessionFinite(point.y,-4,5))workSessionError('tọa độ điểm mốc');
+  const next={x:point.x,y:point.y};
+  for(const key of ['z','visibility','presence'])if(point[key]!==undefined){if(!workSessionFinite(point[key],-10,10))workSessionError('tọa độ điểm mốc');next[key]=point[key];}
+  return next;
+ });
+}
+function workSessionRecipeRef(value){
+ if(value===undefined||value===null)return null;
+ workSessionKnownKeys(value,['id','name','signature'],'tên công thức trong phiên');
+ return {id:workSessionId(value.id),name:workSessionText(value.name,160,'tên công thức'),signature:workSessionText(value.signature,512*1024,'dữ liệu công thức')};
+}
+function workSessionFace(input,base=null){
+ if(!workSessionRecord(input))workSessionError('khuôn mặt');
+ const id=workSessionId(input.id),raw=workSessionPoints(input.raw||base?.raw),landmarks=workSessionPoints(input.landmarks);
+ if(raw.length!==landmarks.length)workSessionError('số điểm mốc gốc/đã chỉnh khác nhau');
+ if(!workSessionRecord(input.settings))workSessionError('thông số makeup');
+ // Validate all tool configs, including muted/inactive tools and authored strokes.
+ const recipe=RAY_RECIPE_CODEC.createRecipeFromFace({settings:input.settings,layerList:Object.keys(TABS),layerOrder:input.layerOrder},{name:'Phiên chỉnh riêng'});
+ const settings=RAY_RECIPE_CODEC.recipeToFaceSettings(recipe).settings;
+ const validTypes=Object.keys(TABS),list=input.layerList===undefined?validTypes.filter(type=>JSON.stringify(settings[type])!==JSON.stringify(makeDefaults()[type])):input.layerList;
+ if(!Array.isArray(list)||list.length>validTypes.length||list.some(type=>!validTypes.includes(type))||new Set(list).size!==list.length)workSessionError('danh sách lớp');
+ const layerOrder=input.layerOrder??validTypes;
+ if(!Array.isArray(layerOrder)||layerOrder.length>validTypes.length||layerOrder.some(type=>!validTypes.includes(type))||new Set(layerOrder).size!==layerOrder.length)workSessionError('thứ tự lớp');
+ const geometry={...newGeometry()};
+ if(input.geometry!==undefined){workSessionKnownKeys(input.geometry,['forehead','temples','aiAssist'],'viền trán/thái dương');Object.assign(geometry,input.geometry);}
+ if(!workSessionFinite(geometry.forehead,0,160)||!workSessionFinite(geometry.temples,60,160)||typeof geometry.aiAssist!=='boolean')workSessionError('viền trán/thái dương');
+ const skinEdits=input.skinEdits??[];
+ if(!Array.isArray(skinEdits)||skinEdits.length>950)workSessionError('nét sửa mask');
+ const edits=skinEdits.map(edit=>{
+  workSessionKnownKeys(edit,['x','y','size','mode'],'nét sửa mask');
+  if(!workSessionFinite(edit.x,0,1)||!workSessionFinite(edit.y,0,1)||!workSessionFinite(edit.size,2,22)||!['add','erase'].includes(edit.mode))workSessionError('nét sửa mask');
+  return {x:edit.x,y:edit.y,size:edit.size,mode:edit.mode};
+ });
+ const regionEdits=input.regionEdits??{};if(!workSessionRecord(regionEdits)||Object.keys(regionEdits).length>128)workSessionError('viền kéo tay');
+ const region={};for(const [key,edit]of Object.entries(regionEdits)){
+  if(!/^\d{1,3}$/.test(key)||Number(key)>127)workSessionError('chỉ số viền kéo tay');workSessionKnownKeys(edit,['x','y'],'viền kéo tay');
+  if(!workSessionFinite(edit.x,-.8,.8)||!workSessionFinite(edit.y,-.8,.8))workSessionError('viền kéo tay');region[key]={x:edit.x,y:edit.y};
+ }
+ let look=null;if(input.look){workSessionKnownKeys(input.look,['id','strength'],'preset');if(!Object.hasOwn(LOOKS,input.look.id)||!workSessionFinite(input.look.strength,0,100))workSessionError('preset');look={id:input.look.id,strength:input.look.strength};}
+ return {id,raw,landmarks,settings,layerOrder:normalizeLayerOrder(layerOrder),layerList:[...list],look,recipeRef:workSessionRecipeRef(input.recipeRef),skinEdits:edits,geometry,regionEdits:region,warning:workSessionText(input.warning||'',500,'cảnh báo nhận diện')};
+}
+function workSessionHistory(value,faces){
+ if(value===undefined)return [];
+ if(!Array.isArray(value)||value.length>42)workSessionError('lịch sử chỉnh sửa');
+ return value.map(snapshot=>{
+  if(!Array.isArray(snapshot)||snapshot.length>faces.length)workSessionError('lịch sử chỉnh sửa');
+  const seen=new Set();return snapshot.map(input=>{
+   const base=faces.find(face=>face.id===input?.id);if(!base||seen.has(base.id))workSessionError('người trong lịch sử');seen.add(base.id);
+   const entry=workSessionFace(input,base);delete entry.raw;delete entry.warning;return entry;
+  });
+ });
+}
+function validateWorkSegmentation(value){
+ if(value===undefined||value===null)return null;
+ workSessionKnownKeys(value,['width','height','face','body','all','protection'],'mặt nạ da AI');
+ if(!Number.isInteger(value.width)||!Number.isInteger(value.height)||value.width<1||value.height<1||value.width>4096||value.height>4096||value.width*value.height>16777216)workSessionError('kích thước mặt nạ da AI');
+ const next={width:value.width,height:value.height};
+ for(const key of ['face','body','all','protection']){const blob=value[key];if(!(blob instanceof Blob)||!blob.size||blob.size>32*1024*1024||blob.type!=='image/png')workSessionError('mặt nạ da AI thiếu hoặc hỏng');next[key]=blob;}
+ return next;
+}
+async function encodeWorkSegmentation(source){
+ if(!source)return null;
+ const result={width:source.width,height:source.height};
+ await Promise.all(['face','body','all','protection'].map(async key=>{
+  const canvas=source[key];if(!canvas||canvas.width!==source.width||canvas.height!==source.height||typeof canvas.toBlob!=='function')workSessionError('mặt nạ da AI không khớp');
+  result[key]=await new Promise((resolve,reject)=>{try{canvas.toBlob(blob=>blob?resolve(blob):reject(new Error('Không mã hóa được mặt nạ da AI để lưu phiên.')),'image/png');}catch(error){reject(error);}});
+ }));
+ return validateWorkSegmentation(result);
+}
+async function decodeWorkSegmentation(value){
+ const record=validateWorkSegmentation(value);if(!record)return null;
+ const result={width:record.width,height:record.height};
+ await Promise.all(['face','body','all','protection'].map(key=>new Promise((resolve,reject)=>{
+  const url=URL.createObjectURL(record[key]),image=new Image();let done=false;
+  const finish=error=>{if(done)return;done=true;clearTimeout(timer);image.src='';URL.revokeObjectURL(url);error?reject(error):resolve();};
+  const timer=setTimeout(()=>finish(new Error('Không đọc được mặt nạ da AI của phiên đã lưu.')),12000);
+  image.onerror=()=>finish(new Error('Mặt nạ da AI của phiên đã lưu bị hỏng.'));
+  image.onload=()=>{
+   try{if(image.naturalWidth!==record.width||image.naturalHeight!==record.height)throw new Error('Kích thước mặt nạ da AI không khớp.');const canvas=newCanvas(record.width,record.height);canvas.getContext('2d').drawImage(image,0,0);result[key]=canvas;finish();}catch(error){finish(error);}
+  };
+  image.src=url;
+ })));
+ return result;
+}
+function validateWorkSession(input){
+ if(!workSessionRecord(input)||input.kind!=='ray-makeup-work'||input.version!==1)workSessionError('định dạng/phiên bản');
+ if(!(input.source instanceof Blob)||!input.source.size||input.source.size>300*1024*1024)workSessionError('ảnh gốc không có hoặc quá lớn');
+ const width=input.width,height=input.height;if(!Number.isInteger(width)||!Number.isInteger(height)||width<1||height<1||width>100000||height>100000||width*height>268435456)workSessionError('kích thước ảnh');
+ if(!Array.isArray(input.faces)||input.faces.length>40)workSessionError('số khuôn mặt');
+ const faces=input.faces.map(face=>workSessionFace(face));if(new Set(faces.map(face=>face.id)).size!==faces.length)workSessionError('mã người trùng');
+ const selectedId=faces.some(face=>face.id===input.selectedId)?input.selectedId:faces[0]?.id??null;
+ const view=input.view??{};if(!workSessionRecord(view))workSessionError('vị trí xem ảnh');
+ const zoom=workSessionFinite(view.zoom,.5,16)?view.zoom:1;
+ const savedAt=workSessionText(input.savedAt,40,'ngày lưu');if(!Number.isFinite(Date.parse(savedAt)))workSessionError('ngày lưu');
+ const fileName=workSessionText(input.fileName||'ray-photo.png',240,'tên ảnh');
+ return {kind:'ray-makeup-work',version:1,source:input.source,fileName,width,height,savedAt,faces,selectedId,segmentation:validateWorkSegmentation(input.segmentation),skinSegMessage:workSessionText(input.skinSegMessage||'Phiên này dùng viền mặt hình học.',1500,'thông tin mặt nạ da'),
+  nextFaceId:Number.isInteger(input.nextFaceId)&&input.nextFaceId>0&&input.nextFaceId<1000000?input.nextFaceId:Math.max(1,...faces.map(face=>Number(face.id.match(/person-(\d+)$/)?.[1])||0))+1,
+  tab:Object.hasOwn(TABS,input.tab)?input.tab:'brow',side:['both','left','right'].includes(input.side)?input.side:'both',finishRegion:Object.hasOwn(UI_FINISH_REGIONS,input.finishRegion)?input.finishRegion:'face',
+  view:{zoom,scrollLeft:workSessionFinite(view.scrollLeft,0,1000000)?view.scrollLeft:0,scrollTop:workSessionFinite(view.scrollTop,0,1000000)?view.scrollTop:0},
+  undo:workSessionHistory(input.undo,faces),redo:workSessionHistory(input.redo,faces)};
+}
+function workSessionOpenDB(){
+ return new Promise((resolve,reject)=>{
+  if(!globalThis.indexedDB){reject(new Error('Trình duyệt không hỗ trợ lưu phiên trên thiết bị.'));return;}
+  let settled=false,request;const timer=setTimeout(()=>{settled=true;reject(new Error('Kho lưu phiên đang bị khóa hoặc không phản hồi.'));},8000);
+  const fail=message=>{if(settled)return;settled=true;clearTimeout(timer);reject(new Error(message));};
+  try{request=indexedDB.open(RAY_WORK_DB,1);}catch(error){clearTimeout(timer);reject(error);return;}
+  request.onupgradeneeded=()=>{if(!request.result.objectStoreNames.contains(RAY_WORK_STORE))request.result.createObjectStore(RAY_WORK_STORE);};
+  request.onblocked=()=>fail('Kho lưu phiên bị khóa. Đóng tab RAY cũ rồi thử lại.');
+  request.onerror=()=>fail(request.error?.message||'Không mở được kho lưu phiên trên thiết bị.');
+  request.onsuccess=()=>{if(settled){request.result.close();return;}settled=true;clearTimeout(timer);request.result.onversionchange=()=>request.result.close();resolve(request.result);};
+ });
+}
+async function workSessionTransaction(mode,action,guard=()=>true){
+ const db=await workSessionOpenDB();
+ return new Promise((resolve,reject)=>{
+  let done=false,result,transaction;
+  const finish=(error)=>{if(done)return;done=true;clearTimeout(timer);db.close();error?reject(error):resolve(result);};
+  const timer=setTimeout(()=>{try{transaction?.abort();}catch{}finish(new Error('Lưu phiên quá lâu. Phiên đã lưu trước đó được giữ nguyên.'));},12000);
+  try{
+   if(!guard())throw new Error('Ảnh đã đổi; không ghi đè phiên đang lưu.');
+   transaction=db.transaction(RAY_WORK_STORE,mode);const store=transaction.objectStore(RAY_WORK_STORE);
+   action(store,value=>{result=value;},()=>{if(!guard())transaction.abort();});
+   transaction.oncomplete=()=>finish();transaction.onabort=()=>finish(transaction.error||new Error('Thao tác lưu phiên bị hủy. Phiên đã lưu trước đó được giữ nguyên.'));transaction.onerror=()=>{};
+  }catch(error){try{transaction?.abort();}catch{}finish(error);}
+ });
+}
+function workSessionDate(value){try{return new Intl.DateTimeFormat('vi-VN',{dateStyle:'short',timeStyle:'short',timeZone:'Asia/Ho_Chi_Minh'}).format(new Date(value));}catch{return '';}}
+async function refreshWorkSessionAvailability(){
+ try{
+  const meta=await workSessionTransaction('readonly',(store,set)=>{const request=store.get('meta');request.onsuccess=()=>set(request.result);});
+  workSessionStorageReady=true;workSessionAvailable=!!meta;workSessionMessage(meta?'Có phiên đã lưu · '+meta.fileName+' · '+workSessionDate(meta.savedAt):'Lưu ảnh gốc và các lớp trên thiết bị để mở lại chỉnh tiếp.');
+ }catch(error){workSessionStorageReady=false;workSessionAvailable=false;workSessionMessage('Không truy cập được lưu phiên trên thiết bị. Công thức và lưu ảnh vẫn dùng được.');}
+ updateActions();return workSessionAvailable;
+}
+async function saveWorkSession(){
+ if(workSessionBusy||state.busy||state.loading||!state.img)return false;
+ const sourceImage=state.img,generation=imageLoadGeneration,operation=++workSessionOperation;
+ // The engine replaces these canvases as a group; it never paints into them.
+ const maskSource=state.skinSeg?Object.fromEntries(['width','height','face','body','all','protection'].map(key=>[key,state.skinSeg[key]])):null;
+ if(!(state.file instanceof Blob)){setStatus('Không còn dữ liệu ảnh gốc để lưu phiên. Hãy chọn lại ảnh gốc.',true);return false;}
+ let record;
+ try{record=validateWorkSession({kind:'ray-makeup-work',version:1,source:state.file,fileName:state.file.name||'ray-photo.png',width:state.width,height:state.height,savedAt:new Date().toISOString(),faces:deepCopy(state.faces),selectedId:state.selectedId,nextFaceId:state.nextFaceId,tab:state.tab,side:state.side,finishRegion:state.finishRegion,view:{zoom:state.zoom,scrollLeft:stage.scrollLeft,scrollTop:stage.scrollTop},segmentation:null,skinSegMessage:state.skinSegMessage,undo:deepCopy(state.undo),redo:deepCopy(state.redo)});}catch(error){setStatus('Không lưu được phiên: '+error.message,true);return false;}
+ workSessionBusy=true;state.busy=true;updateActions();setStatus('Đang lưu ảnh gốc và các bước chỉnh trên thiết bị…');
+ const guard=()=>operation===workSessionOperation&&sourceImage===state.img&&generation===imageLoadGeneration;
+ try{
+  record.segmentation=await encodeWorkSegmentation(maskSource);
+  if(!guard())throw new Error('Ảnh đã đổi; không ghi đè phiên đang lưu.');
+  await workSessionTransaction('readwrite',(store,set,check)=>{
+   const request=store.put(record,'last');request.onsuccess=()=>{check();set(true);};store.put({fileName:record.fileName,savedAt:record.savedAt,width:record.width,height:record.height,people:record.faces.length},'meta');
+  },guard);
+  workSessionStorageReady=true;workSessionAvailable=true;workSessionMessage('Đã lưu phiên · '+record.fileName+' · '+workSessionDate(record.savedAt));
+  if(guard())setStatus('Đã lưu phiên trên thiết bị. Dùng “Mở phiên đã lưu” để quay lại ảnh gốc và chỉnh từng lớp.');return true;
+ }catch(error){if(guard())setStatus('Không lưu được phiên: '+error.message+'. Phiên đã lưu trước đó được giữ nguyên.',true);return false;}
+ finally{workSessionBusy=false;state.busy=false;updateActions();}
+}
+async function workSessionProbeImage(blob){
+ return new Promise((resolve,reject)=>{
+  const url=URL.createObjectURL(blob),image=new Image();let finished=false;
+  const finish=(error)=>{if(finished)return;finished=true;clearTimeout(timer);const dimensions=[image.naturalWidth,image.naturalHeight];image.src='';URL.revokeObjectURL(url);error?reject(error):resolve(dimensions);};
+  const timer=setTimeout(()=>finish(new Error('Không đọc được ảnh gốc của phiên đã lưu.')),20000);
+  image.onload=()=>finish();image.onerror=()=>finish(new Error('Ảnh gốc của phiên đã lưu không đọc được.'));image.src=url;
+ });
+}
+async function resumeWorkSession(){
+ if(workSessionBusy||state.busy||state.loading)return false;
+ const operation=++workSessionOperation,startGeneration=imageLoadGeneration;workSessionBusy=true;state.busy=true;updateActions();setStatus('Đang mở phiên đã lưu trên thiết bị…');let restoredImage=null;
+ try{
+  const saved=await workSessionTransaction('readonly',(store,set)=>{const request=store.get('last');request.onsuccess=()=>set(request.result);});
+  if(!saved)throw new Error('Chưa có phiên đã lưu trên thiết bị này.');
+  const record=validateWorkSession(saved),[[width,height],segmentation]=await Promise.all([workSessionProbeImage(record.source),decodeWorkSegmentation(record.segmentation)]);
+  if(width!==record.width||height!==record.height)throw new Error('Ảnh gốc và kích thước lưu không khớp.');
+  if(operation!==workSessionOperation||startGeneration!==imageLoadGeneration)throw new Error('Ảnh đã đổi; không thay ảnh vừa mở bằng phiên cũ.');
+  const file=new File([record.source],record.fileName,{type:record.source.type||'image/png',lastModified:Date.parse(record.savedAt)});
+  const loaded=await loadImage(file);
+  if(!loaded||state.file!==file||operation!==workSessionOperation)throw new Error('Không mở được ảnh gốc của phiên đã lưu.');
+  restoredImage=state.img;
+  Object.assign(state,{faces:record.faces,nextFaceId:record.nextFaceId,selectedId:record.selectedId,tab:record.tab,side:record.side,finishRegion:record.finishRegion,undo:record.undo,redo:record.redo,zoom:record.view.zoom,compare:false,skinSeg:segmentation,skinSegMessage:record.skinSegMessage});
+  hideRecognitionOverlays();for(const button of $('categoryTabs').querySelectorAll('.tab'))button.classList.toggle('active',button.dataset.tab===state.tab);
+  if(state.zoom>1.25)ensurePreviewDetail();updateFit();renderFaces();renderControls();renderLooks();scheduleRender();updateActions();
+  requestAnimationFrame(()=>{if(restoredImage===state.img){stage.scrollLeft=record.view.scrollLeft;stage.scrollTop=record.view.scrollTop;}});
+  // Restore the exact captured masks. Rescan is the user's explicit way to update AI.
+  hideRecognitionOverlays();renderControls();renderGuides();scheduleRender();workSessionAvailable=true;workSessionStorageReady=true;workSessionMessage('Đang chỉnh tiếp phiên · '+record.fileName+' · '+workSessionDate(record.savedAt));setStatus('Đã mở lại ảnh gốc, các lớp và lịch sử chỉnh sửa. Có thể sửa tiếp rồi lưu ảnh mới.');return true;
+ }catch(error){if(!restoredImage||restoredImage===state.img)setStatus('Không mở được phiên: '+error.message,true);return false;}
+ finally{workSessionBusy=false;state.busy=false;updateActions();}
+}
+async function discardWorkSession(){
+ if(workSessionBusy||state.busy||state.loading)return false;
+ if(!confirm('Xóa phiên đã lưu trên thiết bị? Ảnh đang chỉnh và các công thức đã lưu vẫn được giữ.'))return false;
+ workSessionBusy=true;updateActions();
+ try{await workSessionTransaction('readwrite',(store)=>{store.delete('last');store.delete('meta');});workSessionAvailable=false;workSessionMessage('Đã xóa phiên lưu trên thiết bị. Ảnh đang chỉnh vẫn được giữ.');setStatus('Đã xóa phiên đã lưu; không đổi ảnh đang chỉnh.');return true;}
+ catch(error){setStatus('Không xóa được phiên đã lưu: '+error.message,true);return false;}
+ finally{workSessionBusy=false;updateActions();}
+}
+// END V4.3 LOCAL WORK SESSION
+
+function openSaveImageDialog(){if(!state.img||state.busy||state.loading)return;$('saveImageName').value=(state.file?.name||'ray-photo').replace(/\.[^.]+$/,'')+'_MAKEUP';$('saveImageInfo').textContent='PNG · '+state.width+' × '+state.height+' px · Tất cả người và lớp đang bật';$('saveImageMessage').textContent='Ảnh PNG giữ nguyên kích thước nguồn. Sau khi lưu, bạn vẫn chỉnh tiếp được.';$('saveImageDialog').showModal();}
+async function confirmSaveImage(){const ok=await exportOriginal($('saveImageName').value);$('saveImageMessage').textContent=ok?'Đã tạo ảnh PNG. Chọn vị trí lưu trong trình duyệt; Quay lại chỉnh sửa vẫn giữ ảnh gốc và mọi lớp.':'Chưa lưu được ảnh. '+$('statusText').textContent;$('saveImageMessage').classList.toggle('save-success',!!ok);}
 /* =============================================================
    UI wiring. No interaction changes live RAY PHOTO state or files.
    ============================================================= */
@@ -2298,7 +2763,7 @@ $('btnClearGuides').addEventListener('click',()=>{
  $('btnClearGuides').textContent=state.showGuides?'Ẩn đường viền':'Hiện đường viền';if(!state.showGuides){hideRecognitionOverlays();renderControls();}renderGuides();
 });
 $('upload').addEventListener('change',e=>{const file=e.target.files?.[0];if(file)loadImage(file);e.target.value='';});
-$('btnScan').addEventListener('click',detectFaces);$('btnExport').addEventListener('click',exportOriginal);
+$('btnScan').addEventListener('click',detectFaces);$('btnExport').addEventListener('click',openSaveImageDialog);
 $('btnOpenFinish').addEventListener('click',()=>{if(selectedFace()){state.finishRegion='face';$('categoryTabs').querySelector('[data-tab="finish"]').click()}});
 $('btnOpenAge').addEventListener('click',()=>{if(selectedFace())$('categoryTabs').querySelector('[data-tab="age"]').click()});
 $('btnEditRegion').addEventListener('click',()=>{if(!selectedFace())return;state.tab='skin';state.skinBrushMode='outline';for(const t of $('categoryTabs').querySelectorAll('.tab'))t.classList.toggle('active',t.dataset.tab==='skin');setMaskEditing(true);focusSelectedFace();});
@@ -2319,7 +2784,18 @@ guide.addEventListener('pointerdown',startGuidePointer);guide.addEventListener('
 window.addEventListener('resize',()=>{if(state.img)updateFit();});
 $('btnHelp').addEventListener('click',()=>$('helpDialog').showModal());$('btnCloseHelp').addEventListener('click',()=>$('helpDialog').close());$('btnOkHelp').addEventListener('click',()=>$('helpDialog').close());
 document.addEventListener('keydown',e=>{if(e.target.matches('input,select,textarea')||e.target.isContentEditable)return;if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();if(e.shiftKey)redo();else undo();}if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();}});
-renderControls();renderLooks();updateActions();
+document.querySelectorAll('[data-close-dialog]').forEach(button=>button.addEventListener('click',()=>$(button.dataset.closeDialog).close()));
+$('btnRecipes').addEventListener('click',openRecipes);$('btnSaveRecipe').addEventListener('click',()=>saveCurrentRecipe(false));$('btnUpdateRecipe').addEventListener('click',()=>saveCurrentRecipe(true));
+$('btnExportCurrentRecipe').addEventListener('click',()=>{try{openShareRecipe(currentRecipe($('recipeName').value));}catch(e){recipeMessage(e.message,true)}});
+$('btnUndoRecipeDelete').addEventListener('click',restoreDeletedRecipe);
+$('btnImportRecipeText').addEventListener('click',()=>importRecipeText($('recipeImportText').value));
+$('recipeImportFile').addEventListener('change',async event=>{const file=event.target.files?.[0];event.target.value='';if(!file)return;if(file.size>RAY_RECIPE_CODEC.MAX_BYTES){recipeMessage('Không nhập được: tệp vượt 512 KB.',true);return;}try{importRecipeText(await file.text());}catch(e){recipeMessage('Không đọc được tệp: '+e.message,true)}});
+$('btnShareRecipeNative').addEventListener('click',shareRecipeNative);$('btnCopyRecipeCode').addEventListener('click',copyRecipeCode);$('btnDownloadSharedRecipe').addEventListener('click',()=>{if(shareRecipeDraft)exportRecipe(shareRecipeDraft)});
+$('btnAddLayer').addEventListener('click',()=>addMakeupLayer());$('btnConfirmSaveImage').addEventListener('click',confirmSaveImage);
+$('btnBackEdit').addEventListener('click',()=>{$('saveImageDialog').close();$('stageOuter').scrollIntoView({behavior:'smooth',block:'nearest'});});
+$('btnSaveRecipeAfterImage').addEventListener('click',()=>{$('saveImageDialog').close();openRecipes()});
+$('btnSaveSession').addEventListener('click',saveWorkSession);$('btnResumeSession').addEventListener('click',resumeWorkSession);$('btnDiscardSession').addEventListener('click',discardWorkSession);
+syncLayerSelectors();renderControls();renderLooks();updateActions();refreshWorkSessionAvailability();
 
 // Controlled smoke-test instrumentation, available only on localhost with ?test=1.
 if(location.hostname==='localhost'&&new URLSearchParams(location.search).get('test')==='1'){
@@ -2329,6 +2805,7 @@ if(location.hostname==='localhost'&&new URLSearchParams(location.search).get('te
   setGeometry:v=>{Object.assign(geometryOf(selectedFace()),typeof v==='number'?{forehead:v}:v);renderControls();scheduleRender()},
   setFinishRegion,skinZones:()=>skinZones(selectedFace(),photo.width,photo.height),skinZoneWeights:(x,y)=>Object.fromEntries(Object.keys(UI_FINISH_REGIONS).map(id=>[id,skinZoneWeight(skinZones(selectedFace(),photo.width,photo.height),id,x,y)])),
   zoneWeights:region=>{const W=photo.width,H=photo.height,z=skinZones(selectedFace(),W,H),weights=new Float32Array(W*H);for(let y=0;y<H;y++)for(let x=0;x<W;x++)weights[y*W+x]=skinZoneWeight(z,region,x+.5,y+.5);return weights},
+  getRecipeState:()=>deepCopy({recipes:recipeLibrary,deletedRecipe,storageError:recipeStorageError}),recipeCodec:RAY_RECIPE_CODEC,addMakeupLayer,deleteMakeupLayer,saveWorkSession,resumeWorkSession,sessionState:()=>({busy:workSessionBusy,available:workSessionAvailable}),
   getLayerOrder:()=>faceLayerOrder(selectedFace()),setLayerOrder:order=>{checkpoint();selectedFace().layerOrder=normalizeLayerOrder(order);renderLayerStrip();scheduleRender()},moveLayer,recommendedLayerOrder,
   editableIds,undo,redo,toggleLayer:toggleCurrentLayer,applyLayerAll:applyCurrentLayerToAll,layouts:deepCopy(V4_LAYOUTS)
  });
