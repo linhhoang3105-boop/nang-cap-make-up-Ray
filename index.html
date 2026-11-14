@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.7 – Bảng chỉnh gọn, chọn công cụ là chỉnh ngay. Mi tơi theo dáng mắt, má hồng tán mềm theo từng người.">
-  <title>RAY PHOTO | Makeup Studio V4.7 · Chỉnh ngay</title>
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.9.1 – Bảng chỉnh gọn, chọn công cụ là chỉnh ngay. Mi tơi theo dáng mắt, má hồng tán mềm theo từng người.">
+  <title>RAY PHOTO | Finish Skin V4.9.1 · Lớp phủ phản chiếu</title>
   <style>
 
 [hidden]{display:none!important}
@@ -84,7 +84,7 @@
 .auto-light-actions{display:flex;gap:7px;flex-wrap:wrap;margin:11px 0}.auto-light-actions button{flex:1;font-size:11px;min-height:42px}.auto-light-range-label{display:flex;justify-content:space-between;font-size:11px;color:#d7bd94;margin:12px 0 7px}#autoLightStrength{width:100%;accent-color:var(--gold)}.auto-light-note{font-size:11px;color:#d8c5a7;line-height:1.6}@media(max-width:760px){.auto-light-actions{display:grid;grid-template-columns:1fr}}
 
 /* ======================================================================
-   V4.7 · BỐ CỤC APP — ảnh lớn, khung ảnh cố định
+   V4.9.1 · BỐ CỤC APP — ảnh lớn, khung ảnh cố định
    - Cả trang là một khung 100dvh, không cuộn trang; ảnh chiếm phần lớn màn hình.
    - Chiều cao khung ảnh chỉ phụ thuộc kích thước màn hình (không phụ thuộc nhận diện,
      chọn người, tab hay nội dung bảng chỉnh) nên ảnh giữ nguyên khi áp từng bước.
@@ -214,7 +214,7 @@ body.sheet-collapsed .sheet-toggle svg{transform:rotate(180deg)}
 }
 @media(max-height:560px) and (max-width:760px){:root{--sheet-h:clamp(200px,46dvh,300px)}}
 
-/* V4.7 — active controls occupy the drawer from its first line. */
+/* V4.9.1 — active controls occupy the drawer from its first line. */
 :root{--sheet-h:clamp(320px,49vh,450px)}
 @supports(height:1dvh){:root{--sheet-h:clamp(320px,49dvh,450px)}}
 [hidden]{display:none!important}
@@ -232,6 +232,8 @@ body.sheet-collapsed .sheet-toggle svg{transform:rotate(180deg)}
 .quick-tools::-webkit-scrollbar{display:none}
 .quick-tools button{flex:0 0 auto;border:1px solid transparent;border-radius:7px;padding:6px 10px;min-height:30px;color:#bfb6aa;font-size:11px;white-space:nowrap}
 .quick-tools button.active{border-color:#9b7b48;background:#3b3023;color:#ffe4b2}
+.quick-tools.finish-variants{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;overflow-x:hidden}
+.quick-tools.finish-variants button{min-width:0;min-height:30px;white-space:normal;padding:3px 2px;font-size:10.5px;line-height:1.15;text-align:center}
 .control-area{padding:8px 14px 12px;min-width:0}
 .control-area>.instant-hint,.control-area>.tool-heading{display:none}
 .control-area .side-select{margin:0 0 7px;padding:2px}
@@ -304,12 +306,25 @@ body.sheet-collapsed .tool-dock,body.sheet-collapsed .quick-tools,body.sheet-col
 }
 @media(max-height:640px) and (max-width:760px){:root{--sheet-h:clamp(275px,50dvh,330px)}.sheet-head{height:18px}.tool-dock{flex-basis:38px}.tool-step-save{display:none}.control-area{padding-top:5px}.quick-tools{flex-basis:32px}}
 
+
+/* V4.9.1: visible, independent upper/lower lash controls. */
+.lash-scope{display:flex;align-items:center;gap:5px;margin:0 0 8px;padding:3px;border-radius:8px;background:#101114;min-width:0}
+.lash-scope button{flex:0 0 auto;min-height:29px;padding:5px 10px;border:1px solid transparent;border-radius:6px;color:#bdb2a2;font-size:11px}
+.lash-scope button.selected{background:#403425;border-color:#94713c;color:#f9dda7}
+.lash-scope select{flex:1;min-width:0;min-height:29px;border:1px solid #675338;border-radius:6px;background:#25232a;color:#e5d2b3;font:inherit;font-size:11px;padding:4px}
+body.tool-detailed .lash-scope select{display:none}
+body.tool-detailed .lash-scope button{flex:1}
+.quick-controls.lash-quick>.control-group{display:none}
+.quick-controls.lash-quick>.lash-active{display:flex}
+.layer-order-notice{font-size:11px;line-height:1.5;color:#bdb4a4;padding:9px 10px;border:1px solid #4b4337;border-radius:8px;background:#29251f;margin:10px 0}
+.layer-order-notice.warn{border-color:#b9874e;color:#f3d1a7;background:#38291e}
+
 </style>
 </head>
 <body>
   <header class="topbar">
     <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
-    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.7</b></div>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.9.1</b></div>
     <div class="header-actions"><label for="upload" class="upload-button" title="Chọn ảnh" aria-label="Chọn ảnh"><span class="plus" aria-hidden="true">＋</span><span class="lbl">Chọn ảnh</span></label><input id="upload" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/avif"><button class="outline small" id="btnHelp" type="button" aria-label="Hướng dẫn" title="Hướng dẫn"><span class="lbl-d">Hướng dẫn</span><span class="lbl-m" aria-hidden="true">?</span></button><button class="primary small" id="btnExport" disabled type="button">Lưu ảnh</button></div>
   </header>
 
@@ -340,7 +355,7 @@ body.sheet-collapsed .tool-dock,body.sheet-collapsed .quick-tools,body.sheet-col
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.7</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">TEST V4.9.1</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -419,21 +434,21 @@ body.sheet-collapsed .tool-dock,body.sheet-collapsed .quick-tools,body.sheet-col
       <nav class="category-tabs" id="categoryTabs" aria-label="Nhóm trang điểm">
 <div class="tool-group" role="group" aria-label="Nền và phấn"><span class="tool-group-label">Nền và phấn</span><button type="button" class="tab" data-tab="primer">Kem lót</button><button type="button" class="tab" data-tab="foundation">Kem nền</button><button type="button" class="tab" data-tab="cushion">Phấn nước</button><button type="button" class="tab" data-tab="concealer">Che khuyết điểm</button><button type="button" class="tab" data-tab="powder">Phấn phủ</button><button type="button" class="tab" data-tab="gloss">Phủ bóng</button></div>
 <div class="tool-group" role="group" aria-label="Mắt và chân mày"><span class="tool-group-label">Mắt và chân mày</span><button type="button" class="tab active" data-tab="brow">Chân mày</button><button type="button" class="tab" data-tab="shadow">Phấn mắt</button><button type="button" class="tab" data-tab="liner">Eyeliner</button><button type="button" class="tab" data-tab="lashes">Mi mắt</button></div><div class="tool-group" role="group" aria-label="Má và môi"><span class="tool-group-label">Má và môi</span><button type="button" class="tab" data-tab="blush">Má hồng</button><button type="button" class="tab" data-tab="contour">Tạo khối</button><button type="button" class="tab" data-tab="highlight">Bắt sáng</button><button type="button" class="tab" data-tab="lip">Môi</button></div>
-<div class="tool-group" role="group" aria-label="Da và chất liệu"><span class="tool-group-label">Da và chất liệu</span><button type="button" class="tab" data-tab="autolight">Ánh sáng tự động</button><button type="button" class="tab" data-tab="skin">Da</button><button type="button" class="tab" data-tab="skintexture">Kết cấu da</button><button type="button" class="tab" data-tab="age">Trẻ / già da</button><button type="button" class="tab" data-tab="skintone">Nhuộm da</button><button type="button" class="tab" data-tab="finish">Chất liệu da</button><button type="button" class="tab" data-tab="skinlight">Ánh sáng da</button></div>
+<div class="tool-group" role="group" aria-label="Da và chất liệu"><span class="tool-group-label">Da và chất liệu</span><button type="button" class="tab" data-tab="autolight">Ánh sáng tự động</button><button type="button" class="tab" data-tab="skin">Da</button><button type="button" class="tab" data-tab="skintexture">Kết cấu da</button><button type="button" class="tab" data-tab="age">Trẻ / già da</button><button type="button" class="tab" data-tab="skintone">Nhuộm da</button><button type="button" class="tab" data-tab="finish">Finish Skin</button><button type="button" class="tab" data-tab="skinlight">Ánh sáng da</button></div>
 </nav>
   </dialog>
   <dialog id="layerManagerDialog" class="tool-picker-dialog" aria-labelledby="layerManagerTitle">
     <div class="dialog-title"><h2 id="layerManagerTitle">Lớp và bước đã lưu</h2><button class="mini" type="button" data-close-dialog="layerManagerDialog" aria-label="Đóng bảng lớp">✕</button></div>
-      <div class="makeup-step-title"><h3 id="makeupStepsTitle"><span class="step-number">06</span> Các bước makeup</h3><p id="makeupLayoutTarget">Mỗi hiệu ứng là một lớp có thể chỉnh và sắp thứ tự.</p><div class="makeup-shortcuts"><button type="button" id="btnOpenAge" class="outline small" disabled>Trẻ / già da</button><button type="button" id="btnOpenFinish" class="outline small" disabled>Chất liệu da · Pha vùng</button></div></div>      <section class="layer-section" aria-label="Quản lý lớp trang điểm">
+      <div class="makeup-step-title"><h3 id="makeupStepsTitle"><span class="step-number">06</span> Các bước makeup</h3><p id="makeupLayoutTarget">Mỗi hiệu ứng là một lớp có thể chỉnh và sắp thứ tự.</p><div class="makeup-shortcuts"><button type="button" id="btnOpenAge" class="outline small" disabled>Trẻ / già da</button><button type="button" id="btnOpenFinish" class="outline small" disabled>Finish Skin · Pha vùng</button></div></div>      <section class="layer-section" aria-label="Quản lý lớp trang điểm">
         <details id="layerDetails"><summary><span>THỨ TỰ LỚP TRANG ĐIỂM</span><span id="layerSummary">0 lớp đang áp</span></summary>
-          <p>Lớp mới thêm được phủ sau. Bật/tắt lớp giữ nguyên thứ tự. Danh sách đi từ vẽ trước → phủ sau; dùng ↑ ↓ để đổi thứ tự cho người đang chọn. Chỉnh lại thông số giữ nguyên thứ tự. Các vùng không chồng nhau có thể giữ cùng kết quả.</p><button type="button" id="btnRecommendedOrder" class="outline small" disabled>Thứ tự gợi ý · nền trước, màu sau</button>
+          <p>Ảnh mới xếp nền → màu → hoàn thiện. Bật thêm hoặc chỉnh một công cụ giữ nguyên thứ tự xử lý; dùng ↑ ↓ khi muốn đổi chủ động. Lớp nền đặt sau màu có thể làm nhạt màu; phấn phủ giảm bóng, phủ bóng tăng ánh bóng lại.</p><button type="button" id="btnRecommendedOrder" class="outline small" disabled>Thứ tự gợi ý · nền trước, màu sau</button>
           <div class="add-layer"><select id="addLayerType" aria-label="Chọn hiệu ứng để thêm lớp" disabled></select><button id="btnAddLayer" class="outline small" type="button" disabled>＋ Thêm lớp</button></div>
-          <div class="layer-strip" id="layerStrip"></div>
+          <p class="layer-order-notice" id="layerOrderNotice" role="status"></p><div class="layer-strip" id="layerStrip"></div>
         </details><div class="saved-steps-area"><b>Các bước đã lưu</b><p>Chọn bước để mở lại, rồi bấm Quay lại bước đã lưu nếu muốn khôi phục.</p><div id="savedStepsList" class="saved-steps-list"></div></div>
       </section>      <div class="panel-bottom" data-panel="makeup"><p><b>Lưu ý:</b> Đây là module thử nghiệm độc lập. Viền sai phải chỉnh trước khi đánh giá màu makeup. Preset tổng thể và từng công cụ hoạt động tách riêng. Không liên kết, không sửa engine tóc hoặc preset phim của RAY PHOTO.</p><button type="button" id="btnResetFace" class="outline block" disabled>Khôi phục toàn bộ makeup người này</button></div>
   </dialog>
   <dialog id="helpDialog">
-    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.7</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
+    <div class="dialog-title"><h2>Cách kiểm thử Makeup Lab V4.9.1</h2><button id="btnCloseHelp" class="mini" type="button">✕</button></div>
     <ol><li><b>AI nhận diện:</b> chọn ảnh, bật AI rồi bấm Nhận diện mặt. Chọn chân dung người muốn chỉnh; đường viền tự ẩn sau quét.</li><li><b>Viền mặt:</b> bật Hiện đường viền trong bước02, kiểm tra trán/thái dương bằng thanh % hoặc nhập số; dùng Kéo viền mặt / Vẽ mask nếu cần.</li><li><b>Layout mẫu:</b> chọn một mẫu để bắt đầu, hoặc tự pha các hiệu ứng.</li><li><b>Tự chọn layout và đặt tên:</b> đặt tên rồi Tạo layout riêng từ các bước đang có. Các bước makeup tiếp theo giữ tên này; Lưu layout để lưu vào thư viện.</li><li><b>Chọn công cụ:</b> bấm tên công cụ phía trên bảng chỉnh để đổi; màu, kiểu và cường độ xuất hiện ngay. Bấm Chi tiết rồi chọn thông số muốn chỉnh; nút ☷ mở lớp và bước đã lưu.</li><li><b>Các bước makeup:</b> Kem lót, Kem nền, Phấn nước, Phấn phủ và Phủ bóng là các lớp riêng. Thêm/xóa/bật tắt/đổi thứ tự từng lớp; Quay lại và Làm lại để so sánh.</li><li><b>Chân mày:</b> thanh Mày gốc âm giảm nét, dương nhấn sợi sẵn có, 0 giữ nguyên. Cường độ màu mày thêm màu trang điểm riêng. Chọn Trái / Phải; dùng Chỉnh vị trí chân mày khi điểm AI lệch.</li><li><b>Lưu từng bước:</b> Lưu bước này lưu tiến trình trên thiết bị; Các bước đã lưu mở lại công cụ mà chưa thay đổi ảnh. Quay lại bước đã lưu khôi phục riêng thông số của bước; Viền mặt có mốc lưu riêng. Lưu ảnh hiện tại tạo PNG của kết quả đang xem.</li><li><b>Lưu và chia sẻ:</b> lưu/cập nhật layout có tên, nhập/xuất tệp công thức; Lưu ảnh PNG hoặc Lưu phiên chỉnh để mở lại cả ảnh gốc và các lớp.</li></ol>
     <p>MediaPipe tải từ CDN công khai; ảnh được xử lý cục bộ trong trình duyệt. V4.5: khung nhận diện (ROI) tách khỏi mask da; viền trán/thái dương được ước lượng theo trục hai mắt, có thanh chỉnh riêng và AI loại tóc/kính trong viền; vùng phấn mắt, kẻ mắt, mi bám theo mí mắt khi đầu xoay; kéo viền và bút Thêm / Xóa dùng được ở mọi tab dùng mask. Mặt + cổ / Toàn da lộ cần mô hình AI và chỉ bật cho ảnh một người. Nếu AI không tải được, Chỉ mặt vẫn hoạt động nhưng có thể lem tóc/kính. Chưa nghiệm thu trên Safari iPhone.</p>
     <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
@@ -482,10 +497,10 @@ const BROW_IDS=[...BROWS.left.top,...BROWS.left.bottom,...BROWS.right.top,...BRO
 const FACE_POINTS=[...OVAL,...LIP_OUT,...LIP_IN,...BROW_IDS,...EYE_LEFT,...EYE_RIGHT,1,4,6,49,279,195,117,346,130,116,359,345];
 
 const DEFAULT_SIDE={color:'#694b3d',intensity:0,shape:'natural',thickness:100,arch:0,length:100};
-const UI_SKIN_FINISHES={glass:'Glass · Thủy tinh',dewy:'Dewy · Căng ẩm',satin:'Satin · Lụa',cloud:'Cloud · Mây',velvet:'Velvet · Nhung',porcelain:'Porcelain · Sứ'};
+const UI_SKIN_FINISHES={glass:'Glass · Bóng kính',dewy:'Dewy · Căng ẩm',satin:'Satin · Lụa',cloud:'Cloud · Mây',velvet:'Velvet · Nhung',porcelain:'Porcelain · Sứ'};
 const UI_FINISH_REGIONS={face:'Toàn mặt',forehead:'Trán',leftCheek:'Má trái ảnh',rightCheek:'Má phải ảnh',nose:'Sống mũi',chin:'Cằm'};
 const INDEPENDENT_SKIN_LAYERS=['autolight','age','finish','skinlight','skintexture'];
-function skinFinishConfig(style='satin',enabled=true){return {enabled,style,variant:'none',intensity:0,shine:40,smooth:20,coverage:65,texture:85,brightness:0,warmth:0};}
+function skinFinishConfig(style='satin',enabled=true){return {enabled,style,variant:'none',intensity:0,shine:40,coat:65,roughness:40,micro:65,smooth:20,coverage:65,texture:85,brightness:0,warmth:0};}
 function skinFinishDefaults(){const styles={forehead:'cloud',leftCheek:'glass',rightCheek:'glass',nose:'satin',chin:'velvet'};return {...skinFinishConfig(),regions:Object.fromEntries(Object.entries(styles).map(([id,style])=>[id,skinFinishConfig(style,false)]))};}
 const TABS={
  autolight:{title:'Ánh sáng tự động chung',summary:'Phân tích ánh sáng nguồn và cân vùng tối, vùng chói trước makeup. Cổ bật riêng khi đủ rõ; không phủ sáng nền ảnh.',sides:false,controls:[
@@ -493,17 +508,17 @@ const TABS={
  brow:{title:'Chân mày · Gốc và makeup',summary:'AI định vị chân mày; giảm hoặc nhấn nét gốc riêng với màu trang điểm. Chỉnh độc lập hai bên.',sides:true,controls:[
   ['originalStrength','Mày gốc: xóa nét ↔ đậm nét','range',-100,100,1],['shape','Layout chân mày','choices',{natural:'Tự nhiên',straight:'Ngang mềm',soft:'Cong nhẹ',higharch:'Cong cao',slim:'Thanh mảnh',defined:'Sắc nét',feather:'Dày mềm',korean:'Hàn nhẹ',western:'Tây mềm',tailup:'Nâng đuôi'}],['color','Màu chân mày','color'],['intensity','Cường độ màu mày','range',0,100,1],['thickness','Độ dày','range',55,160,1],['arch','Độ cong bổ sung','range',-45,45,1],['length','Chiều dài','range',75,125,1]]},
  lip:{title:'Môi',summary:'Màu, chất son và cách đánh độc lập. Giữ nguyên màu má và chân mày.',sides:false,controls:[
-  ['layout','Layout đánh son','choices',{full:'Phủ môi',gradient:'Lòng môi',soft:'Viền tan',defined:'Viền rõ'}],['color','Màu son','color'],['finish','Chất son','choices',{matte:'Lì',satin:'Satin',tint:'Tint',gloss:'Bóng'}],['intensity','Cường độ','range',0,100,1],['gloss','Độ bóng','range',0,100,1]]},
+  ['layout','Layout đánh son','choices',{full:'Phủ môi',gradient:'Lòng môi',soft:'Viền tan',defined:'Viền rõ'}],['color','Màu son','color'],['finish','Chất son','choices',{matte:'Lì',satin:'Satin',tint:'Tint',gloss:'Bóng',clear:'Gel trong'}],['intensity','Cường độ','range',0,100,1],['gloss','Độ bóng','range',0,100,1],['glossCoat','Độ dày gel bóng','range',0,100,1],['glossRoughness','Độ tán bóng son','range',0,100,1]]},
  blush:{title:'Má hồng',summary:'Chọn kiểu tán và màu để xem ngay. Chỉnh vị trí, diện tích và độ trong tại Chi tiết.',sides:true,controls:[
   ['style','Layout má hồng','choices',{apple:'Tròn nhẹ',lifted:'Nâng gò má',draped:'Kéo thái dương',sun:'Ngang sống mũi',undereye:'Dưới mắt',korean:'Má đào'}],['color','Màu má','color'],['intensity','Cường độ','range',0,100,1],['size','Diện tích','range',60,155,1],['lift','Dịch vị trí lên / xuống','range',-50,50,1]]},
  shadow:{title:'Phấn mắt',summary:'Chọn layout phủ nhẹ, ombré hoặc nhấn đuôi. Mắt trái / phải độc lập.',sides:true,controls:[
   ['style','Layout phấn mắt','choices',{wash:'Một màu',outer:'Nhấn đuôi',ombre:'Ombré',halo:'Nhũ giữa'}],['color','Màu phấn','color'],['intensity','Cường độ','range',0,100,1],['spread','Phạm vi tán','range',60,150,1]]},
  liner:{title:'Eyeliner',summary:'Kẻ mí đúng đường, có các kiểu tự nhiên, mảnh, có đuôi hoặc đậm.',sides:true,controls:[
   ['style','Kiểu kẻ','choices',{natural:'Tự nhiên',classic:'Mảnh',wing:'Có đuôi',bold:'Sắc nét'}],['color','Màu eyeliner','color'],['intensity','Cường độ','range',0,100,1],['width','Độ dày','range',50,160,1]]},
- lashes:{title:'Mi mắt',summary:'Sợi mi thuôn, cong theo mí thật; xen sợi dài ngắn và mi cụm Katun. Mi dưới chỉnh riêng tại Chi tiết.',sides:true,controls:[
-  ['style','Kiểu mi','choices',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['color','Màu mi','color'],['intensity','Cường độ','range',0,100,1]]},
- finish:{title:'Chất liệu da',summary:'Chọn vật liệu rồi tự pha độ bóng, độ mịn và độ phủ. Chỉnh toàn mặt hoặc phối riêng trán, má, mũi và cằm.',sides:false,controls:[
-  ['style','Chất liệu','choices',UI_SKIN_FINISHES],['variant','Biến thể','choices',{none:'Nguyên chất',pearl:'Ánh ngọc trai',sun:'Bắt nắng',softmatte:'Lì nhẹ'}],['intensity','Độ áp dụng','range',0,100,1],['shine','Độ bắt sáng','range',0,100,1],['smooth','Độ mịn','range',0,100,1],['coverage','Độ phủ','range',0,100,1],['texture','Giữ kết cấu da thật','range',0,100,1],['brightness','Độ sáng','range',-40,40,1],['warmth','Ấm / lạnh','range',-40,40,1]]},
+ lashes:{title:'Mi mắt',summary:'Sợi mi thuôn, cong theo mí thật; xen sợi dài ngắn và mi cụm Katun. Mi trên / mi dưới có dài, cong, mật độ, dày và mức áp dụng riêng.',sides:true,controls:[
+  ['style','Kiểu cả bộ mi','choices',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['color','Màu cả bộ mi','color'],['intensity','Mức cả bộ mi','range',0,100,1]]},
+ finish:{title:'Finish Skin',summary:'Lớp phủ phản chiếu theo khối mặt và ánh sáng ảnh. Tự pha độ bóng, độ dày và độ tán; phối riêng trán, má, mũi, cằm.',sides:false,controls:[
+  ['style','Kiểu Finish Skin','choices',UI_SKIN_FINISHES],['variant','Biến thể','choices',{none:'Nguyên chất',pearl:'Ánh ngọc trai',sun:'Bắt nắng',softmatte:'Lì nhẹ'}],['intensity','Độ áp dụng','range',0,100,1],['shine','Độ bóng phản chiếu','range',0,100,1],['coat','Độ dày lớp phủ','range',0,100,1],['roughness','Độ tán bóng','range',0,100,1],['micro','Chi tiết phản chiếu','range',0,100,1],['smooth','Độ mịn','range',0,100,1],['coverage','Độ phủ','range',0,100,1],['texture','Giữ kết cấu da thật','range',0,100,1],['brightness','Độ sáng','range',-40,40,1],['warmth','Ấm / lạnh','range',-40,40,1]]},
  skinlight:{title:'Ánh sáng trên da',summary:'Thêm ánh phản chiếu theo vùng gò má, trán, mũi hoặc chấm/vẽ trực tiếp. Ánh sáng được pha theo bề mặt và sáng tối ảnh gốc.',sides:false,controls:[
   ['region','Vùng ánh sáng','choices',{cheeks:'Hai gò má',forehead:'Trán',nose:'Sống mũi',chin:'Cằm',painted:'Chỉ vùng vẽ'}],['scope','Phạm vi cho phép','choices',{face:'Da mặt',visibleSkin:'Da mặt + vùng da lộ'}],['intensity','Cường độ','range',0,100,1],['shine','Độ bóng','range',0,100,1],['warmth','Nhiệt màu','range',-40,40,1]]},
  skintexture:{title:'Chỉnh kết cấu da',summary:'Làm dịu đốm mụn, quầng thâm, sắc da không đều và lỗ chân lông; giữ dấu da theo lựa chọn. Có thể chỉ chỉnh vùng được chấm/vẽ.',sides:false,controls:[
@@ -551,7 +566,7 @@ TABS.lip.controls.push(['color2','Màu chuyển môi','color'],['inner','Phạm 
 TABS.blush.controls.push(['horizontal','Dịch trái / phải','range',-30,30,1],['direction','Hướng tán','range',-45,45,1]);
 TABS.shadow.controls.push(['color2','Màu chuyển tiếp','color'],['accent','Màu nhấn','color'],['shimmer','Độ nhũ','range',0,100,1],['depth','Sáng / tối','range',-50,50,1]);
 TABS.liner.controls.push(['length','Chiều dài đuôi','range',50,160,1],['curve','Hướng cong đuôi','range',-60,60,1],['sharpness','Độ sắc nét','range',0,100,1]);
-TABS.lashes.controls.push(['length','Chiều dài mi','range',50,180,1],['density','Mật độ mi','range',40,180,1],['curl','Độ cong mi','range',0,100,1],['thickness','Độ dày sợi','range',50,180,1],['lower','Mi dưới','range',0,100,1]);
+TABS.lashes.controls.push(['length','Chiều dài mi trên','range',50,180,1],['density','Mật độ mi trên','range',40,180,1],['curl','Độ cong mi trên','range',0,100,1],['thickness','Độ dày sợi mi trên','range',50,180,1],['lower','Mức mi dưới','range',0,100,1],['upperIntensity','Mức mi trên','range',0,100,1],['lowerLength','Chiều dài mi dưới','range',50,180,1],['lowerDensity','Mật độ mi dưới','range',40,180,1],['lowerCurl','Độ cong mi dưới','range',0,100,1],['lowerThickness','Độ dày sợi mi dưới','range',50,180,1]);
 const COLOR_SWATCHES={
  brow:['#201916','#45322c','#694b3d','#86634b','#ae8462','#d1b08f','#bd6268','#773b8a','#dbba69'],
  lip:['#a42f42','#cf404e','#e75f6a','#bc657a','#dd897f','#a45838','#8e2b2e','#cc3d83','#9235a4'],
@@ -602,9 +617,9 @@ function withLayerDefaults(settings){
   Object.assign(settings.blush[side],{direction:0,horizontal:0});
   Object.assign(settings.shadow[side],{color2:'#d1a894',accent:'#67423b',shimmer:20,depth:0});
   Object.assign(settings.liner[side],{length:100,curve:0,sharpness:70});
-  Object.assign(settings.lashes[side],{length:100,density:100,curl:55,thickness:100,lower:18});
+  Object.assign(settings.lashes[side],{length:100,density:100,curl:55,thickness:100,upperIntensity:100,lower:18,lowerLength:100,lowerDensity:100,lowerCurl:55,lowerThickness:100});
  }
- Object.assign(settings.lip,{color2:'#8f2b43',inner:55,velvet:60});
+ Object.assign(settings.lip,{color2:'#8f2b43',inner:55,velvet:60,glossCoat:65,glossRoughness:30});
  return settings;
 }
 function makeDefaults(){return withLayerDefaults({
@@ -638,7 +653,7 @@ function hydrateSettings(saved){
  return next;
 }
 function ensureSettings(face){if(!face.settings||Object.keys(TABS).some(tab=>!face.settings[tab]))face.settings=hydrateSettings(face.settings);face.layerOrder=normalizeLayerOrder(face.layerOrder);if(!Array.isArray(face.layerList)){const defaults=makeDefaults();face.layerList=face.layerOrder.filter(tab=>JSON.stringify(face.settings[tab])!==JSON.stringify(defaults[tab]));}else face.layerList=[...new Set(face.layerList.filter(tab=>Object.hasOwn(TABS,tab)))];return face.settings;}
-const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,aiEnabled:true,tab:'brow',side:'both',zoom:1,showGuides:false,manual:false,compare:false,busy:false,loading:false,undo:[],redo:[],renderPending:false,skinSeg:null,skinSegMessage:'Chưa có phân vùng da.',showSkinMask:false,skinBrush:false,skinBrushMode:'outline',regionSoft:true,skinBrushSize:8,finishRegion:'face',surfaceBrush:false,surfaceBrushMode:'add',surfaceBrushSize:8};
+const state={img:null,url:null,file:null,width:0,height:0,previewW:0,previewH:0,faces:[],nextFaceId:1,selectedId:null,aiEnabled:true,tab:'finish',side:'both',lashPart:'upper',lashQuick:'shape',zoom:1,showGuides:false,manual:false,compare:false,busy:false,loading:false,undo:[],redo:[],renderPending:false,skinSeg:null,skinSegMessage:'Chưa có phân vùng da.',showSkinMask:false,skinBrush:false,skinBrushMode:'outline',regionSoft:true,skinBrushSize:8,finishRegion:'face',surfaceBrush:false,surfaceBrushMode:'add',surfaceBrushSize:8};
 const photo=$('photoCanvas'),guide=$('guideCanvas'),stage=$('stageOuter'),holder=$('canvasHolder');
 const pctx=photo.getContext('2d',{willReadFrequently:true}),gctx=guide.getContext('2d');
 let detector=null,modelPromise=null,skinSegmenter=null,skinSegPromise=null,dragging=null,comparePointer=null,imageLoadGeneration=0;
@@ -800,7 +815,7 @@ function focusSelectedFace(){
  });
  scheduleRender();
 }
-function focusIfSmall(){/* V4.7: không tự phóng to khi chọn người hoặc áp bước. Dùng nút Cận mặt khi cần. */}
+function focusIfSmall(){/* V4.9.1: không tự phóng to khi chọn người hoặc áp bước. Dùng nút Cận mặt khi cần. */}
 
 function getImageCoords(evt){const r=guide.getBoundingClientRect();return{x:(evt.clientX-r.left)*guide.width/r.width,y:(evt.clientY-r.top)*guide.height/r.height,scale:guide.width/r.width};}
 function pathPoly(ctx,pts){if(!pts?.length)return;ctx.moveTo(pts[0].x,pts[0].y);for(let i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();}
@@ -1043,7 +1058,7 @@ function anyMakeup(s){return !!s&&Object.keys(TABS).some(tab=>layerEnabled(s,tab
 const LAYER_ORDER=[
  ['autolight','Ánh sáng tự động'],
  ['skin','Da'],['skintexture','Kết cấu da'],['age','Trẻ / già da'],['skintone','Nhuộm da'],['primer','Kem lót'],['foundation','Kem nền'],['cushion','Phấn nước'],['concealer','Che khuyết điểm'],
- ['contour','Tạo khối'],['blush','Má hồng'],['powder','Phấn phủ'],['finish','Chất liệu da'],['highlight','Bắt sáng'],['gloss','Phủ bóng'],['skinlight','Ánh sáng da'],
+ ['contour','Tạo khối'],['blush','Má hồng'],['powder','Phấn phủ'],['finish','Finish Skin'],['highlight','Bắt sáng'],['gloss','Phủ bóng'],['skinlight','Ánh sáng da'],
  ['shadow','Phấn mắt'],['liner','Eyeliner'],['lashes','Mi mắt'],['brow','Chân mày'],['lip','Môi']
 ];
 function normalizeLayerOrder(order){
@@ -1052,7 +1067,7 @@ function normalizeLayerOrder(order){
 }
 function faceLayerOrder(face){return normalizeLayerOrder(face?.layerOrder);}
 function recordLayerActivation(face,tab,wasActive){
- face.layerList??=[];if(layerEnabled(face.settings,tab)&&!face.layerList.includes(tab)){face.layerList.push(tab);face.layerOrder=tab==='autolight'?[tab,...faceLayerOrder(face).filter(id=>id!==tab)]:[...faceLayerOrder(face).filter(id=>id!==tab),tab];}
+ face.layerList??=[];if(layerEnabled(face.settings,tab)&&!face.layerList.includes(tab)){face.layerList.push(tab);face.layerOrder=faceLayerOrder(face);}
 }
 function moveLayer(tab,direction){
  const face=selectedFace();if(!face)return;
@@ -1090,6 +1105,7 @@ function renderLayerStrip(){
  const container=$('layerStrip');if(!container)return;
  const face=selectedFace(),settings=face?.settings,order=faceLayerOrder(face),active=layerListOf(face),labels=Object.fromEntries(LAYER_ORDER);
  $('layerSummary').textContent=face?active.length+' lớp · '+active.filter(id=>layerEnabled(settings,id)).length+' đang bật':'Chưa chọn khuôn mặt';$('btnRecommendedOrder').disabled=!face;
+ const notice=$('layerOrderNotice');if(notice){const colorIds=['contour','blush','highlight','gloss','skinlight'],baseIds=['autolight','skin','skintexture','age','skintone','primer','foundation','cushion','concealer'];const applied=active.filter(id=>layerEnabled(settings,id));const lateBase=applied.some((id,i)=>baseIds.includes(id)&&applied.slice(0,i).some(x=>colorIds.includes(x)));notice.textContent=lateBase?'Thứ tự riêng: đang có lớp nền sau lớp màu. Bấm Thứ tự gợi ý để đưa nền về trước.':'Thứ tự xử lý được giữ khi chỉnh. Bật/tắt từng lớp để so sánh tác dụng trên ảnh.';notice.classList.toggle('warn',lateBase);}
  container.replaceChildren();const inactive=document.createElement('div');inactive.className='layer-inactive';
  for(const id of order){
   const on=active.includes(id),button=document.createElement('button');button.type='button';button.dataset.layerSelect=id;
@@ -1416,9 +1432,58 @@ function v4LipLightAnchor(c,G,W,H,center){
  }
  return {point:best,light:clamp(bestLum/255,.15,1)};
 }
+function lipCoatSections(G,count=97){
+ const outer=G.outer.map(G.project),inner=G.inner.map(G.project),rows=[];
+ const intersections=(poly,u)=>{const v=[];for(let i=0;i<poly.length;i++){const a=poly[i],b=poly[(i+1)%poly.length];if((a.u<=u&&b.u>u)||(b.u<=u&&a.u>u))v.push(a.v+(b.v-a.v)*(u-a.u)/(b.u-a.u));}return v.sort((a,b)=>a-b);};
+ for(let i=0;i<count;i++){const u=(-.495+i/(count-1)*.99)*G.width,o=intersections(outer,u),n=intersections(inner,u);rows.push({u,lo:o[0]??0,hi:o.at(-1)??0,innerLo:n[0]??0,innerHi:n.at(-1)??0});}
+ return rows;
+}
+function lipCoatNoise(i){const n=Math.sin(i*12.9898+17.347)*43758.5453;return n-Math.floor(n);}
+function renderLipClearcoat(c,W,H,face,s,G,finish,layout,lighting){
+ const amount=clamp(Number(s.gloss??28)/100,0,1),strength=finish==='gloss'?(layout==='glass'?1:.88):finish==='satin'?.20:0;
+ if(amount===0||strength===0)return;
+ const coat=clamp(Number(s.glossCoat??65)/100,0,1),rough=clamp(Number(s.glossRoughness??30)/100,0,1);if(coat===0)return;
+ const bb=G.bb,x=bb.x0,y=bb.y0,w=bb.x1-x,h=bb.y1-y;if(w<1||h<1)return;
+ const ring=newCanvas(w,h),m=ring.getContext('2d',{willReadFrequently:true});m.save();m.translate(-x,-y);v4ClipLip(m,G,()=>{m.fillStyle='#fff';m.fillRect(x,y,w,h);});m.restore();
+ if(state.skinSeg?.protection){m.globalCompositeOperation='destination-out';m.drawImage(state.skinSeg.protection,0,0,state.skinSeg.protection.width,state.skinSeg.protection.height,-x,-y,W,H);}
+ const mask=m.getImageData(0,0,w,h).data,raw=c.getImageData(x,y,w,h),d=raw.data,sections=lipCoatSections(G);
+ const lowerLight=lighting?.lower||v4LipLightAnchor(c,G,W,H,pair(G.lower,G.bottom,.48)),upperLight=lighting?.upper||v4LipLightAnchor(c,G,W,H,pair(G.upper,G.top,.55));
+ const centers={lower:clamp(G.project(lowerLight.point).u/G.width,-.15,.15),upper:clamp(G.project(upperLight.point).u/G.width,-.12,.12)};
+ const q=amount*strength*clamp(Number(s.intensity||0)/100,0,1),lowerSpan=.24+rough*.11,band=.052+rough*.12;
+ for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){
+  const k=(yy*w+xx)*4,a=mask[k+3]/255;if(a<.01)continue;
+  const point=G.project({x:x+xx+.5,y:y+yy+.5}),u=point.u/G.width,t=clamp((u+.495)/.99,0,1)*(sections.length-1),i=Math.floor(t),j=Math.min(i+1,sections.length-1),f=t-i,A=sections[i],B=sections[j];
+  const lo=A.lo+(B.lo-A.lo)*f,hi=A.hi+(B.hi-A.hi)*f,innerLo=A.innerLo+(B.innerLo-A.innerLo)*f,innerHi=A.innerHi+(B.innerHi-A.innerHi)*f;
+  const lower=point.v<=(innerLo+innerHi)*.5,thickness=lower?innerLo-lo:hi-innerHi;if(thickness<G.width*.006)continue;
+  const v=lower?(innerLo-point.v)/thickness:(point.v-innerHi)/thickness;if(v<=0||v>=1)continue;
+  const edge=Math.pow(Math.sin(Math.PI*v),.68),center=lower?centers.lower:centers.upper;
+  const cellX=(u+.5)*31,cell=Math.floor(cellX),noise=lipCoatNoise(cell),offset=.16+.64*lipCoatNoise(cell+71),fiberWidth=.075+.18*lipCoatNoise(cell+157);
+  const roll=(lower?.39+.055*Math.sin((u-center)*13):.62+.04*Math.sin((u-center)*15))+(noise-.5)*.105;
+  const along=Math.exp(-Math.pow((u-center)/(lower?lowerSpan:lowerSpan*.61),4));
+  const broad=Math.exp(-Math.pow((v-roll)/(.22+rough*.12),2))*along;
+  const streak=Math.exp(-Math.pow((v-roll)/band,2))*along;
+  const rib=Math.exp(-Math.pow((cellX-cell-offset)/fiberWidth,2))*(noise>.29?.40+.60*noise:.025);
+  const second=Math.exp(-Math.pow((cellX-cell-.76)/(.055+.09*noise),2))*(noise>.62?1:0);
+  const sourceY=d[k]*.2126+d[k+1]*.7152+d[k+2]*.0722,gate=clamp((sourceY+20)/150,.48,1.35);
+  // Short broken reflections follow the curved lip band. They are not a
+  // continuous white bar; the mouth opening is removed by the vermilion mask.
+  let reflection=(broad*(8+18*coat)+streak*(29+110*coat)*(1-rough*.42)*(0.17+rib*.93)+second*streak*42*coat)*(lower?1:.47);
+  if(!lower){const cupid=Math.exp(-Math.pow((u-center-.055)/.034,2))*Math.exp(-Math.pow((v-.72)/(.09+rough*.08),2));reflection+=cupid*18*coat;}
+  reflection*=q*edge*a*gate;
+  const alpha=Math.min(.94,1-Math.exp(-reflection/38));
+  // Specular light converges towards the reflected light colour. Limiting all
+  // channels by red-channel headroom would leave every glint pink and dull.
+  d[k]+= (Math.max(d[k],254)-d[k])*alpha;
+  d[k+1]+=(Math.max(d[k+1],250)-d[k+1])*alpha;
+  d[k+2]+=(Math.max(d[k+2],247)-d[k+2])*alpha;
+ }
+ c.putImageData(raw,x,y);
+}
+
 function renderLips(c,W,H,face){
  const s=face.settings.lip;if(!s||s.enabled===false||s.intensity<=0)return;
  const G=v4LipGeometry(face,W,H);if(!G)return;
+ if(s.finish==='clear'){renderLipClearcoat(c,W,H,face,s,G,'gloss','full');return;}
  const layout=s.layout||'full',finish=layout==='velvet'?'matte':layout==='glass'?'gloss':layout==='tint'?'tint':s.finish||'satin';
  const intensity=clamp(s.intensity/100,0,1),soft=clamp((Number(s.softness??65))/100,0,1),velvet=clamp((Number(s.velvet??60))/100,0,1),innerSize=clamp((Number(s.inner??55))/100,.20,.90);
  const edgeWidth=G.width*(.003+soft*.011)*(layout==='soft'?1.9:layout==='velvet'?1.35:layout==='defined'?.44:1);
@@ -1455,20 +1520,7 @@ function renderLips(c,W,H,face){
    m.beginPath();pathPoly(m,G.outer);m.strokeStyle='rgba(255,255,255,.78)';m.lineWidth=G.width*.014;m.lineJoin='round';m.stroke();
   }),options(s.color2||s.color,.35,'lip',Math.max(.2,feather*.40)));
  }
- const glossAmount=clamp(Number(s.gloss??28)/100,0,1),specular=finish==='gloss'?(layout==='glass'?.94:.69):finish==='satin'?.23:0;
- if(specular>0&&glossAmount>0){
-  // Narrow, rotated reflections sit within the upper and lower lip surfaces.
-  // Satin has a broad quiet highlight; glass adds a brighter short reflection.
-  maskPatch(c,W,H,G.bb,m=>v4ClipLip(m,G,()=>{
-   const lower=lightLower.point,upper=lightUpper.point;
-   v4LipGlow(m,G,lower,G.width*(layout==='glass'?.23:.20),G.bottomThickness*(layout==='glass'?.28:.40),.95);
-   v4LipGlow(m,G,upper,G.width*.13,G.topThickness*.29,.50);
-   if(layout==='glass'){
-    const sparkle={x:lower.x-G.tx*G.width*.075,y:lower.y-G.ty*G.width*.075};
-    v4LipGlow(m,G,sparkle,G.width*.052,G.bottomThickness*.16,.98);
-   }
-  }),{...options('#fff7ee',glossAmount*specular*(.64+lightLower.light*.36),'gloss',feather*.38),cosmetic:{...s,sheer:0,coverage:100,texture:100}});
- }
+ renderLipClearcoat(c,W,H,face,s,G,finish,layout,{lower:lightLower,upper:lightUpper});
 }
 
 function clipOval(m,face,W,H){pathFaceMask(m,face,W,H);m.clip();}
@@ -1690,7 +1742,8 @@ function v45LashGeometry(face,side,setting,W,H){
  const seed=side==='left'?1:7,lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
  const opening=Math.max(0,v47SmoothEyeCurve(G,G.upper,.5)-v47SmoothEyeCurve(G,lowerCurve,.5));
  const eyeOpen=clamp(opening/(G.width*.12),.30,1),curve=clamp(curl*.65+profile.curl*.35,0,1);
- for(let i=0;i<count;i++){
+ const upperAmount=clamp(Number(setting.upperIntensity??100)/100,0,1);
+ for(let i=0;upperAmount>0&&i<count;i++){
   const noise=v45LashNoise(i,seed),u0=.055+(i+.48)/count*.875+(noise-.5)*.32/count;
   const fiberCount=profile.cluster?profile.cluster:1;
   for(let j=0;j<fiberCount;j++){
@@ -1704,23 +1757,24 @@ function v45LashGeometry(face,side,setting,W,H){
    const fan=(u-.52)*profile.spread-(profile.outer?.22:0)+(v45LashNoise(i+71,seed)-.5)*.16;
    // Companions lean towards the longer centre fiber instead of forming an
    // evenly spaced comb. Cubic curvature makes a rounded, tapered C curl.
-   const tipU=u0+fan*h/G.width+(j?off*.13:0);
-   const tip=G.at(tipU,v+h),c1=G.at(u+fan*h/G.width*.27,v+h*(.20+.13*curve));
-   const c2=G.at(u+(tipU-u)*(.84+.08*curve)-(.035*curve*h/G.width),v+h*(.83+.12*curve));
+   const tipU=u0+fan*h/G.width*(1.20-.45*curve)+(j?off*.13:0);
+   const tip=G.at(tipU,v+h*(.82+.18*curve)),c1=G.at(u+fan*h/G.width*.55-(.04+.12*curve)*h/G.width,v+h*(.12+.30*curve));
+   const c2=G.at(u+(tipU-u)*(.92-.15*curve)-(.05+.18*curve)*h/G.width,v+h*(.70+.42*curve));
    const width=G.width*profile.width*thickness*(.74+.26*v45LashNoise(i+101,seed))*(j?.64:1);
-   const alpha=(.66+.30*v45LashNoise(i+53,seed))*(j?.72:1);
+   const alpha=(.66+.30*v45LashNoise(i+53,seed))*(j?.72:1)*upperAmount;
    strands.push({root:p,p,control:c1,c1,c2,tip,width,alpha,u,height:h,lower:false});
   }
  }
  const lowerAmount=clamp(Number(setting.lower??18)/100,0,1);
  if(lowerAmount>0&&eyeOpen>.40){
-  const n=Math.min(20,Math.max(5,Math.round((profile.cluster?10:12)*Math.sqrt(density))),Math.max(5,Math.floor(sourceWidth*.22)));
+  const lowerDensity=clamp(Number(setting.lowerDensity??100)/100,.4,1.8),lowerLength=clamp(Number(setting.lowerLength??100)/100,.5,1.8),lowerThickness=clamp(Number(setting.lowerThickness??100)/100,.5,1.8),lowerCurl=clamp(Number(setting.lowerCurl??55)/100,0,1);
+  const n=Math.min(28,Math.max(4,Math.round((profile.cluster?10:12)*lowerDensity)),Math.max(5,Math.floor(sourceWidth*.22)));
   for(let i=0;i<n;i++){
    const noise=v45LashNoise(i+213,seed),u=.12+(i+.35)/n*.75+(noise-.5)*.022,v=v47SmoothEyeCurve(G,lowerCurve,u);
-   const h=G.width*profile.lower*lengthGain*(.65+.35*Math.sin(Math.PI*u))*(.65+.35*noise)*(.45+.55*lowerAmount);
-   const p=G.at(u,v-G.width*.001),fan=(u-.48)*.85,tip=G.at(u+h/G.width*fan,v-h);
-   const c1=G.at(u+h/G.width*fan*.20,v-h*.25),c2=G.at(u+h/G.width*fan*.83,v-h*.92);
-   strands.push({root:p,p,control:c1,c1,c2,tip,width:G.width*.0031*thickness*(.7+.3*noise),alpha:lowerAmount*(.56+.24*noise),u,height:h,lower:true});
+   const h=G.width*profile.lower*lowerLength*(.65+.35*Math.sin(Math.PI*u))*(.65+.35*noise);
+   const p=G.at(u,v-G.width*.001),fan=(u-.48)*.85,tip=G.at(u+h/G.width*fan*(1.15-.40*lowerCurl),v-h*(.82+.18*lowerCurl));
+   const c1=G.at(u+h/G.width*(fan*.36-.16*lowerCurl),v-h*(.16+.27*lowerCurl)),c2=G.at(u+h/G.width*(fan*.80-.24*lowerCurl),v-h*(.73+.38*lowerCurl));
+   strands.push({root:p,p,control:c1,c1,c2,tip,width:G.width*.0031*lowerThickness*(.7+.3*noise),alpha:lowerAmount*(.56+.24*noise),u,height:h,lower:true});
   }
  }
  if(!strands.length)return null;
@@ -1777,7 +1831,7 @@ function renderLashes(c,W,H,face){
   const s=face.settings.lashes[side];if(s.enabled===false||s.intensity<=0)continue;
   const R=v45LashGeometry(face,side,s,W,H);if(!R?.bb)continue;
   const light=v45LashLight(c,W,H,R.G),ink=colorRGB(s.color||'#291f1e').map(channel=>Math.round(channel*(1-light.bright*.07))),color='#'+ink.map(value=>clamp(value,0,255).toString(16).padStart(2,'0')).join('');
-  v45NativeLashDefinition(c,W,H,face,side,s,R,light,ink);
+  if((s.upperIntensity??100)>0)v45NativeLashDefinition(c,W,H,face,side,{...s,intensity:s.intensity*clamp(Number(s.upperIntensity??100)/100,0,1)},R,light,ink);
   maskPatch(c,W,H,R.bb,m=>{
    m.save();clipOval(m,face,W,H);m.fillStyle='#fff';
    for(const strand of R.strands){m.globalAlpha=strand.alpha;v45LashRibbon(m,strand);}
@@ -2183,16 +2237,16 @@ function renderSkinAge(c,W,H,face){
 // coverage. No replacement skin texture or fixed white patches are generated.
 const SKIN_FINISH_REGIONS=['forehead','leftCheek','rightCheek','nose','chin'];
 const SKIN_FINISH_PROFILES={
- glass:{spec:1.85,hard:.96,soft:.04,silk:0,glow:.48,matte:0,soften:.60,even:.13,depth:.02,lift:0},
- dewy:{spec:.80,hard:.08,soft:.92,silk:0,glow:1.12,matte:.02,soften:.76,even:.18,depth:.02,lift:0},
- satin:{spec:.54,hard:.08,soft:.27,silk:.65,glow:.35,matte:.18,soften:.67,even:.19,depth:.05,lift:0},
- cloud:{spec:.095,hard:0,soft:.95,silk:.05,glow:.62,matte:.72,soften:1.18,even:.30,depth:.01,lift:.80},
- velvet:{spec:.035,hard:.04,soft:.30,silk:.66,glow:.08,matte:.94,soften:.98,even:.23,depth:.34,lift:-.25},
- porcelain:{spec:.34,hard:.32,soft:.20,silk:.48,glow:.50,matte:.48,soften:1.25,even:.39,depth:.025,lift:2.10}
+ glass:{roughness:.18,spec:1.40,hard:.96,soft:.04,silk:0,glow:.48,matte:0,soften:.60,even:.13,depth:.02,lift:0},
+ dewy:{roughness:.37,spec:.80,hard:.08,soft:.92,silk:0,glow:1.12,matte:.02,soften:.76,even:.18,depth:.02,lift:0},
+ satin:{roughness:.46,spec:.54,hard:.08,soft:.27,silk:.65,glow:.35,matte:.18,soften:.67,even:.19,depth:.05,lift:0},
+ cloud:{roughness:.72,spec:.095,hard:0,soft:.95,silk:.05,glow:.62,matte:.72,soften:1.18,even:.30,depth:.01,lift:.80},
+ velvet:{roughness:.82,spec:.035,hard:.04,soft:.30,silk:.66,glow:.08,matte:.94,soften:.98,even:.23,depth:.34,lift:-.25},
+ porcelain:{roughness:.38,spec:.34,hard:.32,soft:.20,silk:.48,glow:.50,matte:.48,soften:1.25,even:.39,depth:.025,lift:2.10}
 };
 function skinFinishParameters(raw){
  const cfg=raw||{},style=SKIN_FINISH_PROFILES[cfg.style]?cfg.style:'satin';
- return {style,profile:SKIN_FINISH_PROFILES[style],variant:cfg.variant||'none',intensity:clamp(Number(cfg.intensity||0)/100,0,1),shine:clamp(Number(cfg.shine??40)/100,0,1),smooth:clamp(Number(cfg.smooth??20)/100,0,1),coverage:clamp(Number(cfg.coverage??65)/100,0,1),texture:clamp(Number(cfg.texture??85)/100,0,1),brightness:clamp(Number(cfg.brightness||0)/100,-1,1),warmth:clamp(Number(cfg.warmth||0)/100,-1,1)};
+ return {style,profile:SKIN_FINISH_PROFILES[style],variant:cfg.variant||'none',intensity:clamp(Number(cfg.intensity||0)/100,0,1),shine:clamp(Number(cfg.shine??40)/100,0,1),coat:clamp(Number(cfg.coat??65)/100,0,1),roughness:clamp(Number(cfg.roughness??40)/100,0,1),micro:clamp(Number(cfg.micro??65)/100,0,1),smooth:clamp(Number(cfg.smooth??20)/100,0,1),coverage:clamp(Number(cfg.coverage??65)/100,0,1),texture:clamp(Number(cfg.texture??85)/100,0,1),brightness:clamp(Number(cfg.brightness||0)/100,-1,1),warmth:clamp(Number(cfg.warmth||0)/100,-1,1)};
 }
 function skinFinishBlur(input,w,h,radius){
  const r=Math.max(1,Math.round(radius)),tmp=new Float32Array(input.length),out=new Float32Array(input.length);
@@ -2246,47 +2300,66 @@ function skinFinishSurface(zones,x,y,light,out){
  }
  out.hard=hard;out.soft=soft;out.silk=silk;out.support=support;out.tint=tint;return out;
 }
+// Source-guided 2D clear coat. Normals are estimated from facial geometry,
+// not a measured 3D reconstruction. Geometry grants shape; the skin mask
+// alone grants coverage. All noise/detail comes from the photograph.
+function finishCoatSurface(zones,x,y,light,out,bumpX=0,bumpY=0,grain=0,relief=0){
+ const F=zones.F,yaw=zones.finishYaw||0;let support=0,soft=0,silk=0,hard=0,tint=0;
+ for(let j=0;j<SKIN_FINISH_REGIONS.length;j++){
+  const name=SKIN_FINISH_REGIONS[j],z=zones.regions[name],w=skinZoneWeight(zones,name,x,y);out.weights[j]=0;
+  if(w<.001)continue;
+  const dx=x-z.center.x,dy=y-z.center.y,qx=(dx*F.rx+dy*F.ry)/z.rx,qy=(dx*F.ux+dy*F.uy)/z.ry;
+  const cheek=name==='leftCheek'||name==='rightCheek',sign=name==='leftCheek'?-1:name==='rightCheek'?1:0;
+  let nx=qx*(name==='nose'?1.23:cheek?.69:.48)+sign*.085+yaw*.28+bumpX;
+  let ny=(qy-(cheek?.26:name==='forehead'?.08:name==='chin'?-.12:0))*(name==='nose'?.23:cheek?.62:.52)+bumpY;
+  const r2=nx*nx+ny*ny;if(r2>.91){const scale=Math.sqrt(.91/r2);nx*=scale;ny*=scale;}
+  const nz=Math.sqrt(Math.max(.09,1-nx*nx-ny*ny)),dot=clamp(nx*light.x+ny*light.y+nz*light.z,0,1);
+  const prominence=name==='nose'?.88:name==='forehead'?.72:name==='chin'?.42:1;
+  const envelope=Math.pow(w,.83)*prominence*(cheek?clamp(1+sign*yaw*.38,.7,1.15):1);
+  out.nx[j]=nx;out.ny[j]=ny;out.nz[j]=nz;out.weights[j]=envelope;out.dot[j]=dot;
+  support=Math.max(support,w);hard=Math.max(hard,envelope*Math.pow(dot,62));soft=Math.max(soft,envelope*Math.pow(dot,10));silk=Math.max(silk,envelope*Math.pow(dot,29));
+  if(w>support*.8)tint=clamp(qx*.55+qy*.25+light.x*.9,-1,1);
+ }
+ out.support=support;out.hard=hard;out.soft=soft;out.silk=silk;out.tint=tint;out.grain=grain;out.relief=relief;return out;
+}
 function skinFinishDelta(p,Y,mid,wide,sourceMid,sourceWide,surface,light,out){
- const M=p.profile,originalPeak=clamp(sourceMid-sourceWide-1.2,0,32);
- // Source relief modulates a material lobe, rather than extinguishing it on
- // evenly lit skin. Highlight headroom is handled against actual RGB below.
- const sourceGate=clamp(.88+(sourceMid-sourceWide)/65,.70,1.16);
- const darkGate=.20+.80*clamp((sourceWide-8)/48,0,1);
- const shine=Math.pow(p.shine,.72),sheen=surface.hard*M.hard+surface.soft*M.soft+surface.silk*M.silk;
- let spec=M.spec*shine*(72+18*p.coverage)*sheen*sourceGate*darkGate;
- let matte=M.matte*(1-p.shine*.28);
- let glow=M.glow*shine*(surface.soft*.58+surface.support*.42)*7.5*sourceGate*darkGate;
- if(p.variant==='pearl'){
-  // Pearl is a second, silky reflection with a softly changing ivory/rose
-  // interference tint. It remains visible on matte profiles without turning
-  // the whole face into a pale colour wash.
-  spec=spec*.82+shine*(surface.silk*29+surface.soft*9)*darkGate;
-  glow+=shine*surface.soft*3.2;
+ const M=p.profile,rough=clamp(M.roughness*(.55+p.roughness*1.15),.075,.86),alpha=rough*rough,a2=alpha*alpha;
+ const localRough=clamp(rough-surface.grain*p.micro*.026,.07,.9),softPower=6+(1-localRough)*10,silkPower=14+(1-localRough)*28;
+ let reflection=0,broad=0;
+ for(let j=0;j<surface.weights.length;j++){
+  const w=surface.weights[j];if(w<.001)continue;
+  const nh=surface.dot[j],d=nh*nh*(a2-1)+1,ggx=clamp(a2*a2/Math.max(1e-8,d*d),0,1);
+  // A finite softbox has a width and height. It is reflected by the curved
+  // skin surface, producing a soft streak rather than a painted white disk.
+  const rx=.064+localRough*.27,ry=.036+localRough*.16;
+  const dx=(surface.nx[j]-light.x)/rx,dy=(surface.ny[j]-light.y)/ry;
+  const box=Math.exp(-Math.pow(Math.abs(dx),2.15)-dy*dy);
+  const fresnel=clamp((.035+.965*Math.pow(1-surface.nz[j],5))/.035,1,1.8);
+  const response=(M.hard*(box*.78+ggx*.22)+M.soft*Math.pow(nh,softPower)*(.83-.18*localRough)+M.silk*(box*.30+Math.pow(nh,silkPower)*.70));
+  reflection=Math.max(reflection,w*response*fresnel);broad=Math.max(broad,w*Math.pow(nh,softPower));
  }
- if(p.variant==='softmatte'){spec*=.18;glow*=.44;matte=Math.min(1,matte+.42);}
- const smoothing=(mid-Y)*p.smooth*(1-p.texture)*M.soften*.82;
- const even=(wide-mid)*p.coverage*M.even*.26;
- const shadowDepth=-clamp((light.mean-sourceWide)/28,0,2.5)*M.depth*p.coverage*4.8;
- const diffuseLift=M.lift*p.coverage*(.35+.65*surface.support)*darkGate;
- let delta=smoothing+even-originalPeak*matte+spec+glow+shadowDepth+diffuseLift+p.brightness*18;
- delta=clamp(delta,-31,78);
- let r=delta+p.warmth*5.0,g=delta,b=delta-p.warmth*5.0;
- if(p.variant==='pearl'){
-  const pearl=Math.min(5.0,spec*.095+glow*.10),rose=(surface.tint+1)*.5;
-  r+=pearl*(.70+.30*rose);g+=pearl*(.30-.36*rose);b-=pearl*(.46-.60*rose);
- }
- if(p.variant==='sun'){
-  const sun=Math.min(5.5,(spec+glow)*.13)*(.75+.25*surface.soft);
-  r+=sun;g+=sun*.25;b-=sun*.84;
- }
+ const sourceGate=clamp(Math.pow((sourceWide+16)/Math.max(42,light.mean+16),1.65),.25,1.38),darkGate=Math.pow(clamp((sourceWide-5)/76,0,1),.65);
+ const shine=Math.pow(p.shine,.82),coat=p.coat,grain=clamp(1+surface.grain*p.micro*.24,.76,1.24),relief=clamp(1+surface.relief*.20,.75,1.20);
+ let spec=M.spec*shine*coat*(106+24*p.coverage)*reflection*grain*relief*sourceGate*darkGate;
+ let glow=M.glow*shine*coat*broad*13*sourceGate*darkGate,matte=M.matte*(1-p.shine*.23);
+ if(p.variant==='pearl'){spec=spec*.76+shine*coat*(surface.silk*22+broad*10)*darkGate;glow+=broad*shine*coat*3;}
+ if(p.variant==='softmatte'){spec*=.16;glow*=.35;matte=Math.min(1,matte+.42);}
+ const originalPeak=clamp(sourceMid-sourceWide-1.2,0,32),smoothing=(mid-Y)*p.smooth*(1-p.texture)*M.soften*.82;
+ const even=(wide-mid)*p.coverage*M.even*.26,shadow=-clamp((light.mean-sourceWide)/28,0,2.5)*M.depth*p.coverage*4.8;
+ const diffuse=M.lift*p.coverage*(.35+.65*surface.support)*darkGate;
+ let delta=clamp(smoothing+even-originalPeak*matte+spec+glow+shadow+diffuse+p.brightness*18,-31,84);
+ let r=delta+p.warmth*5,g=delta,b=delta-p.warmth*5;
+ if(p.variant==='pearl'){const pearl=Math.min(5,(spec+glow)*.10),rose=(surface.tint+1)*.5;r+=pearl*(.70+.30*rose);g+=pearl*(.30-.36*rose);b-=pearl*(.46-.60*rose);}
+ if(p.variant==='sun'){const sun=Math.min(5.5,(spec+glow)*.13);r+=sun;g+=sun*.25;b-=sun*.84;}
  out.r=r*p.intensity;out.g=g*p.intensity;out.b=b*p.intensity;return out;
 }
+
 function renderSkinFinish(c,W,H,face){
  const cfg=face.settings.finish;if(!cfg||cfg.enabled===false)return;
  const base=skinFinishParameters(cfg),regional=[];
  for(const name of SKIN_FINISH_REGIONS){const region=cfg.regions?.[name];if(region?.enabled!==false&&Number(region?.intensity)>0)regional.push({name,p:skinFinishParameters(region)});}
  if(base.intensity===0&&regional.length===0)return;
- const zones=skinZones(face,W,H),box=boundsPx(faceRegionPoints(face,W,H),W,H,zones.width*.018);if(!box)return;
+ const zones=skinZones(face,W,H),leftEye=eyeGeometry(face,'left',W,H),rightEye=eyeGeometry(face,'right',W,H);zones.finishYaw=leftEye&&rightEye?clamp((leftEye.width-rightEye.width)/Math.max(1,leftEye.width+rightEye.width)*1.9,-.45,.45):0;const box=boundsPx(faceRegionPoints(face,W,H),W,H,zones.width*.018);if(!box)return;
  const bw=box.x1-box.x0,bh=box.y1-box.y0;if(bw<2||bh<2)return;
  const scale=Math.min(1,820/Math.max(bw,bh)),sw=Math.max(2,Math.round(bw*scale)),sh=Math.max(2,Math.round(bh*scale)),n=sw*sh;
  const working=newCanvas(sw,sh),wc=working.getContext('2d',{willReadFrequently:true});wc.drawImage(c.canvas,box.x0,box.y0,bw,bh,0,0,sw,sh);
@@ -2297,11 +2370,13 @@ function renderSkinFinish(c,W,H,face){
  const fw=zones.width*sw/bw,mid=skinFinishBlur(Y,sw,sh,fw*.012),wide=skinFinishBlur(Y,sw,sh,fw*.054),sourceMid=skinFinishBlur(sourceY,sw,sh,fw*.016),sourceWide=skinFinishBlur(sourceY,sw,sh,fw*.065);
  const sampleMask=newCanvas(sw,sh),sm=sampleMask.getContext('2d',{willReadFrequently:true});sm.scale(sw/bw,sh/bh);paintSkinMaskInto(sm,face,W,H,box.x0,box.y0,'face');const skinAlpha=sm.getImageData(0,0,sw,sh).data;
  const light=skinFinishLight(zones,box,sw,sh,sourceY,sourceWide,skinAlpha),map=newCanvas(sw,sh),mc=map.getContext('2d'),data=mc.createImageData(sw,sh),dx=bw/sw,dy=bh/sh;
- const surface={hard:0,soft:0,silk:0,support:0,tint:0},baseDelta={r:0,g:0,b:0},regionDelta={r:0,g:0,b:0},weights=new Float64Array(regional.length);
+ const surface={hard:0,soft:0,silk:0,support:0,tint:0,nx:new Float64Array(5),ny:new Float64Array(5),nz:new Float64Array(5),weights:new Float64Array(5),dot:new Float64Array(5),grain:0,relief:0},baseDelta={r:0,g:0,b:0},regionDelta={r:0,g:0,b:0},weights=new Float64Array(regional.length);
  for(let y=0;y<sh;y++)for(let x=0;x<sw;x++){
   const i=y*sw+x,k=i*4,px=box.x0+(x+.5)*dx,py=box.y0+(y+.5)*dy;
   if(skinAlpha[k+3]===0){data.data[k]=data.data[k+1]=data.data[k+2]=128;data.data[k+3]=255;continue;}
-  skinFinishSurface(zones,px,py,light,surface);
+  const gx=(sourceMid[y*sw+Math.min(sw-1,x+1)]-sourceMid[y*sw+Math.max(0,x-1)])*fw/255*.030,gy=(sourceMid[Math.min(sh-1,y+1)*sw+x]-sourceMid[Math.max(0,y-1)*sw+x])*fw/255*.030;
+  const bumpX=clamp(gx*zones.F.rx+gy*zones.F.ry,-.035,.035),bumpY=clamp(gx*zones.F.ux+gy*zones.F.uy,-.035,.035);
+  finishCoatSurface(zones,px,py,light,surface,bumpX,bumpY,clamp((sourceY[i]-sourceMid[i])/12,-1,1),clamp((sourceMid[i]-sourceWide[i])/30,-1,1));
   let sum=0;for(let j=0;j<regional.length;j++){weights[j]=skinZoneWeight(zones,regional[j].name,px,py);sum+=weights[j];}
   const cover=Math.min(1,sum),d=baseDelta;if(base.intensity>0)skinFinishDelta(base,Y[i],mid[i],wide[i],sourceMid[i],sourceWide[i],surface,light,baseDelta);else d.r=d.g=d.b=0;
   let r=d.r*(1-cover),g=d.g*(1-cover),b=d.b*(1-cover);
@@ -2855,7 +2930,7 @@ function addSurfaceDab(face,x,y,tool=state.tab){
 function setSurfaceBrush(on){
  const f=selectedFace();if(!f)return;if(!on){state.surfaceBrush=false;renderControls();return;}
  checkpoint();const wasActive=layerEnabled(f.settings,state.tab),cfg=ensureSettings(f)[state.tab];if(state.tab==='skinlight')cfg.region='painted';else cfg.scope='painted';activateLayerConfig(cfg,state.tab);recordLayerActivation(f,state.tab,wasActive);
- hideRecognitionOverlays();state.surfaceBrush=true;/* V4.7: giữ nguyên khung nhìn khi bắt đầu vẽ mask */
+ hideRecognitionOverlays();state.surfaceBrush=true;/* V4.9.1: giữ nguyên khung nhìn khi bắt đầu vẽ mask */
  renderControls();renderLooks();scheduleRender();
 }
 function renderSurfaceEditor(area,face){
@@ -2873,10 +2948,10 @@ function renderSurfaceEditor(area,face){
 /* =============================================================
    Controls: isolated parameters by face and by image-side.
    ============================================================= */
-const percentFields=new Set(['lower','intensity','gloss','smooth','brighten','glow','saturation','sheer','realism','texture','density','sharpness','inner','velvet','shimmer','curl','shine','blemishes','darkCircles','uneven','pores','blur','matte','shadows','highlights','balance']);
+const percentFields=new Set(['coat','roughness','micro','glossCoat','glossRoughness','upperIntensity','lower','lowerCurl','intensity','gloss','smooth','brighten','glow','saturation','sheer','realism','texture','density','sharpness','inner','velvet','shimmer','curl','shine','blemishes','darkCircles','uneven','pores','blur','matte','shadows','highlights','balance']);
 function editingConfigs(face,tab=state.tab){const raw=ensureSettings(face)[tab];if(TABS[tab].sides)return activeSides().map(side=>raw[side]);if(tab==='finish'&&state.finishRegion!=='face')return [raw.regions[state.finishRegion]];return [raw];}
 function uiSetting(){const f=selectedFace();return f?editingConfigs(f)[0]:null;}
-function formatValue(key,v){if(['smileLines','wrinkles','originalStrength'].includes(key))return (Number(v)>0?'+':'')+v+'%';if(percentFields.has(key))return v+'%';if(['thickness','length','size','spread','width','coverage','softness'].includes(key))return v+'%';if(['lift','arch','brightness','warmth'].includes(key))return (Number(v)>0?'+':'')+v;return String(v);}
+function formatValue(key,v){if(['smileLines','wrinkles','originalStrength'].includes(key))return (Number(v)>0?'+':'')+v+'%';if(percentFields.has(key))return v+'%';if(['thickness','length','lowerLength','lowerDensity','lowerThickness','size','spread','width','coverage','softness'].includes(key))return v+'%';if(['lift','arch','brightness','warmth'].includes(key))return (Number(v)>0?'+':'')+v;return String(v);}
 function mutateValue(key,v){const f=selectedFace();if(!f)return;const tab=state.tab,def=TABS[tab],settings=editingConfigs(f),wasActive=layerEnabled(f.settings,tab);
  if(!INDEPENDENT_SKIN_LAYERS.includes(tab))f.look=null;
  if(tab==='finish')f.settings.finish.enabled=true;if(TABS[tab].sides)f.settings[tab].enabled=true;
@@ -2959,14 +3034,14 @@ function renderFinishEditor(area,face){
  const cfg=face.settings.finish,row=document.createElement('div');row.className='finish-editor';
  const label=document.createElement('label');label.htmlFor='finishRegion';label.textContent='Vùng đang pha';
  const select=document.createElement('select');select.id='finishRegion';for(const [id,name]of Object.entries(UI_FINISH_REGIONS)){const option=document.createElement('option');option.value=id;option.textContent=name;select.append(option)}select.value=state.finishRegion;select.addEventListener('change',()=>setFinishRegion(select.value));row.append(label,select);
- const count=Object.values(cfg.regions).filter(r=>r.enabled!==false&&r.intensity>0).length,note=document.createElement('p');note.className='control-caption';note.textContent=count?`${count} vùng đang có chất riêng. “Toàn mặt” là lớp nền chung; tắt lớp tại Toàn mặt để tạm ẩn cả bản phối.`:'Chỉnh Toàn mặt hoặc chọn từng vùng. Chọn vùng chỉ đổi chỗ đang chỉnh, chưa thêm hiệu ứng.';row.append(note);
- const mix=document.createElement('button');mix.type='button';mix.id='btnFinishMix';mix.className='outline block';mix.textContent='Phối thử: trán Cloud · má Glass · mũi Satin';mix.addEventListener('click',()=>{checkpoint();const wasActive=layerEnabled(face.settings,'finish');cfg.enabled=true;cfg.intensity=0;for(const [id,style,shine]of [['forehead','cloud',15],['leftCheek','glass',55],['rightCheek','glass',55],['nose','satin',25]])Object.assign(cfg.regions[id],skinFinishConfig(style),{enabled:true,intensity:65,shine});recordLayerActivation(face,'finish',wasActive);state.finishRegion='face';clearGuidesForMakeup();renderControls();renderLooks();scheduleRender();focusIfSmall()});row.append(mix);
+ const count=Object.values(cfg.regions).filter(r=>r.enabled!==false&&r.intensity>0).length,note=document.createElement('p');note.className='control-caption';note.textContent=count?`${count} vùng đang có Finish Skin riêng. “Toàn mặt” là lớp phủ chung; tắt lớp tại Toàn mặt để tạm ẩn cả bản phối.`:'Chỉnh Toàn mặt hoặc chọn từng vùng. Chọn vùng chỉ đổi chỗ đang chỉnh, chưa thêm hiệu ứng.';row.append(note);
+ const mix=document.createElement('button');mix.type='button';mix.id='btnFinishMix';mix.className='outline block';mix.textContent='Phối bóng: trán Satin · má Glass · mũi Dewy';mix.addEventListener('click',()=>{checkpoint();const wasActive=layerEnabled(face.settings,'finish');cfg.enabled=true;cfg.intensity=0;for(const [id,style,shine]of [['forehead','satin',35],['leftCheek','glass',68],['rightCheek','glass',68],['nose','dewy',55],['chin','satin',30]])Object.assign(cfg.regions[id],skinFinishConfig(style),{enabled:true,intensity:65,shine});recordLayerActivation(face,'finish',wasActive);state.finishRegion='face';clearGuidesForMakeup();renderControls();renderLooks();scheduleRender();focusIfSmall()});row.append(mix);
  const clear=document.createElement('button');clear.type='button';clear.id='btnFinishClearRegions';clear.className='text-button';clear.textContent='Xóa phối riêng, giữ lớp toàn mặt';clear.disabled=!count;clear.addEventListener('click',()=>{checkpoint();cfg.regions=skinFinishDefaults().regions;renderControls();renderLooks();scheduleRender()});row.append(clear);
  const tools=document.createElement('div');tools.className='skin-tool-links';for(const [tab,text]of [['skinlight','Vẽ ánh sáng'],['skintexture','Chỉnh kết cấu'],['foundation','Nền trong']]){const b=document.createElement('button');b.type='button';b.className='outline small';b.textContent=text;b.addEventListener('click',()=>$('categoryTabs').querySelector(`[data-tab="${tab}"]`).click());tools.append(b)}row.append(tools);area.append(row);
 }
 const QUICK_CONTROL_KEYS={
- brow:['originalStrength','shape','intensity','color'],lip:['intensity','layout','color','finish'],
- blush:['intensity','style','color'],shadow:['intensity','style','color'],liner:['intensity','style','color'],lashes:['intensity','style','color'],
+ brow:['originalStrength','shape','intensity','color'],lip:['intensity','finish','gloss','color'],
+ blush:['intensity','style','color'],shadow:['intensity','style','color'],liner:['intensity','style','color'],lashes:['length','curl','density','thickness','upperIntensity','lower','lowerLength','lowerCurl','lowerDensity','lowerThickness','intensity','style','color'],
  primer:['intensity','tone','smooth'],foundation:['intensity','finish','color'],cushion:['intensity','color','sheer'],concealer:['intensity','layout','brightness'],
  powder:['intensity','finish','matte'],gloss:['intensity','region','shine'],contour:['intensity','layout','color'],highlight:['intensity','layout','color'],
  autolight:['intensity','exposure'],skin:['smooth','brighten','glow'],skintexture:['intensity','scope','blemishes'],
@@ -2977,20 +3052,38 @@ function syncToolDock(){
  $('currentToolName').textContent=source?.textContent||TABS[state.tab].title;
  $('btnToolPicker').title=TABS[state.tab].summary+' · Chọn công cụ khác';
  $('btnToolPicker').setAttribute('aria-label','Đổi công cụ · '+(source?.textContent||TABS[state.tab].title));
- const row=$('quickTools');if(row.dataset.group!==group?.getAttribute('aria-label')){
-  row.dataset.group=group?.getAttribute('aria-label')||'';row.replaceChildren();
-  for(const tab of group?.querySelectorAll('[data-tab]')||[]){const b=document.createElement('button');b.type='button';b.dataset.tool=tab.dataset.tab;b.textContent=tab.textContent;b.addEventListener('click',()=>selectTool(b.dataset.tool));row.append(b);}
+ const row=$('quickTools'),isFinish=state.tab==='finish',groupKey=isFinish?'finish:variants':group?.getAttribute('aria-label')||'';
+ row.classList.toggle('finish-variants',isFinish);row.setAttribute('aria-label',isFinish?'Biến thể Finish Skin':'Chọn nhanh công cụ');row.setAttribute('role',isFinish?'group':'navigation');
+ if(row.dataset.group!==groupKey){
+  row.dataset.group=groupKey;row.replaceChildren();
+  if(isFinish){
+   const variants=TABS.finish.controls.find(control=>control[0]==='variant')[3];
+   for(const [value,label]of Object.entries(variants)){const b=document.createElement('button');b.type='button';b.dataset.finishVariant=value;b.textContent=label;b.title='Biến thể '+label;b.addEventListener('click',()=>{if(!selectedFace())return;checkpoint();mutateValue('variant',value);renderControls();});row.append(b);}
+  }else for(const tab of group?.querySelectorAll('[data-tab]')||[]){const b=document.createElement('button');b.type='button';b.dataset.tool=tab.dataset.tab;b.textContent=tab.textContent;b.addEventListener('click',()=>selectTool(b.dataset.tool));row.append(b);}
  }
+ if(isFinish){const face=selectedFace(),variant=face?(uiSetting().variant||'none'):'none';for(const b of row.querySelectorAll('[data-finish-variant]')){const on=b.dataset.finishVariant===variant;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));b.disabled=!face;}}
  for(const b of row.querySelectorAll('[data-tool]')){const on=b.dataset.tool===state.tab;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));}
  for(const b of $('categoryTabs').querySelectorAll('[data-tab]')){const on=b.dataset.tab===state.tab;b.classList.toggle('active',on);b.setAttribute('aria-pressed',String(on));}
 }
 function setToolDetail(on,redraw=true){document.body.classList.toggle('tool-detailed',!!on);$('btnToolDetail').setAttribute('aria-pressed',String(!!on));$('btnToolDetail').textContent=on?'Chỉnh nhanh':'Chi tiết';$('panelScroll').scrollTop=0;if(redraw)renderControls();}
 const detailKeyByTool={};
-const DEFAULT_DETAIL_KEYS={lashes:'length',blush:'size',brow:'thickness',lip:'gloss',shadow:'spread',liner:'width',finish:'coverage',skinlight:'tools',skintexture:'tools'};
+const LASH_FIELD_PAIRS=[['length','lowerLength'],['curl','lowerCurl'],['density','lowerDensity'],['thickness','lowerThickness'],['upperIntensity','lower']];
+function renderLashScope(area){
+ const row=document.createElement('div');row.className='lash-scope';row.setAttribute('role','group');row.setAttribute('aria-label','Chọn mi trên hoặc mi dưới');
+ for(const [part,label]of [['upper','Mi trên'],['lower','Mi dưới']]){const button=document.createElement('button');button.type='button';button.dataset.lashPart=part;button.textContent=label;button.className=state.lashPart===part?'selected':'';button.setAttribute('aria-pressed',String(state.lashPart===part));button.addEventListener('click',()=>{const old=state.lashPart==='lower'?1:0,next=part==='lower'?1:0;for(const pair of LASH_FIELD_PAIRS)if(detailKeyByTool.lashes===pair[old])detailKeyByTool.lashes=pair[next];state.lashPart=part;renderControls();$('panelScroll').scrollTop=0;});row.append(button);}
+ const select=document.createElement('select');select.id='lashQuickMode';select.setAttribute('aria-label','Thông số mi đang chỉnh');for(const [value,label]of [['shape','Dài và cong'],['density','Mật độ và độ dày'],['amount','Mức áp dụng'],['style','Kiểu và màu chung']]){const option=document.createElement('option');option.value=value;option.textContent=label;select.append(option);}select.value=state.lashQuick||'shape';select.addEventListener('change',()=>{state.lashQuick=select.value;renderControls();$('panelScroll').scrollTop=0;});row.append(select);area.append(row);
+}
+function configureLashQuickEditor(quick){
+ quick.classList.add('lash-quick');const lower=state.lashPart==='lower',mode=state.lashQuick||'shape';
+ const visible=mode==='shape'?(lower?['lowerLength','lowerCurl']:['length','curl']):mode==='density'?(lower?['lowerDensity','lowerThickness']:['density','thickness']):mode==='amount'?[lower?'lower':'upperIntensity','intensity']:['style','color'];
+ for(const group of quick.children)if(group.classList.contains('control-group'))group.classList.toggle('lash-active',visible.includes(group.dataset.key));
+}
+
+const DEFAULT_DETAIL_KEYS={lashes:'length',blush:'size',brow:'thickness',lip:'gloss',shadow:'spread',liner:'width',finish:'roughness',skinlight:'tools',skintexture:'tools'};
 function configureDetailEditor(area){
  const quick=area.previousElementSibling,primaryGroups=[...quick.children].filter(child=>child.classList.contains('control-group'));
  const advancedGroups=[...area.children].filter(child=>child.classList.contains('control-group')),groups=[...primaryGroups,...advancedGroups];
- const extras=[...area.children].filter(child=>!advancedGroups.includes(child)),options=groups.map(group=>({value:group.dataset.key,label:group.querySelector('.control-head span').textContent,element:group,primary:primaryGroups.includes(group)}));
+ const extras=[...area.children].filter(child=>!advancedGroups.includes(child)),options=groups.filter(group=>!group.hidden).map(group=>({value:group.dataset.key,label:group.querySelector('.control-head span').textContent,element:group,primary:primaryGroups.includes(group)}));
  if(extras.length){const box=document.createElement('div');box.className='detail-extras';for(const child of extras)box.append(child);area.append(box);options.push({value:'tools',label:['skinlight','skintexture'].includes(state.tab)?'Bút chọn vùng':'Viền, vùng và thao tác',element:box});}
  if(!options.length){const note=document.createElement('p');note.className='control-mode-note';note.textContent='Các thanh chỉnh của công cụ này nằm ở Chỉnh nhanh.';area.append(note);return;}
  const label=document.createElement('label');label.className='detail-parameter-label';label.textContent='Thông số';const select=document.createElement('select');select.id='detailParameter';select.setAttribute('aria-label','Chọn thông số chi tiết');
@@ -3017,10 +3110,11 @@ function renderControls(){const conf=TABS[state.tab],f=selectedFace(),area=$('co
  const quick=document.createElement('div');quick.className='quick-controls';const detailed=document.createElement('div');detailed.className='detail-controls';
  const primary=QUICK_CONTROL_KEYS[state.tab]||['intensity'];
  const target=document.createElement('p');target.id='editTargetNote';target.className='edit-target';target.textContent=`Đang chỉnh riêng Người ${state.faces.indexOf(f)+1} / ${state.faces.length}`+(state.tab==='finish'?` · ${UI_FINISH_REGIONS[state.finishRegion]}`:'')+'.';area.append(target);
- if(state.tab==='finish'){const row=document.createElement('label');row.className='finish-region-quick';row.textContent='Vùng đang pha';const sel=document.createElement('select');sel.id='quickFinishRegion';sel.setAttribute('aria-label','Vùng chất liệu da');for(const [id,label]of Object.entries(UI_FINISH_REGIONS)){const opt=document.createElement('option');opt.value=id;opt.textContent=label;sel.append(opt)}sel.value=state.finishRegion;sel.addEventListener('change',()=>setFinishRegion(sel.value));row.append(sel);area.append(row);}
+ if(state.tab==='lashes')renderLashScope(area);
+ if(state.tab==='finish'){const row=document.createElement('label');row.className='finish-region-quick';row.textContent='Vùng đang pha';const sel=document.createElement('select');sel.id='quickFinishRegion';sel.setAttribute('aria-label','Vùng Finish Skin');for(const [id,label]of Object.entries(UI_FINISH_REGIONS)){const opt=document.createElement('option');opt.value=id;opt.textContent=label;sel.append(opt)}sel.value=state.finishRegion;sel.addEventListener('change',()=>setFinishRegion(sel.value));row.append(sel);area.append(row);}
  const layerRow=document.createElement('label');layerRow.className='layer-switch';const enabled=document.createElement('input');enabled.type='checkbox';enabled.id='layerEnabled';enabled.checked=configs.every(cfg=>editingConfigActive(f,cfg));enabled.indeterminate=configs.some(cfg=>editingConfigActive(f,cfg))&&!enabled.checked;enabled.addEventListener('change',()=>toggleCurrentLayer(enabled.checked));const label=document.createElement('span');label.textContent='Bật';layerRow.title='Bật / tắt '+conf.title;enabled.setAttribute('aria-label','Bật / tắt '+conf.title);layerRow.append(enabled,label);$('layerSwitchSlot').append(layerRow);
  if(state.faces.length>1){const all=document.createElement('button');all.type='button';all.id='btnApplyLayerAll';all.className='outline block';all.textContent=`Áp dụng ${state.tab==='finish'&&state.finishRegion!=='face'?UI_FINISH_REGIONS[state.finishRegion].toLowerCase():'lớp này'} cho cả ${state.faces.length} người`;all.disabled=!layerEnabled(f.settings,state.tab);all.addEventListener('click',applyCurrentLayerToAll);detailed.append(all);}
- for(const [key,title,type,a,b,step] of [...conf.controls].sort((a,b)=>{const ai=primary.indexOf(a[0]),bi=primary.indexOf(b[0]);return (ai<0?100:ai)-(bi<0?100:bi)})){const group=document.createElement('div');group.className='control-group';group.dataset.kind=type;group.dataset.key=key;const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
+ for(const [key,title,type,a,b,step] of [...conf.controls].sort((a,b)=>{const ai=primary.indexOf(a[0]),bi=primary.indexOf(b[0]);return (ai<0?100:ai)-(bi<0?100:bi)})){const group=document.createElement('div');group.className='control-group';group.dataset.kind=type;group.dataset.key=key;if(state.tab==='lip'){const lipFinish=s.finish==='clear'?'clear':s.layout==='velvet'?'matte':s.layout==='glass'?'gloss':s.layout==='tint'?'tint':s.finish;if(lipFinish==='clear'&&!['intensity','finish','gloss','glossCoat','glossRoughness'].includes(key))group.hidden=true;if(['matte','tint'].includes(lipFinish)&&['gloss','glossCoat','glossRoughness'].includes(key))group.hidden=true;}const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
  if(type==='range'){const input=document.createElement('input');input.type='range';input.min=a;input.max=b;input.step=step||1;input.value=s[key]??0;input.dataset.setting=key;input.id='control-'+state.tab+'-'+key;input.setAttribute('aria-label',title);let pointerHistory=false;
  input.addEventListener('pointerdown',()=>{checkpoint();pointerHistory=true;});input.addEventListener('pointerup',()=>{pointerHistory=false;});
  input.addEventListener('input',()=>{if(!pointerHistory)checkpoint();mutateValue(key,Number(input.value));out.textContent=formatValue(key,input.value);});
@@ -3031,7 +3125,7 @@ function renderControls(){const conf=TABS[state.tab],f=selectedFace(),area=$('co
  }else if(type==='toggle'){const label=document.createElement('label');label.className='toggle';const input=document.createElement('input');input.type='checkbox';input.id='control-'+state.tab+'-'+key;input.checked=s[key]!==false;if(state.tab==='autolight'&&key==='neck')input.disabled=!autoLightNeckAvailability(f,photo.width,photo.height).available;input.setAttribute('aria-label',title);input.addEventListener('change',()=>{if(state.tab==='autolight'&&key==='neck'){setAutoLightNeck(input.checked);return;}checkpoint();mutateValue(key,input.checked);renderControls()});const text=document.createElement('span');text.textContent=state.tab==='autolight'?'Áp dụng cho cổ':'Giữ';label.append(input,text);group.append(label);}
  if(state.tab==='skintone'&&key==='tone'){const note=document.createElement('div');note.className='control-note';note.textContent='Chọn tone sẵn hoặc kéo bảng màu/ thanh sắc độ để nhuộm da theo ý. Chỉ mặt dùng hình học khuôn mặt có bù trán khi tóc che nhẹ; Mặt + cổ / Toàn da lộ cần AI phân vùng da. Nếu AI không tải được, Chỉ mặt vẫn dùng được nhưng có thể dính tóc/kính và nên dùng bút Xóa vùng sai.';group.append(note);}
  (primary.includes(key)?quick:detailed).append(group);}
- area.append(quick,detailed);
+ area.append(quick,detailed);if(state.tab==='lashes')configureLashQuickEditor(quick);
  if(state.tab==='brow')renderBrowNativePanel(detailed,f);if(state.tab==='finish')renderFinishEditor(detailed,f);
  if(['skinlight','skintexture'].includes(state.tab))renderSurfaceEditor(detailed,f);
  if(isMaskTab()){const n=document.createElement('p');n.className='control-caption';n.textContent=state.skinSegMessage+(state.faces.length>1?' · Ảnh nhóm: cổ và tay bị khóa để tránh nhuộm nhầm người khác.':'');detailed.append(n);const b=document.createElement('button');b.type='button';b.className='outline block';b.textContent=state.showSkinMask?'Ẩn vùng mask':'Xem vùng mask';b.addEventListener('click',()=>{state.showSkinMask=!state.showSkinMask;renderControls();renderGuides();});detailed.append(b);}
@@ -3165,7 +3259,7 @@ const RAY_RECIPE_CODEC=(()=>{
   if(TABS[tab].sides){only(value,new Set(['left','right','enabled']),'Lớp '+tab);const enabled=own(value,'enabled')?value.enabled:defaults.enabled??true;if(typeof enabled!=='boolean')fail(tab+'.enabled phải bật hoặc tắt.');const result={enabled};for(const side of ['left','right'])result[side]=leaf(tab,own(value,side)?value[side]:{},defaults[side]);return result;}
   const result=leaf(tab,value,defaults);
   if(tab==='finish'){
-   const regions=own(value,'regions')?value.regions:{};if(!record(regions))fail('vùng chất da không hợp lệ.');only(regions,new Set(Object.keys(defaults.regions)),'Vùng chất da');
+   const regions=own(value,'regions')?value.regions:{};if(!record(regions))fail('vùng Finish Skin không hợp lệ.');only(regions,new Set(Object.keys(defaults.regions)),'Vùng Finish Skin');
    result.regions={};for(const key of Object.keys(defaults.regions))result.regions[key]=leaf(tab,own(regions,key)?regions[key]:{},defaults.regions[key],true);
   }
   return result;
@@ -3312,9 +3406,9 @@ function layerListOf(face){if(!face)return [];ensureSettings(face);return faceLa
 function addMakeupLayer(tab=$('addLayerType').value){
  const face=selectedFace();if(!face||!TABS[tab])return;ensureSettings(face);
  if(face.layerList.includes(tab)){editRecipeLayer(tab);setStatus('Lớp này đã có. Đang mở thông số để chỉnh tiếp.');return;}
- checkpoint();face.layerList.push(tab);face.layerOrder=tab==='autolight'?[tab,...faceLayerOrder(face).filter(id=>id!==tab)]:[...faceLayerOrder(face).filter(id=>id!==tab),tab];
+ checkpoint();face.layerList.push(tab);face.layerOrder=faceLayerOrder(face);
  const cfg=face.settings[tab];if(TABS[tab].sides){cfg.enabled=true;for(const side of ['left','right'])activateLayerConfig(cfg[side],tab);}else activateLayerConfig(cfg,tab);
- face.look=null;hideRecognitionOverlays();editRecipeLayer(tab);renderLooks();scheduleRender();setStatus('Đã thêm lớp '+TABS[tab].title+' sau các lớp đang có.');
+ face.look=null;hideRecognitionOverlays();editRecipeLayer(tab);renderLooks();scheduleRender();setStatus('Đã thêm lớp '+TABS[tab].title+' vào thứ tự xử lý hiện tại. Có thể đổi thứ tự trong bảng Lớp.');
 }
 function deleteMakeupLayer(tab){const face=selectedFace();if(!face||!face.layerList.includes(tab))return;checkpoint();stopSurfaceBrush();face.settings[tab]=deepCopy(makeDefaults()[tab]);face.layerList=face.layerList.filter(id=>id!==tab);face.look=null;renderControls();renderLooks();scheduleRender();setStatus('Đã xóa toàn bộ lớp '+TABS[tab].title+'. Có thể Quay lại để khôi phục.');}
 function toggleMakeupLayer(tab,on){const face=selectedFace();if(!face||!face.layerList.includes(tab))return;checkpoint();const cfg=face.settings[tab];cfg.enabled=on;if(on&&!layerEnabled(face.settings,tab)){if(TABS[tab].sides){for(const side of ['left','right'])activateLayerConfig(cfg[side],tab);}else activateLayerConfig(cfg,tab);}face.look=null;stopSurfaceBrush();renderControls();renderLooks();scheduleRender();}
@@ -3676,7 +3770,7 @@ $('btnCompare').addEventListener('keydown',e=>{if(e.code==='Space'&&!e.repeat){e
 $('btnCompare').addEventListener('keyup',e=>{if(e.code==='Space'){e.preventDefault();releaseCompare();}});
 guide.addEventListener('pointerdown',startGuidePointer);guide.addEventListener('pointermove',moveGuidePointer);guide.addEventListener('pointerup',endGuidePointer);guide.addEventListener('pointercancel',endGuidePointer);
 window.addEventListener('resize',()=>{if(state.img)updateFit();});
-/* ===== V4.7 · Bố cục app: bảng chỉnh cố định + thanh điều hướng; khung ảnh luôn giữ nguyên khi áp bước ===== */
+/* ===== V4.9.1 · Bố cục app: bảng chỉnh cố định + thanh điều hướng; khung ảnh luôn giữ nguyên khi áp bước ===== */
 const PANEL_TITLES={scan:'01 · AI nhận diện',border:'02 · Viền mặt',light:'03 · Ánh sáng tự động',layout:'04–05 · Layout',makeup:'06 · Các bước makeup'};
 function setSheetCollapsed(collapsed){document.body.classList.toggle('sheet-collapsed',!!collapsed);const b=$('btnSheetToggle');b.setAttribute('aria-expanded',String(!collapsed));b.setAttribute('aria-label',collapsed?'Mở bảng chỉnh':'Thu gọn bảng chỉnh');}
 function showPanel(name,opts={}){if(!PANEL_TITLES[name])return;const box=$('panelScroll'),changed=box.dataset.active!==name;box.dataset.active=name;if(changed||opts.reset||name==='makeup')box.scrollTop=0;document.querySelector('.settings-panel').dataset.active=name;for(const id of ['toolDock','quickTools'])$(id).hidden=name!=='makeup';for(const b of document.querySelectorAll('#panelNav [data-panel]')){const on=b.dataset.panel===name;b.classList.toggle('active',on);if(on)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current');}if(opts.open!==false)setSheetCollapsed(false);}
