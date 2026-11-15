@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.22 – Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.23 – Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -585,7 +585,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.22</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.23</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -899,13 +899,13 @@ Object.assign(LOOKS,{"aodai_coral":{"label":"Áo dài · Cam đỏ","caption":"D
  "shadowCfg":{"style":"crease","color2":"#d8ae94","accent":"#5f3e33","shimmer":18,"spread":108,"depth":-8,"coverage":70},
  "linerCfg":{"style":"wing","color":"#1a1414","width":112,"length":120,"curve":10,"sharpness":84},
  "lashesCfg":{"style":"outer","color":"#141010","length":116,"curl":80,"density":114,"thickness":106,"mascara":92,"upperIntensity":100,"lower":32,"lowerStyle":"delicate","lowerLength":92,"lowerDensity":80,"lowerCurl":55,"lowerThickness":82},
- "finishCfg":{"style":"porcelain","variant":"softmatte","intensity":74,"shine":34,"coat":74,"roughness":50,"micro":56,"coverage":70,"texture":86,"warmth":4,"smooth":30,"polish":34,"brightness":2},
+ "finishCfg":{"style":"porcelain","variant":"softmatte","intensity":74,"shine":34,"coat":74,"roughness":50,"micro":56,"coverage":68,"texture":91,"warmth":4,"smooth":22,"polish":26,"brightness":2},
  "regions":{"leftCheek":{"style":"satin","intensity":34,"shine":48,"roughness":46},"rightCheek":{"style":"satin","intensity":34,"shine":48,"roughness":46},"nose":{"style":"satin","intensity":30,"shine":46}},
  "foundationCfg":{"finish":"satin","color":"#efd6c2","intensity":30,"sheer":60,"coverage":56,"realism":88,"warmth":4,"brightness":3,"saturation":48},
  "concealerCfg":{"layout":"all","intensity":28,"brightness":42,"softness":82},
  "contourCfg":{"layout":"natural","color":"#7c5c4c","intensity":36,"spread":92},
  "highlightCfg":{"layout":"natural","color":"#fff1dc","intensity":20,"spread":88},
- "skintextureCfg":{"enabled":true,"intensity":78,"blemishes":72,"darkCircles":58,"uneven":66,"pores":42,"texture":82,"preserveMoles":true,"preserveFreckles":true,"scope":"face","edits":[]},
+ "skintextureCfg":{"enabled":true,"intensity":78,"blemishes":72,"darkCircles":58,"uneven":66,"pores":36,"texture":89,"preserveMoles":true,"preserveFreckles":true,"scope":"face","edits":[]},
  "reference":true}});
 const LOOK_DEFAULT_STRENGTH=85;
 const LOOK_BASE_TABS=['foundation','concealer','contour','highlight','primer','skintexture','autolight','skinlight'];
@@ -1497,6 +1497,40 @@ function cosmeticBlurTile(source,x,y,w,h,radius,alphaOnly=false){
  return data;
 }
 
+// BEGIN V4.23 PHOTO-MATCHED SHARPNESS
+// Drawn pigment (mi, eyeliner, sợi mày, viền son) is vector-sharp, while a photographed face
+// never is. The lens softness around the eyes is measured once per photo and every drawn
+// mask is blurred by the same amount, so makeup sits *in* the photo instead of on top of it.
+const photoSoftnessCache=new WeakMap();
+function photoSoftness(face,W){
+ if(!state.img||!face?.landmarks||!state.width)return 0;
+ let hit=photoSoftnessCache.get(face);
+ if(!hit||hit.img!==state.img){
+  let sigma=.8;
+  try{
+   const ids=[...EYE_LEFT,...EYE_RIGHT],ps=ids.map(i=>face.landmarks[i]).filter(hasNum);
+   const x0=Math.min(...ps.map(q=>q.x))*state.width,x1=Math.max(...ps.map(q=>q.x))*state.width,y0=Math.min(...ps.map(q=>q.y))*state.height,y1=Math.max(...ps.map(q=>q.y))*state.height;
+   const padX=(x1-x0)*.06,padY=(y1-y0)*.55,sx=Math.max(0,x0-padX),sy=Math.max(0,y0-padY),sw=Math.min(state.width-sx,x1-x0+padX*2),sh=Math.min(state.height-sy,y1-y0+padY*2);
+   if(sw>=12&&sh>=6){
+    const f=Math.max(1,sw/700),w=Math.max(8,Math.round(sw/f)),h=Math.max(6,Math.round(sh/f)),cv=newCanvas(w,h),cx=cv.getContext('2d',{willReadFrequently:true});
+    cx.drawImage(state.img,sx,sy,sw,sh,0,0,w,h);const d=cx.getImageData(0,0,w,h).data,Y=new Float32Array(w*h);
+    for(let i=0;i<Y.length;i++)Y[i]=d[i*4]*.2126+d[i*4+1]*.7152+d[i*4+2]*.0722;
+    const grads=[],lum=[];
+    for(let y=1;y<h-1;y++)for(let x=1;x<w-1;x++){const i=y*w+x,gx=(Y[i+1]-Y[i-1])*.5,gy=(Y[i+w]-Y[i-w])*.5;grads.push(Math.hypot(gx,gy));if(((x+y)&3)===0)lum.push(Y[i]);}
+    grads.sort((a,b)=>a-b);lum.sort((a,b)=>a-b);
+    const top=grads[Math.floor(grads.length*.997)]||1,contrast=(lum[Math.floor(lum.length*.97)]||0)-(lum[Math.floor(lum.length*.03)]||0);
+    // Ideal step edge blurred by a Gaussian: peak gradient = contrast / (sigma·√2π).
+    if(top>.5&&contrast>12)sigma=clamp(contrast/(top*2.5066)*f,.35,Math.max(1,(x1-x0)*.02));
+   }
+  }catch(e){sigma=.8;}
+  hit={img:state.img,sigma};photoSoftnessCache.set(face,hit);
+ }
+ return hit.sigma*W/state.width;
+}
+// Blur radius to apply to a drawn mask so it matches the photographed softness.
+function photoMatchBlur(face,W,gain=1){const sigma=photoSoftness(face,W)*gain;return sigma>.45?sigma:0;}
+// END V4.23 PHOTO-MATCHED SHARPNESS
+
 function maskPatch(c,W,H,box,painter,opts={}){
  if(!box||!c)return;
  const cosmetic=opts.cosmetic,sheer=clamp(Number(cosmetic?.sheer??40)/100,0,1),coverage=clamp(Number(cosmetic?.coverage??65)/100,0,1),texture=clamp(Number(cosmetic?.texture??85)/100,0,1);
@@ -1516,10 +1550,33 @@ function maskPatch(c,W,H,box,painter,opts={}){
  if(opts.protectOcclusion&&!opts.protectFace&&state.skinSeg?.protection){
   m.save();m.globalCompositeOperation='destination-out';m.drawImage(state.skinSeg.protection,-x,-y,W,H);m.restore();
  }
- const mdata=m.getImageData(0,0,w,h).data;let featherData=null;
- if((opts.mode==='blush'||opts.softFibers)&&feather>.05){featherData=cosmeticBlurTile(mask,0,0,w,h,feather,true);}
+ let mdata=m.getImageData(0,0,w,h).data,featherData=null;
+ const photoBlur=Number(opts.photoBlur)||0;
+ if(photoBlur>0){
+  // V4.23: true two-sided blur (not erosion) so thin drawn pigment gets the photo's own softness.
+  const hardMask=mdata;mdata=cosmeticBlurTile(mask,0,0,w,h,photoBlur,true);
+  if(opts.softEdge){
+   // Filled shapes (son): pull the edge slightly inside the contour and let it melt into skin.
+   for(let k=3;k<mdata.length;k+=4){const v=clamp((mdata[k]/255-.30)/.55,0,1);mdata[k]=Math.round(255*v*v*(3-2*v)*Math.max(hardMask[k]/255,.0));}
+   // re-blur lightly so the remapped edge has no hard polygon steps
+   const tmp=newCanvas(w,h),tc=tmp.getContext('2d');tc.putImageData(new ImageData(new Uint8ClampedArray(mdata),w,h),0,0);mdata=cosmeticBlurTile(tmp,0,0,w,h,Math.max(.6,photoBlur*.55),true);
+  }else if(opts.inkBoost){
+   // Blurring a hair-thin line spreads its pigment; restore part of the density so lashes stay readable.
+   const boost=1+Math.min(1.3,photoBlur*.55);for(let k=3;k<mdata.length;k+=4)mdata[k]=Math.min(255,mdata[k]*boost);
+  }
+ }else if((opts.mode==='blush'||opts.softFibers)&&feather>.05){featherData=cosmeticBlurTile(mask,0,0,w,h,feather,true);}
  else if(feather>.35){const blur=newCanvas(w,h),b=blur.getContext('2d',{willReadFrequently:true});if('filter' in b){b.filter=`blur(${feather.toFixed(2)}px)`;b.drawImage(mask,0,0);b.filter='none';featherData=b.getImageData(0,0,w,h).data;}}
  const original=c.getImageData(x,y,w,h),arr=original.data,strength=opts.strength??1,mode=opts.mode||'tint',adaptiveLight=cosmetic?cosmeticSourceLight(W,H,x,y,w,h,mdata,mode):{gain:1,bright:0},rgb=colorRGB(opts.color||'#a04040'),tintGains=lightColorGains(opts.color,opts.colorAmount);
+ if(opts.softEdge&&photoBlur>0){
+  // V4.23: landmarks can overshoot the real vermilion border. Near the edge, pigment follows the
+  // photographed lip redness, so lipstick does not sit on plain skin beside the mouth.
+  const lipRG=[],skinRG=[];
+  for(let k=0;k<arr.length;k+=16){const al=mdata[k+3],rg=arr[k]-arr[k+1];if(al>235)lipRG.push(rg);else if(al<2)skinRG.push(rg);}
+  if(lipRG.length>24&&skinRG.length>24){
+   lipRG.sort((a,b)=>a-b);skinRG.sort((a,b)=>a-b);const lip=lipRG[lipRG.length>>1],skin=skinRG[skinRG.length>>1],span=lip-skin;
+   if(span>9)for(let k=0;k<arr.length;k+=4){const al=mdata[k+3];if(al<2||al>235)continue;const like=clamp((arr[k]-arr[k+1]-skin)/span*1.7,0,1),edge=1-al/235;mdata[k+3]=Math.round(al*(1-edge*(1-like)*.75));}
+  }
+ }
  let lowPass=null;
  if(cosmetic&&texture<.99&&coverage>0){
   const ref=newCanvas(w,h),rc=ref.getContext('2d',{willReadFrequently:true});
@@ -1529,7 +1586,8 @@ function maskPatch(c,W,H,box,painter,opts={}){
  for(let k=0;k<arr.length;k+=4){const a0=mdata[k+3]/255;if(a0<.003)continue;
   // Multiplication by the hard mask prevents soft-edge leaks outside the lip/brow contour.
   const blurred=featherData?featherData[k+3]/255:a0,fade=mode==='blush'?Math.min(a0,a0*.35+blurred*.65):Math.min(a0,blurred);
-  const a=clamp(fade*strength*adaptiveLight.gain*(cosmetic?(mode==='blush'?(.78+.22*coverage)*(1-.52*sheer):(.72+.30*coverage)*(1-.26*sheer)):1),0,1);if(a<.003)continue;
+  const edgeFade=opts.edgeFade?opts.edgeFade(x+(k>>2)%w+.5,y+Math.floor((k>>2)/w)+.5):1;
+  const a=clamp(fade*edgeFade*strength*adaptiveLight.gain*(cosmetic?(mode==='blush'?(.78+.22*coverage)*(1-.52*sheer):(.72+.30*coverage)*(1-.26*sheer)):1),0,1);if(a<.003)continue;
   const r=arr[k],g=arr[k+1],b=arr[k+2],lum=(r*.2126+g*.7152+b*.0722)/255;
   let tr,tg,tb;
   if(cosmetic&&mode==='ink'){
@@ -1550,7 +1608,7 @@ function maskPatch(c,W,H,box,painter,opts={}){
    const Y=lum*255,C=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
    const low=lowPass?lowPass[k]*.2126+lowPass[k+1]*.7152+lowPass[k+2]*.0722:Y;
    const detail=(Y-low)*(1-texture)*(.35+.65*coverage)*.98;
-   let targetY=Y-detail+(mode==='shadow'?(Math.min(0,C-Y)*(.20+.30*coverage)*(1-sheer*.55)+Math.max(0,C-Y)*.04*clamp((Y-60)/60,0,1)):(C-Y)*(.08+.16*coverage)*(1-sheer));
+   let targetY=Y-detail+(mode==='shadow'?(Math.min(0,C-Y)*(.20+.30*coverage)*(1-sheer*.55)+Math.max(0,C-Y)*.04*clamp((Y-60)/60,0,1)):(C-Y)*(mode==='lip'?(.08+.40*coverage)*(1-sheer*.75):(.08+.16*coverage)*(1-sheer)));
    if(['lip','blush','shadow','tint'].includes(mode)&&Y>C)targetY-=(Y-C)*adaptiveLight.bright*.07*coverage;
    if(mode==='brow')targetY=Y-detail-(Y-C)*(.34+.25*coverage)*(1-sheer*.45);
    const saturation=(mode==='brow'?.55:mode==='blush'?.72:1.02)*(.68+.58*coverage)*(1-sheer*.34);
@@ -1705,11 +1763,12 @@ function browLightingResponse(face,side,W,H){
  const skinLuma=q(skin,.50),hairLuma=q(brow,.25),nativeContrast=clamp((skinLuma-hairLuma)/Math.max(36,skinLuma),0,1),brightness=clamp((skinLuma-155)/80,0,1),washed=clamp((.38-nativeContrast)/.36,0,1);
  return {gain:clamp(1+brightness*.24+washed*(.12+.10*brightness),1,1.40),skinLuma,nativeContrast,brightness};
 }
-function browPigmentPatch(c,W,H,face,box,painter,setting,profile,strength,feather,body=false){
+function browPigmentPatch(c,W,H,face,box,painter,setting,profile,strength,feather,body=false,photoBlur=0){
  const pad=Math.ceil(feather*3+3),x=clamp(Math.floor(box.x0-pad),0,W),y=clamp(Math.floor(box.y0-pad),0,H),right=clamp(Math.ceil(box.x1+pad),0,W),bottom=clamp(Math.ceil(box.y1+pad),0,H),w=right-x,h=bottom-y;if(w<1||h<1)return;
  const mask=newCanvas(w,h),m=mask.getContext('2d');m.save();m.translate(-x,-y);painter(m);m.restore();
  if(state.skinSeg?.protection){m.save();m.globalCompositeOperation='destination-out';m.drawImage(state.skinSeg.protection,-x,-y,W,H);m.restore();}
- const hard=mask.getContext('2d').getImageData(0,0,w,h).data;
+ let hard=mask.getContext('2d').getImageData(0,0,w,h).data;
+ if(photoBlur>0){hard=cosmeticBlurTile(mask,0,0,w,h,photoBlur,true);const boost=1+Math.min(.9,photoBlur*.35);for(let k=3;k<hard.length;k+=4)hard[k]=Math.min(255,hard[k]*boost);}
  let softened=null;if(feather>.55){const blur=newCanvas(w,h),bc=blur.getContext('2d');bc.filter=`blur(${feather}px)`;bc.drawImage(mask,0,0);softened=bc.getImageData(0,0,w,h).data;}
  const rgba=c.getImageData(x,y,w,h),d=rgba.data,texture=clamp(Number(setting.texture??85)/100,0,1),sheer=clamp(Number(setting.sheer??40)/100,0,1),coverage=clamp(Number(setting.coverage??65)/100,0,1),rgb=colorRGB(setting.color),C=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
  let low=null;if(body){const canvas=newCanvas(w,h),bc=canvas.getContext('2d');bc.filter=`blur(${Math.max(.7,(box.x1-box.x0)*.011)}px)`;bc.drawImage(c.canvas,x,y,w,h,0,0,w,h);low=bc.getImageData(0,0,w,h).data;}
@@ -1741,14 +1800,18 @@ function renderBrows(c,W,H,face){for(const side of ['left','right']){
  browPigmentPatch(c,W,H,face,bb,m=>{
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();m.lineCap='round';m.lineJoin='round';m.strokeStyle='#fff';
   for(let i=0;i<count;i++){
-   const rand=browNoise(i,seed),u=clamp((i+.20+rand*.58)/count,.005,.995),rim=browRimSample(ps,u),direction=(.010+.036*(1-u))*(.68+rand*.50),tipRim=browRimSample(ps,u-direction);
-   const root=pair(rim.lo,rim.hi,.04+.18*browNoise(i,seed+1)),tip=pair(tipRim.lo,tipRim.hi,.65+.30*browNoise(i,seed+2)),bend=pair(root,tip,.52),cross={x:(tipRim.hi.x-rim.hi.x)*.32,y:(tipRim.hi.y-rim.hi.y)*.32},control={x:bend.x+cross.x,y:bend.y+cross.y};
+   // V4.23: hairs lie along the brow (not upright like a comb): lower hairs sweep up-and-out,
+   // upper hairs sweep down-and-out, and only the hairs at the head stand nearly upright.
+   const rand=browNoise(i,seed),n1=browNoise(i,seed+1),n2=browNoise(i,seed+2),u=clamp((i+.20+rand*.58)/count,.02,.985),rim=browRimSample(ps,u);
+   const headK=clamp((u-.76)/.20,0,1),fromTop=u<.80&&browNoise(i,seed+5)<.32,direction=(.060+.085*(1-u))*(.70+rand*.60)*(1-.74*headK),tipRim=browRimSample(ps,u-direction);
+   const rootV=fromTop?.94-.24*n1:.05+.32*n1,tipV=fromTop?Math.max(.30,rootV-.20-.22*n2):Math.min(.97,rootV+(.30+.30*n2)*(1+.45*headK));
+   const root=pair(rim.lo,rim.hi,rootV),tip=pair(tipRim.lo,tipRim.hi,tipV),bend=pair(root,tip,.52),cross={x:(tipRim.hi.x-rim.hi.x)*.10,y:(tipRim.hi.y-rim.hi.y)*.10},control={x:bend.x+cross.x,y:bend.y+cross.y};
    const curve=t=>({x:(1-t)*(1-t)*root.x+2*(1-t)*t*control.x+t*t*tip.x,y:(1-t)*(1-t)*root.y+2*(1-t)*t*control.y+t*t*tip.y}),opacity=(.45+.40*browNoise(i,seed+3))*(.30+.70*Math.sin(Math.PI*u));
    m.globalAlpha=opacity;m.lineWidth=w*(.0034+.0046*sharpness)*(preset==='feather'?1.05:1);
    const trunk=curve(.70),trunkControl=pair(root,control,.70);m.beginPath();m.moveTo(root.x,root.y);m.quadraticCurveTo(trunkControl.x,trunkControl.y,trunk.x,trunk.y);m.stroke();
    const end=curve(.58),tipControl=pair(control,tip,.58);m.globalAlpha=opacity*.65;m.lineWidth*=.46;m.beginPath();m.moveTo(end.x,end.y);m.quadraticCurveTo(tipControl.x,tipControl.y,tip.x,tip.y);m.stroke();
   }m.restore();
- },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*(.62+.24*sharpness),w*.0012*(1-sharpness),false);
+ },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*(.62+.24*sharpness),w*.0012*(1-sharpness),false,photoMatchBlur(face,W,.5));
 }}
 // END V4.5 ADAPTIVE BROW RENDERER
 
@@ -1805,6 +1868,8 @@ function renderLipClearcoat(c,W,H,face,s,G,finish,layout,lighting){
  const lowerLight=lighting?.lower||v4LipLightAnchor(c,G,W,H,pair(G.lower,G.bottom,.48)),upperLight=lighting?.upper||v4LipLightAnchor(c,G,W,H,pair(G.upper,G.top,.55));
  const centers={lower:clamp(G.project(lowerLight.point).u/G.width,-.15,.15),upper:clamp(G.project(upperLight.point).u/G.width,-.12,.12)};
  const q=amount*strength*clamp(Number(s.intensity||0)/100,0,1),lowerSpan=.24+rough*.11,band=.052+rough*.12;
+ // V4.23: hair-fine glints only exist on a sharp photo; on a soft one they read as scratches.
+ const sharpK=clamp(1.3/(1+photoSoftness(face,W)),.12,1);
  for(let yy=0;yy<h;yy++)for(let xx=0;xx<w;xx++){
   const k=(yy*w+xx)*4,a=mask[k+3]/255;if(a<.01)continue;
   const point=G.project({x:x+xx+.5,y:y+yy+.5}),u=point.u/G.width,t=clamp((u+.495)/.99,0,1)*(sections.length-1),i=Math.floor(t),j=Math.min(i+1,sections.length-1),f=t-i,A=sections[i],B=sections[j];
@@ -1822,7 +1887,7 @@ function renderLipClearcoat(c,W,H,face,s,G,finish,layout,lighting){
   const sourceY=d[k]*.2126+d[k+1]*.7152+d[k+2]*.0722,gate=clamp((sourceY+20)/150,.48,1.35);
   // Short broken reflections follow the curved lip band. They are not a
   // continuous white bar; the mouth opening is removed by the vermilion mask.
-  let reflection=(broad*(8+18*coat)+streak*(29+110*coat)*(1-rough*.42)*(0.17+rib*.93)+second*streak*42*coat)*(lower?1:.47);
+  let reflection=(broad*(8+18*coat)+streak*(29+110*coat)*(1-rough*.42)*(0.17+(rib*sharpK+.36*(1-sharpK))*.93)+second*sharpK*streak*42*coat)*(lower?1:.47);
   if(!lower){const cupid=Math.exp(-Math.pow((u-center-.055)/.034,2))*Math.exp(-Math.pow((v-.72)/(.09+rough*.08),2));reflection+=cupid*18*coat;}
   reflection*=q*edge*a*gate;
   const alpha=Math.min(.94,1-Math.exp(-reflection/38));
@@ -1846,7 +1911,11 @@ function renderLips(c,W,H,face){
  const opacity={matte:.96,satin:.86,tint:.70,gloss:.83}[finish]||.86;
  const lightLower=v4LipLightAnchor(c,G,W,H,pair(G.lower,G.bottom,.53)),lightUpper=v4LipLightAnchor(c,G,W,H,pair(G.upper,G.top,.51));
  const cosmetic=layout==='tint'?{...s,sheer:Math.max(65,Number(s.sheer??40)),coverage:Math.min(52,Number(s.coverage??65))}:layout==='velvet'?{...s,sheer:Math.max(0,Number(s.sheer??40)-12*velvet),coverage:Math.min(100,Number(s.coverage??65)+18*velvet)}:s;
- const options=(color,strength=1,mode='lip',edge=feather)=>({face,protectOcclusion:true,cosmetic,color,mode,strength:intensity*strength,feather:edge});
+ // V4.23: lipstick edge melts into the skin with the photo's own softness, and thins out at the
+ // mouth corners where real lipstick is never fully applied.
+ const lipBlur=Math.max(photoMatchBlur(face,W,1.15),G.width*(layout==='defined'?.010:.014)),half=G.width*.5;
+ const edgeFade=(px,py)=>{const u=Math.abs((px-G.o.x)*G.tx+(py-G.o.y)*G.ty)/half,k=clamp((1.0-u)/.16,0,1);return .25+.75*k*k*(3-2*k);};
+ const options=(color,strength=1,mode='lip',edge=feather)=>({face,protectOcclusion:true,cosmetic,color,mode,strength:intensity*strength,feather:edge,photoBlur:lipBlur,softEdge:true,edgeFade});
  // Base pigment is subtly weighted along the photographed lip thickness.
  // Inner gradients are attached to BOTH inner rims; the center of an open
  // mouth is never used as the colour center of the lip surface.
@@ -1873,7 +1942,7 @@ function renderLips(c,W,H,face){
  if(layout==='defined'){
   maskPatch(c,W,H,G.bb,m=>v4ClipLip(m,G,()=>{
    m.beginPath();pathPoly(m,G.outer);m.strokeStyle='rgba(255,255,255,.78)';m.lineWidth=G.width*.014;m.lineJoin='round';m.stroke();
-  }),options(s.color2||s.color,.35,'lip',Math.max(.2,feather*.40)));
+  }),{...options(s.color2||s.color,.35,'lip',Math.max(.2,feather*.40)),softEdge:false,photoBlur:Math.max(lipBlur*.8,G.width*.008)});
  }
  // V4.21: finishes are physically different, not only different opacity.
  if(finish==='matte')v421LipMatte(c,G,intensity*(layout==='velvet'?1:.85),velvet);
@@ -2105,7 +2174,7 @@ function renderLiner(c,W,H,face){
     const p=G.at(1.12,-G.width*.016),q=G.at(.91,v47SmoothEyeCurve(G,G.upper,.91));m.lineWidth=width*.60;m.beginPath();m.moveTo(q.x,q.y);m.lineTo(p.x,p.y);m.stroke();
    }
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:s,color:s.color,mode:'ink',strength:s.intensity/100*.98,feather:G.width*(.0012+.020*Math.pow(1-sharpness,1.4))});
+  },{face,protectOcclusion:true,cosmetic:s,color:s.color,mode:'ink',strength:s.intensity/100*.98,feather:G.width*(.0012+.020*Math.pow(1-sharpness,1.4)),photoBlur:photoMatchBlur(face,W,.5+.4*(1-sharpness)),inkBoost:true});
  }
 }
 function v4QuadraticPoint(a,b,c,t){const q=1-t;return {x:q*q*a.x+2*q*t*b.x+t*t*c.x,y:q*q*a.y+2*q*t*b.y+t*t*c.y};}
@@ -2128,6 +2197,9 @@ function v47SmoothEyeCurve(G,curve,u){
 function v47CubicPoint(a,b,c,d,t){const q=1-t;return {x:q*q*q*a.x+3*q*q*t*b.x+3*q*t*t*c.x+t*t*t*d.x,y:q*q*q*a.y+3*q*q*t*b.y+3*q*t*t*c.y+t*t*t*d.y};}
 // Visible mascara and extension fibers. The lower lid never depends on how
 // wide the eye is open; all dimensions remain tied to original-source geometry.
+// V4.23: on a frontal photo the upper lashes point toward the camera, so only a short,
+// foreshortened part of each hair is visible above the lid. Full "profile" lengths looked drawn on.
+const LASH_REAL=.66,LASH_MAX_REACH=.26;
 const V45_LASH_PROFILES={
  natural:{count:24,height:.16,width:.010,spread:.80,curl:.58,lower:.072},
  length:{count:26,height:.255,width:.0105,spread:.94,curl:.65,lower:.115},
@@ -2211,7 +2283,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
   return {p:{x:t*G.width,y:-v},tan,n};
  };
  const addStrand=(R,angle,len,width,curve,tipAngle,sy,alpha,taper=.84)=>{
-  if(sy<0){const u=1-R.x/G.width,gap=v47SmoothEyeCurve(G,G.brow,u)+R.y;len=Math.min(len,G.width*.44,Math.max(G.width*.09,gap*.90));}
+  if(sy<0){const u=1-R.x/G.width,gap=v47SmoothEyeCurve(G,G.brow,u)+R.y;len=Math.min(len*LASH_REAL,G.width*LASH_MAX_REACH,Math.max(G.width*.07,gap*.58));}
   const local=[{...R}],steps=14,ds=len/steps,ph0=angle*Math.PI/180,phT=tipAngle*Math.PI/180;
   let x=R.x,y=R.y;
   for(let k=1;k<=steps;k++){const s=(k-.5)/steps,ph=ph0+(phT-ph0)*curve*Math.pow(s,1.15);x=clamp(x+Math.sin(ph)*ds,-G.width*.02,G.width*1.02);y+=sy*Math.cos(ph)*ds;local.push({x,y});}
@@ -2328,7 +2400,7 @@ function v45LashGeometry(face,side,setting,W,H){
    {const k=clamp((1-u)/.30,0,1);envelope*=.50+.50*k*k*(3-2*k);}
    const isCenter=Math.abs(rel)<.6,companion=profile.manga?.50+.16*noise:profile.wet?.78+.10*noise:.64+.20*v45LashNoise(i+j+47,seed);
    const spike=fibers>1?(isCenter?1:companion):(.56+.44*v45LashNoise(i+23,seed));
-   const h=Math.min(G.width*.44,G.width*profile.height*lengthGain*envelope*spike,clearance*.92);
+   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*spike*LASH_REAL,clearance*.58);
    const slope=(v47SmoothEyeCurve(G,G.upper,Math.min(.98,u+.025))-v47SmoothEyeCurve(G,G.upper,Math.max(.02,u-.025)))/(G.width*.05);
    let fan=(u-.51)*profile.spread*1.24-clamp(slope,-1.1,1.1)*.45-(profile.outer?.25:0)+(v45LashNoise(i+71,seed)-.5)*.16;
    if(fan>0)fan=Math.min(fan*.45,.34);
@@ -2344,7 +2416,7 @@ function v45LashGeometry(face,side,setting,W,H){
   if(fibers>1&&i<count-1){
    const u=clamp(u0+.48/count,.03,.96),v=v47SmoothEyeCurve(G,G.upper,u),p=G.at(u,v-G.width*.0012);
    const envelope=.42+.52*Math.sin(Math.PI*u)*(profile.outer?1.30-u*.68:1),clearance=Math.max(G.width*.09,v47SmoothEyeCurve(G,G.brow,u)-v);
-   const h=Math.min(G.width*.44,G.width*profile.height*lengthGain*envelope*(profile.manga?.42:.52),clearance*.92);
+   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*(profile.manga?.42:.52)*LASH_REAL,clearance*.58);
    const fan=(u-.51)*profile.spread*1.05-(profile.outer?.18:0),tipU=u+fan*h/G.width*(1.12-.35*curve);
    const c1=G.at(u+fan*h/G.width*.25,v+h*.22),c2=G.at(u+(tipU-u)*.88,v+h*.84),tip=G.at(tipU,v+h*(.86+.12*curve));
    strands.push({root:p,p,control:c1,c1,c2,tip,width:Math.max(G.width*profile.width*.38,sourceScale*.30)*thickness,alpha:upperAmount*.62*(.74+.26*mascara),u,height:h,lower:false,taper:.90,baby:true});
@@ -2441,7 +2513,7 @@ function renderLashes(c,W,H,face){
    }
    m.fillStyle='#fff';for(const strand of R.strands){m.globalAlpha=clamp(strand.alpha,0,1);v45LashRibbon(m,strand);}
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:{...s,texture:100,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,feather:Math.max(.08,R.G.width*.0015)});
+  },{face,protectOcclusion:true,cosmetic:{...s,texture:100,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.5),inkBoost:true});
  }
 }
 // END V4.5 NATURAL LASHES
