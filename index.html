@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.19 – Finish Skin, ánh sáng và màu; chỉnh riêng từng bước, hoàn tác, tải PNG hoặc lưu dự án RAY để tiếp tục.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.21 – Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -396,7 +396,7 @@ body.tool-detailed .lash-scope button{flex:1}
 .quick-tools .dock-label{padding:0 4px 0 2px;font-size:10px;letter-spacing:.07em;text-transform:uppercase;color:#a99a80;white-space:nowrap}
 @media(max-width:340px){.fin-grid,.fin-toggles{grid-template-columns:1fr}}
 
-/* V4.19 — one bounded drawer scrolls above navigation and phone safe areas. */
+/* V4.20 — one bounded drawer scrolls above navigation and phone safe areas. */
 :root{--sheet-h:clamp(300px,52vh,480px)}
 @supports(height:1dvh){:root{--sheet-h:clamp(300px,52dvh,480px)}}
 body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
@@ -469,7 +469,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 
-/* V4.19: a final skin match stays inside the drawer, after makeup controls. */
+/* V4.20: a final skin match stays inside the drawer, after makeup controls. */
 .skin-harmony{margin:18px 0 6px;padding:13px 12px;display:flex;flex-direction:column;gap:10px;border:1px solid #79613d;border-radius:12px;background:#252119}
 .skin-harmony h3{font-size:13px;color:var(--gold2)}
 .skin-harmony p,.fin-variant-note{font-size:11px;line-height:1.6;color:#c8bba5}
@@ -484,7 +484,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
 .fin-look [data-layout="pearl"]{background:linear-gradient(120deg,#252c36,#36303e,#35352e)}
 .fin-look [data-layout="sun"]{background:linear-gradient(120deg,#30291f,#493a25)}
 
-/* V4.19 — recognition, Finish hub, independent steps and two save paths. */
+/* V4.20 — recognition, Finish hub, independent steps and two save paths. */
 .panel-scroll[data-active="steps"]>[data-panel="steps"],.panel-scroll[data-active="save"]>[data-panel="save"]{display:block}
 .steps-panel,.save-panel{padding:14px 12px 24px}
 .workflow-history{display:flex;gap:8px;margin-bottom:12px}.workflow-history button{flex:1;min-height:42px;font-size:12px}
@@ -505,12 +505,56 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
 .steps-panel .makeup-shortcuts,.steps-panel #layerDetails>p:not(.warn){display:none}
 .steps-panel .makeup-step-title{padding:0 0 8px;border:0;background:none}.steps-panel .makeup-step-title h3{font-size:15px;margin:0 0 5px}
 .steps-panel .layer-section{padding:6px 0 12px}.steps-panel .layer-strip{margin-top:10px}
+
+/* V4.20 — sliders are editable in Steps and in saved formula drafts. */
+.steps-recipe-save{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;padding:12px;margin-bottom:12px;border:1px solid #79613d;border-radius:10px;background:#282219}
+.steps-recipe-save>label,.steps-recipe-actions,.steps-recipe-save>p{grid-column:1/-1}
+.steps-recipe-save>label{font-size:12px;color:var(--gold2)}
+.steps-recipe-save input[type=text]{min-width:0;width:100%;min-height:42px;padding:9px;border:1px solid #766044;border-radius:7px;background:#141316;color:var(--paper);font:inherit;font-size:13px}
+.steps-recipe-save>button{font-size:12px;padding:8px 10px}
+.steps-recipe-actions{display:flex;gap:7px}.steps-recipe-actions button{flex:1;font-size:11px;min-height:36px;padding:7px}
+.steps-recipe-save p{font-size:11px;line-height:1.6;color:#b6d5bc;margin:0}
+.inline-layer-editor{flex:1 0 100%;min-width:0;width:100%;display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.inline-quick-sliders{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 12px}
+.inline-layer-editor .inline-control{display:flex;flex-direction:column;gap:5px;min-width:0;margin:0}
+.inline-control-head{display:flex;justify-content:space-between;gap:6px;align-items:flex-start;font-size:11px;line-height:1.5;color:#ded2c0}
+.inline-control-head output{color:var(--gold2);font-variant-numeric:tabular-nums;white-space:normal;font-size:10px;flex:0 0 auto;max-width:45%;text-align:right}
+.inline-layer-editor input[type=range]{display:block;min-width:0;width:100%;height:36px;min-height:36px;margin:0;accent-color:var(--gold);touch-action:pan-y}
+.inline-layer-editor input[type=color]{width:100%;height:38px;border:1px solid #79613e;border-radius:6px;padding:3px;background:#211e25}
+.inline-layer-editor input[type=checkbox]{width:20px;height:20px;margin:4px 0;accent-color:var(--gold)}
+.inline-layer-editor select{width:100%;min-height:38px;min-width:0;padding:7px;border:1px solid #6b583d;border-radius:7px;background:#252129;color:var(--paper);font:inherit;font-size:11px}
+.inline-layer-editor .inline-scope{display:flex;gap:10px;align-items:center;margin:0;font-size:11px;color:#c6b493}
+.inline-scope select{flex:1;min-width:0}
+.inline-more-controls{border-top:1px solid #544432;padding-top:5px}
+.inline-more-controls>summary{cursor:pointer;min-height:36px;padding:7px 0;font-size:11px!important;line-height:1.5;letter-spacing:0!important;color:#e0c58f}
+.inline-more-controls[open]{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.inline-more-controls>summary{grid-column:1/-1}
+.recipe-editor-layer{margin:12px 0;padding:12px;border:1px solid #6b573c;border-radius:10px;background:#211e23}
+.recipe-editor-layer-head{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.recipe-editor-layer-head h4{flex:1;font-size:14px;color:var(--gold2);margin:0;min-width:100px}
+.recipe-editor-layer-head .recipe-layer-toggle{display:flex;gap:5px;align-items:center;margin:0;font-size:11px}
+.recipe-editor-history{display:flex;gap:8px;margin:10px 0}.recipe-editor-history button{flex:1;font-size:11px;min-height:36px;padding:7px}
+.recipe-editor-dialog .recipe-preview{display:flex;align-items:center;gap:7px;margin:12px 0;font-size:12px;line-height:1.5}
+.recipe-editor-save-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}.recipe-editor-save-actions button{min-height:42px;padding:8px;font-size:12px;white-space:normal}
+#recipeEditorStatus{font-size:11px;line-height:1.6;color:#cdbb9f}
+@media(max-width:340px){.inline-quick-sliders,.inline-more-controls[open]{grid-template-columns:1fr}.steps-recipe-save{grid-template-columns:1fr}.steps-recipe-actions{flex-direction:column}}
+
+.steps-recipe-save{gap:6px;padding:8px 10px}
+.steps-recipe-save>label,.steps-recipe-save>p{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;margin:0;padding:0}
+.steps-recipe-actions button{min-height:26px;border:0;background:none;padding:3px;color:var(--gold2);font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.steps-panel .workflow-history{margin-bottom:9px}.steps-panel .workflow-history button{min-height:36px;padding:7px}
+.recipe-editor-dialog{scroll-padding-top:70px}
+.recipe-editor-dialog>.dialog-title{position:sticky;top:-24px;z-index:3;padding:10px 0;background:#212124;border-bottom:1px solid #655136}
+.recipe-editor-dialog .dialog-title h2{flex:1;min-width:0;font-size:22px}.recipe-editor-dialog .dialog-title .primary{flex:0 0 auto;min-height:36px;padding:7px 9px;font-size:11px}
+@media(max-width:760px){.recipe-editor-dialog>.dialog-title{top:-17px}.recipe-editor-dialog .dialog-title h2{font-size:20px}}
+.steps-panel .layer-row .layer-chip{flex:1 1 0;flex-basis:0;min-width:90px;min-height:36px;font-size:12px}
+.steps-panel .layer-row .layer-toggle-label,.steps-panel .layer-row>.layer-delete{flex:0 0 auto}
+.inline-layer-order{grid-column:1/-1;display:flex;align-items:center;gap:8px;color:#cdb995;font-size:11px}
+.inline-layer-order .layer-move{min-width:36px;min-height:34px}
 </style>
 </head>
 <body>
   <header class="topbar">
     <a href="#" class="brand" aria-label="RAY PHOTO – Makeup Lab"><strong>RAY <span>PHOTO</span></strong><small>by Linh Linh</small></a>
-    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.19</b></div>
+    <div class="lab-badge"><span class="dot"></span> MAKEUP LAB <b>V4.21</b></div>
     <div class="header-actions"><label for="upload" class="upload-button" title="Chọn ảnh" aria-label="Chọn ảnh"><span class="plus" aria-hidden="true">＋</span><span class="lbl">Chọn ảnh</span></label><input id="upload" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,image/avif"><button class="outline small" id="btnHelp" type="button" aria-label="Hướng dẫn" title="Hướng dẫn"><span class="lbl-d">Hướng dẫn</span><span class="lbl-m" aria-hidden="true">?</span></button><button class="primary small" id="btnExport" disabled type="button">Tải ảnh</button></div>
   </header>
 
@@ -541,7 +585,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.19</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.21</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -632,6 +676,11 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
 
 
       <section id="stepsPanel" class="steps-panel" data-panel="steps" aria-labelledby="makeupStepsTitle">
+        <form class="steps-recipe-save" id="stepsRecipeForm">
+          <label for="stepsRecipeName">Công thức của các bước đang chỉnh</label><input id="stepsRecipeName" type="text" maxlength="80" placeholder="Đặt tên công thức">
+          <button id="btnSaveStepsRecipe" type="submit" class="primary" disabled>Lưu công thức</button>
+          <div class="steps-recipe-actions"><button id="btnUpdateStepsRecipe" type="button" class="outline" disabled>Cập nhật công thức</button><button id="btnStepsRecipes" type="button" class="outline">Công thức đã lưu</button></div><p id="stepsRecipeStatus" role="status"></p>
+        </form>
         <div class="workflow-history"><button id="btnUndoSteps" type="button" class="outline" disabled>↶ Hoàn tác</button><button id="btnRedoSteps" type="button" class="outline" disabled>↷ Làm lại</button></div>
 
       <div class="makeup-step-title"><h3 id="makeupStepsTitle">Các bước makeup</h3><p id="makeupLayoutTarget">Mỗi hiệu ứng là một lớp có thể chỉnh và sắp thứ tự.</p><div class="makeup-shortcuts"><button type="button" id="btnOpenAge" class="outline small" disabled>Trẻ / già da</button><button type="button" id="btnOpenFinish" class="outline small" disabled>Finish Skin · Pha vùng</button></div></div>      <section class="layer-section" aria-label="Quản lý lớp trang điểm">
@@ -679,13 +728,24 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     <button id="btnOkHelp" class="primary block" type="button">Đã hiểu</button>
   </dialog>
   <dialog id="recipeDialog" class="recipe-dialog" aria-labelledby="recipeDialogTitle">
-    <div class="dialog-title"><h2 id="recipeDialogTitle">Layout trang điểm</h2><button class="mini" type="button" data-close-dialog="recipeDialog" aria-label="Đóng công thức">✕</button></div>
+    <div class="dialog-title"><h2 id="recipeDialogTitle">Công thức trang điểm</h2><button class="mini" type="button" data-close-dialog="recipeDialog" aria-label="Đóng công thức">✕</button></div>
     <p id="recipeCurrentLabel"></p><label for="recipeName">Tên layout trang điểm</label><input id="recipeName" type="text" maxlength="80" value="Look của tôi" placeholder="Ví dụ: Satin hồng trong">
-    <div class="dialog-actions"><button id="btnSaveRecipe" type="button" class="primary">Lưu thành layout mới</button><button id="btnUpdateRecipe" type="button" class="outline" disabled>Cập nhật layout</button><button id="btnExportCurrentRecipe" type="button" class="outline" disabled>Chia sẻ layout đang chỉnh</button></div>
+    <div class="dialog-actions"><button id="btnSaveRecipe" type="button" class="primary">Lưu công thức mới</button><button id="btnUpdateRecipe" type="button" class="outline" disabled>Cập nhật layout</button><button id="btnExportCurrentRecipe" type="button" class="outline" disabled>Chia sẻ layout đang chỉnh</button></div>
     <p id="recipeMessage" class="recipe-message" role="status" aria-live="polite">Công thức lưu trên trình duyệt này. Tải tệp để sao lưu hoặc gửi cho người khác.</p>
     <h3>Layout của bạn</h3><button id="btnUndoRecipeDelete" class="text-button" type="button" hidden>Khôi phục công thức vừa xóa</button><div id="recipeList"></div>
     <div class="recipe-import"><h3>Nhập layout được chia sẻ</h3><label for="recipeImportFile" class="outline save-file-label">Chọn tệp layout</label><input id="recipeImportFile" type="file" class="recipe-file" accept=".json,.raymakeup,application/json"><label for="recipeImportText">Hoặc dán mã công thức</label><textarea id="recipeImportText" rows="3" spellcheck="false" placeholder="Dán mã công thức RAY Makeup tại đây"></textarea><button id="btnImportRecipeText" type="button" class="outline small">Nhập layout từ mã</button></div>
     <div class="dialog-actions"><button type="button" class="primary" data-close-dialog="recipeDialog">Quay lại chỉnh ảnh</button></div>
+  </dialog>
+
+  <dialog id="recipeEditorDialog" class="recipe-dialog recipe-editor-dialog" aria-labelledby="recipeEditorTitle">
+    <div class="dialog-title"><h2 id="recipeEditorTitle">Chỉnh công thức</h2><button id="btnRecipeEditorQuickSave" type="button" class="primary small">Cập nhật</button><button type="button" class="mini" data-close-dialog="recipeEditorDialog" aria-label="Đóng chỉnh công thức">✕</button></div>
+    <label for="recipeEditorName">Tên công thức</label><input id="recipeEditorName" type="text" maxlength="80">
+    <p id="recipeEditorStatus" role="status"></p><div class="recipe-editor-history"><button id="btnRecipeEditorUndo" type="button" class="outline">↶ Hoàn tác công thức</button><button id="btnRecipeEditorRedo" type="button" class="outline">↷ Làm lại</button></div>
+    <label class="toggle recipe-preview"><input id="recipeEditorPreview" type="checkbox"><span>Xem trực tiếp trên ảnh đang chọn</span></label>
+    <div id="recipeEditorLayers"></div>
+    <div class="add-layer"><select id="recipeEditorAddType" aria-label="Thêm bước vào công thức"></select><button id="btnRecipeEditorAdd" type="button" class="outline">＋ Thêm bước</button></div>
+    <p id="recipeEditorMessage" class="recipe-message" role="status"></p>
+    <div class="recipe-editor-save-actions"><button id="btnRecipeEditorUpdate" type="button" class="primary">Cập nhật công thức</button><button id="btnRecipeEditorCopy" type="button" class="outline">Lưu bản mới</button><button id="btnRecipeEditorApply" type="button" class="outline">Áp dụng bản chỉnh lên ảnh</button><button id="btnRecipeEditorBack" type="button" class="text-button">Quay lại thư viện</button></div>
   </dialog>
   <dialog id="shareRecipeDialog" class="recipe-dialog" aria-labelledby="shareRecipeTitle">
     <div class="dialog-title"><h2 id="shareRecipeTitle">Chia sẻ layout trang điểm</h2><button type="button" class="mini" data-close-dialog="shareRecipeDialog" aria-label="Đóng chia sẻ">✕</button></div><h3 id="shareRecipeName"></h3><p id="shareRecipeMessage" role="status"></p>
@@ -783,6 +843,15 @@ const V4_LAYOUTS={
 };
 for(const tab of ['finish','skinlight','gloss','highlight']){if(!TABS[tab].controls.some(c=>c[0]==='color'))TABS[tab].controls.push(['color','Màu ánh sáng','color']);TABS[tab].controls.push(['colorAmount','Đậm màu ánh sáng','range',0,100,1]);}
 TABS.beautymarks={title:'Tàn nhang · Nốt ruồi',summary:'Chấm nốt ruồi hoặc vẽ cụm tàn nhang tự do lên ảnh. Bút Xóa chỉ bỏ nốt đã vẽ; từng người giữ lớp riêng.',sides:false,controls:[['style','Kiểu chấm','choices',{freckles:'Tàn nhang',mole:'Nốt ruồi'}],['color','Màu nốt','color'],['intensity','Độ đậm cả lớp','range',0,100,1],['size','Cỡ nốt (% mặt)','range',.2,3,.05],['opacity','Độ đậm nốt mới','range',10,100,1],['softness','Mềm viền nốt','range',0,100,1],['spread','Cỡ bút tàn nhang','range',2,18,1],['density','Số nốt mỗi lần chấm','range',1,20,1]]};
+// V4.21: a control is shown only when the chosen layout / finish actually uses it.
+const LIGHT_TINTED=s=>String(s.color||'#ffffff').toLowerCase()!=='#ffffff';
+const LIP_SHINE=s=>['gloss','satin','clear'].includes(s.finish)||s.layout==='glass';
+const CONTROL_WHEN={
+ lip:{inner:s=>['gradient','tint'].includes(s.layout)||s.finish==='tint',velvet:s=>s.layout==='velvet'||(s.finish==='matte'&&s.layout!=='glass'),color2:s=>['ombre','defined'].includes(s.layout),gloss:LIP_SHINE,glossCoat:LIP_SHINE,glossRoughness:LIP_SHINE},
+ shadow:{color2:s=>!['wash','shimmer','lower'].includes(s.style),accent:s=>!['wash','shimmer'].includes(s.style)},
+ autolight:{neckBalance:s=>s.neck===true},
+ finish:{colorAmount:LIGHT_TINTED},skinlight:{colorAmount:LIGHT_TINTED},gloss:{colorAmount:LIGHT_TINTED}
+};
 const COSMETIC_TOOLS=['brow','lip','blush','shadow','liner','lashes'];
 for(const tab of COSMETIC_TOOLS){
  const key=tab==='brow'?'shape':tab==='lip'?'layout':'style';
@@ -1351,7 +1420,7 @@ function activateLayerConfig(s,tab){
  else s.intensity=({primer:60,cushion:58,powder:60,gloss:60,brow:78,lip:82,blush:68,shadow:60,liner:62,lashes:78,skintone:48,foundation:55,concealer:48,contour:52,highlight:50})[tab]??60;
 }
 function renderLayerStrip(){
- const container=$('layerStrip');if(!container)return;
+ const container=$('layerStrip');if(!container)return;if(inlineLayerUpdating){syncInlineLayerEditors(container);renderRecipeStatus();renderStepSaves();return;}
  const face=selectedFace(),settings=face?.settings,order=faceLayerOrder(face),active=layerListOf(face),labels=Object.fromEntries(LAYER_ORDER);
  $('layerSummary').textContent=face?active.length+' lớp · '+active.filter(id=>layerEnabled(settings,id)).length+' đang bật':'Chưa chọn khuôn mặt';$('btnRecommendedOrder').disabled=!face;
  const notice=$('layerOrderNotice');if(notice){const colorIds=['contour','blush','highlight','gloss','skinlight'],baseIds=['autolight','skin','skintexture','age','skintone','primer','foundation','cushion','concealer'];const applied=active.filter(id=>layerEnabled(settings,id));const lateBase=applied.some((id,i)=>baseIds.includes(id)&&applied.slice(0,i).some(x=>colorIds.includes(x)));notice.textContent=lateBase?'Thứ tự riêng: đang có lớp nền sau lớp màu. Bấm Thứ tự gợi ý để đưa nền về trước.':'Thứ tự xử lý được giữ khi chỉnh. Bật/tắt từng lớp để so sánh tác dụng trên ảnh.';notice.classList.toggle('warn',lateBase);}
@@ -1361,9 +1430,9 @@ function renderLayerStrip(){
   button.className='layer-chip'+(on?' on':'');button.textContent=(on?(active.indexOf(id)+1)+'. ':'○ ')+labels[id]+(on&&!layerEnabled(settings,id)?' · Tắt / 0%':'');button.disabled=!face;
   button.addEventListener('click',()=>selectTool(id));
   if(on){const row=document.createElement('div');row.className='layer-row'+(!layerEnabled(settings,id)?' muted':'');row.dataset.layer=id;row.append(button);
-   for(const [direction,label]of [['up','↑'],['down','↓']]){const move=document.createElement('button');move.type='button';move.className='layer-move';move.dataset.layer=id;move.dataset.layerMove=direction;move.textContent=label;move.setAttribute('aria-label',labels[id]+(direction==='up'?' vẽ sớm hơn':' phủ sau hơn'));move.disabled=direction==='up'?active[0]===id:active.at(-1)===id;move.addEventListener('click',()=>moveLayer(id,direction));row.append(move)}const toggleLabel=document.createElement('label');toggleLabel.className='layer-toggle-label';const toggle=document.createElement('input');toggle.type='checkbox';toggle.checked=layerEnabled(settings,id);toggle.dataset.layerToggle=id;toggle.setAttribute('aria-label','Bật / tắt lớp '+labels[id]);toggle.addEventListener('change',()=>toggleMakeupLayer(id,toggle.checked));toggleLabel.append(toggle,document.createTextNode('Bật lớp'));const remove=document.createElement('button');remove.type='button';remove.className='layer-delete';remove.dataset.layerDelete=id;remove.textContent='Xóa lớp';remove.setAttribute('aria-label','Xóa lớp '+labels[id]);remove.addEventListener('click',()=>deleteMakeupLayer(id));row.append(toggleLabel,remove);const summary=document.createElement('p');summary.className='step-parameters';summary.textContent=stepParameterSummary(face,id);row.append(summary);container.append(row);
+   for(const [direction,label]of [['up','↑'],['down','↓']]){const move=document.createElement('button');move.type='button';move.className='layer-move';move.dataset.layer=id;move.dataset.layerMove=direction;move.textContent=label;move.setAttribute('aria-label',labels[id]+(direction==='up'?' vẽ sớm hơn':' phủ sau hơn'));move.disabled=direction==='up'?active[0]===id:active.at(-1)===id;move.addEventListener('click',()=>moveLayer(id,direction));row.append(move)}const toggleLabel=document.createElement('label');toggleLabel.className='layer-toggle-label';const toggle=document.createElement('input');toggle.type='checkbox';toggle.checked=layerEnabled(settings,id);toggle.dataset.layerToggle=id;toggle.setAttribute('aria-label','Bật / tắt lớp '+labels[id]);toggle.addEventListener('change',()=>toggleMakeupLayer(id,toggle.checked));toggleLabel.append(toggle,document.createTextNode('Bật lớp'));const remove=document.createElement('button');remove.type='button';remove.className='layer-delete';remove.dataset.layerDelete=id;remove.textContent='Xóa lớp';remove.setAttribute('aria-label','Xóa lớp '+labels[id]);remove.addEventListener('click',()=>deleteMakeupLayer(id));row.append(toggleLabel,remove);const editor=makeInlineLayerEditor(liveInlineTarget(face,id)),orderTools=document.createElement('div');orderTools.className='inline-layer-order';const orderLabel=document.createElement('span');orderLabel.textContent='Thứ tự phủ';orderTools.append(orderLabel,...row.querySelectorAll('.layer-move'));editor.querySelector('.inline-more-controls').append(orderTools);row.append(editor);container.append(row);
   }else inactive.append(button);
- }container.append(inactive);renderRecipeStatus();renderStepSaves();
+ }container.append(inactive);syncInlineLayerEditors(container);renderRecipeStatus();renderStepSaves();
 }
 function clearGuidesForMakeup(){
  state.showSkinMask=false;
@@ -1411,7 +1480,7 @@ function cosmeticBlurTile(source,x,y,w,h,radius,alphaOnly=false){
 function maskPatch(c,W,H,box,painter,opts={}){
  if(!box||!c)return;
  const cosmetic=opts.cosmetic,sheer=clamp(Number(cosmetic?.sheer??40)/100,0,1),coverage=clamp(Number(cosmetic?.coverage??65)/100,0,1),texture=clamp(Number(cosmetic?.texture??85)/100,0,1);
- const feather=(opts.feather||0)*(cosmetic?(.35+Number(cosmetic.softness??65)/75):1),pad=Math.ceil(feather*3+3);
+ const softK=clamp(Number(cosmetic?.softness??65)/100,0,1),feather=(opts.feather||0)*(cosmetic?(.22+1.55*Math.pow(softK,1.25)):1),pad=Math.ceil(feather*3+3);
  const x=clamp(Math.floor(box.x0-pad),0,W),y=clamp(Math.floor(box.y0-pad),0,H),right=clamp(Math.ceil(box.x1+pad),0,W),bottom=clamp(Math.ceil(box.y1+pad),0,H),w=right-x,h=bottom-y;
  if(w<=0||h<=0||w*h>20_000_000)return;
  const mask=newCanvas(w,h),m=mask.getContext('2d',{willReadFrequently:true});
@@ -1429,13 +1498,13 @@ function maskPatch(c,W,H,box,painter,opts={}){
  }
  const mdata=m.getImageData(0,0,w,h).data;let featherData=null;
  if((opts.mode==='blush'||opts.softFibers)&&feather>.05){featherData=cosmeticBlurTile(mask,0,0,w,h,feather,true);}
- else if(feather>.6){const blur=newCanvas(w,h),b=blur.getContext('2d',{willReadFrequently:true});if('filter' in b){b.filter=`blur(${feather.toFixed(2)}px)`;b.drawImage(mask,0,0);b.filter='none';featherData=b.getImageData(0,0,w,h).data;}}
+ else if(feather>.35){const blur=newCanvas(w,h),b=blur.getContext('2d',{willReadFrequently:true});if('filter' in b){b.filter=`blur(${feather.toFixed(2)}px)`;b.drawImage(mask,0,0);b.filter='none';featherData=b.getImageData(0,0,w,h).data;}}
  const original=c.getImageData(x,y,w,h),arr=original.data,strength=opts.strength??1,mode=opts.mode||'tint',adaptiveLight=cosmetic?cosmeticSourceLight(W,H,x,y,w,h,mdata,mode):{gain:1,bright:0},rgb=colorRGB(opts.color||'#a04040'),tintGains=lightColorGains(opts.color,opts.colorAmount);
  let lowPass=null;
  if(cosmetic&&texture<.99&&coverage>0){
   const ref=newCanvas(w,h),rc=ref.getContext('2d',{willReadFrequently:true});
-  if(mode==='blush')lowPass=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(.35,(w+h)*.0065));
-  else if('filter' in rc){rc.filter=`blur(${Math.max(.3,(w+h)*.006)}px)`;rc.drawImage(c.canvas,x,y,w,h,0,0,w,h);lowPass=rc.getImageData(0,0,w,h).data;}
+  if(mode==='blush')lowPass=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(.35,(w+h)*.011));
+  else if('filter' in rc){rc.filter=`blur(${Math.max(.3,(w+h)*.011)}px)`;rc.drawImage(c.canvas,x,y,w,h,0,0,w,h);lowPass=rc.getImageData(0,0,w,h).data;}
  }
  for(let k=0;k<arr.length;k+=4){const a0=mdata[k+3]/255;if(a0<.003)continue;
   // Multiplication by the hard mask prevents soft-edge leaks outside the lip/brow contour.
@@ -1460,13 +1529,13 @@ function maskPatch(c,W,H,box,painter,opts={}){
   }else if(cosmetic&&['brow','lip','shadow','tint'].includes(mode)){
    const Y=lum*255,C=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
    const low=lowPass?lowPass[k]*.2126+lowPass[k+1]*.7152+lowPass[k+2]*.0722:Y;
-   const detail=(Y-low)*(1-texture)*coverage*.78;
-   let targetY=Y-detail+(C-Y)*(.08+.16*coverage)*(1-sheer);
+   const detail=(Y-low)*(1-texture)*(.35+.65*coverage)*.98;
+   let targetY=Y-detail+(mode==='shadow'?(Math.min(0,C-Y)*(.20+.30*coverage)*(1-sheer*.55)+Math.max(0,C-Y)*.04*clamp((Y-60)/60,0,1)):(C-Y)*(.08+.16*coverage)*(1-sheer));
    if(['lip','blush','shadow','tint'].includes(mode)&&Y>C)targetY-=(Y-C)*adaptiveLight.bright*.07*coverage;
    if(mode==='brow')targetY=Y-detail-(Y-C)*(.34+.25*coverage)*(1-sheer*.45);
    const saturation=(mode==='brow'?.55:mode==='blush'?.72:1.02)*(.68+.58*coverage)*(1-sheer*.34);
    const lightScale=clamp(.60+Y/255*.58,.55,1.16);
-   tr=targetY+(rgb[0]-C)*saturation*lightScale;tg=targetY+(rgb[1]-C)*saturation*lightScale;tb=targetY+(rgb[2]-C)*saturation*lightScale;
+   const inkGuard=mode==='shadow'?clamp((Y-38)/70,.15,1):1;tr=targetY+(rgb[0]-C)*saturation*lightScale*inkGuard;tg=targetY+(rgb[1]-C)*saturation*lightScale*inkGuard;tb=targetY+(rgb[2]-C)*saturation*lightScale*inkGuard;
   }else if(mode==='brow'){
    const f=.40+lum*.72;tr=rgb[0]*f+r*.14;tg=rgb[1]*f+g*.14;tb=rgb[2]*f+b*.14;
   }else if(mode==='gloss'){
@@ -1706,7 +1775,7 @@ function lipCoatSections(G,count=97){
 }
 function lipCoatNoise(i){const n=Math.sin(i*12.9898+17.347)*43758.5453;return n-Math.floor(n);}
 function renderLipClearcoat(c,W,H,face,s,G,finish,layout,lighting){
- const amount=clamp(Number(s.gloss??28)/100,0,1),strength=finish==='gloss'?(layout==='glass'?1:.88):finish==='satin'?.20:0;
+ const glossRaw=clamp(Number(s.gloss??28)/100,0,1),amount=finish==='gloss'?.30+.70*glossRaw:finish==='satin'?.25+.75*glossRaw:glossRaw,strength=finish==='gloss'?(layout==='glass'?1.1:1):finish==='satin'?.42:0;
  if(amount===0||strength===0)return;
  const coat=clamp(Number(s.glossCoat??65)/100,0,1),rough=clamp(Number(s.glossRoughness??30)/100,0,1);if(coat===0)return;
  const bb=G.bb,x=bb.x0,y=bb.y0,w=bb.x1-x,h=bb.y1-y;if(w<1||h<1)return;
@@ -1786,7 +1855,28 @@ function renderLips(c,W,H,face){
    m.beginPath();pathPoly(m,G.outer);m.strokeStyle='rgba(255,255,255,.78)';m.lineWidth=G.width*.014;m.lineJoin='round';m.stroke();
   }),options(s.color2||s.color,.35,'lip',Math.max(.2,feather*.40)));
  }
+ // V4.21: finishes are physically different, not only different opacity.
+ if(finish==='matte')v421LipMatte(c,G,intensity*(layout==='velvet'?1:.85),velvet);
+ if(finish==='tint'&&layout!=='tint'&&layout!=='gradient')maskPatch(c,W,H,G.bb,m=>v4ClipLip(m,G,()=>{
+  const radiusX=G.width*(.27+innerSize*.20);v4LipGlow(m,G,pair(G.upper,G.top,.20),radiusX,G.topThickness*(.85+innerSize*.75),.92);v4LipGlow(m,G,pair(G.lower,G.bottom,.23),radiusX,G.bottomThickness*(.85+innerSize*.75),.92);
+ }),options(s.color,.48));
  renderLipClearcoat(c,W,H,face,s,G,finish,layout,{lower:lightLower,upper:lightUpper});
+}
+// Matte / velvet lipstick: flattens the photographed shine, softens creases
+// (soft-focus) and keeps the lip's own shading, so the mouth shape is unchanged.
+function v421LipMatte(c,G,q,velvet){
+ if(!(q>0))return;const bb=G.bb,x=Math.max(0,Math.floor(bb.x0)),y=Math.max(0,Math.floor(bb.y0)),w=Math.min(c.canvas.width,Math.ceil(bb.x1))-x,h=Math.min(c.canvas.height,Math.ceil(bb.y1))-y;if(w<2||h<2)return;
+ const mk=newCanvas(w,h),m=mk.getContext('2d',{willReadFrequently:true});m.translate(-x,-y);v4ClipLip(m,G,()=>{m.fillStyle='#fff';m.fillRect(x,y,w,h);});
+ if(state.skinSeg?.protection){m.setTransform(1,0,0,1,0,0);m.globalCompositeOperation='destination-out';m.drawImage(state.skinSeg.protection,-x,-y,c.canvas.width,c.canvas.height);}
+ const mask=cosmeticBlurTile(mk,0,0,w,h,Math.max(.5,G.width*.006),true),broad=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(1,G.width*.035)),fine=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(.6,G.width*.0065));
+ const raw=c.getImageData(x,y,w,h),d=raw.data;
+ for(let k=0;k<d.length;k+=4){const a=mask[k+3]/255*q;if(a<.004)continue;
+  const Y=d[k]*.2126+d[k+1]*.7152+d[k+2]*.0722,B=broad[k]*.2126+broad[k+1]*.7152+broad[k+2]*.0722;
+  // A shine spot is replaced by the surrounding lip colour (not just darkened, which would turn it grey).
+  const shineW=Y>B?clamp((Y-B)/22,0,1)*.9:0,flat=Y>B?0:(B-Y)*.30*velvet,soften=.25+.55*velvet;
+  for(let ch=0;ch<3;ch++){let v=d[k+ch]+(fine[k+ch]-d[k+ch])*soften*a;v+=(broad[k+ch]-v)*shineW*a+flat*a-1.5*a;d[k+ch]=clamp(v,0,255);}
+ }
+ c.putImageData(raw,x,y);
 }
 
 function clipOval(m,face,W,H){pathFaceMask(m,face,W,H);m.clip();}
@@ -1870,7 +1960,8 @@ function eyeShadowGeometry(face,side,setting,W,H){
  });
  const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
  const lowerEdge=lower.map(p=>{const q=G.project(p),u=clamp(q.u,0,1);return G.at(q.u,q.v-G.width*.13*spread*(.15+.85*Math.sin(Math.PI*u)))});
- const upperPolygon=[...G.upper,...bandTop.slice().reverse()],lowerPolygon=[...lower,...lowerEdge.slice().reverse()];
+ const outerV=sampleEyeCurve(G,G.upper,0),wingTip=G.at(-.17*spread,outerV+G.width*(.07+.05*spread)),wingLow=G.at(-.07*spread,outerV-G.width*.012);
+ const upperPolygon=[...G.upper,...bandTop.slice().reverse(),wingTip,wingLow],lowerPolygon=[...lower,...lowerEdge.slice().reverse()];
  const polygon=style==='lower'?lowerPolygon:upperPolygon,u=style==='outer'?.26:.50;
  const lidV=sampleEyeCurve(G,G.upper,u),topV=sampleEyeCurve(G,bandTop,u),height=Math.max(0,topV-lidV);
  const center=G.at(u,lidV+height*.44),rx=G.width*(style==='outer'?.40:.62)*spread,ry=Math.max(.35,height*.72);
@@ -1884,11 +1975,13 @@ function renderShadow(c,W,H,face){
  for(const side of ['left','right']){
   const s=face.settings.shadow[side];if(s.enabled===false||s.intensity<=0)continue;
   const R=eyeShadowGeometry(face,side,s,W,H);if(!R||R.height<.2)continue;
-  const {G,polygon,upperPolygon,lowerPolygon,center,rx,ry,style}=R,bb=boundsPx([...upperPolygon,...lowerPolygon],W,H,G.width*.035);
-  const intensity=s.intensity/100,transition=s.color2||'#d1a894',accent=s.accent||'#67423b',depth=clamp((s.depth??0)/100,-.5,.5),soft=clamp((s.softness??65)/100,.1,1);
-  const paint=(shape,color,amount,mode='tint',zone=polygon)=>maskPatch(c,W,H,bb,m=>{
-   m.save();clipOval(m,face,W,H);m.beginPath();pathPoly(m,zone);m.clip();shape(m);m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:s,color,mode,strength:intensity*amount,feather:G.width*(.004+soft*.012)});
+  const {G,polygon,upperPolygon,lowerPolygon,center,rx,ry,style}=R,blend=G.width*(.03+.055*clamp((s.softness??65)/100,0,1)),bb=boundsPx([...upperPolygon,...lowerPolygon],W,H,G.width*.035+blend*2),zoneMasks=new Map();
+  // The zone is blurred together with the eye opening: outer and upper edges blend out, the lash line keeps full colour; the eye itself is removed afterwards.
+  const zoneMask=zone=>{if(zoneMasks.has(zone))return zoneMasks.get(zone);const cv=newCanvas(Math.max(1,Math.ceil(bb.x1-bb.x0)),Math.max(1,Math.ceil(bb.y1-bb.y0))),zc=cv.getContext('2d');zc.filter=`blur(${blend.toFixed(2)}px)`;zc.translate(-bb.x0,-bb.y0);zc.fillStyle='#fff';zc.beginPath();pathPoly(zc,zone);pathPoly(zc,points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H));zc.fill('nonzero');zoneMasks.set(zone,cv);return cv;};
+  const intensity=Math.pow(s.intensity/100,.85)*1.65,depth=clamp((s.depth??0)/100,-.5,.5),lid=v421Shade(s.color,depth),transition=v421Shade(s.color2||'#d1a894',depth*.6),accent=v421Shade(s.accent||'#67423b',depth),soft=clamp((s.softness??65)/100,.1,1);
+  const paint=(shape,color,amount,mode='shadow',zone=polygon)=>maskPatch(c,W,H,bb,m=>{
+   m.save();clipOval(m,face,W,H);shape(m);m.restore();m.save();m.globalCompositeOperation='destination-in';m.drawImage(zoneMask(zone),bb.x0,bb.y0);m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
+  },{face,protectOcclusion:true,cosmetic:s,color,mode,strength:intensity*amount,feather:G.width*(.004+soft*.010)});
   const ellipse=(at,x,y,peak=1)=>m=>v4EllipseMask(m,at,x,y,G.angle,peak,soft);
   const atBand=(u,t=.45)=>{const lo=sampleEyeCurve(G,G.upper,u),hi=sampleEyeCurve(G,R.bandTop,u);return G.at(u,lo+(hi-lo)*t)};
   const bandFill=(m)=>{
@@ -1898,12 +1991,12 @@ function renderShadow(c,W,H,face){
   };
   if(style==='lower'){
    const lowV=sampleEyeCurve(G,R.lower,.52),bottomV=sampleEyeCurve(G,R.lowerEdge,.52),at=G.at(.52,(lowV+bottomV)/2);
-   paint(ellipse(at,G.width*.54,G.width*.065,.83),s.color,.78);
+   paint(ellipse(at,G.width*.54,G.width*.065,.83),lid,.78);
    paint(ellipse(G.at(.16,sampleEyeCurve(G,R.lower,.16)-G.width*.025),G.width*.26,G.width*.043,.68),accent,.34);
    continue;
   }
   // A shaped lid wash plus a separate transition colour follows the lid/brow gap.
-  paint(bandFill,s.color,style==='korean'?.52:style==='smokey'?.83:.74);
+  paint(bandFill,lid,style==='korean'?.52:style==='smokey'?.83:.74);
   if(['ombre','vertical','smokey','crease','outer'].includes(style))paint(ellipse(atBand(.52,.76),G.width*.61,ry*.84,.65),transition,.44);
   if(style==='ombre'){
    paint(ellipse(atBand(.18,.40),G.width*.34,ry*.78,.95),accent,.86+depth*.24);
@@ -1929,7 +2022,7 @@ function renderShadow(c,W,H,face){
    paint(ellipse(atBand(.35,.23),G.width*.63,ry*.69,.94),accent,.94+depth*.2);
    paint(ellipse(atBand(.12,.52),G.width*.30,ry*.99,.68),accent,.55);
    const p=G.at(.37,sampleEyeCurve(G,R.lower,.37)-G.width*.035);
-   paint(ellipse(p,G.width*.47,G.width*.065,.60),accent,.42,'tint',lowerPolygon);
+   paint(ellipse(p,G.width*.47,G.width*.065,.60),accent,.42,'shadow',lowerPolygon);
   }
   if(style==='crease'){
    paint(m=>{const ps=R.bandTop.map((p,i)=>pair(G.upper[i],p,.73));m.beginPath();strokeSmoothPath(m,ps);m.strokeStyle='rgba(255,255,255,.78)';m.lineWidth=G.width*.058;m.lineCap='round';m.stroke()},accent,.76+depth*.2);
@@ -1939,9 +2032,9 @@ function renderShadow(c,W,H,face){
    paint(ellipse(atBand(.82,.28),G.width*.22,ry*.48,.69),transition,.40);
    paint(ellipse(atBand(.15,.22),G.width*.26,ry*.48,.76),accent,.43);
   }
-  const shimmerAmount=clamp((s.shimmer??20)/100,0,1)*(style==='shimmer'?1:style==='halo'?.72:style==='korean'?.40:.22);
+  const shimmerAmount=clamp((s.shimmer??20)/100,0,1)*(style==='shimmer'?1:style==='halo'?.85:style==='korean'?.7:.6);
   if(shimmerAmount>0){
-   paint(ellipse(atBand(.50,.32),G.width*.34,ry*.56,.62),'#fff3dc',shimmerAmount*.42,'illuminate');
+   paint(ellipse(atBand(.50,.32),G.width*.34,ry*.56,.62),'#fff3dc',shimmerAmount*.55,'illuminate');
    paint(m=>{
     const count=style==='shimmer'?68:38;
     for(let i=0;i<count;i++){
@@ -1949,11 +2042,13 @@ function renderShadow(c,W,H,face){
      const bell=Math.sin(Math.PI*(u-.12)/.76),radius=G.width*(.0016+(i%4)*.00075)*(.65+.35*bell);
      m.fillStyle=`rgba(255,255,255,${(.22+(i%5)*.11)*bell})`;m.beginPath();m.arc(p.x,p.y,radius,0,Math.PI*2);m.fill();
     }
-   },'#fff2d6',shimmerAmount*.82,'illuminate');
+   },'#fff2d6',shimmerAmount,'illuminate');
   }
  }
 }
 
+// V4.21: Sáng / tối shifts every shadow shade toward white or black, so the slider works in all layouts.
+function v421Shade(hex,depth){if(!depth)return hex;const c=colorRGB(hex),t=depth>0?0:255,k=Math.min(.6,Math.abs(depth)*1.1);return '#'+c.map(v=>clamp(Math.round(v+(t-v)*k),0,255).toString(16).padStart(2,'0')).join('');}
 function strokeSmoothPath(c,ps){c.moveTo(ps[0].x,ps[0].y);for(let i=1;i<ps.length-1;i++){const mid=pair(ps[i],ps[i+1]);c.quadraticCurveTo(ps[i].x,ps[i].y,mid.x,mid.y);}c.lineTo(ps.at(-1).x,ps.at(-1).y);}
 function linerWingGeometry(G,tip,width){
  const u=.20,start=G.at(u,v47SmoothEyeCurve(G,G.upper,u)+width*.35),outer=G.at(0,v47SmoothEyeCurve(G,G.upper,0));
@@ -1967,20 +2062,22 @@ function renderLiner(c,W,H,face){
   const s=face.settings.liner[side];if(s.enabled===false||s.intensity<=0)continue;
   const G=eyeGeometry(face,side,W,H);if(!G)continue;
   const style=s.style||'natural',scale=clamp((s.width??100)/100,.35,2),extension=clamp((s.length??100)/100,.5,1.6),bend=clamp((s.curve??0)/60,-1,1),sharpness=clamp((s.sharpness??70)/100,0,1);
-  const factor={natural:.011,classic:.016,wing:.020,cat:.027,puppy:.019,bold:.041,extended:.020,inner:.014}[style]||.016,width=G.width*factor*scale;
+  const factor={natural:.011,classic:.016,wing:.020,cat:.027,puppy:.019,bold:.041,extended:.020,inner:.014}[style]||.016,width=G.width*factor*scale*(1+.55*Math.max(0,(.7-sharpness)/.7));
   const wingStyle=['wing','cat','puppy','bold','extended'].includes(style),wingU=style==='cat'?-.29:style==='extended'?-.37:style==='bold'?-.23:-.19;
   const wingHeight=(style==='puppy'?-.062:style==='cat'?.17:style==='extended'?.105:.09)+bend*.12;
-  const tip=G.at(wingU*extension,G.width*wingHeight),wing=linerWingGeometry(G,tip,width),ps=[...G.upper,...Object.values(wing)];
+  // V4.21: length / curve also act on liners without a wing (shorter line or a soft tail).
+  const reach=wingStyle?1:Math.min(1,.30+.70*extension),tailE=Math.max(extension,1.10),tail=!wingStyle&&style!=='inner'&&(extension>1.02||Math.abs(bend)>.02);
+  const tip=wingStyle||!tail?G.at(wingU*extension,G.width*wingHeight):G.at(-.42*(tailE-1),G.width*(.20*(tailE-1)+.10*bend)),wing=linerWingGeometry(G,tip,width),ps=[...G.upper,...Object.values(wing)];
   if(style==='inner')ps.push(G.at(1.14,-G.width*.016));
   const bb=boundsPx(ps,W,H,Math.max(G.width*.06,width*2));
   maskPatch(c,W,H,bb,m=>{
    m.save();clipOval(m,face,W,H);m.strokeStyle='#fff';m.fillStyle='#fff';m.lineCap='round';m.lineJoin='round';
    const count=32;
    for(let i=0;i<count;i++){
-    const a=i/count,b=(i+1)/count,p=G.at(a,v47SmoothEyeCurve(G,G.upper,a)+width*.10),q=G.at(b,v47SmoothEyeCurve(G,G.upper,b)+width*.10);
-    m.lineWidth=width*(.38+.64*Math.sin(Math.PI*(a*.76+.10)))*(1-.50*Math.pow(a,3));m.beginPath();m.moveTo(p.x,p.y);m.lineTo(q.x,q.y);m.stroke();
+    const a0=i/count,a=a0*reach,b=(i+1)/count*reach,p=G.at(a,v47SmoothEyeCurve(G,G.upper,a)+width*.10),q=G.at(b,v47SmoothEyeCurve(G,G.upper,b)+width*.10);
+    m.lineWidth=width*(.38+.64*Math.sin(Math.PI*(a0*.76+.10)))*(1-.50*Math.pow(a0,3));m.beginPath();m.moveTo(p.x,p.y);m.lineTo(q.x,q.y);m.stroke();
    }
-   if(wingStyle){
+   if(wingStyle||tail){
     m.beginPath();m.moveTo(wing.start.x,wing.start.y);m.bezierCurveTo(wing.c1.x,wing.c1.y,wing.c2.x,wing.c2.y,tip.x,tip.y);
     m.quadraticCurveTo(wing.back.x,wing.back.y,wing.outer.x,wing.outer.y);m.closePath();m.fill();
    }
@@ -1988,7 +2085,7 @@ function renderLiner(c,W,H,face){
     const p=G.at(1.12,-G.width*.016),q=G.at(.91,v47SmoothEyeCurve(G,G.upper,.91));m.lineWidth=width*.60;m.beginPath();m.moveTo(q.x,q.y);m.lineTo(p.x,p.y);m.stroke();
    }
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:s,color:s.color,mode:'ink',strength:s.intensity/100*.98,feather:G.width*.005*(1-sharpness)});
+  },{face,protectOcclusion:true,cosmetic:s,color:s.color,mode:'ink',strength:s.intensity/100*.98,feather:G.width*(.0012+.020*Math.pow(1-sharpness,1.4))});
  }
 }
 function v4QuadraticPoint(a,b,c,t){const q=1-t;return {x:q*q*a.x+2*q*t*b.x+t*t*c.x,y:q*q*a.y+2*q*t*b.y+t*t*c.y};}
@@ -2476,20 +2573,22 @@ function applySkinLayer(c,W,H,face,kind){
  // Geometry-only fallback is deliberately face-limited; remote model failure is explicit.
  for(let y0=bounds.y0;y0<bounds.y1;y0+=tileH){
   const h=Math.min(tileH,bounds.y1-y0),md=skinMaskTile(face,W,H,y0,h,scope,bounds.x0,bandW),raw=c.getImageData(bounds.x0,y0,bandW,h),d=raw.data;
-  let blurred=null;
+  let blurred=null,fineBlur=null;
   if(kind==='skin'&&(cfg.smooth||0)>0){
    // Blur includes overlap across tile boundary to avoid horizontal seams.
-   const radius=clamp(W*.002,1,4),pad=Math.ceil(radius*4),sy=Math.max(0,y0-pad),ey=Math.min(H,y0+h+pad),sx=Math.max(0,bounds.x0-pad),ex=Math.min(W,bounds.x1+pad);
+   const fwS=faceSizePx(face,W,H).w,radius=clamp(fwS*.011,1.2,24),fineRadius=clamp(fwS*.0028,.5,6),pad=Math.ceil(radius*3),sy=Math.max(0,y0-pad),ey=Math.min(H,y0+h+pad),sx=Math.max(0,bounds.x0-pad),ex=Math.min(W,bounds.x1+pad);
    const src=newCanvas(ex-sx,ey-sy),sctx=src.getContext('2d');sctx.drawImage(c.canvas,sx,sy,ex-sx,ey-sy,0,0,ex-sx,ey-sy);
-   const out=newCanvas(bandW,h),bc=out.getContext('2d',{willReadFrequently:true});bc.filter=`blur(${radius}px)`;bc.drawImage(src,sx-bounds.x0,sy-y0);bc.filter='none';blurred=bc.getImageData(0,0,bandW,h).data;
+   const out=newCanvas(bandW,h),bc=out.getContext('2d',{willReadFrequently:true});bc.filter=`blur(${radius}px)`;bc.drawImage(src,sx-bounds.x0,sy-y0);bc.filter='none';blurred=bc.getImageData(0,0,bandW,h).data;bc.clearRect(0,0,bandW,h);bc.filter=`blur(${fineRadius}px)`;bc.drawImage(src,sx-bounds.x0,sy-y0);bc.filter='none';fineBlur=bc.getImageData(0,0,bandW,h).data;
   }
   const warm=clamp(Number(cfg.warmth||0)/40,-1,1),brightTone=clamp(Number(cfg.brightness||0)/40,-1,1),sat=clamp(Number(cfg.saturation??30)/100,0,1),a=strength;
   for(let i=0;i<d.length;i+=4){const ma=md[i+3]/255;if(ma<.02)continue;
    const r=d[i],g=d[i+1],b=d[i+2],lum=.2126*r+.7152*g+.0722*b;
    if(kind==='skin'){
-    const smooth=ma*(cfg.smooth||0)/100*.55;
-    if(blurred&&smooth>0){d[i]+= (blurred[i]-d[i])*smooth;d[i+1]+=(blurred[i+1]-d[i+1])*smooth;d[i+2]+=(blurred[i+2]-d[i+2])*smooth;}
-    if(cfg.brighten>0){const highlightGuard=clamp((258-lum)/135,.16,1);const add=(cfg.brighten/100)*ma*highlightGuard*(.32*(245-lum)+10);d[i]=clamp(d[i]+add*1.025,0,255);d[i+1]=clamp(d[i+1]+add,0,255);d[i+2]=clamp(d[i+2]+add*.97,0,255);}
+    // V4.21 frequency separation: blotches and uneven patches are smoothed,
+    // pores (fine band) mostly stay, and feature edges are guarded.
+    const smooth=ma*ma*(cfg.smooth||0)/100;
+    if(blurred&&smooth>0){const bY=blurred[i]*.2126+blurred[i+1]*.7152+blurred[i+2]*.0722,guard=clamp(1-(Math.abs(bY-lum)-10)/22,0,1);for(let ch=0;ch<3;ch++)d[i+ch]=clamp(d[i+ch]+((blurred[i+ch]-fineBlur[i+ch])*.92+(fineBlur[i+ch]-d[i+ch])*.22)*smooth*guard,0,255);}
+    if(cfg.brighten>0){const highlightGuard=clamp((258-lum)/135,.16,1);const add=(cfg.brighten/100)*ma*highlightGuard*(.21*(245-lum)+6);d[i]=clamp(d[i]+add*1.025,0,255);d[i+1]=clamp(d[i+1]+add,0,255);d[i+2]=clamp(d[i+2]+add*.97,0,255);}
     if(cfg.glow>0){const gain=ma*(cfg.glow/100)*(.025+.04*lum/255);d[i]=clamp(d[i]*(1+gain)+2*gain,0,255);d[i+1]=clamp(d[i+1]*(1+gain)+2*gain,0,255);d[i+2]=clamp(d[i+2]*(1+gain)+2*gain,0,255);}
    }else if(kind==='foundation'){
  const targetY=color[0]*.2126+color[1]*.7152+color[2]*.0722;
@@ -2547,18 +2646,43 @@ function paintRadialZone(c,W,H,face,center,rx,ry,opts={}){
   m.fillStyle=gr;m.beginPath();m.arc(0,0,rx,0,Math.PI*2);m.fill();m.restore();
  },{face,protectFace:true,color:opts.color||'#c69e82',colorAmount:opts.colorAmount,mode:opts.mode||'shade',strength:opts.strength??.5});
 }
+// V4.21 concealer: fills the local darkness up to the surrounding lit skin and
+// neutralises its blue/purple cast. The correction is low-frequency, so pores,
+// lashes shadows and the eye shape stay exactly where the photo has them.
 function renderConcealer(c,W,H,face){
  const s=face.settings.concealer;if(!s||!s.intensity)return;
- const fs=faceSizePx(face,W,H),q=s.intensity/100,soft=s.softness/75;
- const place=(p,rx,ry,amt=1)=>paintRadialZone(c,W,H,face,p,rx*soft,ry*soft,{color:'#f7e6d5',mode:'illuminate',strength:q*(s.brightness/70)*.64*amt});
+ const fs=faceSizePx(face,W,H),q=clamp(s.intensity/100,0,1),soft=clamp(Number(s.softness??75)/75,.4,1.34),bright=clamp(Number(s.brightness??40)/70,0,1),zones=[];
+ const add=(center,rx,ry,angle=0,amt=1)=>zones.push({center,rx:rx*soft,ry:ry*soft,angle,amt});
  const under=s.layout==='undereye'||s.layout==='all',tzone=s.layout==='tzone'||s.layout==='all',nose=s.layout==='nose'||s.layout==='all';
- if(under){for(const side of ['left','right']){const G=eyeGeometry(face,side,W,H);if(!G)continue;const lower=points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H),low=Math.min(...lower.map(p=>G.project(p).v));paintRadialZone(c,W,H,face,G.at(.52,low-G.width*.20),G.width*.72*soft,G.width*.30*soft,{color:'#f7e6d5',mode:'illuminate',strength:q*(s.brightness/70)*.64,angle:G.angle});}}
- if(tzone){place(pxy(face.landmarks[6],W,H),fs.w*.11,fs.h*.20,.72);place(pxy(face.landmarks[4],W,H),fs.w*.075,fs.h*.10,.70);const fa=foreheadAnchor(face,W,H);if(fa)paintRadialZone(c,W,H,face,fa.center,fa.rx*.8*soft,fa.ry*soft,{color:'#f7e6d5',mode:'illuminate',strength:q*(s.brightness/70)*.64*.5,angle:fa.angle});}
- if(nose){for(const i of [49,279]){const p=pxy(face.landmarks[i],W,H);place(p,fs.w*.082,fs.h*.085,.65);}}
+ if(under)for(const side of ['left','right']){const G=eyeGeometry(face,side,W,H);if(!G)continue;const lower=points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H),low=Math.min(...lower.map(p=>G.project(p).v));add(G.at(.52,low-G.width*.20),G.width*.72,G.width*.30,G.angle,1);}
+ if(tzone){add(pxy(face.landmarks[6],W,H),fs.w*.11,fs.h*.20,0,.72);add(pxy(face.landmarks[4],W,H),fs.w*.075,fs.h*.10,0,.70);const fa=foreheadAnchor(face,W,H);if(fa)add(fa.center,fa.rx*.8,fa.ry,fa.angle,.5);}
+ if(nose)for(const i of [49,279])add(pxy(face.landmarks[i],W,H),fs.w*.082,fs.h*.085,0,.65);
+ for(const z of zones)v421ConcealZone(c,W,H,face,z,q*z.amt,bright,fs.w);
+}
+function v421ConcealZone(c,W,H,face,z,q,bright,fw){
+ if(z.rx<1||z.ry<1||q<=0)return;
+ const ex=Math.hypot(z.rx*Math.cos(z.angle),z.ry*Math.sin(z.angle)),ey=Math.hypot(z.rx*Math.sin(z.angle),z.ry*Math.cos(z.angle));
+ const x=clamp(Math.floor(z.center.x-ex-2),0,W),y=clamp(Math.floor(z.center.y-ey-2),0,H),w=clamp(Math.ceil(z.center.x+ex+2),0,W)-x,h=clamp(Math.ceil(z.center.y+ey+2),0,H)-y;if(w<3||h<3)return;
+ const mk=newCanvas(w,h),m=mk.getContext('2d',{willReadFrequently:true});m.save();m.translate(z.center.x-x,z.center.y-y);m.rotate(z.angle);m.scale(1,z.ry/z.rx);
+ const gr=m.createRadialGradient(0,0,0,0,0,z.rx);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.35,'rgba(255,255,255,.88)');gr.addColorStop(.72,'rgba(255,255,255,.36)');gr.addColorStop(1,'rgba(255,255,255,0)');
+ m.fillStyle=gr;m.beginPath();m.arc(0,0,z.rx,0,Math.PI*2);m.fill();m.restore();
+ const fm=newCanvas(w,h),fc=fm.getContext('2d');paintSkinMaskInto(fc,face,W,H,x,y,'face');m.globalCompositeOperation='destination-in';m.drawImage(fm,0,0);
+ const mask=m.getImageData(0,0,w,h).data,blur=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(1,fw*.012)),raw=c.getImageData(x,y,w,h),d=raw.data,vals=[];
+ for(let k=0;k<d.length;k+=4)if(mask[k+3]>60)vals.push(blur[k]*.2126+blur[k+1]*.7152+blur[k+2]*.0722);
+ if(vals.length<12)return;vals.sort((a,b)=>a-b);const ref=vals[Math.floor(vals.length*.82)],cut=vals[Math.floor(vals.length*.62)];
+ let cr=0,cb=0,n=0;for(let k=0;k<d.length;k+=4){if(mask[k+3]<=60)continue;const Y=blur[k]*.2126+blur[k+1]*.7152+blur[k+2]*.0722;if(Y<cut)continue;cr+=blur[k]-Y;cb+=blur[k+2]-Y;n++;}
+ cr/=Math.max(1,n);cb/=Math.max(1,n);
+ for(let k=0;k<d.length;k+=4){const a=mask[k+3]/255;if(a<.01)continue;
+  const Y=d[k]*.2126+d[k+1]*.7152+d[k+2]*.0722,bY=blur[k]*.2126+blur[k+1]*.7152+blur[k+2]*.0722,guard=clamp((252-Y)/45,0,1);
+  const qq=Math.pow(q,.7),lift=(Math.max(0,ref-bY)*(.80+.25*bright)+bright*12*(1-bY/310))*qq*a*guard,neutral=qq*a*.7*clamp((ref-bY+4)/18,0,1);
+  const dr=lift+(cr-(blur[k]-bY))*neutral,db=lift+(cb-(blur[k+2]-bY))*neutral,dg=lift-((cr-(blur[k]-bY))*.2126+(cb-(blur[k+2]-bY))*.0722)*neutral/.7152;
+  d[k]=clamp(d[k]+dr,0,255);d[k+1]=clamp(d[k+1]+dg,0,255);d[k+2]=clamp(d[k+2]+db,0,255);
+ }
+ c.putImageData(raw,x,y);
 }
 function renderContour(c,W,H,face){
  const s=face.settings.contour;if(!s||!s.intensity)return;
- const fs=faceSizePx(face,W,H),z=clamp(s.spread/100,.4,1.3),gain=s.intensity/100*.76;
+ const fs=faceSizePx(face,W,H),z=clamp(s.spread/100,.4,1.3),gain=s.intensity/100*.95;
  const place=(p,x,y,amt=1,angle=0)=>paintRadialZone(c,W,H,face,p,x*z,y*z,{color:s.color,mode:'shade',strength:gain*amt,angle});
  if(['natural','cheek'].includes(s.layout)){
   for(const side of ['left','right']){const p=pxy(face.landmarks[side==='left'?117:346],W,H);p.y+=fs.h*.075;place(p,fs.w*.205,fs.h*.085,1,side==='left'?-.20:.20);}
@@ -2572,7 +2696,7 @@ function renderContour(c,W,H,face){
 }
 function renderHighlight(c,W,H,face){
  const s=face.settings.highlight;if(!s||!s.intensity)return;
- const fs=faceSizePx(face,W,H),z=clamp(s.spread/100,.4,1.3),gain=s.intensity/100*.82;
+ const fs=faceSizePx(face,W,H),z=clamp(s.spread/100,.4,1.3)*(s.layout==='glow'?1.28:1),gain=s.intensity/100*1.22;
  const place=(p,x,y,amt=1)=>paintRadialZone(c,W,H,face,p,x*z,y*z,{color:s.color,colorAmount:s.colorAmount,mode:'illuminate',strength:gain*amt});
  if(['natural','tzone','glow'].includes(s.layout)){
   const fa=foreheadAnchor(face,W,H);
@@ -2697,9 +2821,9 @@ function renderSkinAge(c,W,H,face){
   // Wrinkle reductions target darker medium-frequency creases. Fine pores
   // remain in the source; texture controls only their very small correction.
   let delta=0;
-  if(wrinkles<0)delta+=-wrinkles*(darkDetail*1.45*zone+clamp(fine[i]-Y[i],-3,5)*(1-texture)*.68);
+  if(wrinkles<0)delta+=-wrinkles*(darkDetail*1.45*zone+clamp(fine[i]-Y[i],-3,5)*(1-texture)*1.5);
   else if(wrinkles>0)delta-=wrinkles*(darkDetail*.66*zone+wrinkleCrease[i]*24.0);
-  if(smile<0)delta+=-smile*foldZone[i]*(darkFold*1.38+clamp(broad[i]-Y[i],-2,5)*(1-texture)*.28);
+  if(smile<0)delta+=-smile*foldZone[i]*(darkFold*1.38+clamp(broad[i]-Y[i],-2,5)*(1-texture)*.75);
   else if(smile>0)delta-=smile*(foldZone[i]*darkFold*.95+foldCrease[i]*clamp(darkFold/7,0,1)*4.0);
   // Keep the photographed illumination and avoid changing deep shadows or
   // white highlights into a flat retouched patch.
@@ -2811,7 +2935,7 @@ function finishCoatSurface(zones,x,y,light,out,bumpX=0,bumpY=0,grain=0,relief=0)
  }
  out.support=support;out.hard=hard;out.soft=soft;out.silk=silk;out.tint=tint;out.grain=grain;out.relief=relief;return out;
 }
-function skinFinishDelta(p,Y,mid,wide,sourceMid,sourceWide,surface,light,out){
+function skinFinishDelta(p,Y,mid,wide,sourceMid,sourceWide,surface,light,out,fineY=Y){
  const M=p.profile,rough=clamp(M.roughness*(.55+p.roughness*1.15),.075,.86),alpha=rough*rough,a2=alpha*alpha;
  const localRough=clamp(rough-surface.grain*p.micro*.026,.07,.9),softPower=6+(1-localRough)*10,silkPower=14+(1-localRough)*28;
  let reflection=0,broad=0;
@@ -2828,14 +2952,14 @@ function skinFinishDelta(p,Y,mid,wide,sourceMid,sourceWide,surface,light,out){
   reflection=Math.max(reflection,w*response*fresnel);broad=Math.max(broad,w*Math.pow(nh,softPower));
  }
  const sourceGate=clamp(Math.pow((sourceWide+16)/Math.max(42,light.mean+16),1.65),.25,1.38),darkGate=Math.pow(clamp((sourceWide-5)/76,0,1),.65);
- const shine=Math.pow(p.shine,.82),coat=p.coat,grain=clamp(1+surface.grain*p.micro*.24,.76,1.24),relief=clamp(1+surface.relief*.20,.75,1.20);
+ const shine=Math.pow(p.shine,.82),coat=p.coat,grain=clamp(1+surface.grain*p.micro*.55,.55,1.45),relief=clamp(1+surface.relief*.20,.75,1.20);
  let spec=M.spec*shine*coat*(106+24*p.coverage)*reflection*grain*relief*sourceGate*darkGate;
  let glow=M.glow*shine*coat*broad*13*sourceGate*darkGate,matte=M.matte*(1-p.shine*.23);
  if(p.variant==='pearl'){spec=spec*.76+shine*coat*(surface.silk*22+broad*10)*darkGate;glow+=broad*shine*coat*3;}
  if(p.variant==='sun'){spec+=shine*coat*(surface.silk*12+broad*5)*darkGate;}
  if(p.variant==='softmatte'){spec*=.16;glow*=.35;matte=Math.min(1,matte+.42);}
- const originalPeak=clamp(sourceMid-sourceWide-1.2,0,32),smoothing=(mid-Y)*Math.min(.80,(p.smooth*M.soften*.82+p.polish*.75)*(1-p.texture));
- const even=(wide-mid)*p.coverage*M.even*.26,shadow=-clamp((light.mean-sourceWide)/28,0,2.5)*M.depth*p.coverage*4.8;
+ const originalPeak=clamp(sourceMid-sourceWide-1.2,0,32),guard=clamp(1-(Math.abs(mid-Y)-10)/22,0,1),smoothing=((mid-fineY)*Math.min(.85,p.smooth*M.soften*1.15+p.polish*.5)+(fineY-Y)*Math.min(.8,(p.smooth*M.soften*.82+p.polish*.75+.35*p.coverage)*(1-p.texture)))*guard;
+ const even=(wide-mid)*p.coverage*(.30+M.even)*.85*guard,shadow=-clamp((light.mean-sourceWide)/28,0,2.5)*M.depth*p.coverage*4.8;
  const diffuse=M.lift*p.coverage*(.35+.65*surface.support)*darkGate;
  // Polish evens broad skin tone. It must respect the same texture control as
  // smoothing; a fixed high-frequency blend used to erase pores even at 100%.
@@ -2953,7 +3077,7 @@ function renderSkinFinish(c,W,H,face){
  for(let i=0;i<n;i++){const k=i*4;Y[i]=wrgb[k]*.2126+wrgb[k+1]*.7152+wrgb[k+2]*.0722;sourceY[i]=orgb[k]*.2126+orgb[k+1]*.7152+orgb[k+2]*.0722;}
  const valid=new Float32Array(n);for(let i=0;i<n;i++)valid[i]=skinAlpha[i*4+3]/255;
  // Do not average black lashes, lip pigment or hair into neighbouring skin.
- const [mid]=finishSkinMean([Y],valid,sw,sh,fw*.012),[wide]=finishSkinMean([Y],valid,sw,sh,fw*.054),[sourceMid]=finishSkinMean([sourceY],valid,sw,sh,fw*.016),[sourceWide]=finishSkinMean([sourceY],valid,sw,sh,fw*.065);
+ const [fineY]=finishSkinMean([Y],valid,sw,sh,Math.max(1,fw*.0035)),[mid]=finishSkinMean([Y],valid,sw,sh,fw*.012),[wide]=finishSkinMean([Y],valid,sw,sh,fw*.054),[sourceMid]=finishSkinMean([sourceY],valid,sw,sh,fw*.016),[sourceWide]=finishSkinMean([sourceY],valid,sw,sh,fw*.065);
  const chromaR=new Float32Array(n),chromaG=new Float32Array(n),chromaB=new Float32Array(n);for(let i=0;i<n;i++){const k=i*4;chromaR[i]=wrgb[k]-Y[i];chromaG[i]=wrgb[k+1]-Y[i];chromaB[i]=wrgb[k+2]-Y[i];}
  const [polishR,polishG,polishB]=finishSkinMean([chromaR,chromaG,chromaB],valid,sw,sh,fw*.027);
  const light=skinFinishLight(zones,box,sw,sh,sourceY,sourceWide,skinAlpha),map=newCanvas(sw,sh),mc=map.getContext('2d'),data=mc.createImageData(sw,sh),dx=bw/sw,dy=bh/sh;
@@ -2965,9 +3089,9 @@ function renderSkinFinish(c,W,H,face){
   const bumpX=clamp(gx*zones.F.rx+gy*zones.F.ry,-.035,.035),bumpY=clamp(gx*zones.F.ux+gy*zones.F.uy,-.035,.035);
   finishCoatSurface(zones,px,py,light,surface,bumpX,bumpY,clamp((sourceY[i]-sourceMid[i])/12,-1,1),clamp((sourceMid[i]-sourceWide[i])/30,-1,1));
   let sum=0;for(let j=0;j<regional.length;j++){weights[j]=skinZoneWeight(zones,regional[j].name,px,py);sum+=weights[j];}
-  const cover=Math.min(1,sum),d=baseDelta;if(base.intensity>0)skinFinishDelta(base,Y[i],mid[i],wide[i],sourceMid[i],sourceWide[i],surface,light,baseDelta);else d.r=d.g=d.b=0;
+  const cover=Math.min(1,sum),d=baseDelta;if(base.intensity>0)skinFinishDelta(base,Y[i],mid[i],wide[i],sourceMid[i],sourceWide[i],surface,light,baseDelta,fineY[i]);else d.r=d.g=d.b=0;
   let r=d.r*(1-cover),g=d.g*(1-cover),b=d.b*(1-cover);
-  for(let j=0;j<regional.length;j++){if(weights[j]<.0001)continue;const weight=weights[j]/Math.max(sum,1e-9)*cover,q=skinFinishDelta(regional[j].p,Y[i],mid[i],wide[i],sourceMid[i],sourceWide[i],surface,light,regionDelta);r+=q.r*weight;g+=q.g*weight;b+=q.b*weight;}
+  for(let j=0;j<regional.length;j++){if(weights[j]<.0001)continue;const weight=weights[j]/Math.max(sum,1e-9)*cover,q=skinFinishDelta(regional[j].p,Y[i],mid[i],wide[i],sourceMid[i],sourceWide[i],surface,light,regionDelta,fineY[i]);r+=q.r*weight;g+=q.g*weight;b+=q.b*weight;}
   let polish=base.polish*base.intensity*(1-base.texture)*(1-cover);for(let j=0;j<regional.length;j++)polish+=regional[j].p.polish*regional[j].p.intensity*(1-regional[j].p.texture)*weights[j]/Math.max(sum,1e-9)*cover;
   const polishGain=polish*.55*Math.pow(clamp((sourceWide[i]-5)/70,0,1),.5);r+=(polishR[i]-chromaR[i])*polishGain;g+=(polishG[i]-chromaG[i])*polishGain;b+=(polishB[i]-chromaB[i])*polishGain;
   data.data[k]=Math.round(128+clamp(r,-84.5,84.5)*1.5);data.data[k+1]=Math.round(128+clamp(g,-84.5,84.5)*1.5);data.data[k+2]=Math.round(128+clamp(b,-84.5,84.5)*1.5);data.data[k+3]=255;
@@ -3096,15 +3220,15 @@ function renderSkinLight(c,W,H,face){
  for(let y=0;y<sh;y++)for(let x=0;x<sw;x++){
   const i=y*sw+x,k=i*4,q=toF(F,{x:box.x0+(x+.5)*bw/sw,y:box.y0+(y+.5)*bh/sh});
   const illuminated=clamp((low[i]-mean+34)/83,0,1),reflection=.30+.70*Math.pow(illuminated,1.65),direction=clamp(1+dirT*q.t/Math.max(1,fw*.5)*.45+dirS*q.s/Math.max(1,F.em)*.18,.48,1.45);
-  const headroom=clamp((256-Y[i])/82,.08,1),edgeFade=Math.pow(clamp((softSkin[i]-.48)/.50,0,1),1.15),lift=clamp(intensity*shine*(18+44*shine)*reflection*direction*headroom*selection[i]*edgeFade,0,28);
-  data.data[k]=Math.round(clamp(128+lift*(1+warmth*.16)*4,0,255));data.data[k+1]=Math.round(clamp(128+lift*(1+warmth*.025)*4,0,255));data.data[k+2]=Math.round(clamp(128+lift*(1-warmth*.19)*4,0,255));data.data[k+3]=255;
+  const headroom=clamp((256-Y[i])/82,.08,1),edgeFade=Math.pow(clamp((softSkin[i]-.48)/.50,0,1),1.15),lift=clamp(intensity*Math.pow(shine,.8)*(26+58*shine)*reflection*direction*headroom*selection[i]*edgeFade,0,40);
+  data.data[k]=Math.round(clamp(128+lift*(1+warmth*.42)*3,0,255));data.data[k+1]=Math.round(clamp(128+lift*(1+warmth*.05)*3,0,255));data.data[k+2]=Math.round(clamp(128+lift*(1-warmth*.48)*3,0,255));data.data[k+3]=255;
  }
  mc.putImageData(data,0,0);
  const strip=Math.max(16,Math.min(96,Math.floor(400000/bw)));
  for(let row=0;row<bh;row+=strip){
   const h=Math.min(strip,bh-row),light=newCanvas(bw,h),lc=light.getContext('2d',{willReadFrequently:true});lc.drawImage(map,0,-row,bw,bh);const correction=lc.getImageData(0,0,bw,h).data;
   const nativeMask=newCanvas(bw,h),m=nativeMask.getContext('2d',{willReadFrequently:true});paintSkinMaskInto(m,face,W,H,box.x0,box.y0+row,scope);const alpha=m.getImageData(0,0,bw,h).data,pixels=c.getImageData(box.x0,box.y0+row,bw,h),d=pixels.data;
-  for(let k=0;k<d.length;k+=4){const a=alpha[k+3]/255;if(a<.01)continue;for(let ch=0;ch<3;ch++){const delta=(correction[k+ch]-128)/4*a*colorGains[ch];if(Math.abs(delta)>.13)d[k+ch]=clamp(d[k+ch]+delta,0,255);}}
+  for(let k=0;k<d.length;k+=4){const a=alpha[k+3]/255;if(a<.01)continue;for(let ch=0;ch<3;ch++){const delta=(correction[k+ch]-128)/3*a*colorGains[ch];if(Math.abs(delta)>.13)d[k+ch]=clamp(d[k+ch]+delta,0,255);}}
   c.putImageData(pixels,box.x0,box.y0+row);
  }
 }
@@ -3178,12 +3302,14 @@ function renderSkinTexture(c,W,H,face){
  const map=newCanvas(sw,sh),mc=map.getContext('2d'),mapData=mc.createImageData(sw,sh);
  for(let y=0;y<sh;y++)for(let x=0;x<sw;x++){
   const i=y*sw+x,k=i*4,gx=box.x0+(x+.5)*bw/sw,gy=box.y0+(y+.5)*bh/sh;
-  const excessRed=(R[i]-midR[i])-((G[i]-midG[i])+(B[i]-midB[i]))*.5,redSpot=clamp((excessRed-1.4)/14,0,1),spot=Math.max(redSpot,marks.spots[i]*.72)*blemishes*.83;
+  const excessRed=Math.max((R[i]-midR[i])-((G[i]-midG[i])+(B[i]-midB[i]))*.5,(fineR[i]-broadR[i])-((fineG[i]-broadG[i])+(fineB[i]-broadB[i]))*.5-2),redSpot=clamp((excessRed-1.4)/12,0,1),spot=Math.min(1,Math.max(redSpot,marks.spots[i]*.72)*Math.pow(blemishes,.6)*1.25);
   const keepDetail=texture*.65;
-  let dr=(midR[i]+(R[i]-fineR[i])*keepDetail-R[i])*spot,dg=(midG[i]+(G[i]-fineG[i])*keepDetail-G[i])*spot,db=(midB[i]+(B[i]-fineB[i])*keepDetail-B[i])*spot;
-  const tone=uneven*.42,lumShift=clamp(broadY[i]-midY[i],-4,4)*uneven*.10;
+  // Spots are refilled from the broader neighbourhood (a spot the size of the mid blur would refill itself).
+  const refR=midR[i]+(broadR[i]-midR[i])*.7,refG=midG[i]+(broadG[i]-midG[i])*.7,refB=midB[i]+(broadB[i]-midB[i])*.7;
+  let dr=(refR+(R[i]-fineR[i])*keepDetail-R[i])*spot,dg=(refG+(G[i]-fineG[i])*keepDetail-G[i])*spot,db=(refB+(B[i]-fineB[i])*keepDetail-B[i])*spot;
+  const tone=uneven*.75,lumShift=clamp(broadY[i]-midY[i],-9,9)*uneven*.38;
   dr+=((broadR[i]-broadY[i])-(midR[i]-midY[i]))*tone+lumShift;dg+=((broadG[i]-broadY[i])-(midG[i]-midY[i]))*tone+lumShift;db+=((broadB[i]-broadY[i])-(midB[i]-midY[i]))*tone+lumShift;
-  const poreGain=pores*(.10+.42*(1-texture));dr+=(fineR[i]-R[i])*poreGain;dg+=(fineG[i]-G[i])*poreGain;db+=(fineB[i]-B[i])*poreGain;
+  const poreGain=pores*(.32+.50*(1-texture));dr+=(fineR[i]-R[i])*poreGain;dg+=(fineG[i]-G[i])*poreGain;db+=(fineB[i]-B[i])*poreGain;
   if(darkCircles>0){
    const ul=skinZoneWeight(zones,'underEyeLeft',gx,gy),ur=skinZoneWeight(zones,'underEyeRight',gx,gy),weight=Math.max(ul,ur),ref=ul>=ur?left:right;
    if(ref&&weight>.001){
@@ -3192,7 +3318,7 @@ function renderSkinTexture(c,W,H,face){
    }
   }
   const exposure=clamp(Math.min((Y[i]-12)/34,(255-Y[i])/28),.12,1);
-  mapData.data[k]=Math.round(128+clamp(dr*exposure,-28,28)*4);mapData.data[k+1]=Math.round(128+clamp(dg*exposure,-28,28)*4);mapData.data[k+2]=Math.round(128+clamp(db*exposure,-28,28)*4);mapData.data[k+3]=Math.round((1-preserved[i])*255);
+  mapData.data[k]=Math.round(128+clamp(dr*exposure,-62,62)*2);mapData.data[k+1]=Math.round(128+clamp(dg*exposure,-62,62)*2);mapData.data[k+2]=Math.round(128+clamp(db*exposure,-62,62)*2);mapData.data[k+3]=Math.round((1-preserved[i])*255);
  }
  mc.putImageData(mapData,0,0);
  const stripHeight=Math.max(16,Math.min(96,Math.floor(400000/bw)));
@@ -3201,7 +3327,7 @@ function renderSkinTexture(c,W,H,face){
   const delta=dc.getImageData(0,0,bw,h).data,mask=newCanvas(bw,h),m=mask.getContext('2d',{willReadFrequently:true});paintSkinMaskInto(m,face,W,H,box.x0,box.y0+row,'face');const alpha=m.getImageData(0,0,bw,h).data;
   const select=newCanvas(bw,h),sel=select.getContext('2d',{willReadFrequently:true});if(!painted){sel.fillStyle='#fff';sel.fillRect(0,0,bw,h);}sel.translate(-box.x0,-box.y0-row);paintSkinLocalEdits(sel,face,W,H,edits);const selection=sel.getImageData(0,0,bw,h).data;
   const image=c.getImageData(box.x0,box.y0+row,bw,h),out=image.data;
-  for(let k=0;k<out.length;k+=4){const a=intensity*alpha[k+3]/255*selection[k+3]/255*delta[k+3]/255;if(a<.001)continue;out[k]=clamp(out[k]+(delta[k]-128)/4*a,0,255);out[k+1]=clamp(out[k+1]+(delta[k+1]-128)/4*a,0,255);out[k+2]=clamp(out[k+2]+(delta[k+2]-128)/4*a,0,255);}
+  for(let k=0;k<out.length;k+=4){const a=intensity*alpha[k+3]/255*selection[k+3]/255*delta[k+3]/255;if(a<.001)continue;out[k]=clamp(out[k]+(delta[k]-128)/2*a,0,255);out[k+1]=clamp(out[k+1]+(delta[k+1]-128)/2*a,0,255);out[k+2]=clamp(out[k+2]+(delta[k+2]-128)/2*a,0,255);}
   c.putImageData(image,box.x0,box.y0+row);
  }
 }
@@ -3222,14 +3348,14 @@ function v44BaseAnalysis(c,W,H,face,needChroma=false){
  if(state.img)sc.drawImage(state.img,box.x0/W*state.width,box.y0/H*state.height,bw/W*state.width,bh/H*state.height,0,0,sw,sh);else sc.drawImage(work,0,0);
  const rgba=wc.getImageData(0,0,sw,sh).data,original=sc.getImageData(0,0,sw,sh).data,Y=new Float32Array(n),sourceY=new Float32Array(n),R=needChroma?new Float32Array(n):null,G=needChroma?new Float32Array(n):null,B=needChroma?new Float32Array(n):null;
  for(let i=0;i<n;i++){const k=i*4;if(needChroma){R[i]=rgba[k];G[i]=rgba[k+1];B[i]=rgba[k+2];}Y[i]=rgba[k]*.2126+rgba[k+1]*.7152+rgba[k+2]*.0722;sourceY[i]=original[k]*.2126+original[k+1]*.7152+original[k+2]*.0722;}
- const zones=skinZones(face,W,H),fw=zones.width*sw/bw,mid=skinFinishBlur(Y,sw,sh,fw*.012),wide=skinFinishBlur(Y,sw,sh,fw*.052),sourceMid=skinFinishBlur(sourceY,sw,sh,fw*.016),sourceWide=skinFinishBlur(sourceY,sw,sh,fw*.065);
+ const zones=skinZones(face,W,H),fw=zones.width*sw/bw,fine=skinFinishBlur(Y,sw,sh,Math.max(1,fw*.0035)),mid=skinFinishBlur(Y,sw,sh,fw*.012),wide=skinFinishBlur(Y,sw,sh,fw*.052),sourceMid=skinFinishBlur(sourceY,sw,sh,fw*.016),sourceWide=skinFinishBlur(sourceY,sw,sh,fw*.065);
  const mask=newCanvas(sw,sh),m=mask.getContext('2d',{willReadFrequently:true});m.scale(sw/bw,sh/bh);paintSkinMaskInto(m,face,W,H,box.x0,box.y0,'face');const alpha=m.getImageData(0,0,sw,sh).data;
  const wideR=needChroma?skinFinishBlur(R,sw,sh,fw*.035):null,wideG=needChroma?skinFinishBlur(G,sw,sh,fw*.035):null,wideB=needChroma?skinFinishBlur(B,sw,sh,fw*.035):null;
  const light=skinFinishLight(zones,box,sw,sh,sourceY,sourceWide,alpha);
  let weight=0,sumR=0,sumG=0,sumB=0;
  for(let i=0;i<n;i++){const k=i*4,a=alpha[k+3]/255;if(a<.75||sourceY[i]<25||sourceY[i]>240)continue;weight+=a;sumR+=original[k]*a;sumG+=original[k+1]*a;sumB+=original[k+2]*a;}
  const meanRGB=weight?[sumR/weight,sumG/weight,sumB/weight]:[light.mean,light.mean,light.mean],meanY=meanRGB[0]*.2126+meanRGB[1]*.7152+meanRGB[2]*.0722;
- return {box,bw,bh,sw,sh,n,rgba,original,Y,sourceY,mid,wide,sourceMid,sourceWide,wideR,wideG,wideB,alpha,zones,light,meanRGB,meanY};
+ return {box,bw,bh,sw,sh,n,rgba,original,Y,sourceY,fine,mid,wide,sourceMid,sourceWide,wideR,wideG,wideB,alpha,zones,light,meanRGB,meanY};
 }
 function v44BaseComposite(c,W,H,face,A,map){
  const {box,bw,bh,sw,sh}=A,correction=newCanvas(sw,sh),dc=correction.getContext('2d');dc.putImageData(map,0,0);
@@ -3249,6 +3375,8 @@ function v44BaseMap(A,compute){
   data.data[k]=Math.round(128+clamp(out.r,-63.5,63.5)*2);data.data[k+1]=Math.round(128+clamp(out.g,-63.5,63.5)*2);data.data[k+2]=Math.round(128+clamp(out.b,-63.5,63.5)*2);data.data[k+3]=255;
  }return data;
 }
+// Edge guard: near eyes, brows and lips the blurred bands mix in non-skin colour.
+function v421Guard(A,i){return clamp(1-(Math.abs(A.mid[i]-A.Y[i])-9)/20,0,1);}
 function v44ProductFraction(value,fallback=0){return clamp(Number(value??fallback)||0,0,100)/100;}
 function v44ProductRegion(A,region,x,y){
  const px=A.box.x0+(x+.5)*A.bw/A.sw,py=A.box.y0+(y+.5)*A.bh/A.sh;
@@ -3268,7 +3396,7 @@ function renderPrimer(c,W,H,face){
  const smooth=v44ProductFraction(cfg.smooth,35),blur=v44ProductFraction(cfg.blur,30),texture=v44ProductFraction(cfg.texture,90),bright=clamp(Number(cfg.brightness||0)/30,-1,1),tone=cfg.tone||'clear';
  const baseRed=A.meanRGB[0]-(A.meanRGB[1]+A.meanRGB[2])*.5;
  const map=v44BaseMap(A,(i,x,y,out)=>{
-  const exposure=clamp((A.Y[i]-8)/28,0,1)*clamp((255-A.Y[i])/28,0,1),soft=(A.mid[i]-A.Y[i])*smooth*(.30+.55*(1-texture)),even=(A.wide[i]-A.mid[i])*blur*.16;
+  const exposure=clamp((A.Y[i]-8)/28,0,1)*clamp((255-A.Y[i])/28,0,1),guard=v421Guard(A,i),soft=((A.mid[i]-A.fine[i])*smooth*.95+(A.fine[i]-A.Y[i])*smooth*(.12+.70*(1-texture)))*guard,even=(A.wide[i]-A.mid[i])*blur*.50*guard;
   const d=(soft+even+bright*12)*q*exposure;out.r=out.g=out.b=d;
   const k=i*4,redExcess=clamp((A.rgba[k]-(A.rgba[k+1]+A.rgba[k+2])*.5-baseRed-2)/25,0,1);
   if(tone==='green'){out.r-=redExcess*8*q;out.g+=redExcess*2*q;}
@@ -3285,17 +3413,21 @@ function v44RenderPigmentedBase(c,W,H,face,kind){
   const k=i*4,Y=A.Y[i],lowY=A.wideR[i]*.2126+A.wideG[i]*.7152+A.wideB[i]*.0722,exposure=clamp((Y-5)/26,0,1)*clamp((258-Y)/25,.08,1);
   // Tone correction acts on broad colour, while photographic grain and form
   // remain in the high-frequency luminance. Coverage is actual spatial evening.
-  const even=(A.wide[i]-A.mid[i])*coverage*(kind==='foundation'?.24:.14),smooth=(A.mid[i]-Y)*(1-texture)*coverage*.80;
+  const even=(A.wide[i]-A.mid[i])*coverage*(kind==='foundation'?.50:.30)*v421Guard(A,i),smooth=((A.mid[i]-A.fine[i])*(.22+.78*(1-texture))+(A.fine[i]-Y)*(1-texture)*.65)*coverage*.95*v421Guard(A,i);
   const pigment=[(color[0]-targetY-(A.wideR[i]-lowY))*saturation,(color[1]-targetY-(A.wideG[i]-lowY))*saturation,(color[2]-targetY-(A.wideB[i]-lowY))*saturation];
-  const light=shade+even+smooth,peak=clamp(A.mid[i]-A.wide[i]-1.4,0,26);
+  const light=shade,texBlend=q*(.55+.45*coverage),peak=clamp(A.mid[i]-A.wide[i]-1.4,0,26);
   let finishDelta=0;
   if(kind==='cushion')finishDelta=v44ProductSheen(A,i,x,y,.78)*v44ProductFraction(cfg.shine,28)*.42;
-  else if(cfg.finish==='matte')finishDelta=-peak*.50;
-  else if(cfg.finish==='dewy')finishDelta=v44ProductSheen(A,i,x,y,.72)*.30;
-  else if(cfg.finish==='satin')finishDelta=v44ProductSheen(A,i,x,y,.74)*.11;
-  out.r=(light+pigment[0]+warmth*5+finishDelta)*blend*exposure;
-  out.g=(light+pigment[1]+finishDelta)*blend*exposure;
-  out.b=(light+pigment[2]-warmth*5+finishDelta)*blend*exposure;
+  else if(cfg.finish==='matte')finishDelta=-peak*.95-1.2;
+  else if(cfg.finish==='dewy')finishDelta=v44ProductSheen(A,i,x,y,.72)*.85;
+  else if(cfg.finish==='satin')finishDelta=v44ProductSheen(A,i,x,y,.74)*.36;
+  // Pigment follows coverage/sheer; evening and smoothing follow the product amount, so Coverage and Realism are visible.
+  // Coverage hides small red / dark marks: their chroma moves to the surrounding skin chroma.
+  const cover=coverage*texBlend*v421Guard(A,i),cR=((A.wideR[i]-lowY)-(A.rgba[k]-Y))*cover*.75,cG=((A.wideG[i]-lowY)-(A.rgba[k+1]-Y))*cover*.75,cB=((A.wideB[i]-lowY)-(A.rgba[k+2]-Y))*cover*.75,lift=Math.max(0,A.wide[i]-Y-4)*cover*.45;
+  const tex=(even+smooth)*texBlend+lift,fin=finishDelta*q*.8;
+  out.r=((light+pigment[0]+warmth*5)*blend+tex+fin+cR)*exposure;
+  out.g=((light+pigment[1])*blend+tex+fin+cG)*exposure;
+  out.b=((light+pigment[2]-warmth*5)*blend+tex+fin+cB)*exposure;
  });v44BaseComposite(c,W,H,face,A,map);
 }
 function renderFoundationV44(c,W,H,face){v44RenderPigmentedBase(c,W,H,face,'foundation');}
@@ -3317,8 +3449,8 @@ function renderGloss(c,W,H,face){
  const softness=v44ProductFraction(cfg.softness,65),texture=v44ProductFraction(cfg.texture,95),warmth=clamp(Number(cfg.warmth||0)/40,-1,1);
  const colorGains=lightColorGains(cfg.color,cfg.colorAmount);
  const map=v44BaseMap(A,(i,x,y,out)=>{
-  const weight=v44ProductRegion(A,cfg.region||'highpoints',x,y),Y=A.Y[i],exposure=clamp((Y-8)/30,0,1)*clamp((255-Y)/40,0,1),reflection=v44ProductSheen(A,i,x,y,softness),micro=(A.mid[i]-Y)*(1-texture)*.15;
-  const d=(reflection+micro)*weight*q*shine*exposure,gains=colorGains;out.r=d*(1+warmth*.12)*gains[0];out.g=d*gains[1];out.b=d*(1-warmth*.12)*gains[2];
+  const weight=v44ProductRegion(A,cfg.region||'highpoints',x,y),Y=A.Y[i],exposure=clamp((Y-8)/30,0,1)*clamp((255-Y)/40,0,1),reflection=v44ProductSheen(A,i,x,y,softness),micro=(A.mid[i]-Y)*(1-texture)*.7*v421Guard(A,i);
+  const d=(reflection*2.6+micro)*weight*q*Math.pow(shine,.75)*exposure,gains=colorGains;out.r=d*(1+warmth*.35)*gains[0];out.g=d*gains[1];out.b=d*(1-warmth*.35)*gains[2];
  });v44BaseComposite(c,W,H,face,A,map);
 }
 // END V4.5 MAKEUP BASE PRODUCTS
@@ -3468,7 +3600,7 @@ function renderAutoLight(c,W,H,face){
 }
 // END V4.5 AUTOMATIC SKIN LIGHTING
 
-// BEGIN V4.19 POST-MAKEUP SKIN HARMONY
+// BEGIN V4.20 POST-MAKEUP SKIN HARMONY
 // Use the finished lower-face skin as reference. Transfer its broad colour
 // change to AI-confirmed exposed skin, never its blush, specular patches or blur.
 const skinHarmonyCache=new WeakMap();
@@ -3543,7 +3675,7 @@ function renderSkinHarmonyControls(){
  button.disabled=!A.available||state.busy||state.loading||workSessionBusy;button.setAttribute('aria-pressed',String(active));button.textContent=active?'✓ Đang dung hòa · Bấm để tắt':'Dung hòa với cổ & da còn lại';
  $('skinHarmonyRangeRow').hidden=!active;$('skinHarmonyStrength').value=cfg?.harmonize||65;$('skinHarmonyValue').textContent=(cfg?.harmonize||0)+'%';$('skinHarmonyStatus').textContent=A.reason;
 }
-// END V4.19 POST-MAKEUP SKIN HARMONY
+// END V4.20 POST-MAKEUP SKIN HARMONY
 
 function renderMakeup(ctx,W,H){if(!state.faces.length)return;
  const renderers={beautymarks:renderBeautyMarks,autolight:renderAutoLight,skin:renderSkin,skintexture:renderSkinTexture,finish:renderSkinFinish,skinlight:renderSkinLight,age:renderSkinAge,skintone:renderSkinTone,primer:renderPrimer,foundation:renderFoundationV44,cushion:renderCushion,powder:renderPowder,gloss:renderGloss,concealer:renderConcealer,contour:renderContour,highlight:renderHighlight,blush:renderBlush,shadow:renderShadow,liner:renderLiner,lashes:renderLashes,brow:renderBrows,lip:renderLips};
@@ -3842,7 +3974,7 @@ const QUICK_CONTROL_KEYS={
  autolight:['intensity','exposure'],skin:['smooth','brighten','glow'],skintexture:['intensity','scope','blemishes'],
  age:['smileLines','wrinkles'],skintone:['intensity','tone','color'],finish:['intensity','style','repair','texture','shine'],skinlight:['intensity','region','shine','color','colorAmount'],beautymarks:['style','color','size','opacity','intensity']
 };
-// V4.19: open the current layer values rather than reapplying presets.
+// V4.20: open the current layer values rather than reapplying presets.
 const FINISH_TOOLS=['finish','autolight','gloss','highlight','skinlight'];
 const FINISH_TOOL_NAMES={finish:'Chất da',autolight:'Ánh sáng',gloss:'Phủ bóng & màu',highlight:'Bắt sáng',skinlight:'Vẽ ánh sáng'};
 const toolViewMemory=new Map();
@@ -3852,6 +3984,129 @@ function makeFinishSectionLinks(){
  const nav=document.createElement('nav');nav.className='finish-section-links';nav.setAttribute('aria-label','Thông số Finish Skin');
  for(const [section,label]of [['look','Chất da'],['clean','Làm đều'],['gloss','Ánh bóng & màu'],['blend','Phối vùng'],['mask','Mask da'],['harmony','Dung hòa']]){const b=document.createElement('button');b.type='button';b.dataset.finishSection=section;b.textContent=label;b.addEventListener('click',()=>scrollToFinishSection(section));nav.append(b);}return nav;
 }
+// V4.20: shared slider controls for live steps and editable recipe drafts.
+let inlineLayerUpdating=0;
+const inlineLayerViews=new Map(),inlineLayerDetails=new Map();
+function inlineLayerValue(key,value,tab){if(typeof value!=='number')return String(value??'');if(tab==='beautymarks'&&key==='density')return value+' nốt';if(['originalStrength','smileLines','wrinkles'].includes(key))return (value>0?'+':'')+value+'%';if(['brightness','warmth','arch','lift','originalStrength','smileLines','wrinkles','depth','exposure','direction','horizontal','curve'].includes(key))return (value>0?'+':'')+value;return value+'%';}
+function inlineView(target){
+ const key=target.id+':'+target.tab;let view=inlineLayerViews.get(key);
+ if(!view){const saved=target.kind==='live'?toolViewMemory.get(target.face.id+':'+target.tab):null;view={side:saved?.side||(state.tab===target.tab?state.side:'both'),region:saved?.region||'face'};inlineLayerViews.set(key,view);}return view;
+}
+function inlineConfigs(target){const raw=target.get();if(!raw)return [];const view=inlineView(target);if(TABS[target.tab].sides)return (view.side==='both'?['left','right']:[view.side]).map(side=>raw[side]);return [target.tab==='finish'&&view.region!=='face'?raw.regions[view.region]:raw];}
+function liveInlineTarget(face,tab){return {id:'face:'+face.id,kind:'live',face,tab,get:()=>face.settings[tab]};}
+function inlineTargetReady(target){return target.kind==='live'?state.faces.includes(target.face)&&!state.busy&&!state.loading&&!workSessionBusy:!!recipeEditorDraft&&!state.busy&&!state.loading&&!workSessionBusy;}
+function checkpointInline(target){if(!inlineTargetReady(target))return;if(target.kind==='live')checkpoint();else{checkpointRecipeDraft();if(recipePreviewActive())checkpoint();}}
+function changeInlineLayer(target,key,value){
+ if(!inlineTargetReady(target))return;const raw=target.get();if(!raw)return;const configs=inlineConfigs(target),tab=target.tab;
+ const was=target.kind==='live'?layerEnabled(target.face.settings,tab):false;raw.enabled=true;
+ for(const cfg of configs){cfg.enabled=true;cfg[key]=value;
+  if(key==='color'&&['finish','gloss','highlight','skinlight'].includes(tab)&&!(cfg.colorAmount>0))cfg.colorAmount=70;
+  if(tab==='skintone'&&key==='tone')cfg.color=SKIN_TONE_MAP[value]||cfg.color;
+  if(tab==='finish'&&key==='variant'){cfg.color='#ffffff';cfg.colorAmount=0;if(['pearl','sun'].includes(value)){cfg.shine=Math.max(55,cfg.shine);cfg.coat=Math.max(50,cfg.coat);}}
+  if(key!=='intensity'&&key!=='originalStrength'&&key!=='harmonize'&&cfg.intensity===0)activateLayerConfig(cfg,tab);
+ }
+ if(target.kind==='live'){
+  recordLayerActivation(target.face,tab,was);if(!INDEPENDENT_SKIN_LAYERS.includes(tab))target.face.look=null;
+  inlineLayerUpdating++;try{renderLooks();updateActions();syncInlineLayerEditors();scheduleRender();}finally{inlineLayerUpdating--;}
+  setStatus('Đang chỉnh '+TABS[tab].title+' bằng thanh trượt. Các bước khác giữ nguyên thông số.');
+ }else{updateRecipePreviewLayer(tab);syncInlineLayerEditors();renderRecipeEditorStatus();}
+}
+function syncInlineLayerEditors(root=document){
+ for(const editor of root.querySelectorAll('.inline-layer-editor')){
+  const target=editor._inlineTarget;if(!target)continue;const configs=inlineConfigs(target);if(!configs.length)continue;
+  for(const node of editor.querySelectorAll('[data-inline-setting]')){
+   const key=node.dataset.inlineSetting,values=configs.map(c=>c[key]),value=values[0],mixed=values.some(v=>v!==value);
+   if(node.type==='checkbox'){node.checked=values.every(Boolean);node.indeterminate=mixed;}
+   else if(node.type==='range'||node.type==='color'||node.tagName==='SELECT')node.value=value??(node.type==='color'?'#ffffff':0);
+   const out=node.closest('.inline-control')?.querySelector('output');if(out)out.textContent=node.type==='range'?(mixed&&TABS[target.tab].sides?'Trái '+inlineLayerValue(key,values[0],target.tab)+' · Phải '+inlineLayerValue(key,values.at(-1),target.tab):inlineLayerValue(key,value,target.tab)):(node.type==='color'?(mixed?'Hai bên khác màu':String(value||'').toUpperCase()):(mixed?'Hai bên khác nhau':''));
+  }
+  const row=editor.closest('.layer-row');if(row){row.classList.toggle('muted',!layerEnabled(target.face.settings,target.tab));const toggle=row.querySelector('[data-layer-toggle]');if(toggle)toggle.checked=layerEnabled(target.face.settings,target.tab);}
+ }
+}
+function makeInlineLayerEditor(target){
+ const editor=document.createElement('div');editor.className='inline-layer-editor';editor._inlineTarget=target;editor.dataset.inlineTab=target.tab;editor.dataset.inlineContext=target.kind;
+ const tab=target.tab,view=inlineView(target),raw=target.get();if(!raw)return editor;
+ if(TABS[tab].sides||tab==='finish'){
+  const label=document.createElement('label');label.className='inline-scope';label.textContent=TABS[tab].sides?'Đang chỉnh':'Vùng Finish';const select=document.createElement('select');select.setAttribute('aria-label',label.textContent+' · '+TABS[tab].title);select.dataset.inlineScope=tab;
+  const choices=TABS[tab].sides?{both:'Hai bên',left:'Trái ảnh',right:'Phải ảnh'}:UI_FINISH_REGIONS;
+  for(const [value,text]of Object.entries(choices)){const opt=document.createElement('option');opt.value=value;opt.textContent=text;select.append(opt);}select.value=TABS[tab].sides?view.side:view.region;
+  select.addEventListener('change',()=>{if(TABS[tab].sides)view.side=select.value;else view.region=select.value;if(target.kind==='live')toolViewMemory.set(target.face.id+':'+tab,{side:view.side,region:view.region,scroll:0});const next=makeInlineLayerEditor(target);editor.replaceWith(next);syncInlineLayerEditors(next.parentNode);});label.append(select);editor.append(label);
+ }
+ const rangeKeys=TABS[tab].controls.filter(c=>c[2]==='range').map(c=>c[0]),preferred=tab==='lashes'?['intensity','upperIntensity','lower','length','lowerLength']:tab==='finish'?['intensity','shine','texture']:(QUICK_CONTROL_KEYS[tab]||['intensity']).filter(k=>rangeKeys.includes(k));
+ const primary=new Set(preferred.slice(0,tab==='lashes'?5:3));for(const key of rangeKeys)if(primary.size<Math.min(2,rangeKeys.length))primary.add(key);
+ const quick=document.createElement('div');quick.className='inline-quick-sliders';const extra=document.createElement('details');extra.className='inline-more-controls';extra.open=inlineLayerDetails.get(target.id+':'+tab)||false;const summary=document.createElement('summary');summary.textContent='Chỉnh đầy đủ · kiểu, màu và các thanh trượt';extra.append(summary);extra.addEventListener('toggle',()=>inlineLayerDetails.set(target.id+':'+tab,extra.open));
+ const definitions=[...TABS[tab].controls];if(tab==='finish'&&view.region==='face')definitions.push(['harmonize','Dung hòa cổ & da còn lại','range',0,100,1]);
+ for(const [key,title,type,a,b,step]of definitions){
+  const group=document.createElement('label');group.className='inline-control';const head=document.createElement('span');head.className='inline-control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');head.append(name,out);group.append(head);
+  let input;
+  if(type==='range'){
+   input=document.createElement('input');input.type='range';input.min=a;input.max=b;input.step=step||1;let pointer=false,keyboard=false;
+   input.addEventListener('pointerdown',()=>{checkpointInline(target);pointer=true;});for(const event of ['pointerup','pointercancel','blur'])input.addEventListener(event,()=>{pointer=false;keyboard=false;});
+   input.addEventListener('keydown',event=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Home','End','PageUp','PageDown'].includes(event.key)&&!keyboard){checkpointInline(target);keyboard=true;}});input.addEventListener('keyup',()=>{keyboard=false;});
+   input.addEventListener('input',()=>{if(!pointer&&!keyboard)checkpointInline(target);changeInlineLayer(target,key,Number(input.value));});
+  }else if(type==='color'){
+   input=document.createElement('input');input.type='color';let started=false;input.addEventListener('pointerdown',()=>{checkpointInline(target);started=true;});input.addEventListener('input',()=>{if(!started)checkpointInline(target);changeInlineLayer(target,key,input.value);});input.addEventListener('change',()=>{started=false;});
+  }else if(type==='choices'){
+   input=document.createElement('select');for(const [value,label]of Object.entries(a)){const opt=document.createElement('option');opt.value=value;opt.textContent=label;if(target.kind==='live'&&key==='scope'&&['skintone','skinlight'].includes(tab)&&!['face'].includes(value)&&(!state.skinSeg||state.faces.length!==1))opt.disabled=true;input.append(opt);}input.addEventListener('change',()=>{checkpointInline(target);changeInlineLayer(target,key,input.value);});
+  }else if(type==='toggle'){
+   input=document.createElement('input');input.type='checkbox';input.addEventListener('change',()=>{checkpointInline(target);changeInlineLayer(target,key,input.checked);});
+  }else continue;
+  if(target.kind==='live'&&tab==='autolight'&&key==='neck'){const availability=autoLightNeckAvailability(target.face);input.disabled=!availability.available;input.title=availability.reason;}if(target.kind==='live'&&key==='harmonize'){const availability=skinHarmonyGeometry(target.face);input.disabled=!availability.available;input.title=availability.reason;}
+  input.dataset.inlineSetting=key;input.setAttribute('aria-label',title+' · '+TABS[tab].title);input.value=inlineConfigs(target)[0]?.[key]??0;if(type==='checkbox')input.checked=inlineConfigs(target)[0]?.[key]!==false;out.textContent=type==='range'?inlineLayerValue(key,inlineConfigs(target)[0]?.[key],tab):'';group.append(input);(primary.has(key)?quick:extra).append(group);
+ }
+ editor.append(quick,extra);return editor;
+}
+let recipeEditorDraft=null,recipeEditorSavedSignature='',recipeEditorUndo=[],recipeEditorRedo=[],recipePreviewFace=null;
+function recipePreviewActive(){return !!recipePreviewFace&&$('recipeEditorPreview').checked&&state.faces.includes(recipePreviewFace)&&selectedFace()===recipePreviewFace;}
+function checkpointRecipeDraft(){if(!recipeEditorDraft)return;const copy=deepCopy(recipeEditorDraft),last=recipeEditorUndo.at(-1);if(!last||JSON.stringify(last)!==JSON.stringify(copy)){recipeEditorUndo.push(copy);if(recipeEditorUndo.length>42)recipeEditorUndo.shift();}recipeEditorRedo=[];renderRecipeEditorStatus();}
+function openRecipeEditor(id){
+ const stored=recipeLibrary.find(r=>r.id===id);if(!stored)return;
+ if(!recipeEditorDraft||recipeEditorDraft.id!==id||JSON.stringify(recipeEditorDraft)===recipeEditorSavedSignature){recipeEditorDraft=deepCopy(stored);recipeEditorSavedSignature=JSON.stringify(stored);recipeEditorUndo=[];recipeEditorRedo=[];}
+ recipePreviewFace=null;$('recipeEditorPreview').checked=false;$('recipeEditorName').value=recipeEditorDraft.name;
+ if($('recipeDialog').open)$('recipeDialog').close();renderRecipeEditorLayers();renderRecipeEditorStatus();$('recipeEditorDialog').showModal();
+}
+function renderRecipeEditorStatus(){
+ if(!$('recipeEditorStatus')||!recipeEditorDraft)return;const dirty=JSON.stringify(recipeEditorDraft)!==recipeEditorSavedSignature,exists=recipeLibrary.some(r=>r.id===recipeEditorDraft.id),has=!!selectedFace()&&!state.busy&&!state.loading&&!workSessionBusy;
+ $('recipeEditorStatus').textContent=(dirty?'Đã chỉnh · chưa lưu. ':'Đang mở công thức đã lưu. ')+(recipePreviewActive()?'Ảnh đang cập nhật theo thanh trượt.':'Chỉnh tại đây giữ nguyên ảnh cho đến khi bật Xem trực tiếp hoặc Áp dụng.');
+ $('btnRecipeEditorUpdate').disabled=!exists||state.busy||workSessionBusy;$('btnRecipeEditorQuickSave').disabled=$('btnRecipeEditorUpdate').disabled;$('btnRecipeEditorCopy').disabled=state.busy||workSessionBusy;$('btnRecipeEditorApply').disabled=!has;$('recipeEditorPreview').disabled=!has;
+ $('btnRecipeEditorUndo').disabled=!recipeEditorUndo.length;$('btnRecipeEditorRedo').disabled=!recipeEditorRedo.length;
+ for(const cb of $('recipeEditorLayers').querySelectorAll('[data-recipe-layer-enabled]'))cb.checked=recipeEditorDraft.layers.find(l=>l.type===cb.dataset.recipeLayerEnabled)?.config.enabled!==false;
+ const select=$('recipeEditorAddType'),old=select.value;select.replaceChildren();for(const [tab,label]of LAYER_ORDER)if(!HIDDEN_TOOLS.has(tab)&&!recipeEditorDraft.layers.some(l=>l.type===tab)){const opt=document.createElement('option');opt.value=tab;opt.textContent=label;select.append(opt);}if([...select.options].some(o=>o.value===old))select.value=old;$('btnRecipeEditorAdd').disabled=!select.options.length;
+}
+function renderRecipeEditorLayers(){
+ const container=$('recipeEditorLayers'),scroll=$('recipeEditorDialog').scrollTop;container.replaceChildren();if(!recipeEditorDraft)return;
+ if(!recipeEditorDraft.layers.length){const p=document.createElement('p');p.textContent='Chưa có bước trong công thức. Thêm một bước để bắt đầu.';container.append(p);}
+ for(const layer of recipeEditorDraft.layers){
+  const card=document.createElement('section');card.className='recipe-editor-layer';card.dataset.recipeLayer=layer.type;const head=document.createElement('div');head.className='recipe-editor-layer-head';const title=document.createElement('h4');title.textContent=TABS[layer.type].title;
+  const toggle=document.createElement('label');toggle.className='recipe-layer-toggle';const cb=document.createElement('input');cb.type='checkbox';cb.dataset.recipeLayerEnabled=layer.type;cb.checked=layer.config.enabled!==false;cb.setAttribute('aria-label','Bật bước '+TABS[layer.type].title+' trong công thức');cb.addEventListener('change',()=>{checkpointRecipeDraft();if(recipePreviewActive())checkpoint();layer.config.enabled=cb.checked;updateRecipePreviewLayer(layer.type);renderRecipeEditorStatus();});toggle.append(cb,document.createTextNode('Bật'));
+  const remove=document.createElement('button');remove.type='button';remove.className='layer-delete';remove.textContent='Xóa bước';remove.dataset.recipeRemove=layer.type;remove.addEventListener('click',()=>{checkpointRecipeDraft();if(recipePreviewActive())checkpoint();recipeEditorDraft.layers=recipeEditorDraft.layers.filter(l=>l.type!==layer.type);if(recipePreviewActive()){recipePreviewFace.settings[layer.type]=deepCopy(makeDefaults()[layer.type]);recipePreviewFace.layerList=recipePreviewFace.layerList.filter(t=>t!==layer.type);renderLooks();scheduleRender();}renderRecipeEditorLayers();renderRecipeEditorStatus();});
+  head.append(title,toggle,remove);card.append(head,makeInlineLayerEditor({id:'recipe:'+recipeEditorDraft.id,kind:'recipe',tab:layer.type,get:()=>recipeEditorDraft?.layers.find(l=>l.type===layer.type)?.config}));container.append(card);
+ }
+ $('recipeEditorDialog').scrollTop=scroll;syncInlineLayerEditors(container);
+}
+function updateRecipePreviewLayer(tab){
+ if(!recipePreviewActive())return;const layer=recipeEditorDraft.layers.find(l=>l.type===tab);if(!layer)return;
+ const face=recipePreviewFace,was=layerEnabled(face.settings,tab);face.settings[tab]=deepCopy(layer.config);recordLayerActivation(face,tab,was);face.look=null;inlineLayerUpdating++;try{renderLooks();updateActions();scheduleRender();}finally{inlineLayerUpdating--;}
+}
+function applyRecipeEditorToFace(){
+ const face=selectedFace();if(!face||!recipeEditorDraft||state.busy||workSessionBusy)return false;
+ try{const valid=RAY_RECIPE_CODEC.validateRecipe(recipeEditorDraft),next=RAY_RECIPE_CODEC.recipeToFaceSettings(valid);checkpoint();stopSurfaceBrush();Object.assign(face,next);face.look=null;attachRecipe(face,valid);hideRecognitionOverlays();renderControls();renderLooks();scheduleRender();setStatus('Đã áp dụng công thức đang chỉnh. Bật Xem trực tiếp để ảnh đổi theo thanh trượt.');return true;}catch(error){$('recipeEditorMessage').textContent=error.message;return false;}
+}
+function saveRecipeEditor(asNew=false){
+ if(!recipeEditorDraft)return null;try{const exists=recipeLibrary.find(r=>r.id===recipeEditorDraft.id);if(!asNew&&!exists)throw new Error('Công thức gốc không còn trong thư viện. Chọn Lưu bản mới.');
+  const now=new Date().toISOString(),recipe=RAY_RECIPE_CODEC.validateRecipe({...recipeEditorDraft,id:asNew?recipeId():recipeEditorDraft.id,name:$('recipeEditorName').value,createdAt:asNew?now:recipeEditorDraft.createdAt,updatedAt:now});
+  persistRecipes(asNew?[recipe,...recipeLibrary]:recipeLibrary.map(r=>r.id===recipe.id?recipe:r));recipeEditorDraft=deepCopy(recipe);recipeEditorSavedSignature=JSON.stringify(recipe);recipeEditorUndo=[];recipeEditorRedo=[];
+  if(recipePreviewActive())attachRecipe(recipePreviewFace,recipe);renderRecipeLibrary();renderRecipeStatus();renderRecipeEditorLayers();renderRecipeEditorStatus();$('recipeEditorMessage').textContent=(asNew?'Đã lưu bản mới “':'Đã cập nhật “')+recipe.name+'”.';return recipe;
+ }catch(error){$('recipeEditorMessage').textContent='Chưa lưu được: '+error.message;return null;}
+}
+function undoRecipeEditor(redo=false){
+ const source=redo?recipeEditorRedo:recipeEditorUndo,target=redo?recipeEditorUndo:recipeEditorRedo;if(!source.length||!recipeEditorDraft)return;target.push(deepCopy(recipeEditorDraft));recipeEditorDraft=source.pop();$('recipeEditorName').value=recipeEditorDraft.name;
+ if(recipePreviewActive())applyRecipeEditorToFace();renderRecipeEditorLayers();renderRecipeEditorStatus();
+}
+function saveRecipeFromSteps(update=false){
+ if(!selectedFace())return;const name=$('stepsRecipeName').value.trim()||'Công thức của tôi';setDraftLayoutName(name);$('recipeName').value=name;const recipe=saveCurrentRecipe(update);$('stepsRecipeStatus').textContent=recipe?(update?'Đã cập nhật công thức “':'Đã lưu công thức “')+recipe.name+'”. Bạn có thể mở lại và sửa bằng thanh trượt.':$('recipeMessage').textContent;
+}
+
 function stepParameterSummary(face,tab){
  const cfg=face.settings[tab],s=TABS[tab].sides?(cfg[state.side==='right'?'right':'left']||cfg.left):cfg,parts=[];
  if(TABS[tab].sides)parts.push(state.side==='both'?'Hai bên':state.side==='left'?'Trái ảnh':'Phải ảnh');
@@ -4036,7 +4291,7 @@ function renderControls(){const savedScroll=$('panelScroll').scrollTop;if(state.
  if(state.tab==='finish'){const row=document.createElement('label');row.className='finish-region-quick';row.textContent='Vùng đang pha';const sel=document.createElement('select');sel.id='quickFinishRegion';sel.setAttribute('aria-label','Vùng Finish Skin');for(const [id,label]of Object.entries(UI_FINISH_REGIONS)){const opt=document.createElement('option');opt.value=id;opt.textContent=label;sel.append(opt)}sel.value=state.finishRegion;sel.addEventListener('change',()=>setFinishRegion(sel.value));row.append(sel);area.append(row);}
  const layerRow=document.createElement('label');layerRow.className='layer-switch';const enabled=document.createElement('input');enabled.type='checkbox';enabled.id='layerEnabled';enabled.checked=configs.every(cfg=>editingConfigActive(f,cfg));enabled.indeterminate=configs.some(cfg=>editingConfigActive(f,cfg))&&!enabled.checked;enabled.addEventListener('change',()=>toggleCurrentLayer(enabled.checked));const label=document.createElement('span');label.textContent='Bật';layerRow.title='Bật / tắt '+conf.title;enabled.setAttribute('aria-label','Bật / tắt '+conf.title);layerRow.append(enabled,label);$('layerSwitchSlot').append(layerRow);
  if(state.faces.length>1){const all=document.createElement('button');all.type='button';all.id='btnApplyLayerAll';all.className='outline block';all.textContent=`Áp dụng ${state.tab==='finish'&&state.finishRegion!=='face'?UI_FINISH_REGIONS[state.finishRegion].toLowerCase():'lớp này'} cho cả ${state.faces.length} người`;all.disabled=!layerEnabled(f.settings,state.tab);all.addEventListener('click',applyCurrentLayerToAll);detailed.append(all);}
- for(const [key,title,type,a,b,step] of [...conf.controls].sort((a,b)=>{const ai=primary.indexOf(a[0]),bi=primary.indexOf(b[0]);return (ai<0?100:ai)-(bi<0?100:bi)})){const group=document.createElement('div');group.className='control-group';group.dataset.kind=type;group.dataset.key=key;const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
+ for(const [key,title,type,a,b,step] of [...conf.controls].sort((a,b)=>{const ai=primary.indexOf(a[0]),bi=primary.indexOf(b[0]);return (ai<0?100:ai)-(bi<0?100:bi)})){if(CONTROL_WHEN[state.tab]?.[key]&&!CONTROL_WHEN[state.tab][key](s))continue;const group=document.createElement('div');group.className='control-group';group.dataset.kind=type;group.dataset.key=key;const head=document.createElement('div');head.className='control-head';const name=document.createElement('span');name.textContent=title;const out=document.createElement('output');out.textContent=type==='range'?formatValue(key,s[key]):'';head.append(name,out);group.append(head);
  if(type==='range'){const input=document.createElement('input');input.type='range';input.min=a;input.max=b;input.step=step||1;input.value=s[key]??0;input.dataset.setting=key;input.id='control-'+state.tab+'-'+key;input.setAttribute('aria-label',title);let pointerHistory=false;
  input.addEventListener('pointerdown',()=>{checkpoint();pointerHistory=true;});for(const event of ['pointerup','pointercancel','blur'])input.addEventListener(event,()=>{pointerHistory=false;});
  input.addEventListener('input',()=>{if(!pointerHistory)checkpoint();mutateValue(key,Number(input.value));out.textContent=formatValue(key,input.value);});
@@ -4255,6 +4510,7 @@ function attachRecipe(face,recipe){face.layoutDraftName=recipe.name;face.recipeR
 function renderRecipeStatus(){
  const face=selectedFace(),ref=face?.recipeRef,existing=recipeLibrary.find(r=>r.id===ref?.id),dirty=recipeIsDirty(face),target=(face?.id||'none')+':'+(ref?.id||'');
  $('recipeSummary').textContent=!face?'Lưu, mở lại và chia sẻ layout trang điểm':ref?(existing?.name||ref.name)+(dirty?' · Đã chỉnh, chưa cập nhật':existing?' · Đã lưu':' · Bản chỉnh trên ảnh'):(face.layoutDraftName?'Đang làm: '+face.layoutDraftName:'Look đang chỉnh')+' · Chưa lưu thành layout';
+ if(document.activeElement!==$('stepsRecipeName'))$('stepsRecipeName').value=face?.layoutDraftName||existing?.name||ref?.name||'';$('btnSaveStepsRecipe').disabled=!face||state.busy||state.loading||workSessionBusy;$('btnUpdateStepsRecipe').disabled=!face||!existing||state.busy||state.loading||workSessionBusy;
  $('recipeSummary').dataset.dirty=String(dirty);$('recipeSummary').classList.toggle('dirty',dirty);
  $('recipeCurrentLabel').textContent=face?'Đang chỉnh riêng Người '+(state.faces.indexOf(face)+1):'Chọn ảnh và nhận diện để áp dụng lên gương mặt.';
  if(recipeNameTarget!==target){$('recipeName').value=face?.layoutDraftName||existing?.name||ref?.name||'Look của tôi';$('customLayoutName').value=$('recipeName').value;recipeNameTarget=target;}
@@ -4276,8 +4532,8 @@ function saveCurrentRecipe(update=false){
  const face=selectedFace();if(!face)return;
  try{const existing=update?recipeLibrary.find(r=>r.id===face.recipeRef?.id):null;if(update&&!existing)throw new Error('Chọn công thức đã lưu để cập nhật.');
   const recipe=currentRecipe($('recipeName').value,existing?.id,existing?.createdAt),next=existing?recipeLibrary.map(r=>r.id===existing.id?recipe:r):[recipe,...recipeLibrary];
-  persistRecipes(next);attachRecipe(face,recipe);renderRecipeStatus();renderRecipeLibrary();recipeMessage((update?'Đã cập nhật “':'Đã lưu layout mới “')+recipe.name+'” trên thiết bị này.');
- }catch(e){recipeMessage('Không lưu được công thức: '+e.message,true);}
+  persistRecipes(next);attachRecipe(face,recipe);renderRecipeStatus();renderRecipeLibrary();recipeMessage((update?'Đã cập nhật “':'Đã lưu layout mới “')+recipe.name+'” trên thiết bị này.');return recipe;
+ }catch(e){recipeMessage('Không lưu được công thức: '+e.message,true);return null;}
 }
 function editRecipeLayer(tab){if(!selectedFace()||HIDDEN_TOOLS.has(tab))return;selectTool(tab);renderLayerStrip();}
 
@@ -4315,9 +4571,9 @@ function renderRecipeLibrary(){
  for(const recipe of recipeLibrary){
   const card=document.createElement('article');card.className='recipe-card';const title=document.createElement('strong');title.textContent=recipe.name;
   const detail=document.createElement('p');detail.textContent=recipe.layers.filter(layer=>!HIDDEN_TOOLS.has(layer.type)).length+' lớp · '+new Date(recipe.updatedAt).toLocaleDateString('vi-VN');const buttons=document.createElement('div');buttons.className='recipe-actions';
-  for(const [action,label]of [['apply','Mở / chỉnh layout'],['rename','Đổi tên'],['export','Tải layout'],['share','Chia sẻ'],['delete','Xóa']]){
+  for(const [action,label]of [['edit','Chỉnh công thức'],['apply','Áp dụng lên ảnh'],['rename','Đổi tên'],['export','Tải layout'],['share','Chia sẻ'],['delete','Xóa']]){
    const button=document.createElement('button');button.type='button';button.className='outline small';button.dataset.recipeId=recipe.id;button.dataset.recipeAction=action;button.textContent=label;button.disabled=action==='apply'&&(!selectedFace()||state.busy||state.loading);
-   button.addEventListener('click',()=>{if(action==='apply')applySavedRecipe(recipe.id);else if(action==='rename')renameRecipe(recipe.id);else if(action==='delete')deleteRecipe(recipe.id);else if(action==='export')exportRecipe(recipe);else openShareRecipe(recipe);});buttons.append(button);
+   button.addEventListener('click',()=>{if(action==='edit')openRecipeEditor(recipe.id);else if(action==='apply')applySavedRecipe(recipe.id);else if(action==='rename')renameRecipe(recipe.id);else if(action==='delete')deleteRecipe(recipe.id);else if(action==='export')exportRecipe(recipe);else openShareRecipe(recipe);});buttons.append(button);
   }card.append(title,detail,buttons);container.append(card);
  }
 }
@@ -4734,6 +4990,17 @@ $('btnStepBorder').addEventListener('click',()=>{showPanel('scan');$('faceBorder
 $('btnDownloadNow').addEventListener('click',()=>exportOriginal());$('btnSaveWithName').addEventListener('click',openSaveImageDialog);
 $('btnKeepInRay').addEventListener('click',saveWorkSession);$('btnContinueRay').addEventListener('click',resumeWorkSession);
 $('btnDownloadProject').addEventListener('click',downloadRayProject);$('rayProjectFile').addEventListener('change',event=>{const file=event.target.files?.[0];event.target.value='';if(file)openRayProject(file);});
+
+
+$('stepsRecipeName').addEventListener('input',event=>setDraftLayoutName(event.target.value));
+$('stepsRecipeForm').addEventListener('submit',event=>{event.preventDefault();saveRecipeFromSteps(false);});$('btnUpdateStepsRecipe').addEventListener('click',()=>saveRecipeFromSteps(true));$('btnStepsRecipes').addEventListener('click',openRecipes);
+$('recipeEditorName').addEventListener('focus',checkpointRecipeDraft);$('recipeEditorName').addEventListener('input',event=>{if(recipeEditorDraft)recipeEditorDraft.name=event.target.value;renderRecipeEditorStatus();});
+$('btnRecipeEditorQuickSave').addEventListener('click',()=>saveRecipeEditor(false));$('btnRecipeEditorUpdate').addEventListener('click',()=>saveRecipeEditor(false));$('btnRecipeEditorCopy').addEventListener('click',()=>saveRecipeEditor(true));
+$('btnRecipeEditorUndo').addEventListener('click',()=>undoRecipeEditor(false));$('btnRecipeEditorRedo').addEventListener('click',()=>undoRecipeEditor(true));
+$('btnRecipeEditorApply').addEventListener('click',()=>applyRecipeEditorToFace());
+$('recipeEditorPreview').addEventListener('change',event=>{if(event.target.checked){if(applyRecipeEditorToFace())recipePreviewFace=selectedFace();else event.target.checked=false;}else recipePreviewFace=null;renderRecipeEditorStatus();});
+$('btnRecipeEditorAdd').addEventListener('click',()=>{if(!recipeEditorDraft)return;const tab=$('recipeEditorAddType').value;if(!TABS[tab]||recipeEditorDraft.layers.some(l=>l.type===tab))return;checkpointRecipeDraft();if(recipePreviewActive())checkpoint();const config=deepCopy(makeDefaults()[tab]);if(TABS[tab].sides){config.enabled=true;for(const side of ['left','right'])activateLayerConfig(config[side],tab);}else activateLayerConfig(config,tab);recipeEditorDraft.layers.push({type:tab,config});updateRecipePreviewLayer(tab);renderRecipeEditorLayers();renderRecipeEditorStatus();});
+$('btnRecipeEditorBack').addEventListener('click',()=>{$('recipeEditorDialog').close();recipePreviewFace=null;openRecipes();});
 
 syncLayerSelectors();renderControls();renderLooks();updateActions();showPanel('scan');refreshWorkSessionAvailability();
 
