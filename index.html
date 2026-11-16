@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.25 – Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.26 – Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -585,7 +585,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.25</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.26</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -846,7 +846,7 @@ const V4_LAYOUTS={
  lashes:{roseDoll:'Búp bê hồng · Mi tơi',bronzeCat:'Nâu đồng · Nhấn đuôi',natural:'Tự nhiên',mascara:'Mascara rõ',length:'Dài nhẹ',volume:'Volume',curl:'Cong C/D',cluster:'Katun',wispy:'Wispy · Tơi tầng',doll:'Doll · Búp bê',fox:'Fox · Đuôi cáo',wet:'Mi ướt',manga:'Manga',outer:'Nhấn đuôi',korean:'Tơi Hàn',western:'Sắc nét Tây'}
 };
 for(const tab of ['finish','skinlight','gloss','highlight']){if(!TABS[tab].controls.some(c=>c[0]==='color'))TABS[tab].controls.push(['color','Màu ánh sáng','color']);TABS[tab].controls.push(['colorAmount','Đậm màu ánh sáng','range',0,100,1]);}
-const PAINT_KINDS={lipstick:'Bút son',tintpaint:'Bút màu má / phấn',inkpaint:'Bút kẻ nét',glowpaint:'Bút bắt sáng'};
+const PAINT_KINDS={lipstick:'Bút son',tintpaint:'Bút màu má / phấn',inkpaint:'Bút kẻ nét',glowpaint:'Bút bắt sáng',aegyo:'Bút bọng mắt'};
 TABS.beautymarks={title:'Bút vẽ · Tàn nhang · Nốt ruồi',summary:'Chạm và kéo để tự vẽ lên mặt: son, màu má / phấn, nét kẻ, bắt sáng, tàn nhang hoặc nốt ruồi. Bút Xóa chỉ bỏ nét đã vẽ; từng người giữ lớp riêng.',sides:false,controls:[['style','Loại bút','choices',{...PAINT_KINDS,freckles:'Tàn nhang',mole:'Nốt ruồi'}],['color','Màu bút','color'],['intensity','Độ đậm cả lớp','range',0,100,1],['size','Cỡ bút (% mặt)','range',.2,8,.05],['opacity','Độ đậm nét mới','range',10,100,1],['softness','Mềm viền nét','range',0,100,1],['spread','Cỡ bút tàn nhang','range',2,18,1],['density','Số nốt mỗi lần chấm','range',1,20,1]]};
 // V4.21: a control is shown only when the chosen layout / finish actually uses it.
 const LIGHT_TINTED=s=>String(s.color||'#ffffff').toLowerCase()!=='#ffffff';
@@ -884,7 +884,7 @@ const COLOR_SWATCHES={
  skintone:['#f6dcc7','#f0d2c7','#f2d8bf','#ddc09b','#c99c74','#a56f4b','#8d5a43','#6a4431','#cc9d7a']
 };
 for(const tab of ['finish','skinlight','highlight','gloss'])COLOR_SWATCHES[tab]=['#ffffff','#ffe4ca','#ff9cc7','#ef668f','#cfa7ff','#91ceff','#a4e4d1','#ffd680'];
-COLOR_SWATCHES.beautymarks=['#b3262f','#c8423c','#d86a78','#e58a9a','#8c1f2c','#56352b','#80523d','#ab7953','#261f20','#fff1e4'];
+COLOR_SWATCHES.beautymarks=['#ffe9de','#b3262f','#c8423c','#d86a78','#e58a9a','#8c1f2c','#56352b','#80523d','#ab7953','#261f20','#fff1e4'];
 const SKIN_TONE_MAP={softivory:'#f6e4d9',rosefair:'#f6d5db',coolfair:'#e8dfe7',naturallight:'#e9cdb7',beige:'#daba96',honey:'#c69163',warmtan:'#aa724d',cooltan:'#987161',sunkissed:'#bb825f'};
 const LOOKS={
  fresh:{label:'Trong trẻo',brow:['#5b4039',54,'soft'],lip:['#cb7280',67,'tint'],blush:['#e39ca4',43,'apple'],shadow:['#bb998e',27],liner:24,lashes:28,skin:{smooth:18,brighten:14,glow:10},skintone:['naturallight',18,4,8,36]},
@@ -3422,6 +3422,19 @@ function renderBeautyMarks(c,W,H,face){
   const meanR=ps.reduce((a,q)=>a+q.r,0)/ps.length,softness=dabs.reduce((a,d)=>a+d.softness,0)/dabs.length;
   const painter=m=>{for(const q of ps){const a=1-Math.pow(1-clamp(q.d.opacity,0,.98),.34),g=m.createRadialGradient(q.p.x,q.p.y,0,q.p.x,q.p.y,q.r);g.addColorStop(0,`rgba(255,255,255,${a})`);g.addColorStop(clamp(.9-q.d.softness*.6,.15,.9),`rgba(255,255,255,${a*.8})`);g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;m.beginPath();m.arc(q.p.x,q.p.y,q.r,0,Math.PI*2);m.fill();}};
   const blur=Math.max(photoMatchBlur(face,W,.9),meanR*(.10+.30*softness)),strength=clamp(cfg.intensity/100,0,1);
+  if(kind==='aegyo'){
+   // V4.26 bọng mắt (aegyo-sal): a soft light band right under the lower lash line plus a fine
+   // shadow along its lower edge. Light and shadow together read as a real fold, not a white stripe.
+   const down=q=>fromF(F,q.d.s*F.em-q.r*.95,q.d.t*F.em),strength=clamp(cfg.intensity/100,0,1);
+   maskPatch(c,W,H,bb,m=>{for(const q of ps){const a=1-Math.pow(1-clamp(q.d.opacity,0,.98),.34),g=m.createRadialGradient(q.p.x,q.p.y,0,q.p.x,q.p.y,q.r);g.addColorStop(0,`rgba(255,255,255,${a})`);g.addColorStop(.55,`rgba(255,255,255,${a*.75})`);g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;m.beginPath();m.arc(q.p.x,q.p.y,q.r,0,Math.PI*2);m.fill();}},
+    {face,protectOcclusion:true,mode:'illuminate',color,colorAmount:35,strength:strength*.82,photoBlur:Math.max(photoMatchBlur(face,W,1),meanR*.35)});
+   const shadowBox=boundsPx(ps.flatMap(q=>{const p=down(q);return [{x:p.x-q.r,y:p.y-q.r},{x:p.x+q.r,y:p.y+q.r}];}),W,H,2);
+   if(shadowBox)maskPatch(c,W,H,shadowBox,m=>{
+    for(const q of ps){const p=down(q),a=1-Math.pow(1-clamp(q.d.opacity,0,.98),.34);m.save();m.translate(p.x,p.y);m.rotate(Math.atan2(F.ry,F.rx));m.scale(1,.38);const g=m.createRadialGradient(0,0,0,0,0,q.r);g.addColorStop(0,`rgba(255,255,255,${a})`);g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;m.beginPath();m.arc(0,0,q.r,0,Math.PI*2);m.fill();m.restore();}
+    m.save();m.globalCompositeOperation='destination-out';for(const q of ps){const g=m.createRadialGradient(q.p.x,q.p.y,0,q.p.x,q.p.y,q.r*.85);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;m.beginPath();m.arc(q.p.x,q.p.y,q.r*.85,0,Math.PI*2);m.fill();}m.restore();
+   },{face,protectFace:true,protectOcclusion:true,mode:'shade',color:'#8a6252',strength:strength*.42,photoBlur:Math.max(photoMatchBlur(face,W,1),meanR*.30)});
+   continue;
+  }
   const opts=kind==='lipstick'?{mode:'lip',cosmetic:{sheer:14,coverage:86,texture:90,softness:60},strength}:kind==='tintpaint'?{mode:'blush',cosmetic:{sheer:46,coverage:52,texture:94,softness:85},strength:strength*.9}:kind==='inkpaint'?{mode:'ink',cosmetic:{sheer:20,coverage:85,texture:90,softness:40},strength,inkBoost:true}:{mode:'illuminate',strength:strength*.8};
   maskPatch(c,W,H,bb,painter,{face,protectOcclusion:true,color,photoBlur:blur,softEdge:false,...opts});
  }
@@ -3430,12 +3443,26 @@ function renderBeautyMarks(c,W,H,face){
   const rgb=colorRGB(dot.color),a=clamp(dot.opacity*cfg.intensity/100,0,1),edge=.92-dot.softness*.58,g=c.createRadialGradient(p.x,p.y,0,p.x,p.y,r);g.addColorStop(0,`rgba(${rgb.join(',')},${a})`);g.addColorStop(edge,`rgba(${rgb.join(',')},${a*.85})`);g.addColorStop(1,`rgba(${rgb.join(',')},0)`);c.fillStyle=g;c.beginPath();c.arc(p.x,p.y,r,0,Math.PI*2);c.fill();
  }c.restore();
 }
+// V4.26: places one aegyo-sal stroke under each eye, following the detected lower lid.
+function autoAegyo(face){
+ const cfg=ensureSettings(face).beautymarks,W=guide.width||state.previewW,H=guide.height||state.previewH,F=faceFrame(face,W,H),fw=faceSizePx(face,W,H).w;
+ const was=layerEnabled(face.settings,'beautymarks');let g=cfg.marks.reduce((n,q)=>Math.max(n,q.g||0),0),added=0;
+ cfg.marks=cfg.marks.filter(q=>q.kind!=='aegyo');
+ for(const side of ['left','right']){
+  const G=eyeGeometry(face,side,W,H);if(!G)continue;const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),r=G.width*.115;g++;
+  for(let i=0;i<=14;i++){const u=.10+i/14*.80,v=v47SmoothEyeCurve(G,lower,u)-r*.95,p=G.at(u,v),q=toF(F,p),taper=Math.sin(Math.PI*(.08+.84*i/14));
+   cfg.marks.push({s:clamp(q.s/F.em,-20,20),t:clamp(q.t/F.em,-20,20),size:clamp(r*(.70+.30*taper)/fw*100,.1,8),color:'#ffe9de',opacity:clamp(.55*taper+.15,0,1),softness:.85,kind:'aegyo',g});added++;}
+ }
+ if(added){cfg.enabled=true;if(!(cfg.intensity>0))cfg.intensity=80;recordLayerActivation(face,'beautymarks',was);face.look=null;}
+ return added;
+}
 function renderBeautyMarksEditor(area,face){
  const cfg=face.settings.beautymarks,panel=document.createElement('div');panel.className='surface-editor';
  const toggle=document.createElement('button');toggle.type='button';toggle.id='beautyMarkBrushToggle';toggle.className='primary block';toggle.textContent=state.beautyMarkBrush?'✓ Xong vẽ · Chỉnh tiếp được':'Bật bút · chạm và kéo để vẽ lên mặt';toggle.setAttribute('aria-pressed',String(state.beautyMarkBrush));toggle.onclick=()=>{state.surfaceBrush=false;state.skinBrush=false;state.manual=false;state.beautyMarkBrush=!state.beautyMarkBrush;hideRecognitionOverlays();renderControls();setStatus(state.beautyMarkBrush?'Chạm để chấm, kéo để vẽ. Bút Xóa bỏ các nét đã vẽ.':'Đã giữ các nét vẽ; bật bút để chỉnh tiếp.');};panel.append(toggle);
  for(const[mode,label]of[['add','Vẽ thêm'],['erase','Xóa nét đã vẽ']]){const b=document.createElement('button');b.type='button';b.className='outline small';b.textContent=label;b.setAttribute('aria-pressed',String(state.beautyMarkMode===mode));b.onclick=()=>{state.beautyMarkMode=mode;state.beautyMarkBrush=true;renderControls();};panel.append(b);}
  const note=document.createElement('p');note.className='control-caption';note.textContent=cfg.marks.length+' nét · Loại bút, màu và cỡ áp cho nét vẽ tiếp theo. Độ đậm cả lớp chỉnh tất cả nét.';panel.append(note);
  const undo=document.createElement('button');undo.type='button';undo.className='outline small';undo.textContent='Bỏ nét vừa vẽ';undo.disabled=!cfg.marks.length;undo.onclick=()=>{checkpoint();const g=cfg.marks.at(-1)?.g;if(g)cfg.marks=cfg.marks.filter(q=>q.g!==g);else cfg.marks.pop();renderControls();scheduleRender();};panel.append(undo);
+ const auto=document.createElement('button');auto.type='button';auto.className='outline small';auto.textContent='✦ Tự vẽ bọng mắt hai bên';auto.onclick=()=>{checkpoint();const n=autoAegyo(face);renderControls();scheduleRender();setStatus(n?'Đã vẽ bọng mắt theo mí dưới. Chỉnh “Độ đậm cả lớp” hoặc dùng Bút bọng mắt / Bút Xóa để sửa.':'Không đủ thông tin mí dưới để tự vẽ bọng mắt.',!n);};panel.append(auto);
  const clear=document.createElement('button');clear.type='button';clear.className='text-button';clear.textContent='Xóa tất cả nét đã vẽ';clear.disabled=!cfg.marks.length;clear.onclick=()=>{checkpoint();cfg.marks=[];renderControls();scheduleRender();};panel.append(clear);area.prepend(panel);
 }
 
