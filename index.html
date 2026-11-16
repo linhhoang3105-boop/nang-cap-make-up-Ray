@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.30 – Kích mí · dán mí, mắt to/nhỏ do người dùng chỉnh, chân mày rõ, eyeliner theo gương mặt; 6 mẫu mi giả tự vừa dáng mắt, mắt to cân theo gương mặt; Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.31 – Che khuyết điểm giữ viền mắt, phấn mắt phủ trọn mí, mọi thanh eyeliner và mi đều ăn, bỏ được Finish Skin, phấn phủ kiềm dầu; Kích mí · dán mí, mắt to/nhỏ do người dùng chỉnh, chân mày rõ, eyeliner theo gương mặt; 6 mẫu mi giả tự vừa dáng mắt, mắt to cân theo gương mặt; Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -345,6 +345,7 @@ body.tool-detailed .lash-scope button{flex:1}
 .finish-action-bar{flex:0 0 auto;padding:7px 12px;background:#282218;border-bottom:1px solid #665035;display:flex;flex-direction:column;gap:4px}
 .finish-action-bar .primary{width:100%;padding:10px 8px;font-size:13px;min-height:39px;letter-spacing:.01em}
 .finish-action-bar span{font-size:10px;line-height:1.3;color:#c7b695;text-align:center}
+.finish-action-bar #btnFinishOff{width:100%;padding:8px;font-size:12px;min-height:36px;border-color:#a8776b;color:#f1c9bf}
 .settings-panel:not([data-active="makeup"])>.finish-action-bar,body.sheet-collapsed .finish-action-bar{display:none}
 .lash-part-controls .control-group[data-kind="choices"]{grid-column:1/-1}.lash-part-controls .option-pill{font-size:10px!important;min-width:0;padding:6px!important;flex:1 0 42%!important}
 
@@ -585,7 +586,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.30</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.31</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -656,7 +657,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
         <div class="instant-hint"><span class="live-dot"></span><span>Chỉnh tới đâu, ảnh đổi ngay tới đó. Chọn người → chọn lớp → chọn kiểu. Vùng nhận diện tự ẩn sau khi quét để xem rõ màu makeup; bật “Hiện đường viền” khi cần kiểm tra.</span></div>
         <div class="tool-heading"><div><h3 id="toolTitle">Chân mày</h3><p id="toolSummary">Giữ dáng mày thật, chỉnh độc lập hai bên.</p></div></div>
         <div class="side-select" id="sideSelect"><button type="button" data-side="both" class="selected">Hai bên</button><button type="button" data-side="left">Trái ảnh</button><button type="button" data-side="right">Phải ảnh</button></div>
-      <div class="finish-action-bar" id="finishActionBar" hidden><button id="btnFinishMagic" class="primary" type="button" disabled>✦ Phủ Finish Skin · Một chạm</button><span>Che khuyết điểm · Nền đều · Phủ chất da</span></div>
+      <div class="finish-action-bar" id="finishActionBar" hidden><button id="btnFinishMagic" class="primary" type="button" disabled>✦ Phủ Finish Skin · Một chạm</button><span>Che khuyết điểm · Nền đều · Phủ chất da</span><button id="btnFinishOff" class="outline" type="button" hidden>✕ Bỏ Finish Skin · về da trước khi phủ</button></div>
 <section id="autoLightSection" hidden class="face-zone workflow-step" aria-labelledby="autoLightTitle">
  <h3 id="autoLightTitle"><span class="step-number">03</span> Ánh sáng tự động chung</h3>
  <p class="mini-note">Cân sáng gắt, vùng tối và ám màu cho da trước các lớp trang điểm. Chỉnh riêng từng người.</p>
@@ -709,7 +710,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
   <dialog id="toolPickerDialog" class="tool-picker-dialog" aria-labelledby="toolPickerTitle">
     <div class="dialog-title"><h2 id="toolPickerTitle">Chọn công cụ</h2><button class="mini" type="button" data-close-dialog="toolPickerDialog" aria-label="Đóng bảng công cụ">✕</button></div>
       <nav class="category-tabs" id="categoryTabs" aria-label="Nhóm trang điểm">
-<div class="tool-group" role="group" aria-label="Nền và phấn"><span class="tool-group-label">Nền và phấn</span><button type="button" class="tab" data-tab="primer">Kem lót</button><button type="button" class="tab" data-tab="foundation">Kem nền</button><button type="button" class="tab" data-tab="concealer">Che khuyết điểm</button><button type="button" class="tab" hidden data-tab="gloss">Phủ bóng</button></div>
+<div class="tool-group" role="group" aria-label="Nền và phấn"><span class="tool-group-label">Nền và phấn</span><button type="button" class="tab" data-tab="primer">Kem lót</button><button type="button" class="tab" data-tab="foundation">Kem nền</button><button type="button" class="tab" data-tab="concealer">Che khuyết điểm</button><button type="button" class="tab" data-tab="powder">Phấn phủ</button><button type="button" class="tab" hidden data-tab="gloss">Phủ bóng</button></div>
 <div class="tool-group" role="group" aria-label="Mắt và chân mày"><span class="tool-group-label">Mắt và chân mày</span><button type="button" class="tab active" data-tab="brow">Chân mày</button><button type="button" class="tab" data-tab="shadow">Phấn mắt</button><button type="button" class="tab" data-tab="liner">Eyeliner</button><button type="button" class="tab" data-tab="lashes">Mi mắt</button><button type="button" class="tab" data-tab="eyelid">Kích mí</button><button type="button" class="tab" data-tab="eyesize">Mắt to · nhỏ</button></div><div class="tool-group" role="group" aria-label="Má và môi"><span class="tool-group-label">Má và môi</span><button type="button" class="tab" data-tab="blush">Má hồng</button><button type="button" class="tab" data-tab="beautymarks">Bút vẽ · Tàn nhang</button><button type="button" class="tab" data-tab="contour">Tạo khối</button><button type="button" class="tab" hidden data-tab="highlight">Bắt sáng</button><button type="button" class="tab" data-tab="lip">Môi</button></div>
 <div class="tool-group" role="group" aria-label="Da và chất liệu"><span class="tool-group-label">Da và chất liệu</span><button type="button" class="tab" hidden data-tab="autolight">Ánh sáng tự động</button><button type="button" class="tab" data-tab="skin">Da</button><button type="button" class="tab" data-tab="skintexture">Kết cấu da</button><button type="button" class="tab" data-tab="age">Trẻ / già da</button><button type="button" class="tab" data-tab="skintone">Nhuộm da</button><button type="button" class="tab" data-tab="finish">Finish Skin</button><button type="button" class="tab" hidden data-tab="skinlight">Ánh sáng da</button></div>
 </nav>
@@ -788,7 +789,7 @@ const FACE_POINTS=[...OVAL,...LIP_OUT,...LIP_IN,...BROW_IDS,...EYE_LEFT,...EYE_R
 const DEFAULT_SIDE={color:'#694b3d',intensity:0,shape:'natural',thickness:100,arch:0,length:100};
 const UI_SKIN_FINISHES={glass:'Glass · Bóng kính',dewy:'Dewy · Căng ẩm',satin:'Satin · Lụa',cloud:'Cloud · Mây',velvet:'Velvet · Nhung',porcelain:'Porcelain · Sứ'};
 const UI_FINISH_REGIONS={face:'Toàn mặt',forehead:'Trán',leftCheek:'Má trái ảnh',rightCheek:'Má phải ảnh',nose:'Sống mũi',chin:'Cằm'};
-const HIDDEN_TOOLS=new Set(['cushion','powder']);
+const HIDDEN_TOOLS=new Set(['cushion']);
 const INDEPENDENT_SKIN_LAYERS=['autolight','age','finish','skinlight','skintexture'];
 function skinFinishConfig(style='glass',enabled=true){return {enabled,style,variant:'none',intensity:0,shine:40,coat:65,roughness:40,micro:65,smooth:20,polish:0,repair:0,preserveMoles:true,preserveFreckles:true,coverage:65,texture:85,brightness:0,warmth:0,color:'#ffffff',colorAmount:0};}
 function skinFinishDefaults(){const styles={forehead:'cloud',leftCheek:'glass',rightCheek:'glass',nose:'satin',chin:'velvet'};return {...skinFinishConfig(),harmonize:0,regions:Object.fromEntries(Object.entries(styles).map(([id,style])=>[id,skinFinishConfig(style,false)]))};}
@@ -818,7 +819,7 @@ const TABS={
  ['intensity','Cường độ kem lót','range',0,100,1],['tone','Sắc kem lót','choices',{clear:'Trong suốt',pink:'Hồng nhẹ',green:'Xanh cân đỏ',lavender:'Tím sáng dịu'}],['smooth','Độ mịn','range',0,100,1],['blur','Mềm lỗ chân lông','range',0,100,1],['texture','Giữ vân da','range',0,100,1],['brightness','Độ sáng','range',-30,30,1]]},
  cushion:{title:'Phấn nước (Cushion)',summary:'Lớp phấn nước mỏng, đều sắc và căng ẩm. Độ phủ, độ trong và bắt sáng độc lập.',sides:false,controls:[
  ['intensity','Cường độ phấn nước','range',0,100,1],['color','Màu phấn nước','color'],['sheer','Độ trong','range',0,100,1],['coverage','Độ che phủ','range',0,100,1],['texture','Giữ vân da','range',0,100,1],['shine','Độ căng bóng','range',0,100,1],['brightness','Độ sáng','range',-40,40,1],['warmth','Ấm / lạnh','range',-40,40,1],['saturation','Sắc độ','range',0,100,1]]},
- powder:{title:'Phấn phủ',summary:'Khóa nền và giảm bóng dầu. Chọn phủ trong hoặc có màu, chỉnh độ lì và giữ vân da.',sides:false,controls:[
+ powder:{title:'Phấn phủ · Kiềm dầu',summary:'Giảm bóng dầu ở trán, mũi, má mà không đổi màu da hay chất Finish Skin. Dùng khi ảnh bị bóng nhờn (đèn flash, nắng gắt); da khô hoặc ảnh đã lì thì không cần bật.',sides:false,controls:[
  ['intensity','Cường độ phấn phủ','range',0,100,1],['finish','Loại phấn phủ','choices',{translucent:'Trong suốt',tinted:'Có màu'}],['color','Màu phấn phủ','color'],['coverage','Độ phủ','range',0,100,1],['matte','Độ lì / giảm bóng dầu','range',0,100,1],['softness','Độ mềm','range',0,100,1],['texture','Giữ vân da','range',0,100,1]]},
  gloss:{title:'Phủ bóng',summary:'Lớp ánh bóng phủ sau makeup, theo gò má và hướng sáng của ảnh. Có thể đặt trước/sau phấn phủ để pha chất da.',sides:false,controls:[
  ['intensity','Cường độ phủ bóng','range',0,100,1],['region','Vùng phủ bóng','choices',{highpoints:'Điểm cao gương mặt',cheeks:'Hai gò má',tzone:'Trán và sống mũi',face:'Da toàn mặt'}],['shine','Độ bóng','range',0,100,1],['softness','Độ tán ánh bóng','range',0,100,1],['warmth','Ấm / lạnh','range',-40,40,1],['texture','Giữ vân da','range',0,100,1]]},
@@ -1614,6 +1615,8 @@ function maskPatch(c,W,H,box,painter,opts={}){
   }
  }
  // V4.24: reference brightness of the photographed lip, for the opaque lipstick model below.
+ // V4.31: eyeshadow is pigment too – same opaque-film model as lipstick, using the lid's own brightness.
+ let shadowRefY=0;if(cosmetic&&mode==='shadow'){const ys=[];for(let k=0;k<arr.length;k+=8)if(mdata[k+3]>90)ys.push(arr[k]*.2126+arr[k+1]*.7152+arr[k+2]*.0722);if(ys.length>12){ys.sort((a,b)=>a-b);shadowRefY=ys[Math.floor(ys.length*.6)];}}
  let lipRefY=0;
  if(cosmetic&&mode==='lip'){const ys=[];for(let k=0;k<arr.length;k+=8)if(mdata[k+3]>150)ys.push(arr[k]*.2126+arr[k+1]*.7152+arr[k+2]*.0722);if(ys.length>12){ys.sort((a,b)=>a-b);lipRefY=ys[ys.length>>1];}}
  let lowPass=null;
@@ -1656,7 +1659,13 @@ function maskPatch(c,W,H,box,painter,opts={}){
    if(mode==='brow')targetY=Y-detail-(Y-C)*(.34+.25*coverage)*(1-sheer*.45);
    const saturation=(mode==='brow'?.55:mode==='blush'?.72:1.02)*(.68+.58*coverage)*(1-sheer*.34);
    const lightScale=clamp(.60+Y/255*.58,.55,1.16);
-   const inkGuard=mode==='shadow'?clamp((Y-38)/70,.15,1):1,skinKeep=mode==='shadow'?.45:0;tr=targetY+(rgb[0]-C)*saturation*lightScale*inkGuard+(r-Y)*skinKeep;tg=targetY+(rgb[1]-C)*saturation*lightScale*inkGuard+(g-Y)*skinKeep;tb=targetY+(rgb[2]-C)*saturation*lightScale*inkGuard+(b-Y)*skinKeep;
+   const inkGuard=mode==='shadow'?clamp((Y-38)/70,.15,1)*.6:1,skinKeep=mode==='shadow'?.25:0;tr=targetY+(rgb[0]-C)*saturation*lightScale*inkGuard+(r-Y)*skinKeep;tg=targetY+(rgb[1]-C)*saturation*lightScale*inkGuard+(g-Y)*skinKeep;tb=targetY+(rgb[2]-C)*saturation*lightScale*inkGuard+(b-Y)*skinKeep;
+   if(mode==='shadow'&&shadowRefY>8){
+    // The lid takes the pan colour, shaded by the lid's own light; a tint that keeps skin luminance
+    // could never show a real brown / plum / pink and turned warm shades orange.
+    const shade=Math.pow(clamp(Y/shadowRefY,.5,1.5),.75),expo=Math.pow(clamp(shadowRefY/165,.55,1.2),.6),film=(.44+.46*coverage)*(1-sheer*.50);
+    tr+=(rgb[0]*shade*expo-tr)*film;tg+=(rgb[1]*shade*expo-tg)*film;tb+=(rgb[2]*shade*expo-tb)*film;
+   }
    if(mode==='lip'&&lipRefY>8){
     // V4.24: lipstick is an opaque film. The lip takes the bullet colour, shaded by the lip's own
     // light and shadow; a luminance-preserving tint could never reach a true red on a pale lip.
@@ -1972,7 +1981,7 @@ function renderLips(c,W,H,face){
  const cosmetic=layout==='tint'?{...s,sheer:Math.max(65,Number(s.sheer??40)),coverage:Math.min(52,Number(s.coverage??65))}:layout==='velvet'?{...s,sheer:Math.max(0,Number(s.sheer??40)-12*velvet),coverage:Math.min(100,Number(s.coverage??65)+18*velvet)}:s;
  // V4.23: lipstick edge melts into the skin with the photo's own softness, and thins out at the
  // mouth corners where real lipstick is never fully applied.
- const lipBlur=Math.max(photoMatchBlur(face,W,1.15),G.width*(layout==='defined'?.010:.014)),half=G.width*.5;
+ const lipBlur=Math.max(photoMatchBlur(face,W,.70+.70*soft),G.width*(layout==='defined'?.010:.014)*(.40+.92*soft)),half=G.width*.5;
  const edgeFade=(px,py)=>{const u=Math.abs((px-G.o.x)*G.tx+(py-G.o.y)*G.ty)/half,k=clamp((1.0-u)/.16,0,1);return .25+.75*k*k*(3-2*k);};
  // V4.25 "Viền môi": Ẩn viền = colour is buffed out past the lip line; Hiện viền = a lip-liner
  // contour is drawn on top of any layout.
@@ -2127,7 +2136,7 @@ function eyeShadowGeometry(face,side,setting,W,H){
  const heightScale={wash:.90,ombre:1,vertical:1.08,outer:1.02,halo:1,smokey:1.16,crease:1.12,shimmer:.83,korean:.68,lower:.70}[style]||1;
  const bandTop=G.upper.map(p=>{
   const q=G.project(p),u=clamp(q.u,0,1),browV=sampleEyeCurve(G,G.brow,u),gap=Math.max(0,browV-q.v);
-  const height=Math.min(G.width*.37*spread*heightScale,gap*.84)*(.40+.60*Math.sin(Math.PI*u));
+  const height=Math.min(G.width*.46*spread*heightScale,gap*(.62+.26*Math.min(1,spread)))*(.68+.32*Math.sin(Math.PI*u));
   return G.at(q.u,q.v+height);
  });
  const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
@@ -2158,7 +2167,7 @@ function renderShadow(c,W,H,face){
   const atBand=(u,t=.45)=>{const lo=sampleEyeCurve(G,G.upper,u),hi=sampleEyeCurve(G,R.bandTop,u);return G.at(u,lo+(hi-lo)*t)};
   const bandFill=(m)=>{
    const a=atBand(.5,.03),b=atBand(.5,1),g=m.createLinearGradient(a.x,a.y,b.x,b.y);
-   g.addColorStop(0,'rgba(255,255,255,.85)');g.addColorStop(.35,'rgba(255,255,255,.98)');g.addColorStop(1,'rgba(255,255,255,0)');
+   g.addColorStop(0,'rgba(255,255,255,.94)');g.addColorStop(.50,'rgba(255,255,255,1)');g.addColorStop(.78,'rgba(255,255,255,.55)');g.addColorStop(1,'rgba(255,255,255,0)');
    m.fillStyle=g;m.fillRect(bb.x0,bb.y0,bb.x1-bb.x0,bb.y1-bb.y0);
   };
   if(style==='lower'){
@@ -2169,6 +2178,8 @@ function renderShadow(c,W,H,face){
   }
   // A shaped lid wash plus a separate transition colour follows the lid/brow gap.
   paint(bandFill,lid,style==='korean'?.52:style==='smokey'?.83:.74);
+  // V4.31: a soft smudge under the outer lower lash line completes the eye (not for the lightest layouts).
+  if(!['korean','shimmer','smokey'].includes(style)){const p=G.at(.30,sampleEyeCurve(G,R.lower,.30)-G.width*.032);paint(ellipse(p,G.width*.40*R.spread,G.width*.058,.62),lid,.34,'shadow',lowerPolygon);}
   if(['ombre','vertical','smokey','crease','outer'].includes(style))paint(ellipse(atBand(.52,.76),G.width*.61,ry*.84,.65),transition,.44);
   if(style==='ombre'){
    paint(ellipse(atBand(.18,.40),G.width*.34,ry*.78,.95),accent,.86+depth*.24);
@@ -2179,10 +2190,9 @@ function renderShadow(c,W,H,face){
    paint(m=>{const g=m.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.50,'rgba(255,255,255,.45)');g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;m.fillRect(bb.x0,bb.y0,bb.x1-bb.x0,bb.y1-bb.y0)},accent,.82+depth*.20);
   }
   if(style==='outer'){
-   paint(m=>{
-    const low=atBand(.05,.05),tip=atBand(.49,.39),high=atBand(.08,.93),g=m.createLinearGradient(low.x,low.y,tip.x,tip.y);g.addColorStop(0,'rgba(255,255,255,.95)');g.addColorStop(1,'rgba(255,255,255,0)');
-    m.beginPath();m.moveTo(low.x,low.y);m.lineTo(tip.x,tip.y);m.lineTo(high.x,high.y);m.closePath();m.fillStyle=g;m.fill();
-   },accent,.98+depth*.20);
+   // V4.31: the outer "V" is two blended clouds (outer corner + along the socket), not a filled triangle.
+   paint(ellipse(atBand(.10,.42),G.width*.30,ry*.95,.92),accent,.90+depth*.20);
+   paint(ellipse(atBand(.24,.70),G.width*.30,ry*.50,.70),accent,.55+depth*.15);
   }
   if(style==='halo'){
    paint(ellipse(atBand(.14,.42),G.width*.25,ry*.82),accent,.75);
@@ -2197,7 +2207,8 @@ function renderShadow(c,W,H,face){
    paint(ellipse(p,G.width*.47,G.width*.065,.60),accent,.42,'shadow',lowerPolygon);
   }
   if(style==='crease'){
-   paint(m=>{const ps=R.bandTop.map((p,i)=>pair(G.upper[i],p,.73));m.beginPath();strokeSmoothPath(m,ps);m.strokeStyle='rgba(255,255,255,.78)';m.lineWidth=G.width*.058;m.lineCap='round';m.stroke()},accent,.76+depth*.2);
+   // V4.31: the socket shade is a soft blended band (three overlapping strokes), never a drawn arc.
+   paint(m=>{const ps=R.bandTop.map((p,i)=>pair(G.upper[i],p,.66));m.lineCap='round';m.lineJoin='round';for(const [wd,al]of [[.20,.16],[.135,.26],[.075,.40]]){m.beginPath();strokeSmoothPath(m,ps);m.strokeStyle=`rgba(255,255,255,${al})`;m.lineWidth=G.width*wd;m.stroke();}},accent,.62+depth*.2);
    paint(ellipse(atBand(.54,.25),G.width*.40,ry*.42,.78),transition,.62);
   }
   if(style==='korean'){
@@ -2206,7 +2217,7 @@ function renderShadow(c,W,H,face){
   }
   const shimmerAmount=clamp((s.shimmer??20)/100,0,1)*(style==='shimmer'?1:style==='halo'?.85:style==='korean'?.7:.6);
   if(shimmerAmount>0){
-   paint(ellipse(atBand(.50,.32),G.width*.34,ry*.56,.62),'#fff3dc',shimmerAmount*.55,'illuminate');
+   paint(ellipse(atBand(.50,.32),G.width*.34,ry*.56,.62),'#fff3dc',shimmerAmount*(style==='shimmer'?1.1:.7),'illuminate');
    paint(m=>{
     const count=style==='shimmer'?68:38;
     for(let i=0;i<count;i++){
@@ -2239,13 +2250,14 @@ function renderLiner(c,W,H,face){
   const s=face.settings.liner[side];if(s.enabled===false||s.intensity<=0)continue;
   const G=eyeGeometry(face,side,W,H);if(!G)continue;
   const ew=G.width,style=s.style||'natural',scale=clamp((s.width??100)/100,.35,2),extension=clamp((s.length??100)/100,.5,1.6),bend=clamp((s.curve??0)/60,-1,1),sharpness=clamp((s.sharpness??70)/100,0,1);
-  const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),open=eyeOpening(face,side,W,H,G)/ew,hooded=clamp((.30-open)/.12,0,1);
+  const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),open=eyeOpening(face,side,W,H,G)/ew,hooded=clamp((.30-open)/.12,0,1),softK=clamp(Number(s.softness??65)/100,0,1),sheerK=clamp(Number(s.sheer??40)/100,0,1),covK=clamp(Number(s.coverage??65)/100,0,1);
   const P={natural:{w:.020,inner:.45,len:0,mix:0,tw:1},classic:{w:.028,inner:.30,len:.07,mix:.25,tw:1.1},wing:{w:.032,inner:.25,len:.25,mix:.28,tw:1.35},cat:{w:.040,inner:.30,len:.32,mix:.38,tw:1.6},puppy:{w:.032,inner:.28,len:.19,mix:-.35,tw:1.3},bold:{w:.056,inner:.55,len:.27,mix:.30,tw:1.4},extended:{w:.032,inner:.22,len:.40,mix:.22,tw:1.3},inner:{w:.026,inner:.55,len:.06,mix:.25,tw:1}}[style]||{w:.020,inner:.45,len:0,mix:0};
   const width=ew*P.w*scale*(1-.18*hooded)*(1+.30*Math.max(0,(.7-sharpness)/.7));
   const lid=u=>v47SmoothEyeCurve(G,G.upper,clamp(u,0,1)),thick=u=>width*(P.inner+(1-P.inner)*Math.pow(clamp((1-u)/.75,0,1),1.2));
-  const uIn=style==='natural'?.93:.975,N=40,top=[],bot=[];
+  // Liners without a wing: shorter than 100% starts further out; longer adds a soft tail.
+  const uIn=(style==='natural'?.93:.975)*(P.len===0?Math.min(1,.30+.70*extension):1),N=40,top=[],bot=[];
   for(let i=0;i<=N;i++){const u=uIn*(1-i/N);top.push(G.at(u,lid(u)+thick(u)));bot.push(G.at(u,lid(u)-width*.35));}
-  let wing=null;const L0=ew*P.len*(style==='classic'||style==='inner'?Math.max(0,extension-.9)*3:extension)*(1+.12*hooded);
+  let wing=null;const L0=ew*(P.len>0?P.len*extension:.34*Math.max(0,extension-1)+(Math.abs(bend)>.02?.10:0))*(1+.12*hooded);
   if(L0>ew*.015){
    const O=G.at(0,lid(0)),Lp=G.at(.32,v47SmoothEyeCurve(G,lower,.32)),Lo=G.at(0,v47SmoothEyeCurve(G,lower,0));
    const dLow=norm({x:Lo.x-Lp.x,y:Lo.y-Lp.y}),tail=pair(pxy(lm[BROWS[side].top[0]],W,H),pxy(lm[BROWS[side].bottom[4]],W,H)),dBrow=norm({x:tail.x-O.x,y:tail.y-O.y}),up={x:G.ux,y:G.uy};
@@ -2254,7 +2266,7 @@ function renderLiner(c,W,H,face){
    dir=norm({x:dir.x+up.x*bend*.35,y:dir.y+up.y*bend*.35});
    // A tapered flick: full liner thickness (×tw) at the outer corner, narrowing to a point; its top edge
    // joins the liner's top edge smoothly instead of forming a filled flag.
-   const L=Math.min(L0,length(O,tail)*.62),base=G.at(0,lid(0)-width*.15);let n={x:-dir.y,y:dir.x};if(n.x*up.x+n.y*up.y<0)n={x:-n.x,y:-n.y};
+   const L=Math.min(L0,length(O,tail)*.85),base=G.at(0,lid(0)-width*.15);let n={x:-dir.y,y:dir.x};if(n.x*up.x+n.y*up.y<0)n={x:-n.x,y:-n.y};
    const t0=thick(0)*P.tw,edgeTop=[],edgeBot=[];
    for(let i=0;i<=16;i++){const t=i/16,lift=L*.035*Math.sin(Math.PI*t)*(P.mix>=0?1:-1),cx=O.x+dir.x*L*t+n.x*lift,cy=O.y+dir.y*L*t+n.y*lift,hw=t0*Math.pow(1-t,1.15);edgeTop.push({x:cx+n.x*hw,y:cy+n.y*hw});edgeBot.push({x:cx-n.x*hw*.25,y:cy-n.y*hw*.25});}
    const uw=.12,join=G.at(uw,lid(uw)+thick(uw)),back=G.at(uw,lid(uw)-width*.35);
@@ -2268,7 +2280,7 @@ function renderLiner(c,W,H,face){
    if(wing){m.beginPath();m.moveTo(wing.join.x,wing.join.y);const e0=wing.edgeTop[0],e1=wing.edgeTop[3];m.quadraticCurveTo(e0.x,e0.y,e1.x,e1.y);for(let i=4;i<wing.edgeTop.length;i++)m.lineTo(wing.edgeTop[i].x,wing.edgeTop[i].y);for(let i=wing.edgeBot.length-1;i>=0;i--)m.lineTo(wing.edgeBot[i].x,wing.edgeBot[i].y);m.lineTo(wing.base.x,wing.base.y);m.lineTo(wing.back.x,wing.back.y);m.closePath();m.fill();}
    if(extra.length){const p=G.at(.96,lid(.96)-width*.3);m.beginPath();m.moveTo(top[0].x,top[0].y);m.lineTo(extra[1].x,extra[1].y);m.lineTo(extra[0].x,extra[0].y);m.lineTo(p.x,p.y);m.closePath();m.fill();}
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.3,coverage:Math.max(80,Number(s.coverage??65))},color:s.color,mode:'ink',strength:Math.min(1,Math.pow(s.intensity/100,.6)*1.12),feather:ew*.0015,photoBlur:Math.max(.35,photoMatchBlur(face,W,.42+.45*(1-sharpness))),inkBoost:.5});
+  },{face,protectOcclusion:true,cosmetic:{...s,sheer:0,coverage:100},color:s.color,mode:'ink',strength:Math.min(1,Math.pow(s.intensity/100,.6)*1.12*clamp((1-.6*sheerK)*(.55+.45*covK)/.64,.2,1.3)),feather:ew*.0015,photoBlur:Math.max(.35,photoMatchBlur(face,W,.42+.45*(1-sharpness))*(.6+.4*Math.min(1,softK/.65)))+ew*.06*Math.max(0,softK-.65),inkBoost:.5});
  }
 }
 function v4QuadraticPoint(a,b,c,t){const q=1-t;return {x:q*q*a.x+2*q*t*b.x+t*t*c.x,y:q*q*a.y+2*q*t*b.y+t*t*c.y};}
@@ -2297,6 +2309,8 @@ const LASH_REAL=1,LASH_MAX_REACH=.36;
 // V4.28 one-tap fit: lashes are sized from THIS eye, not from a fixed template. A narrow / hooded
 // eye gets a shorter, denser fringe (long strands look glued on there); a wide-open eye may carry
 // longer lashes. Very small eyes in the preview get slightly thicker strands so they stay readable.
+// Smallest hair width, in preview pixels, that still reads as a lash (export scales it up).
+function lashMinWidth(W,px){return px*W/(state.previewW||W);}
 function lashFit(face,side,W,H,G){
  const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
  let open=0;for(const u of [.35,.5,.65])open+=(v47SmoothEyeCurve(G,G.upper,u)-v47SmoothEyeCurve(G,lower,u))/G.width/3;
@@ -2396,7 +2410,7 @@ function lashTemplateDefaults(style){const t=LASH_STUDIO_BY_ID[style];return t?.
 function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed=0){
  const T=sty.tpl,W=G.width,frac=(key,fb,min,max)=>clamp(Number(setting[key]??fb)/100,min,max),rng=studioLashRandom(9001+sty.i*7919+sideSeed*131),strands=[];
  const dark=frac('mascara',90,0,1),upperAmount=frac('upperIntensity',100,0,1),lowerAmount=frac('lower',100,0,1);
- const lenK=frac('length',100,.5,1.8),densK=frac('density',100,.4,1.8),thickK=frac('thickness',100,.5,1.8)*(.78+.22*dark),curlK=clamp(frac('curl',60,0,1)/.6,.3,1.5),minW=W/Math.max(1,sourceWidth)*.55;
+ const lenK=frac('length',100,.5,1.8),densK=frac('density',100,.4,1.8),thickK=frac('thickness',100,.5,1.8)*(.78+.22*dark),curlK=clamp(frac('curl',60,0,1)/.6,.3,1.5),px=setting.minPx||0,minW=0;
  const mix=(a,b,t)=>a+(b-a)*t,deg=Math.PI/180;
  // Local frame: x runs from the tear duct (0) to the outer corner (W), y is up toward the brow.
  // Past the outer corner the lash line continues as a soft upward wing.
@@ -2420,7 +2434,7 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
      const off=(m-(k-1)/2)*W*.0085*(S.spread||1),dy=lidY(G.upper,t+off/W)-lidY(G.upper,t);
      // hairs of one spike start apart on the lid and meet at a single tip
      const pts=centre.map((q,i)=>{const w=Math.pow(1-i/14,1.2);return {x:q.x+off*w,y:q.y+dy*w};});
-     push(pts,W*(off===0?.0105:.0085)*thickK,upperAmount,false,len,.34,false);
+     push(pts,Math.max(W*(off===0?.0105:.0085),px*(off===0?.78:.62))*thickK,upperAmount,false,len,.34,false);
     }
    }
   }
@@ -2428,7 +2442,7 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
   for(let i=0;i<n;i++){
    const t=roots[i],y0=lidY(G.upper,t)+W*.003,d0=rootDeg(t)+(rng()-.5)*2*(T.cross||5);
    const len=cap(t,y0,W*studioLashProfile(T.len,t)*lenK*(1+(rng()-.5)*.28)*(rng()<.12?.72:1));
-   fine.push({pts:hair(t*W,y0,startDeg(d0),tipDeg(d0),len,1),len,t,width:W*.0078*T.thick*thickK*(.85+rng()*.3)});
+   fine.push({pts:hair(t*W,y0,startDeg(d0),tipDeg(d0),len,1),len,t,width:Math.max(W*.0078,px*.62)*T.thick*thickK*(.85+rng()*.3)});
   }
   // mascara clumping: neighbours lean into each other toward the tips
   if(T.clump>0)for(let i=0;i<fine.length;){const size=rng()<.45?2:3,grp=fine.slice(i,i+size);i+=size;if(grp.length<2)continue;
@@ -2440,11 +2454,11 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
   const L=T.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined',hairs=(mode==='spikes'||mode==='clusters')?3:L.hairs;
   const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.75:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.75:defined?1.3:1),curlL=frac('lowerCurl',40,0,1);
   for(let i=0;i<n;i++){
-   const t=roots[i],y0=lidY(lowerCurve,t)-W*.004,d0=mix(L.fan[0],L.fan[1],t)+lidAngle(lowerCurve,t)/deg*.5+(rng()-.5)*7,len=W*studioLashProfile(L.len,t)*lenL*(.85+rng()*.3);
+   const t=roots[i],y0=lidY(lowerCurve,t)-W*.004,d0=mix(L.fan[0],L.fan[1],t)+lidAngle(lowerCurve,t)/deg*.5+(rng()-.5)*7,len=W*studioLashProfile(L.len,t)*1.35*lenL*(.85+rng()*.3);
    const centre=hair(t*W,y0,d0,d0*(1-.35*curlL),len,-1);
    for(let m=0;m<hairs;m++){
     const off=(m-(hairs-1)/2)*W*.007,dy=lidY(lowerCurve,t+off/W)-lidY(lowerCurve,t),pts=centre.map((q,k)=>{const w=Math.pow(1-k/14,1.2);return {x:q.x+off*w,y:q.y+dy*w};});
-    push(pts,W*(off===0?.0072:.006)*thickL,lowerAmount*(hairs>1?.95:.82),true,len,.40,false);
+    push(pts,Math.max(W*(off===0?.0095:.008),px*(off===0?.60:.50))*thickL,lowerAmount*(hairs>1?1:.95),true,len,.40,false);
    }
   }
  }
@@ -2460,7 +2474,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
  const fraction=(key,fallback,min,max)=>clamp(Number(setting[key]??fallback)/100,min,max);
  const scale=G.width/374,seed=7*7919+sty.i*104729+sideSeed*1301,rng=studioLashRandom(seed),strands=[];
  const dark=fraction('mascara',90,0,1),upperAmount=fraction('upperIntensity',100,0,1),lowerAmount=fraction('lower',100,0,1);
- const thickPx=.12*26*.72*sty.thick*scale*fraction('thickness',100,.5,1.8)*(.72+.28*dark)/.97;
+ const minPx=setting.minPx||0,thickPx=Math.max(.12*26*.72*sty.thick*scale,minPx*.66)*fraction('thickness',100,.5,1.8)*(.72+.28*dark)/.97;
  const lenPx=10*8.4*scale*fraction('length',100,.5,1.8),curl=clamp(fraction('curl',60,0,1)+sty.curl,0,1);
  const dens=Math.max(4,Math.min(Math.round(44*fraction('density',100,.4,1.8)*sty.dens),Math.max(4,Math.floor(sourceWidth*.75))));
  const smooth=(a,b,x)=>{const k=clamp((x-a)/(b-a),0,1);return k*k*(3-2*k);};
@@ -2519,7 +2533,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
   const random=studioLashRandom(seed+52711),lw=sty.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined';
   const count=Math.max(4,Math.min(Math.round(44*.7*lw.dens*fraction('lowerDensity',100,.4,1.8)*(defined?1.1:1)),Math.max(4,Math.floor(sourceWidth*.36))));
   const length=5*8.4*scale*(sty.lowBoost||1)*fraction('lowerLength',100,.5,1.8)*(defined?.92:1),lowerCurl=fraction('lowerCurl',35,0,1);
-  const width=.12*26*.70*sty.thick*scale*.7*fraction('lowerThickness',100,.5,1.8)*(.72+.28*dark)/.97*(defined?1.35:1);
+  const width=Math.max(.12*26*.70*sty.thick*scale*.7,minPx*.55)*fraction('lowerThickness',100,.5,1.8)*(.72+.28*dark)/.97*(defined?1.35:1);
   const from=Math.max(lw.from,.12),to=Math.min(lw.to,.93),slots=rootSlots(count,from,to,random,.18);
   const lowerCorner=t=>(.5+.5*smooth(0,.2,t-.08))*(.55+.45*smooth(0,.2,1-t));
   for(let i=0;i<count;i++){
@@ -2537,7 +2551,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
 }
 function studioLashGeometry(face,side,setting,W,H,G,sty){
  const sourceGeometry=eyeGeometry(face,side,state.width||W,state.height||H),sourceWidth=sourceGeometry?.width||G.width;
- const lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),fit=lashFit(face,side,W,H,G),fitted={...setting,length:(Number(setting.length)||100)*fit.len,density:(Number(setting.density)||100)*fit.dens,thickness:(Number(setting.thickness)||100)*fit.thick},strands=studioLashStrands(G,lowerCurve,fitted,sty,sourceWidth,side==='left'?11:29);
+ const lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),fit=lashFit(face,side,W,H,G),fitted={...setting,length:(Number(setting.length)||100)*fit.len,density:(Number(setting.density)||100)*fit.dens,thickness:(Number(setting.thickness)||100)*fit.thick,minPx:lashMinWidth(W,1)},strands=studioLashStrands(G,lowerCurve,fitted,sty,sourceWidth,side==='left'?11:29);
  if(!strands.length)return null;
  const bandBottom=[],bandTop=[];
  for(let i=0;i<=24;i++){const u=.025+i/24*.94,v=v47SmoothEyeCurve(G,G.upper,u),gap=v47SmoothEyeCurve(G,G.brow,u)-v;bandBottom.push(G.at(u,v));bandTop.push(G.at(u,v+Math.max(0,Math.min(G.width*.25,gap*.86))));}
@@ -2577,7 +2591,7 @@ function v45LashGeometry(face,side,setting,W,H){
  const fraction=(key,fallback,min,max)=>clamp(Number(setting[key]??fallback)/100,min,max);
  const fit=lashFit(face,side,W,H,G),density=fraction('density',100,.4,1.8)*fit.dens,lengthGain=fraction('length',100,.5,1.8)*fit.len,thickness=fraction('thickness',100,.5,1.8)*fit.thick,curl=fraction('curl',65,0,1),mascara=fraction('mascara',80,0,1);
  const sourceGeometry=eyeGeometry(face,side,state.width||W,state.height||H),sourceWidth=sourceGeometry?.width||G.width,sourceScale=G.width/Math.max(1,sourceWidth);
- const count=Math.min(profile.cluster?24:68,Math.max(6,Math.floor(sourceWidth*.72)),Math.max(profile.cluster?5:8,Math.round(profile.count*density))),strands=[];
+ const count=Math.min(profile.cluster?24:96,Math.max(6,Math.floor(sourceWidth*.72)),Math.max(profile.cluster?5:8,Math.round(profile.count*density))),strands=[];
  const seed=side==='left'?1:7,lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),curve=clamp(curl*.70+profile.curl*.30,0,1);
  const upperAmount=fraction('upperIntensity',100,0,1),pinchSpike=!!(profile.manga||profile.wet||style==='cluster');
  const rootSlots=(n,from,to,offset)=>{const gaps=Array.from({length:n},(_,i)=>.55+v45LashNoise(i+offset,seed)*.9),total=gaps.reduce((a,b)=>a+b,0);let at=0;return gaps.map(g=>{const u=from+(to-from)*(at+g*.5)/total;at+=g;return u;});};
@@ -2606,7 +2620,7 @@ function v45LashGeometry(face,side,setting,W,H){
    const c1=G.at(u+fan*h/G.width*.28-(.032+.16*curve)*h/G.width+tipSpread*.25,v+h*(.14+.18*curve));
    const c2=G.at(u+(tipU-u)*.92+(.055+.12*curve)*h/G.width,v+h*(.85+.33*curve));
    const body=(.70+.80*mascara)*(profile.mascara?1.12:1),compWidth=isCenter?1:(profile.wet?.82:profile.manga?.62:.70);
-   const width=Math.max(G.width*profile.width*body*.68,sourceScale*(.32+.22*mascara))*thickness*(.80+.20*v45LashNoise(i+101,seed))*compWidth;
+   const width=Math.max(G.width*profile.width*body*.68,lashMinWidth(W,.62+.20*mascara))*thickness*(.80+.20*v45LashNoise(i+101,seed))*compWidth;
    const alpha=upperAmount*(.72+.28*v45LashNoise(i+53,seed))*(isCenter?1:.84)*(.70+.30*mascara)*cornerFade(u);
    strands.push({root:p,p,control:c1,c1,c2,tip,width,alpha,u,height:h,lower:false,taper:pinchSpike?.68:.84});
   }
@@ -2634,7 +2648,7 @@ function v45LashGeometry(face,side,setting,W,H){
     const p=G.at(u,v+G.width*.0010),slope=(v47SmoothEyeCurve(G,lowerCurve,Math.min(.98,u+.025))-v47SmoothEyeCurve(G,lowerCurve,Math.max(.02,u-.025)))/(G.width*.05);
     const fan=(u0-.49)*1.18+clamp(slope,-.8,.8)*.35,tipU=u0+h/G.width*fan*(1.14-.34*lowerCurl)+tipOff,tip=G.at(tipU,v-h*(.86+.14*lowerCurl));
     const c1=G.at(u+h/G.width*(fan*.28-.09*lowerCurl)+tipOff*.3,v-h*(.16+.22*lowerCurl)),c2=G.at(u+(tipU-u)*.86-h/G.width*.14*lowerCurl,v-h*(.80+.34*lowerCurl));
-    const width=Math.max(G.width*(spikes?.0088:.0085)*(.70+.85*mascara)*.62,sourceScale*(.26+.18*mascara))*lowerThickness*(.80+.20*noise)*(delicate?.72:1)*(definedLower?1.35:1)*(Math.abs(rel)<.6?1:.76);
+    const width=Math.max(G.width*(spikes?.0088:.0085)*(.70+.85*mascara)*.90,lashMinWidth(W,.55+.20*mascara))*lowerThickness*(.80+.20*noise)*(delicate?.72:1)*(definedLower?1.35:1)*(Math.abs(rel)<.6?1:.76);
     const alpha=lowerAmount*(.88+.12*noise)*(.80+.20*mascara)*(delicate?.78:1)*(definedLower?1.1:1)*(Math.abs(rel)<.6?1:.82);
     strands.push({root:p,p,control:c1,c1,c2,tip,width,alpha:clamp(alpha*cornerFade(u),0,1),u,height:h,lower:true,taper:spikes?.72:.80});
    }
@@ -3094,7 +3108,7 @@ function renderConcealer(c,W,H,face){
  const fs=faceSizePx(face,W,H),q=clamp(s.intensity/100,0,1),soft=clamp(Number(s.softness??75)/75,.4,1.34),bright=clamp(Number(s.brightness??40)/70,0,1),zones=[];
  const add=(center,rx,ry,angle=0,amt=1)=>zones.push({center,rx:rx*soft,ry:ry*soft,angle,amt});
  const under=s.layout==='undereye'||s.layout==='all',tzone=s.layout==='tzone'||s.layout==='all',nose=s.layout==='nose'||s.layout==='all';
- if(under)for(const side of ['left','right']){const G=eyeGeometry(face,side,W,H);if(!G)continue;const lower=points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H),low=Math.min(...lower.map(p=>G.project(p).v));add(G.at(.52,low-G.width*.20),G.width*.72,G.width*.30,G.angle,1);}
+ if(under)for(const side of ['left','right']){const G=eyeGeometry(face,side,W,H);if(!G)continue;const lower=points(face,side==='left'?EYE_LEFT:EYE_RIGHT,W,H),low=Math.min(...lower.map(p=>G.project(p).v));add(G.at(.52,low-G.width*.24),G.width*.72,G.width*.30,G.angle,1);zones.at(-1).guard={ring:lower,ew:G.width};}
  if(tzone){add(pxy(face.landmarks[6],W,H),fs.w*.11,fs.h*.20,0,.72);add(pxy(face.landmarks[4],W,H),fs.w*.075,fs.h*.10,0,.70);const fa=foreheadAnchor(face,W,H);if(fa)add(fa.center,fa.rx*.8,fa.ry,fa.angle,.5);}
  if(nose)for(const i of [49,279])add(pxy(face.landmarks[i],W,H),fs.w*.082,fs.h*.085,0,.65);
  for(const z of zones)v421ConcealZone(c,W,H,face,z,q*z.amt,bright,fs.w);
@@ -3107,6 +3121,13 @@ function v421ConcealZone(c,W,H,face,z,q,bright,fw){
  const gr=m.createRadialGradient(0,0,0,0,0,z.rx);gr.addColorStop(0,'rgba(255,255,255,1)');gr.addColorStop(.35,'rgba(255,255,255,.88)');gr.addColorStop(.72,'rgba(255,255,255,.36)');gr.addColorStop(1,'rgba(255,255,255,0)');
  m.fillStyle=gr;m.beginPath();m.arc(0,0,z.rx,0,Math.PI*2);m.fill();m.restore();
  const fm=newCanvas(w,h),fc=fm.getContext('2d');paintSkinMaskInto(fc,face,W,H,x,y,'face');m.globalCompositeOperation='destination-in';m.drawImage(fm,0,0);
+ if(z.guard){
+  // V4.31: the dark line of the lower lash line and the lid fold right under it are what outline the
+  // eye. Lifting them made the eye read smaller, so concealer now fades out before it reaches them.
+  m.save();m.translate(-x,-y);m.globalCompositeOperation='destination-out';m.lineJoin='round';m.lineCap='round';m.beginPath();pathPoly(m,z.guard.ring);
+  for(const [wd,al]of [[.30,.30],[.20,.55],[.11,.85],[.05,1]]){m.lineWidth=Math.max(1,z.guard.ew*wd);m.strokeStyle=`rgba(255,255,255,${al})`;m.stroke();}
+  m.restore();
+ }
  const mask=m.getImageData(0,0,w,h).data,blur=cosmeticBlurTile(c.canvas,x,y,w,h,Math.max(1,fw*.012)),raw=c.getImageData(x,y,w,h),d=raw.data,vals=[];
  for(let k=0;k<d.length;k+=4)if(mask[k+3]>60)vals.push(blur[k]*.2126+blur[k+1]*.7152+blur[k+2]*.0722);
  if(vals.length<12)return;vals.sort((a,b)=>a-b);const ref=vals[Math.floor(vals.length*.82)],cut=vals[Math.floor(vals.length*.62)];
@@ -4688,7 +4709,7 @@ function syncToolDock(){
  const source=$('categoryTabs').querySelector(`[data-tab="${state.tab}"]`),group=source?.closest('.tool-group'),isFinish=FINISH_TOOLS.includes(state.tab);
  $('currentToolName').textContent=isFinish?'Finish Skin · '+FINISH_TOOL_NAMES[state.tab]:(source?.textContent||TABS[state.tab].title);
  $('btnToolPicker').title=TABS[state.tab].summary+' · Chọn công cụ khác';$('btnToolPicker').setAttribute('aria-label','Đổi công cụ · '+$('currentToolName').textContent);
- $('finishActionBar').hidden=state.tab!=='finish';$('btnFinishMagic').disabled=!selectedFace();$('autoLightSection').hidden=state.tab!=='autolight';
+ $('finishActionBar').hidden=state.tab!=='finish';$('btnFinishMagic').disabled=!selectedFace();{const ff=selectedFace();$('btnFinishOff').hidden=!(ff&&ff.settings?.finish&&(layerEnabled(ff.settings,'finish')||ff.settings.finish.enabled===false));}$('autoLightSection').hidden=state.tab!=='autolight';
  const row=$('quickTools'),groupKey=isFinish?'finish:hub':group?.getAttribute('aria-label')||'';row.classList.toggle('finish-variants',isFinish);row.setAttribute('aria-label',isFinish?'Finish Skin · Chất da, ánh sáng và màu':'Chọn nhanh công cụ');
  if(row.dataset.group!==groupKey){row.dataset.group=groupKey;row.replaceChildren();const tabs=isFinish?FINISH_TOOLS:[...(group?.querySelectorAll('[data-tab]:not([hidden])')||[])].map(b=>b.dataset.tab);
   for(const tab of tabs){const b=document.createElement('button');b.type='button';b.dataset.tool=tab;b.textContent=isFinish?FINISH_TOOL_NAMES[tab]:($('categoryTabs').querySelector(`[data-tab="${tab}"]`)?.textContent||TABS[tab].title);b.addEventListener('click',()=>selectTool(tab));row.append(b);}
@@ -5428,6 +5449,8 @@ function renderStepSaves(){
    UI wiring. No interaction changes live RAY PHOTO state or files.
    ============================================================= */
 $('btnFinishMagic').addEventListener('click',()=>applyFinishMagic());
+// V4.31: one obvious way back. Removes the whole Finish Skin (toàn mặt + mọi vùng phối riêng).
+$('btnFinishOff').addEventListener('click',()=>{const f=selectedFace();if(!f)return;checkpoint();f.settings.finish=skinFinishDefaults();state.finishRegion='face';f.layerList=(f.layerList||[]).filter(tab=>tab!=='finish');renderControls();renderLooks();scheduleRender();setStatus('Đã bỏ Finish Skin: da trở về như trước khi phủ. Bấm Hoàn tác nếu muốn lấy lại.');});
 $('btnHarmonizeSkin').addEventListener('click',()=>{const f=selectedFace();if(!f||!skinHarmonyGeometry(f).available)return;checkpoint();const cfg=ensureSettings(f).finish,was=layerEnabled(f.settings,'finish'),on=cfg.enabled!==false&&cfg.harmonize>0;cfg.enabled=true;cfg.harmonize=on?0:65;recordLayerActivation(f,'finish',was);renderControls();renderLooks();scheduleRender();setStatus(cfg.harmonize?'Đã dung hòa cổ, vai và da lộ theo makeup. Kéo Mức dung hòa hoặc bấm lại để tắt.':'Đã tắt dung hòa; giữ nguyên lớp makeup trên mặt.');});
 let skinHarmonyDragging=false;
 $('skinHarmonyStrength').addEventListener('pointerdown',()=>{checkpoint();skinHarmonyDragging=true;});
