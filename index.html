@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.32 – Finish Skin làm đều màu da, bút chấm che khuyết điểm; Che khuyết điểm giữ viền mắt, phấn mắt phủ trọn mí, mọi thanh eyeliner và mi đều ăn, bỏ được Finish Skin, phấn phủ kiềm dầu; Kích mí · dán mí, mắt to/nhỏ do người dùng chỉnh, chân mày rõ, eyeliner theo gương mặt; 6 mẫu mi giả tự vừa dáng mắt, mắt to cân theo gương mặt; Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.33 – Sửa nốt các thanh yếu (kem nền ấm/lạnh, kem lót, phấn phủ màu, mi dưới, độ trong mi, má hồng, viền môi); Finish Skin làm đều màu da, bút chấm che khuyết điểm; Che khuyết điểm giữ viền mắt, phấn mắt phủ trọn mí, mọi thanh eyeliner và mi đều ăn, bỏ được Finish Skin, phấn phủ kiềm dầu; Kích mí · dán mí, mắt to/nhỏ do người dùng chỉnh, chân mày rõ, eyeliner theo gương mặt; 6 mẫu mi giả tự vừa dáng mắt, mắt to cân theo gương mặt; Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -586,7 +586,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.32</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.33</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -1631,7 +1631,7 @@ function maskPatch(c,W,H,box,painter,opts={}){
   // Multiplication by the hard mask prevents soft-edge leaks outside the lip/brow contour.
   const blurred=featherData?featherData[k+3]/255:a0,fade=mode==='blush'?Math.min(a0,a0*.35+blurred*.65):Math.min(a0,blurred);
   const edgeFade=opts.edgeFade?opts.edgeFade(x+(k>>2)%w+.5,y+Math.floor((k>>2)/w)+.5):1;
-  const a=clamp(fade*edgeFade*strength*adaptiveLight.gain*(cosmetic?(mode==='blush'?(.78+.22*coverage)*(1-.52*sheer):(.72+.30*coverage)*(1-.26*sheer)):1),0,1);if(a<.003)continue;
+  const a=clamp(fade*edgeFade*strength*adaptiveLight.gain*(cosmetic?(mode==='blush'?(.78+.22*coverage)*(1-.52*sheer):opts.inkSliders&&mode==='ink'?.82*((.40+.60*coverage)/.79)*clamp(1-.8*(sheer-.4),.25,1.3):(.72+.30*coverage)*(1-.26*sheer)):1),0,1);if(a<.003)continue;
   const r=arr[k],g=arr[k+1],b=arr[k+2],lum=(r*.2126+g*.7152+b*.0722)/255;
   let tr,tg,tb;
   if(cosmetic&&mode==='ink'){
@@ -1641,8 +1641,8 @@ function maskPatch(c,W,H,box,painter,opts={}){
    }else if(cosmetic&&mode==='blush'){
    const Y=lum*255,C=rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;
    const low=lowPass?lowPass[k]*.2126+lowPass[k+1]*.7152+lowPass[k+2]*.0722:Y;
-   const soften=(1-texture)*coverage*.48,baseR=lowPass?r+(lowPass[k]-r)*soften:r,baseG=lowPass?g+(lowPass[k+1]-g)*soften:g,baseB=lowPass?b+(lowPass[k+2]-b)*soften:b;
-   const poreSmooth=(Y-low)*(1-texture)*coverage*.62,highlightGuard=clamp((252-Y)/92,.28,1);
+   const soften=(1-texture)*coverage*.82,baseR=lowPass?r+(lowPass[k]-r)*soften:r,baseG=lowPass?g+(lowPass[k+1]-g)*soften:g,baseB=lowPass?b+(lowPass[k+2]-b)*soften:b;
+   const poreSmooth=(Y-low)*(1-texture)*coverage*1.0,highlightGuard=clamp((252-Y)/92,.28,1);
    const depthShift=(.45+coverage*1.15)*(1-sheer*.68)*highlightGuard,targetY=clamp(Y-poreSmooth-depthShift,0,255);
    const pigment=(.84+.46*coverage)*(1-.38*sheer)*clamp(.68+Y/255*.38,.68,1.08)*(.75+.25*highlightGuard),retain=.44+.34*texture;
    // V4.24: powder/cream blush is translucent pigment *in* the skin: it filters the light the skin
@@ -1860,7 +1860,7 @@ function renderBrows(c,W,H,face){for(const side of ['left','right']){
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();const g=m.createLinearGradient(tail.x,tail.y,head.x,head.y);
   g.addColorStop(0,'rgba(255,255,255,.04)');g.addColorStop(.16,'rgba(255,255,255,.56)');g.addColorStop(.40,'rgba(255,255,255,.94)');g.addColorStop(.68,'rgba(255,255,255,.76)');g.addColorStop(.90,'rgba(255,255,255,.28)');g.addColorStop(1,'rgba(255,255,255,.03)');
   m.fillStyle=g;m.fillRect(bb.x0,bb.y0,bb.x1-bb.x0,bb.y1-bb.y0);m.restore();
- },s,profile,s.intensity/100*fitK*(preset==='defined'?.86:preset==='feather'?.56:.68),w*(.003+.012*softness),true);
+ },s,profile,s.intensity/100*fitK*(preset==='defined'?.86:preset==='feather'?.56:.68),w*(.003+.018*softness),true);
  const count=Math.round(density*150),seed=side==='left'?3:7;
  browPigmentPatch(c,W,H,face,bb,m=>{
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();m.lineCap='round';m.lineJoin='round';m.strokeStyle='#fff';
@@ -2021,10 +2021,10 @@ function renderLips(c,W,H,face){
   }),{...options(deep,.58),softEdge:false,photoBlur:Math.max(lipBlur,G.width*.02)});
  }
  if((layout==='defined'&&edgeMode!=='hide')||edgeMode==='show'){
-  const liner=layout==='defined'?(s.color2||s.color):'#'+colorRGB(s.color).map(v=>Math.round(v*.72).toString(16).padStart(2,'0')).join(''),show=edgeMode==='show';
+  const liner=layout==='defined'?(s.color2||s.color):'#'+colorRGB(s.color).map(v=>Math.round(v*.60).toString(16).padStart(2,'0')).join(''),show=edgeMode==='show';
   maskPatch(c,W,H,G.bb,m=>v4ClipLip(m,G,()=>{
-   m.beginPath();pathPoly(m,G.outer);m.strokeStyle=`rgba(255,255,255,${show?.95:.78})`;m.lineWidth=G.width*(show?.022:.014);m.lineJoin='round';m.stroke();
-  }),{...options(liner,show?.62:.35,'lip',Math.max(.2,feather*.40)),softEdge:false,photoBlur:Math.max(photoMatchBlur(face,W,.7),G.width*.007)});
+   m.beginPath();pathPoly(m,G.outer);m.strokeStyle=`rgba(255,255,255,${show?.95:.78})`;m.lineWidth=G.width*(show?.034:.014);m.lineJoin='round';m.stroke();
+  }),{...options(liner,show?.95:.35,'lip',Math.max(.2,feather*.40)),softEdge:false,photoBlur:Math.max(photoMatchBlur(face,W,.7),G.width*.007)});
  }
  // V4.21: finishes are physically different, not only different opacity.
  if(finish==='matte')v421LipMatte(c,G,intensity*(layout==='velvet'?1:.85),velvet);
@@ -2099,7 +2099,7 @@ function renderBlush(c,W,H,face){
   const ps=zones.flatMap(z=>{const zx=Math.hypot(z.rx*Math.cos(z.angle),z.ry*Math.sin(z.angle)),zy=Math.hypot(z.rx*Math.sin(z.angle),z.ry*Math.cos(z.angle));return [{x:z.center.x-zx,y:z.center.y-zy},{x:z.center.x+zx,y:z.center.y+zy}];});
   const bb=boundsPx(ps,W,H,fw*.02);
   maskPatch(c,W,H,bb,m=>{for(const z of zones)blushGaussianMask(m,z,soft);},
-   {face,protectFace:true,protectOcclusion:true,cosmetic:{...s,softness:Math.max(70,Number(s.softness??65))},color:s.color,mode:'blush',strength:s.intensity/100*.92,feather:fw*(.006+.012*soft)});
+   {face,protectFace:true,protectOcclusion:true,cosmetic:s,color:s.color,mode:'blush',strength:s.intensity/100*.92,feather:fw*(.006+.012*soft)});
  }
 }
 // Gaussian cloud (airbrush): alpha = peak·exp(−k·r²), faded to exactly zero at the rim, combined
@@ -2107,7 +2107,7 @@ function renderBlush(c,W,H,face){
 function blushGaussianMask(m,z,soft){
  m.save();m.translate(z.center.x,z.center.y);m.rotate(z.angle);m.scale(1,z.ry/Math.max(.01,z.rx));m.globalCompositeOperation='lighter';
  // Plateau Gaussian: broad, even centre and a long soft shoulder (an airbrush spray, not a dab).
- const g=m.createRadialGradient(0,0,0,0,0,z.rx),scale=.58+.10*soft,pw=2.2+.6*(1-soft);
+ const g=m.createRadialGradient(0,0,0,0,0,z.rx),scale=.45+.28*soft,pw=2.0+1.2*(1-soft);
  for(let i=0;i<=20;i++){const r=i/20,a=z.peak*Math.exp(-1.1*Math.pow(r/scale,pw))*(1-Math.pow(r,8));g.addColorStop(r,`rgba(255,255,255,${Math.max(0,a).toFixed(4)})`);}
  m.fillStyle=g;m.beginPath();m.arc(0,0,z.rx,0,Math.PI*2);m.fill();m.restore();
 }
@@ -2217,7 +2217,7 @@ function renderShadow(c,W,H,face){
    paint(ellipse(atBand(.82,.28),G.width*.22,ry*.48,.69),transition,.40);
    paint(ellipse(atBand(.15,.22),G.width*.26,ry*.48,.76),accent,.43);
   }
-  const shimmerAmount=clamp((s.shimmer??20)/100,0,1)*(style==='shimmer'?1:style==='halo'?.85:style==='korean'?.7:.6);
+  const shimmerAmount=clamp(Math.max(s.shimmer??20,style==='shimmer'?58:0)/100,0,1)*(style==='shimmer'?1:style==='halo'?.85:style==='korean'?.7:.6);
   if(shimmerAmount>0){
    paint(ellipse(atBand(.50,.32),G.width*.34,ry*.56,.62),'#fff3dc',shimmerAmount*(style==='shimmer'?1.1:.7),'illuminate');
    paint(m=>{
@@ -2454,10 +2454,11 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
  }
  if(lowerAmount>0&&T.low){
   const L=T.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined',hairs=(mode==='spikes'||mode==='clusters')?3:L.hairs;
-  const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.75:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.75:defined?1.3:1),curlL=frac('lowerCurl',40,0,1);
+  const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.58:defined?1.12:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.62:defined?1.55:1),curlL=frac('lowerCurl',40,0,1);
   for(let i=0;i<n;i++){
    const t=roots[i],y0=lidY(lowerCurve,t)-W*.004,d0=mix(L.fan[0],L.fan[1],t)+lidAngle(lowerCurve,t)/deg*.5+(rng()-.5)*7,len=W*studioLashProfile(L.len,t)*1.35*lenL*(.85+rng()*.3);
-   const centre=hair(t*W,y0,d0,d0*(1-.35*curlL),len,-1);
+   // curl: the tip leans outward (+) or straightens (−) around the 40% default
+   const centre=hair(t*W,y0,d0,d0*(1-.14)+(curlL-.4)*55,len,-1);
    for(let m=0;m<hairs;m++){
     const off=(m-(hairs-1)/2)*W*.007,dy=lidY(lowerCurve,t+off/W)-lidY(lowerCurve,t),pts=centre.map((q,k)=>{const w=Math.pow(1-k/14,1.2);return {x:q.x+off*w,y:q.y+dy*w};});
     push(pts,Math.max(W*(off===0?.0095:.008),px*(off===0?.60:.50))*thickL,lowerAmount*(hairs>1?1:.95),true,len,.40,false);
@@ -2534,7 +2535,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
  if(lowerAmount>0){
   const random=studioLashRandom(seed+52711),lw=sty.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined';
   const count=Math.max(4,Math.min(Math.round(44*.7*lw.dens*fraction('lowerDensity',100,.4,1.8)*(defined?1.1:1)),Math.max(4,Math.floor(sourceWidth*.36))));
-  const length=5*8.4*scale*(sty.lowBoost||1)*fraction('lowerLength',100,.5,1.8)*(defined?.92:1),lowerCurl=fraction('lowerCurl',35,0,1);
+  const length=5*8.4*scale*(sty.lowBoost||1)*fraction('lowerLength',100,.5,1.8)*(defined?1.05:delicate?.7:1),lowerCurl=fraction('lowerCurl',35,0,1);
   const width=Math.max(.12*26*.70*sty.thick*scale*.7,minPx*.55)*fraction('lowerThickness',100,.5,1.8)*(.72+.28*dark)/.97*(defined?1.35:1);
   const from=Math.max(lw.from,.12),to=Math.min(lw.to,.93),slots=rootSlots(count,from,to,random,.18);
   const lowerCorner=t=>(.5+.5*smooth(0,.2,t-.08))*(.55+.45*smooth(0,.2,1-t));
@@ -2545,7 +2546,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
    const sub=mode==='clusters'?3:1;
    for(let j=0;j<sub;j++){
     const off=sub>1?j-(sub-1)/2:0,main=j===1||sub===1;
-    addStrand(root(f,off*.72,-.10),ph+off*6,L*(main?1:.80),width*(.85+random()*.28)*(delicate?.72:1)*(main?1:.76),lowerCurl,sub>1?10-off*5:10,1,lowerAmount*(main?1:.84)*(defined?1.1:.82),mode==='spikes'?.68:defined?.9:.86);
+    addStrand(root(f,off*.72,-.10),ph+off*6,L*(main?1:.80),width*(.85+random()*.28)*(delicate?.72:1)*(main?1:.76),lowerCurl,(sub>1?10-off*5:10)+(lowerCurl-.35)*105,1,lowerAmount*(main?1:.84)*(defined?1.1:.82),mode==='spikes'?.68:defined?.9:.86);
    }
   }
  }
@@ -2648,8 +2649,8 @@ function v45LashGeometry(face,side,setting,W,H){
     const lengthFactor=spikes?(i%2===0?(Math.abs(rel)<.6?1.08:.82):.58):.75+.25*noise;
     const h=G.width*profile.lower*lowerLength*envelope*lengthFactor*.82*(spikes?.72:1)*(delicate?.72:1)*(Math.abs(rel)<.6?1:.82);
     const p=G.at(u,v+G.width*.0010),slope=(v47SmoothEyeCurve(G,lowerCurve,Math.min(.98,u+.025))-v47SmoothEyeCurve(G,lowerCurve,Math.max(.02,u-.025)))/(G.width*.05);
-    const fan=(u0-.49)*1.18+clamp(slope,-.8,.8)*.35,tipU=u0+h/G.width*fan*(1.14-.34*lowerCurl)+tipOff,tip=G.at(tipU,v-h*(.86+.14*lowerCurl));
-    const c1=G.at(u+h/G.width*(fan*.28-.09*lowerCurl)+tipOff*.3,v-h*(.16+.22*lowerCurl)),c2=G.at(u+(tipU-u)*.86-h/G.width*.14*lowerCurl,v-h*(.80+.34*lowerCurl));
+    const fan=(u0-.49)*1.18+clamp(slope,-.8,.8)*.35,tipU=u0+h/G.width*(fan*(1.14-.34*lowerCurl)+(lowerCurl-.65)*.55)+tipOff,tip=G.at(tipU,v-h*(.86+.14*lowerCurl));
+    const c1=G.at(u+h/G.width*(fan*.28-.09*lowerCurl)+tipOff*.3,v-h*(.16+.22*lowerCurl)),c2=G.at(u+(tipU-u)*.86-h/G.width*.30*lowerCurl,v-h*(.80+.34*lowerCurl));
     const width=Math.max(G.width*(spikes?.0088:.0085)*(.70+.85*mascara)*.90,lashMinWidth(W,.55+.20*mascara))*lowerThickness*(.80+.20*noise)*(delicate?.72:1)*(definedLower?1.35:1)*(Math.abs(rel)<.6?1:.76);
     const alpha=lowerAmount*(.88+.12*noise)*(.80+.20*mascara)*(delicate?.78:1)*(definedLower?1.1:1)*(Math.abs(rel)<.6?1:.82);
     strands.push({root:p,p,control:c1,c1,c2,tip,width,alpha:clamp(alpha*cornerFade(u),0,1),u,height:h,lower:true,taper:spikes?.72:.80});
@@ -2876,7 +2877,7 @@ function renderLashes(c,W,H,face){
    }
    m.fillStyle='#fff';for(const strand of R.strands){m.globalAlpha=clamp(strand.alpha*(strand.lower?1:1.25),0,1);v45LashRibbon(m,strand);}
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.25,coverage:60+.4*Number(s.coverage??65),texture:35,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:LASH_STUDIO_BY_ID[s.style]?.tpl?.55:1.9});
+  },{face,protectOcclusion:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.25,coverage:60+.4*Number(s.coverage??65),texture:35,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,inkSliders:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:LASH_STUDIO_BY_ID[s.style]?.tpl?.55:1.9});
   renderEyePop(c,W,H,face,side,s,R.G);
  }
 }
@@ -3458,7 +3459,7 @@ function skinFinishDelta(p,Y,mid,wide,sourceMid,sourceWide,surface,light,out,fin
  // smoothing; a fixed high-frequency blend used to erase pores even at 100%.
  const polish=p.polish*clamp(wide-mid,-10,10)*.45;
  let delta=clamp(smoothing+even+polish-originalPeak*matte+spec+glow+shadow+diffuse+p.brightness*18,-31,84);
- let r=delta+p.warmth*5,g=delta,b=delta-p.warmth*5;
+ let r=delta+p.warmth*9,g=delta+p.warmth*2,b=delta-p.warmth*9;
  if(p.variant==='pearl'){const pearl=Math.min(9,(spec+glow)*.22),rose=(surface.tint+1)*.5;r+=pearl*(.20+.14*rose);g-=pearl*.12;b+=pearl*(.64-.12*rose);}
  if(p.variant==='sun'){const sun=Math.min(10,(spec+glow)*.24);r+=sun*.82;g+=sun*.28;b-=sun*.72;}
  const gains=p.colorGains||[1,1,1],tinted=Math.max(0,spec+glow)*p.intensity;out.r=r*p.intensity+tinted*(gains[0]-1);out.g=g*p.intensity+tinted*(gains[1]-1);out.b=b*p.intensity+tinted*(gains[2]-1);return out;
@@ -3971,12 +3972,13 @@ function renderPrimer(c,W,H,face){
  const smooth=v44ProductFraction(cfg.smooth,35),blur=v44ProductFraction(cfg.blur,30),texture=v44ProductFraction(cfg.texture,90),bright=clamp(Number(cfg.brightness||0)/30,-1,1),tone=cfg.tone||'clear';
  const baseRed=A.meanRGB[0]-(A.meanRGB[1]+A.meanRGB[2])*.5;
  const map=v44BaseMap(A,(i,x,y,out)=>{
-  const exposure=clamp((A.Y[i]-8)/28,0,1)*clamp((255-A.Y[i])/28,0,1),guard=v421Guard(A,i),soft=((A.mid[i]-A.fine[i])*smooth*.95+(A.fine[i]-A.Y[i])*smooth*(.12+.70*(1-texture)))*guard,even=(A.wide[i]-A.mid[i])*blur*.50*guard;
+  const exposure=clamp((A.Y[i]-8)/28,0,1)*clamp((255-A.Y[i])/28,0,1),guard=v421Guard(A,i),soft=((A.mid[i]-A.fine[i])*smooth*.95+(A.fine[i]-A.Y[i])*smooth*(.12+1.15*(1-texture)))*guard,even=(A.wide[i]-A.mid[i])*blur*.50*guard;
   const d=(soft+even+bright*12)*q*exposure;out.r=out.g=out.b=d;
   const k=i*4,redExcess=clamp((A.rgba[k]-(A.rgba[k+1]+A.rgba[k+2])*.5-baseRed-2)/25,0,1);
-  if(tone==='green'){out.r-=redExcess*8*q;out.g+=redExcess*2*q;}
-  if(tone==='pink'){out.r+=q*1.8;out.b+=q*.6;}
-  if(tone==='lavender'){out.r+=q*.7;out.g-=q*.6;out.b+=q*2.0;}
+  // V4.33: stronger, clearly different tints (they were about one level)
+  if(tone==='green'){out.r-=(redExcess*12+2.2)*q*exposure;out.g+=(redExcess*3+.8)*q*exposure;}
+  if(tone==='pink'){out.r+=q*7*exposure;out.g-=q*1.8*exposure;out.b+=q*3*exposure;}
+  if(tone==='lavender'){out.r+=q*3*exposure;out.g-=q*3.6*exposure;out.b+=q*7.5*exposure;}
  });v44BaseComposite(c,W,H,face,A,map);
 }
 function v44RenderPigmentedBase(c,W,H,face,kind){
@@ -3988,21 +3990,23 @@ function v44RenderPigmentedBase(c,W,H,face,kind){
   const k=i*4,Y=A.Y[i],lowY=A.wideR[i]*.2126+A.wideG[i]*.7152+A.wideB[i]*.0722,exposure=clamp((Y-5)/26,0,1)*clamp((258-Y)/25,.08,1);
   // Tone correction acts on broad colour, while photographic grain and form
   // remain in the high-frequency luminance. Coverage is actual spatial evening.
-  const even=(A.wide[i]-A.mid[i])*coverage*(kind==='foundation'?.50:.30)*v421Guard(A,i),smooth=((A.mid[i]-A.fine[i])*(.22+.78*(1-texture))+(A.fine[i]-Y)*(1-texture)*.65)*coverage*.95*v421Guard(A,i);
+  const even=(A.wide[i]-A.mid[i])*coverage*(kind==='foundation'?.50:.30)*v421Guard(A,i),smooth=((A.mid[i]-A.fine[i])*(.22+1.4*(1-texture))+(A.fine[i]-Y)*(1-texture)*.95)*coverage*.95*v421Guard(A,i);
   const pigment=[(color[0]-targetY-(A.wideR[i]-lowY))*saturation,(color[1]-targetY-(A.wideG[i]-lowY))*saturation,(color[2]-targetY-(A.wideB[i]-lowY))*saturation];
   const light=shade,texBlend=q*(.55+.45*coverage),peak=clamp(A.mid[i]-A.wide[i]-1.4,0,26);
   let finishDelta=0;
   if(kind==='cushion')finishDelta=v44ProductSheen(A,i,x,y,.78)*v44ProductFraction(cfg.shine,28)*.42;
   else if(cfg.finish==='matte')finishDelta=-peak*.95-1.2;
   else if(cfg.finish==='dewy')finishDelta=v44ProductSheen(A,i,x,y,.72)*.85;
-  else if(cfg.finish==='satin')finishDelta=v44ProductSheen(A,i,x,y,.74)*.36;
+  else if(cfg.finish==='satin')finishDelta=v44ProductSheen(A,i,x,y,.74)*.66;
   // Pigment follows coverage/sheer; evening and smoothing follow the product amount, so Coverage and Realism are visible.
   // Coverage hides small red / dark marks: their chroma moves to the surrounding skin chroma.
   const cover=coverage*texBlend*v421Guard(A,i),cR=((A.wideR[i]-lowY)-(A.rgba[k]-Y))*cover*.75,cG=((A.wideG[i]-lowY)-(A.rgba[k+1]-Y))*cover*.75,cB=((A.wideB[i]-lowY)-(A.rgba[k+2]-Y))*cover*.75,lift=Math.max(0,A.wide[i]-Y-4)*cover*.45;
   const tex=(even+smooth)*texBlend+lift,fin=finishDelta*q*.8;
-  out.r=((light+pigment[0]+warmth*5)*blend+tex+fin+cR)*exposure;
-  out.g=((light+pigment[1])*blend+tex+fin+cG)*exposure;
-  out.b=((light+pigment[2]-warmth*5)*blend+tex+fin+cB)*exposure;
+  // V4.33: warmth is a tone shift of its own (it used to be multiplied by the blend and nearly vanished)
+  const tw=warmth*q*8;
+  out.r=((light+pigment[0])*blend+tex+fin+cR+tw)*exposure;
+  out.g=((light+pigment[1])*blend+tex+fin+cG+tw*.22)*exposure;
+  out.b=((light+pigment[2])*blend+tex+fin+cB-tw)*exposure;
  });v44BaseComposite(c,W,H,face,A,map);
 }
 function renderFoundationV44(c,W,H,face){v44RenderPigmentedBase(c,W,H,face,'foundation');}
@@ -4015,7 +4019,7 @@ function renderPowder(c,W,H,face){
   const Y=A.Y[i],peak=clamp(A.mid[i]-A.wide[i]-1.0,0,30),broadSheen=clamp((A.wide[i]-A.meanY-22)/60,0,1),exposure=clamp((Y-5)/30,0,1)*clamp((255-Y)/26,.08,1);
   const dull=-(peak*(.45+.55*coverage)+broadSheen*2.8)*matte,smooth=(A.mid[i]-Y)*softness*(.12+.45*(1-texture)),even=(A.wide[i]-A.mid[i])*coverage*.08;
   const d=(dull+smooth+even)*q*exposure;out.r=out.g=out.b=d;
-  if(tinted){const k=i*4,low=A.wideR[i]*.2126+A.wideG[i]*.7152+A.wideB[i]*.0722,mix=q*coverage*.12,shade=clamp((targetY-A.meanY)*.2,-12,12);out.r+=(color[0]-targetY-A.wideR[i]+low+shade)*mix;out.g+=(color[1]-targetY-A.wideG[i]+low+shade)*mix;out.b+=(color[2]-targetY-A.wideB[i]+low+shade)*mix;}
+  if(tinted){const k=i*4,low=A.wideR[i]*.2126+A.wideG[i]*.7152+A.wideB[i]*.0722,mix=q*(.16+.40*coverage),shade=clamp((targetY-A.meanY)*.2,-12,12);out.r+=(color[0]-targetY-A.wideR[i]+low+shade)*mix;out.g+=(color[1]-targetY-A.wideG[i]+low+shade)*mix;out.b+=(color[2]-targetY-A.wideB[i]+low+shade)*mix;}
  });v44BaseComposite(c,W,H,face,A,map);
 }
 function renderGloss(c,W,H,face){
@@ -4024,7 +4028,7 @@ function renderGloss(c,W,H,face){
  const softness=v44ProductFraction(cfg.softness,65),texture=v44ProductFraction(cfg.texture,95),warmth=clamp(Number(cfg.warmth||0)/40,-1,1);
  const colorGains=lightColorGains(cfg.color,cfg.colorAmount);
  const map=v44BaseMap(A,(i,x,y,out)=>{
-  const weight=v44ProductRegion(A,cfg.region||'highpoints',x,y),Y=A.Y[i],exposure=clamp((Y-8)/30,0,1)*clamp((255-Y)/40,0,1),reflection=v44ProductSheen(A,i,x,y,softness),micro=(A.mid[i]-Y)*(1-texture)*.7*v421Guard(A,i);
+  const weight=v44ProductRegion(A,cfg.region||'highpoints',x,y),Y=A.Y[i],exposure=clamp((Y-8)/30,0,1)*clamp((255-Y)/40,0,1),reflection=v44ProductSheen(A,i,x,y,softness),micro=(A.mid[i]-Y)*(1-texture)*1.7*v421Guard(A,i);
   const d=(reflection*2.6+micro)*weight*q*Math.pow(shine,.75)*exposure,gains=colorGains;out.r=d*(1+warmth*.35)*gains[0];out.g=d*gains[1];out.b=d*(1-warmth*.35)*gains[2];
  });v44BaseComposite(c,W,H,face,A,map);
 }
