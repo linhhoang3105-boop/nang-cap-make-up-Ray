@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.28 – Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.29 – 6 mẫu mi giả tự vừa dáng mắt, mắt to cân theo gương mặt; Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -585,7 +585,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.28</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.29</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -805,7 +805,7 @@ const TABS={
   ['style','Layout phấn mắt','choices',{wash:'Một màu',outer:'Nhấn đuôi',ombre:'Ombré',halo:'Nhũ giữa'}],['color','Màu phấn','color'],['intensity','Cường độ','range',0,100,1],['spread','Phạm vi tán','range',60,150,1]]},
  liner:{title:'Eyeliner',summary:'Kẻ mí đúng đường, có các kiểu tự nhiên, mảnh, có đuôi hoặc đậm.',sides:true,controls:[
   ['style','Kiểu kẻ','choices',{natural:'Tự nhiên',classic:'Mảnh',wing:'Có đuôi',bold:'Sắc nét'}],['color','Màu eyeliner','color'],['intensity','Cường độ','range',0,100,1],['width','Độ dày','range',50,160,1]]},
- lashes:{title:'Mi mắt',summary:'Thêm 8 dáng Mi Studio: thiên thần, thỏ, cáo, búp bê, katun, cụm, tự nhiên và mi dưới nổi. Chọn bộ mi rồi chỉnh riêng mi trên, mi dưới.',sides:true,controls:[
+ lashes:{title:'Mi mắt',summary:'6 mẫu mi giả tự vừa từng dáng mắt (tự nhiên, wispy, cáo, búp bê, manga, dày) và các dáng Mi Studio. Gắn mi làm mắt to, rõ và cân với gương mặt; chỉnh riêng mi trên, mi dưới.',sides:true,controls:[
   ['style','Kiểu cả bộ mi','choices',{natural:'Tự nhiên',length:'Dài nhẹ',volume:'Dày nhẹ'}],['color','Màu cả bộ mi','color'],['intensity','Mức cả bộ mi','range',0,100,1]]},
  finish:{title:'Finish Skin',summary:'Một chạm: giảm đốm mụn/thâm, làm đều nền rồi phủ chất da. Tự chỉnh mức che và giữ vân da; ánh bóng theo bề mặt đã xử lý.',sides:false,controls:[
   ['style','Kiểu Finish Skin','choices',UI_SKIN_FINISHES],['variant','Biến thể','choices',{none:'Nguyên chất',pearl:'Ánh ngọc trai',sun:'Bắt nắng',softmatte:'Lì nhẹ'}],['intensity','Độ áp dụng','range',0,100,1],['shine','Độ bóng phản chiếu','range',0,100,1],['coat','Độ dày lớp phủ','range',0,100,1],['roughness','Độ tán bóng','range',0,100,1],['micro','Chi tiết phản chiếu','range',0,100,1],['repair','Che khuyết điểm','range',0,100,1],['preserveMoles','Giữ nốt ruồi','toggle'],['preserveFreckles','Giữ tàn nhang','toggle'],['polish','Độ hoàn thiện da','range',0,100,1],['smooth','Độ mịn','range',0,100,1],['coverage','Độ phủ','range',0,100,1],['texture','Giữ vân da','range',0,100,1],['brightness','Độ sáng','range',-40,40,1],['warmth','Ấm / lạnh','range',-40,40,1]]},
@@ -908,32 +908,32 @@ const NATURAL_BASE={
  "skintextureCfg":{"enabled":true,"intensity":56,"blemishes":62,"darkCircles":50,"uneven":42,"pores":22,"texture":94,"preserveMoles":true,"preserveFreckles":true,"scope":"face","edits":[]},
  "reference":true};
 Object.assign(LOOKS,{
- "soft_natural":{...NATURAL_BASE,"label":"Tự nhiên · Trong veo","caption":"Như không trang điểm · mắt có thần · môi hồng đất","brow":["#5c4539",42,"natural"],"lip":["#b9656a",66,"satin"],"blush":["#e0958f",38,"korean"],"shadow":["#b08d78",30],"liner":46,"lashes":76,
+ "soft_natural":{...NATURAL_BASE,"label":"Tự nhiên · Trong veo","caption":"Như không trang điểm · mắt có thần · môi hồng đất","brow":["#5c4539",42,"natural"],"lip":["#b9656a",66,"satin"],"blush":["#e0958f",38,"korean"],"shadow":["#b08d78",30],"liner":46,"lashes":86,
   "lipCfg":{"layout":"gradient","edge":"hide","inner":72,"gloss":30,"glossCoat":40,"glossRoughness":45,"sheer":38,"coverage":62,"softness":80,"texture":95},
   "browCfg":{"thickness":100,"density":54,"sharpness":50},
   "blushCfg":{"size":110,"lift":4,"sheer":62,"coverage":42,"softness":95,"texture":97},
   "shadowCfg":{"style":"wash","color2":"#d9bba6","accent":"#7a5546","shimmer":10,"spread":100,"depth":-4},
   "linerCfg":{"style":"natural","color":"#2a2020","width":105,"sharpness":60},
-  "lashesCfg":{"style":"natural","color":"#1a1414","length":106,"curl":72,"density":110,"thickness":100,"mascara":80,"upperIntensity":100,"lower":28,"lowerStyle":"delicate","eyePop":55},
+  "lashesCfg":{"style":"tplNatural","color":"#1a1414","length":100,"curl":60,"density":100,"thickness":100,"mascara":88,"upperIntensity":100,"lower":30,"lowerStyle":"delicate","eyePop":62},
   "finishCfg":{"style":"dewy","variant":"none","intensity":52,"shine":56,"coat":62,"roughness":44,"micro":66,"coverage":46,"texture":95,"warmth":0,"smooth":14,"polish":12,"brightness":0},
   "regions":{"leftCheek":{"style":"dewy","intensity":30,"shine":56},"rightCheek":{"style":"dewy","intensity":30,"shine":56}},
   "contourCfg":{"layout":"natural","color":"#7a5a49","intensity":30,"spread":92}},
- "aodai_coral":{...NATURAL_BASE,"label":"Áo dài · Cam đỏ","caption":"Da lụa giữ màu thật · mày ngang · mắt kéo đuôi · son cam đỏ","brow":["#3b2b25",62,"straight"],"lip":["#b83a30",80,"satin"],"blush":["#dc8672",44,"lifted"],"shadow":["#a8795f",46],"liner":80,"lashes":90,
+ "aodai_coral":{...NATURAL_BASE,"label":"Áo dài · Cam đỏ","caption":"Da lụa giữ màu thật · mày ngang · mắt kéo đuôi · son cam đỏ","brow":["#3b2b25",62,"straight"],"lip":["#b83a30",80,"satin"],"blush":["#dc8672",44,"lifted"],"shadow":["#a8795f",46],"liner":80,"lashes":92,
   "lipCfg":{"layout":"full","edge":"auto","color2":"#96282a","gloss":18,"glossCoat":34,"glossRoughness":52,"velvet":50,"sheer":30,"coverage":74,"softness":66,"texture":93},
   "browCfg":{"thickness":106,"density":68,"sharpness":70,"originalStrength":12,"length":103},
   "blushCfg":{"size":108,"lift":10,"sheer":60,"coverage":44,"softness":93,"texture":96},
   "shadowCfg":{"style":"crease","color2":"#dab59c","accent":"#62402f","shimmer":12,"spread":106,"depth":-8},
   "linerCfg":{"style":"wing","color":"#1c1616","width":104,"length":112,"curve":8,"sharpness":80},
-  "lashesCfg":{"style":"outer","color":"#141010","length":112,"curl":80,"density":114,"thickness":104,"mascara":92,"upperIntensity":100,"lower":34,"lowerStyle":"delicate","lowerLength":92,"lowerDensity":80,"lowerCurl":55,"lowerThickness":82,"eyePop":68},
+  "lashesCfg":{"style":"tplFox","color":"#141010","length":100,"curl":60,"density":100,"thickness":100,"mascara":92,"upperIntensity":100,"lower":30,"lowerStyle":"follow","eyePop":70},
   "finishCfg":{"style":"satin","variant":"none","intensity":58,"shine":46,"coat":66,"roughness":46,"micro":62,"coverage":50,"texture":94,"warmth":2,"smooth":16,"polish":14,"brightness":0},
   "regions":{"leftCheek":{"style":"satin","intensity":30,"shine":50,"roughness":44},"rightCheek":{"style":"satin","intensity":30,"shine":50,"roughness":44},"nose":{"style":"satin","intensity":30,"shine":50}}},
- "red_glass":{...NATURAL_BASE,"label":"Đỏ mọng · Da gương","caption":"Da căng bóng giữ màu thật · má tán rộng · môi đỏ mọng tán viền","brow":["#4a3a33",52,"soft"],"lip":["#9e1f2b",84,"gloss"],"blush":["#e2848f",48,"draped"],"shadow":["#bd8286",42],"liner":72,"lashes":90,
+ "red_glass":{...NATURAL_BASE,"label":"Đỏ mọng · Da gương","caption":"Da căng bóng giữ màu thật · má tán rộng · môi đỏ mọng tán viền","brow":["#4a3a33",52,"soft"],"lip":["#9e1f2b",84,"gloss"],"blush":["#e2848f",48,"draped"],"shadow":["#bd8286",42],"liner":72,"lashes":92,
   "lipCfg":{"layout":"blur","edge":"auto","gloss":70,"glossCoat":66,"glossRoughness":30,"inner":60,"sheer":22,"coverage":80,"softness":72,"texture":93},
   "browCfg":{"thickness":104,"density":60,"sharpness":60},
   "blushCfg":{"size":112,"lift":8,"sheer":58,"coverage":46,"softness":95,"texture":97},
   "shadowCfg":{"style":"shimmer","color2":"#edc9c0","accent":"#8e4f58","shimmer":40,"spread":106,"depth":-4},
   "linerCfg":{"style":"wing","color":"#1c1516","width":100,"length":110,"curve":8,"sharpness":78},
-  "lashesCfg":{"style":"wispy","color":"#161112","length":112,"curl":82,"density":110,"thickness":100,"mascara":90,"upperIntensity":100,"lower":42,"lowerStyle":"delicate","lowerLength":100,"lowerDensity":86,"lowerCurl":58,"lowerThickness":84,"eyePop":68},
+  "lashesCfg":{"style":"tplWispy","color":"#161112","length":100,"curl":62,"density":100,"thickness":100,"mascara":92,"upperIntensity":100,"lower":44,"lowerStyle":"follow","eyePop":70},
   "finishCfg":{"style":"glass","variant":"pearl","intensity":64,"shine":80,"coat":80,"roughness":28,"micro":76,"coverage":48,"texture":94,"warmth":0,"smooth":16,"polish":14,"brightness":0},
   "regions":{"leftCheek":{"style":"glass","intensity":46,"shine":80,"roughness":30},"rightCheek":{"style":"glass","intensity":46,"shine":80,"roughness":30},"nose":{"style":"glass","intensity":44,"shine":78,"roughness":26},"forehead":{"style":"dewy","intensity":26,"shine":52}},
   "highlightCfg":{"layout":"glow","color":"#fff1e6","intensity":24,"spread":88}}
@@ -2342,7 +2342,100 @@ function studioLashProfile(profile,t){
  for(let i=1;i<profile.length;i++)if(t<=profile[i][0]){const a=profile[i-1],b=profile[i];return a[1]+(b[1]-a[1])*(t-a[0])/(b[0]-a[0]);}
  return profile.at(-1)[1];
 }
+// BEGIN V4.29 LASH TEMPLATES ("mẫu mi")
+// Designed like false-lash strips: fine base hairs plus pointed spikes whose hairs start apart on
+// the lid and MEET at one tip (the wedge shape of real lash clusters), a soft wing past the outer
+// corner, and lower lashes as separate little ticks. Every size is a fraction of this eye's width
+// and follows this eye's own lid curve, so one template fits round, narrow, hooded or tilted eyes.
+const LASH_TEMPLATES=[
+ {id:'tplNatural',name:'Mẫu · Tự nhiên tơi',note:'Sợi mảnh, tơi đều như vừa chuốt mascara. Hợp mọi dáng mắt, đi làm hằng ngày.',lowDefault:34,
+  tpl:{n:46,len:[[0,.10],[.2,.17],[.55,.23],[.85,.24],[1,.20]],fan:[-14,52,1.15],curl:.5,thick:1,cross:5,clump:.30,
+   low:{n:13,hairs:1,len:[[0,.035],[.5,.065],[1,.075]],fan:[-16,34],from:.14,to:.95}}},
+ {id:'tplWispy',name:'Mẫu · Wispy tia nhọn',note:'Các tia nhọn dài xen sợi ngắn, tơi mà có khối. Mắt to và sắc nhưng vẫn nhẹ.',lowDefault:46,
+  tpl:{n:38,len:[[0,.09],[.3,.17],[.7,.22],[1,.20]],fan:[-16,64,1.2],curl:.5,thick:.95,cross:5,clump:.25,
+   spikes:{n:9,hairs:3,len:[[0,.17],[.3,.30],[.6,.37],[.85,.40],[1,.36]],from:.07,to:.99},
+   low:{n:9,hairs:2,len:[[0,.06],[.5,.11],[1,.12]],fan:[-18,40],from:.14,to:.96}}},
+ {id:'tplFox',name:'Mẫu · Cáo kéo đuôi',note:'Ngắn ở đầu mắt, dài và vút dần ra đuôi. Mắt dài, xếch nhẹ; hợp mặt tròn.',lowDefault:30,
+  tpl:{n:38,len:[[0,.07],[.4,.13],[.75,.22],[1,.27],[1.1,.24]],fan:[-6,72,1.5],curl:.42,thick:1,cross:4,clump:.25,beyond:.07,
+   spikes:{n:7,hairs:3,len:[[.3,.16],[.6,.27],[.85,.38],[1.08,.44]],from:.30,to:1.08},
+   low:{n:7,hairs:2,len:[[.4,.05],[1,.11]],fan:[5,46],from:.45,to:.99}}},
+ {id:'tplDoll',name:'Mẫu · Búp bê mắt tròn',note:'Dài nhất ở giữa mắt, cong đứng. Mắt mở to tròn; hợp mắt nhỏ hoặc mắt một mí.',lowDefault:62,
+  tpl:{n:44,len:[[0,.13],[.25,.24],[.5,.30],[.75,.26],[1,.17]],fan:[-24,40,1],curl:.62,thick:1,cross:4,clump:.25,
+   spikes:{n:9,hairs:3,len:[[0,.20],[.25,.34],[.5,.42],[.75,.36],[1,.22]],from:.08,to:.94},
+   low:{n:11,hairs:2,len:[[0,.07],[.5,.13],[1,.10]],fan:[-22,30],from:.10,to:.94}}},
+ {id:'tplManga',name:'Mẫu · Manga cụm thưa',note:'Cụm nhọn thưa, dài ngắn xen kẽ; mi dưới thành từng tia. Phong cách Douyin / anime.',lowDefault:84,
+  tpl:{n:20,len:[[0,.07],[.5,.12],[1,.12]],fan:[-18,58,1.1],curl:.45,thick:.9,cross:4,clump:0,
+   spikes:{n:8,hairs:4,spread:1.15,len:[[0,.22],[.5,.38],[1,.36]],alt:[1,.62],from:.07,to:.98},
+   low:{n:7,hairs:3,len:[[0,.09],[.5,.15],[1,.15]],fan:[-20,44],from:.14,to:.96}}},
+ {id:'tplVolume',name:'Mẫu · Dày quyến rũ',note:'Rất nhiều sợi đan chéo, dày và đen như mi giả nguyên dải. Hợp tiệc tối, chụp ảnh.',lowDefault:40,
+  tpl:{n:66,len:[[0,.12],[.3,.24],[.65,.31],[1,.28]],fan:[-12,60,1.2],curl:.55,thick:1.2,cross:13,clump:.38,beyond:.03,
+   low:{n:16,hairs:1,len:[[0,.04],[.5,.08],[1,.09]],fan:[-18,38],from:.12,to:.96}}}
+];
+function lashTemplateDefaults(style){const t=LASH_STUDIO_BY_ID[style];return t?.tpl?{color:'#17120f',intensity:92,upperIntensity:100,mascara:92,lower:t.lowDefault,length:100,density:100,curl:60,thickness:100,lowerLength:100,lowerDensity:100,lowerCurl:40,lowerThickness:100,lowerStyle:'follow',eyePop:70}:{};}
+function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed=0){
+ const T=sty.tpl,W=G.width,frac=(key,fb,min,max)=>clamp(Number(setting[key]??fb)/100,min,max),rng=studioLashRandom(9001+sty.i*7919+sideSeed*131),strands=[];
+ const dark=frac('mascara',90,0,1),upperAmount=frac('upperIntensity',100,0,1),lowerAmount=frac('lower',100,0,1);
+ const lenK=frac('length',100,.5,1.8),densK=frac('density',100,.4,1.8),thickK=frac('thickness',100,.5,1.8)*(.78+.22*dark),curlK=clamp(frac('curl',60,0,1)/.6,.3,1.5),minW=W/Math.max(1,sourceWidth)*.55;
+ const mix=(a,b,t)=>a+(b-a)*t,deg=Math.PI/180;
+ // Local frame: x runs from the tear duct (0) to the outer corner (W), y is up toward the brow.
+ // Past the outer corner the lash line continues as a soft upward wing.
+ const lidY=(curve,t)=>t<=1?v47SmoothEyeCurve(G,curve,1-clamp(t,0,1)):v47SmoothEyeCurve(G,curve,0)+(t-1)*W*(curve===G.upper?.30:.05);
+ const lidAngle=(curve,t)=>{const a=Math.max(t-.02,0),b=Math.min(t+.02,1.3);return Math.atan2(lidY(curve,b)-lidY(curve,a),W*(b-a));};
+ const toImage=q=>G.at(1-q.x/W,q.y);
+ // One hair: starts leaning (deg0) and relaxes toward the tip (deg1) – the curl of a real lash.
+ const hair=(x,y,deg0,deg1,len,dir)=>{const pts=[{x,y}],steps=14,ds=len/steps;for(let k=1;k<=steps;k++){const s=(k-.5)/steps,a=(deg0+(deg1-deg0)*Math.pow(s,1.15))*deg;x+=Math.sin(a)*ds;y+=dir*Math.cos(a)*ds;pts.push({x,y});}return pts;};
+ const push=(pts,width,alpha,lower,len,taper,band=true)=>{const rp=pts.map(toImage);strands.push({root:rp[0],p:rp[0],control:rp[4],c1:rp[4],c2:rp[9],tip:rp[14],width:Math.max(width,minW),alpha:clamp(alpha*(.45+.55*dark),0,1),u:clamp(1-pts[0].x/W,0,1),height:len,lower,ribbonPoints:rp,taper,band});};
+ const cap=(t,y,len)=>Math.min(len,W*.46,Math.max(W*.08,(v47SmoothEyeCurve(G,G.brow,1-clamp(t,0,1))-y)*.86));
+ const slots=(n,a,b,pairChance)=>{const gaps=Array.from({length:n},()=>{const g=.6+rng()*.8;return rng()<pairChance?g*.45:g;}),total=gaps.reduce((x,y)=>x+y,0);let acc=0;return gaps.map(g=>{const mid=acc+g/2;acc+=g;return a+(b-a)*mid/total;});};
+ if(upperAmount>0){
+  const fanAt=t=>mix(T.fan[0],T.fan[1],Math.pow(clamp(t,0,1),T.fan[2]||1))+(t>1?(t-1)*70:0);
+  const rootDeg=t=>fanAt(t)-lidAngle(G.upper,t)/deg*.55,bend=d=>(16+30*T.curl*curlK)*Math.tanh(d/18),startDeg=d=>d+bend(d)*.45,tipDeg=d=>d-bend(d)*.55;
+  if(T.spikes){
+   const S=T.spikes,n=Math.max(3,Math.round(S.n*Math.sqrt(densK)));
+   for(let j=0;j<n;j++){
+    const t=S.from+(S.to-S.from)*(j+.5)/n+(rng()-.5)*.02,y0=lidY(G.upper,t)+W*.004,d0=rootDeg(t)+(rng()-.5)*5;
+    const len=cap(t,y0,W*studioLashProfile(S.len,t)*lenK*(S.alt?S.alt[j%S.alt.length]:1)*(.94+rng()*.12)),centre=hair(t*W,y0,startDeg(d0),tipDeg(d0),len,1),k=S.hairs;
+    for(let m=0;m<k;m++){
+     const off=(m-(k-1)/2)*W*.0085*(S.spread||1),dy=lidY(G.upper,t+off/W)-lidY(G.upper,t);
+     // hairs of one spike start apart on the lid and meet at a single tip
+     const pts=centre.map((q,i)=>{const w=Math.pow(1-i/14,1.2);return {x:q.x+off*w,y:q.y+dy*w};});
+     push(pts,W*(off===0?.0105:.0085)*thickK,upperAmount,false,len,.34,false);
+    }
+   }
+  }
+  const n=Math.max(8,Math.min(Math.round(T.n*densK),Math.max(10,Math.floor(sourceWidth*.9)))),roots=slots(n,.05,.985+(T.beyond||0),.2),fine=[];
+  for(let i=0;i<n;i++){
+   const t=roots[i],y0=lidY(G.upper,t)+W*.003,d0=rootDeg(t)+(rng()-.5)*2*(T.cross||5);
+   const len=cap(t,y0,W*studioLashProfile(T.len,t)*lenK*(1+(rng()-.5)*.28)*(rng()<.12?.72:1));
+   fine.push({pts:hair(t*W,y0,startDeg(d0),tipDeg(d0),len,1),len,t,width:W*.0078*T.thick*thickK*(.85+rng()*.3)});
+  }
+  // mascara clumping: neighbours lean into each other toward the tips
+  if(T.clump>0)for(let i=0;i<fine.length;){const size=rng()<.45?2:3,grp=fine.slice(i,i+size);i+=size;if(grp.length<2)continue;
+   const tx=grp.reduce((a,f)=>a+f.pts[14].x,0)/grp.length,ty=grp.reduce((a,f)=>a+f.pts[14].y,0)/grp.length;
+   for(const f of grp){const dx=(tx-f.pts[14].x)*T.clump,dy=(ty-f.pts[14].y)*T.clump;f.pts=f.pts.map((q,k)=>{const w=Math.pow(k/14,1.8);return {x:q.x+dx*w,y:q.y+dy*w};});}}
+  for(const f of fine)push(f.pts,f.width,upperAmount*clamp((f.t-.02)/.08,.45,1)*.94,false,f.len,.42);
+ }
+ if(lowerAmount>0&&T.low){
+  const L=T.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined',hairs=(mode==='spikes'||mode==='clusters')?3:L.hairs;
+  const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.75:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.75:defined?1.3:1),curlL=frac('lowerCurl',40,0,1);
+  for(let i=0;i<n;i++){
+   const t=roots[i],y0=lidY(lowerCurve,t)-W*.004,d0=mix(L.fan[0],L.fan[1],t)+lidAngle(lowerCurve,t)/deg*.5+(rng()-.5)*7,len=W*studioLashProfile(L.len,t)*lenL*(.85+rng()*.3);
+   const centre=hair(t*W,y0,d0,d0*(1-.35*curlL),len,-1);
+   for(let m=0;m<hairs;m++){
+    const off=(m-(hairs-1)/2)*W*.007,dy=lidY(lowerCurve,t+off/W)-lidY(lowerCurve,t),pts=centre.map((q,k)=>{const w=Math.pow(1-k/14,1.2);return {x:q.x+off*w,y:q.y+dy*w};});
+    push(pts,W*(off===0?.0072:.006)*thickL,lowerAmount*(hairs>1?.95:.82),true,len,.40,false);
+   }
+  }
+ }
+ return strands;
+}
+// V4.29: templates are part of the Mi Studio family (same picker, thumbnails and controls) and are
+// listed first. They use their own index range so the older styles keep their exact patterns.
+LASH_TEMPLATES.forEach((style,k)=>{style.i=40+k;LASH_STUDIO_BY_ID[style.id]=style;});
+{const old=Object.entries(V4_LAYOUTS.lashes);for(const [key]of old)delete V4_LAYOUTS.lashes[key];for(const style of LASH_TEMPLATES)V4_LAYOUTS.lashes[style.id]=style.name;for(const [key,label]of old)V4_LAYOUTS.lashes[key]=label;}
+// END V4.29 LASH TEMPLATES
 function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed=0){
+ if(sty.tpl)return lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth,sideSeed);
  const fraction=(key,fallback,min,max)=>clamp(Number(setting[key]??fallback)/100,min,max);
  const scale=G.width/374,seed=7*7919+sty.i*104729+sideSeed*1301,rng=studioLashRandom(seed),strands=[];
  const dark=fraction('mascara',90,0,1),upperAmount=fraction('upperIntensity',100,0,1),lowerAmount=fraction('lower',100,0,1);
@@ -2546,7 +2639,7 @@ function applyLashStyle(style){
  const face=selectedFace();if(!face||(!V45_LASH_PROFILES[style]&&!LASH_STUDIO_BY_ID[style]))return;
  checkpoint();const wasActive=layerEnabled(face.settings,'lashes'),strong=['cluster','wispy','doll','fox','wet','manga','western','volume'].includes(style);
  face.settings.lashes.enabled=true;
- for(const cfg of editingConfigs(face,'lashes'))Object.assign(cfg,{enabled:true,style,intensity:strong?84:76,upperIntensity:92,lower:strong?54:32,length:100,curl:65,density:100,thickness:95,lowerLength:100,lowerCurl:55,lowerDensity:90,lowerThickness:90,lowerStyle:'follow',mascara:72},V413_LASH_DEFAULTS[style]||{},LASH_STUDIO_BY_ID[style]?LASH_STUDIO_DEFAULTS:{});
+ for(const cfg of editingConfigs(face,'lashes'))Object.assign(cfg,{enabled:true,style,intensity:strong?84:76,upperIntensity:92,lower:strong?54:32,length:100,curl:65,density:100,thickness:95,lowerLength:100,lowerCurl:55,lowerDensity:90,lowerThickness:90,lowerStyle:'follow',mascara:72},V413_LASH_DEFAULTS[style]||{},LASH_STUDIO_BY_ID[style]?LASH_STUDIO_DEFAULTS:{},lashTemplateDefaults(style));
  recordLayerActivation(face,'lashes',wasActive);face.look=null;clearGuidesForMakeup();renderControls();renderLooks();scheduleRender();
  setStatus('Đã áp '+V4_LAYOUTS.lashes[style]+'. Mi trên và mi dưới có thể chỉnh tiếp riêng.');
 }
@@ -2613,15 +2706,31 @@ function renderEyePop(c,W,H,face,side,s,G){
  {const pts=[];for(let i=0;i<=8;i++){const u=.04+i/8*.36;pts.push(G.at(u,v47SmoothEyeCurve(G,lower,u)-ew*.012));}const bb=boundsPx(pts,W,H,ew*.12);
   if(bb)maskPatch(c,W,H,bb,m=>{m.save();clipOval(m,face,W,H);m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';for(let i=0;i<pts.length-1;i++){const t=i/(pts.length-1);m.globalAlpha=.85*(1-t*.75);m.lineWidth=ew*(.050-.026*t);m.beginPath();m.moveTo(pts[i].x,pts[i].y);m.lineTo(pts[i+1].x,pts[i+1].y);m.stroke();}m.restore();v4ProtectEyeFeatures(m,face,side,W,H);},
    {face,protectOcclusion:true,cosmetic:{sheer:55,coverage:45,texture:90,softness:80},color:s.color||'#291f1e',mode:'ink',strength:.34*amount,photoBlur:Math.max(photoMatchBlur(face,W,1),ew*.022)});}
- // (1) open the eye: smooth local magnification, fading to zero at the rim so nothing tears
- {const k=.11*amount,rx=ew*1.02,ry=ew*.66,x0=clamp(Math.floor(cx-rx-2),0,W),y0=clamp(Math.floor(cy-ry*1.25-2),0,H),x1=clamp(Math.ceil(cx+rx+2),0,W),y1=clamp(Math.ceil(cy+ry*1.25+2),0,H),w=x1-x0,h=y1-y0;
-  if(k>.004&&w>6&&h>6){const src=c.getImageData(x0,y0,w,h),out=c.createImageData(w,h),sd=src.data,od=out.data;od.set(sd);
+ // (1) open the eye in proportion to this face (see eyeBalance): anisotropic, seamless magnification
+ {const B=eyeBalance(face,side,W,H,G),strength=clamp(Number(s.eyePop??55)/70,0,1.45)*clamp(Number(s.intensity||0)/90,0,1.05),kx=clamp(B.kx*strength,0,.20),ky=clamp(B.ky*strength,0,.24);
+  const rx=ew*1.06,ry=ew*.72,ex=Math.abs(rx*G.tx)+Math.abs(ry*G.ux),ey=Math.abs(rx*G.ty)+Math.abs(ry*G.uy),x0=clamp(Math.floor(cx-ex-2),0,W),y0=clamp(Math.floor(cy-ey-2),0,H),x1=clamp(Math.ceil(cx+ex+2),0,W),y1=clamp(Math.ceil(cy+ey+2),0,H),w=x1-x0,h=y1-y0;
+  if(Math.max(kx,ky)>.004&&w>6&&h>6){const src=c.getImageData(x0,y0,w,h),out=c.createImageData(w,h),sd=src.data,od=out.data;od.set(sd);
    for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-    const px=x0+x+.5-cx,py=y0+y+.5-cy,u=(px*G.tx+py*G.ty)/rx,v=(px*G.ux+py*G.uy)/ry,q=u*u+v*v;if(q>=1)continue;
-    const f=(1-q)*(1-q),sc=1/(1+k*f),sx=cx+px*sc-x0-.5,sy=cy+py*sc-y0-.5;if(sx<0||sy<0||sx>w-1.001||sy>h-1.001)continue;
+    const px=x0+x+.5-cx,py=y0+y+.5-cy,a0=px*G.tx+py*G.ty,b0=px*G.ux+py*G.uy,u=a0/rx,v=b0/ry,q=u*u+v*v;if(q>=1)continue;
+    const f=(1-q)*(1-q),a2=a0/(1+kx*f),b2=b0/(1+ky*f),sx=cx+a2*G.tx+b2*G.ux-x0-.5,sy=cy+a2*G.ty+b2*G.uy-y0-.5;if(sx<0||sy<0||sx>w-1.001||sy>h-1.001)continue;
     const ix=Math.floor(sx),iy=Math.floor(sy),fx=sx-ix,fy=sy-iy,a=(iy*w+ix)*4,b=a+4,cc=a+w*4,dd=cc+4,o=(y*w+x)*4;
     for(let ch=0;ch<3;ch++)od[o+ch]=(sd[a+ch]*(1-fx)+sd[b+ch]*fx)*(1-fy)+(sd[cc+ch]*(1-fx)+sd[dd+ch]*fx)*fy;}
    c.putImageData(out,x0,y0);}}
+}
+// V4.29: how far to open an eye so it sits in proportion with THIS face.
+// • eyes that are small for the face (eye width / face width below the ideal) are opened more;
+// • narrow or hooded eyes are opened more in height than in width, so they read rounder, not wider;
+// • on a near-frontal face the visibly smaller eye is brought up toward its partner.
+const EYE_IDEAL_RATIO=.235;
+function eyeBalance(face,side,W,H,G){
+ const fw=Math.max(1,faceSizePx(face,W,H).w),ratio=G.width/fw,lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
+ let open=0;for(const u of [.35,.5,.65])open+=(v47SmoothEyeCurve(G,G.upper,u)-v47SmoothEyeCurve(G,lower,u))/G.width/3;
+ const need=clamp((EYE_IDEAL_RATIO-ratio)/EYE_IDEAL_RATIO,0,.22),narrow=clamp((.30-open)/.12,0,1);
+ let k=.045+need*.36;
+ const other=eyeGeometry(face,side==='left'?'right':'left',W,H),lm=face.raw||face.landmarks,F=faceFrame(face,W,H),nose=pxy(lm[4],W,H),l=pxy(lm[234],W,H),r=pxy(lm[454],W,H);
+ const yaw=((nose.x-(l.x+r.x)/2)*F.rx+(nose.y-(l.y+r.y)/2)*F.ry)/fw;
+ if(other&&Math.abs(yaw)<.05&&other.width>G.width)k+=Math.min(.045,(other.width-G.width)/other.width*.6);
+ return {kx:k*.85,ky:k*(1.05+.45*narrow),ratio,open,yaw};
 }
 // END V4.25 EYE POP
 function renderLashes(c,W,H,face){
@@ -2637,27 +2746,27 @@ function renderLashes(c,W,H,face){
    if(upperGain>0&&R.tightline?.length>2){
     m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';
     // V4.25: the lash root reads as a dark, slightly thicker line – this is what makes an eye look defined.
-    const popK=clamp(Number(s.eyePop??55)/100,0,1),sourceScale=R.G.width/Math.max(1,R.sourceEyeWidth),rootWidth=Math.max(.55*sourceScale,R.G.width*(.0055+.0045*mascaraGain))*(1+1.5*popK);
+    const popK=clamp(Number(s.eyePop??55)/100,0,1),sourceScale=R.G.width/Math.max(1,R.sourceEyeWidth),rootWidth=Math.max(.55*sourceScale,R.G.width*(.0055+.0045*mascaraGain))*(1+.7*popK);
     for(let i=0;i<R.tightline.length-1;i++){
-     const u=i/(R.tightline.length-1),fade=Math.sin(Math.PI*clamp(u,.04,.96));m.globalAlpha=Math.min(1,upperGain*(.22+.28*mascaraGain+.38*popK)*fade);m.lineWidth=rootWidth*(.45+.55*fade)*(1+.35*popK*(1-u));
+     const u=i/(R.tightline.length-1),fade=Math.sin(Math.PI*clamp(u,.04,.96));m.globalAlpha=Math.min(1,upperGain*(.22+.28*mascaraGain+.26*popK)*fade);m.lineWidth=rootWidth*(.45+.55*fade)*(1+.35*popK*(1-u));
      m.beginPath();m.moveTo(R.tightline[i].x,R.tightline[i].y);m.lineTo(R.tightline[i+1].x,R.tightline[i+1].y);m.stroke();
     }
    }
    // V4.25 lash base: seen from the front, upper lashes overlap near the lid and read as one dark
    // fringe that thins out into separate tips. Without it the hairs looked like faint scratches.
-   const upperStrands=R.strands.filter(st=>!st.lower&&!st.baby);
+   const upperStrands=R.strands.filter(st=>!st.lower&&!st.baby&&st.band!==false).concat(R.strands.some(st=>!st.lower&&st.band!==false)?[]:R.strands.filter(st=>!st.lower));
    if(upperGain>0&&upperStrands.length>2&&R.tightline?.length>2){
     const heightAt=u=>{let best=upperStrands[0],d=9;for(const st of upperStrands){const q=Math.abs(st.u-u);if(q<d){d=q;best=st;}}return best.height*clamp(best.alpha+.25,0,1);};
     m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';const layers=5;
     for(let j=0;j<layers;j++){
-     const t=j/layers,pts=[];for(let i=0;i<=28;i++){const u=.035+i/28*.925,v=v47SmoothEyeCurve(R.G,R.G.upper,u),h=heightAt(u)*(.20+.16*mascaraGain);pts.push({p:R.G.at(u,v+h*(t+.10)),h,u});}
+     const t=j/layers,pts=[];for(let i=0;i<=28;i++){const u=.035+i/28*.925,v=v47SmoothEyeCurve(R.G,R.G.upper,u),h=Math.min(R.G.width*.042,heightAt(u)*(.20+.16*mascaraGain));pts.push({p:R.G.at(u,v+h*(t+.10)),h,u});}
      for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],corner=clamp((.985-a.u)/.20,0,1)*clamp((a.u-.01)/.10,.35,1);
       m.globalAlpha=clamp(upperGain*(.34+.34*mascaraGain)*Math.pow(1-t,1.35)*corner,0,1);m.lineWidth=Math.max(.5,(a.h+b.h)*.5/layers*1.55);m.beginPath();m.moveTo(a.p.x,a.p.y);m.lineTo(b.p.x,b.p.y);m.stroke();}
     }
    }
    m.fillStyle='#fff';for(const strand of R.strands){m.globalAlpha=clamp(strand.alpha*(strand.lower?1:1.25),0,1);v45LashRibbon(m,strand);}
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,cosmetic:{...s,texture:100,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:1.9});
+  },{face,protectOcclusion:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.25,coverage:60+.4*Number(s.coverage??65),texture:35,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:LASH_STUDIO_BY_ID[s.style]?.tpl?.55:1.9});
   renderEyePop(c,W,H,face,side,s,R.G);
  }
 }
