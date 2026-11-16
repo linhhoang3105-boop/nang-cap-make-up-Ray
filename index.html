@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#111215">
-  <meta name="description" content="RAY PHOTO Makeup Lab V4.27 – Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
+  <meta name="description" content="RAY PHOTO Makeup Lab V4.28 – Má hồng phun sương, mi và mày tự vừa từng gương mặt; Ổn định ảnh nhóm, mặt nhỏ, ảnh thẻ; Bút bọng mắt; Mắt to rõ khi gắn mi, hiện/ẩn viền môi, bút vẽ tự do, look tự nhiên nhiều lớp; Finish Skin giữ nét và khối mặt, má hồng ăn vào da, son đỏ mọng tán viền; Makeup khớp độ nét ảnh thật (mi, eyeliner, mày, son); Look “Áo dài · Cam đỏ” trang điểm chuyên nghiệp một chạm; Thanh trượt rõ hiệu ứng, giữ nguyên gương mặt; Lưu công thức ngay trong Các bước; chỉnh lớp và công thức bằng thanh trượt, giữ hoàn tác và dự án RAY.">
   <title>RAY PHOTO | Makeup · Finish Skin & Dự án RAY</title>
   <style>
 
@@ -585,7 +585,7 @@ body{height:var(--app-height,100dvh);max-height:var(--app-height,100dvh)}
     </section>
 
     <aside class="settings-panel" aria-label="Điều khiển trang điểm">
-      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.27</span></div>
+      <div class="panel-head"><div><div class="overline">NHẬN DIỆN · CHỈNH TỪNG NGƯỜI</div><h2>Makeup Studio</h2></div><span class="lab-version">V4.28</span></div>
       <div class="sheet-head"><div class="people-strip" id="peopleStrip" role="group" aria-label="Chọn người cần chỉnh"></div><button type="button" class="sheet-toggle" id="btnSheetToggle" aria-expanded="true" aria-controls="panelScroll" aria-label="Thu gọn bảng chỉnh"><span id="sheetToggleLabel">Thu gọn</span><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" id="btnSheetSize" class="sheet-size-toggle" aria-pressed="false" aria-controls="panelScroll">Mở rộng</button></div>
       <div class="tool-dock" id="toolDock" hidden>
         <button id="btnToolPicker" type="button" class="tool-picker-button" aria-haspopup="dialog" aria-controls="toolPickerDialog"><span id="currentToolName">Chân mày</span><span aria-hidden="true">⌄</span></button>
@@ -1835,13 +1835,16 @@ function renderBrows(c,W,H,face){for(const side of ['left','right']){
  const s=face.settings.brow[side];if(s.enabled===false)continue;renderNativeBrow(c,W,H,face,side,s);if(s.intensity<=0)continue;
  const ps=browPolygon(face,side,s,W,H),w=length(pair(ps[0],ps[9]),pair(ps[4],ps[5]));if(w<.5)continue;
  const bb=boundsPx(ps,W,H,w*.045);if(!bb)continue;
- const softness=clamp(Number(s.softness??65)/100,0,1),sharpness=clamp(Number(s.sharpness??65)/100,0,1),density=clamp(Number(s.density??60)/100,0,1),profile=browLightingResponse(face,side,W,H);
+ const softness=clamp(Number(s.softness??65)/100,0,1),sharpness=clamp(Number(s.sharpness??65)/100,0,1),density=clamp(Number(s.density??60)/100,0,1),profile=browLightingResponse(face,side,W,H),
+  // V4.28 one-tap fit: dense, dark native brows need little pigment (or they turn into a block);
+  // sparse or light brows get more. nativeContrast is measured on the original photo.
+  fitK=clamp(1.32-profile.nativeContrast*1.15,.50,1.20);
  const tail=pair(ps[0],ps[9]),head=pair(ps[4],ps[5]),preset=s.shape||'natural';
  browPigmentPatch(c,W,H,face,bb,m=>{
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();const g=m.createLinearGradient(tail.x,tail.y,head.x,head.y);
   g.addColorStop(0,'rgba(255,255,255,.04)');g.addColorStop(.16,'rgba(255,255,255,.56)');g.addColorStop(.40,'rgba(255,255,255,.94)');g.addColorStop(.68,'rgba(255,255,255,.76)');g.addColorStop(.90,'rgba(255,255,255,.28)');g.addColorStop(1,'rgba(255,255,255,.03)');
   m.fillStyle=g;m.fillRect(bb.x0,bb.y0,bb.x1-bb.x0,bb.y1-bb.y0);m.restore();
- },s,profile,s.intensity/100*(preset==='defined'?.48:preset==='feather'?.26:.34),w*(.003+.012*softness),true);
+ },s,profile,s.intensity/100*fitK*(preset==='defined'?.48:preset==='feather'?.26:.34),w*(.003+.012*softness),true);
  const count=Math.round(density*110),seed=side==='left'?3:7;
  browPigmentPatch(c,W,H,face,bb,m=>{
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();m.lineCap='round';m.lineJoin='round';m.strokeStyle='#fff';
@@ -1857,7 +1860,7 @@ function renderBrows(c,W,H,face){for(const side of ['left','right']){
    const trunk=curve(.70),trunkControl=pair(root,control,.70);m.beginPath();m.moveTo(root.x,root.y);m.quadraticCurveTo(trunkControl.x,trunkControl.y,trunk.x,trunk.y);m.stroke();
    const end=curve(.58),tipControl=pair(control,tip,.58);m.globalAlpha=opacity*.65;m.lineWidth*=.46;m.beginPath();m.moveTo(end.x,end.y);m.quadraticCurveTo(tipControl.x,tipControl.y,tip.x,tip.y);m.stroke();
   }m.restore();
- },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*(.62+.24*sharpness),w*.0012*(1-sharpness),false,photoMatchBlur(face,W,.5));
+ },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*clamp(fitK*1.1,.6,1.2)*(.62+.24*sharpness),w*.0012*(1-sharpness),false,photoMatchBlur(face,W,.5));
 }}
 // END V4.5 ADAPTIVE BROW RENDERER
 
@@ -2045,38 +2048,47 @@ function blushSoftMask(m,z,soft){
  m.fillStyle=g;m.beginPath();m.arc(0,0,radius,0,Math.PI*2);m.fill();m.restore();
 }
 function renderBlush(c,W,H,face){
+ // V4.28 blush, rebuilt after studying one-tap beauty apps: one wide, airbrushed cloud of colour
+ // centred on the apple of the cheek (below the pupil, around nose-bridge height), with a Gaussian
+ // falloff that has no visible rim, plus a faint wider haze so it melts into the skin. Every
+ // position is measured from this face (eye, mouth, nose, cheek line), so it fits any face shape.
  const F=faceFrame(face,W,H),fs=faceSizePx(face,W,H),fw=fs.w,lp=face.landmarks,baseAngle=Math.atan2(F.ry,F.rx);
- const offset=(p,x,y)=>({x:p.x+F.rx*x+F.ux*y,y:p.y+F.ry*x+F.uy*y});
+ const offset=(p,x,y)=>({x:p.x+F.rx*x+F.ux*y,y:p.y+F.ry*x+F.uy*y}),along=(a,b)=>(b.x-a.x)*F.ux+(b.y-a.y)*F.uy;
  for(const side of ['left','right']){
   const s=face.settings.blush[side];if(s.enabled===false||s.intensity<=0)continue;
   const sign=side==='left'?-1:1,style=s.style||'lifted',size=clamp((Number(s.size)||100)/100,.45,1.65),soft=clamp((s.softness??65)/100,.1,1);
-  const cheek=pxy(lp[side==='left'?117:346],W,H),eye=pxy(lp[side==='left'?33:263],W,H),mouth=pxy(lp[side==='left'?61:291],W,H),nose=pxy(lp[1],W,H),temple=pxy(lp[side==='left'?162:389],W,H);
-  let center=pair(cheek,pair(eye,mouth,.56),.36),rx=fw*.158*size,ry=fw*.096*size,tilt=0,peak=.88;
-  if(style==='apple'){center=pair(center,mouth,.11);rx*=.90;ry*=1.14;peak=.90;}
-  if(style==='lifted'){center=offset(center,sign*fw*.020,fw*.026);rx*=1.14;ry*=.76;tilt=-.38;}
-  if(style==='draped'){center=offset(center,sign*fw*.048,fw*.054);rx*=1.30;ry*=.74;tilt=-.54;}
-  if(style==='sun'){center=pair(center,nose,.24);center=offset(center,0,fw*.010);rx*=1.20;ry*=.52;peak=.78;}
-  if(style==='undereye'){center=pair(eye,mouth,.28);center=offset(center,-sign*fw*.008,-fw*.020);rx*=1.06;ry*=.58;peak=.76;}
-  if(style==='korean'){center=offset(center,-sign*fw*.018,fw*.020);rx*=.94;ry*=.86;peak=.78;}
-  if(style==='diagonal'){center=offset(center,sign*fw*.026,fw*.010);rx*=1.22;ry*=.62;tilt=-.68;}
-  if(style==='flush'){center=offset(center,-sign*fw*.008,0);rx*=1.32;ry*=1.15;peak=.62;}
+  const lowerLid=pxy(lp[side==='left'?145:374],W,H),mouth=pxy(lp[side==='left'?61:291],W,H),nose=pxy(lp[1],W,H),wing=pxy(lp[side==='left'?49:279],W,H),edge=pxy(lp[side==='left'?234:454],W,H),temple=pxy(lp[side==='left'?162:389],W,H);
+  const drop=Math.max(fw*.05,along(mouth,lowerLid)),outward=Math.abs((edge.x-lowerLid.x)*F.rx+(edge.y-lowerLid.y)*F.ry);
+  // apple of the cheek: halfway between the lower lid and the nostril line, slightly outward
+  const nostril=pxy(lp[side==='left'?98:327],W,H),toNostril=Math.max(fw*.05,along(nostril,lowerLid));
+  let center=offset(lowerLid,sign*outward*.18,-toNostril*.62),rx=fw*.215*size,ry=fw*.19*size,tilt=0,peak=.62;
+  if(style==='apple'){rx*=.92;ry*=1.02;peak=.86;}
+  if(style==='lifted'){center=offset(center,sign*outward*.16,drop*.10);rx*=1.12;ry*=.86;tilt=-.32;}
+  if(style==='draped'){center=offset(center,sign*outward*.30,drop*.20);rx*=1.20;ry*=.80;tilt=-.52;}
+  if(style==='sun'){center=offset(pair(center,wing,.40),0,drop*.06);rx*=1.25;ry*=.62;peak=.70;}
+  if(style==='undereye'){center=offset(center,-sign*outward*.04,drop*.22);rx*=1.05;ry*=.70;peak=.72;}
+  if(style==='korean'){center=offset(center,-sign*outward*.06,drop*.04);rx*=.96;ry*=.92;peak=.74;}
+  if(style==='diagonal'){center=offset(center,sign*outward*.18,drop*.06);rx*=1.25;ry*=.68;tilt=-.62;}
+  if(style==='flush'){center=offset(center,-sign*outward*.10,drop*.02);rx*=1.30;ry*=1.12;peak=.60;}
   center=offset(center,sign*(Number(s.horizontal)||0)/30*fw*.075,(Number(s.lift)||0)/50*fw*.075);
-  const angle=baseAngle+sign*(tilt+(Number(s.direction)||0)*Math.PI/180),zones=[{center,rx,ry,angle,peak}];
-  if(style==='apple')zones.push({center:offset(center,sign*fw*.028,fw*.018),rx:rx*.65,ry:ry*.62,angle:baseAngle-sign*.22,peak:.22});
-  if(style==='lifted')zones.push({center:pair(center,temple,.32),rx:rx*.68,ry:ry*.62,angle,peak:.24});
-  if(style==='draped')zones.push({center:pair(center,temple,.48),rx:rx*.72,ry:ry*.68,angle:angle-sign*.12,peak:.34});
-  if(style==='undereye')zones.push({center:offset(center,sign*fw*.034,-fw*.006),rx:rx*.64,ry:ry*.58,angle:baseAngle-sign*.18,peak:.25});
-  if(style==='korean')zones.push({center:offset(center,sign*fw*.024,fw*.012),rx:rx*.68,ry:ry*.64,angle:baseAngle-sign*.20,peak:.24});
-  if(style==='flush')zones.push({center:offset(center,-sign*fw*.042,-fw*.028),rx:rx*.68,ry:ry*.76,angle,peak:.24});
-  if(style==='sun')zones.push({center:pair(center,nose,.74),rx:rx*.72,ry:ry*.54,angle:baseAngle,peak:.26});
-  // V4.24: blush is buffed over a wide area with a low peak, instead of a small dense patch.
-  for(const z of zones){z.rx*=1.34;z.ry*=1.46;z.peak*=.86;}
-  const expand=1+.22*soft;
-  const ps=zones.flatMap(z=>{const zx=Math.hypot(z.rx*expand*Math.cos(z.angle),z.ry*expand*Math.sin(z.angle)),zy=Math.hypot(z.rx*expand*Math.sin(z.angle),z.ry*expand*Math.cos(z.angle));return [{x:z.center.x-zx,y:z.center.y-zy},{x:z.center.x+zx,y:z.center.y+zy}];});
-  const bb=boundsPx(ps,W,H,fw*.035);
-  maskPatch(c,W,H,bb,m=>{for(const z of zones)blushSoftMask(m,z,soft);},
-   {face,protectFace:true,protectOcclusion:true,cosmetic:s,color:s.color,mode:'blush',strength:s.intensity/100*.95,feather:fw*(.003+.010*soft)});
+  const angle=baseAngle+sign*(tilt+(Number(s.direction)||0)*Math.PI/180);
+  const zones=[{center,rx,ry,angle,peak},{center:offset(center,sign*fw*.012,drop*.04),rx:rx*1.45,ry:ry*1.38,angle,peak:peak*.30}];
+  if(style==='draped'||style==='lifted')zones.push({center:pair(center,temple,.45),rx:rx*.70,ry:ry*.62,angle,peak:peak*.30});
+  if(style==='sun')zones.push({center:pair(nose,wing,.25),rx:rx*.35,ry:ry*.45,angle:baseAngle,peak:peak*.35});
+  const ps=zones.flatMap(z=>{const zx=Math.hypot(z.rx*Math.cos(z.angle),z.ry*Math.sin(z.angle)),zy=Math.hypot(z.rx*Math.sin(z.angle),z.ry*Math.cos(z.angle));return [{x:z.center.x-zx,y:z.center.y-zy},{x:z.center.x+zx,y:z.center.y+zy}];});
+  const bb=boundsPx(ps,W,H,fw*.02);
+  maskPatch(c,W,H,bb,m=>{for(const z of zones)blushGaussianMask(m,z,soft);},
+   {face,protectFace:true,protectOcclusion:true,cosmetic:{...s,softness:Math.max(70,Number(s.softness??65))},color:s.color,mode:'blush',strength:s.intensity/100*.92,feather:fw*(.006+.012*soft)});
  }
+}
+// Gaussian cloud (airbrush): alpha = peak·exp(−k·r²), faded to exactly zero at the rim, combined
+// with 'lighter' so overlapping zones add up smoothly instead of stacking hard edges.
+function blushGaussianMask(m,z,soft){
+ m.save();m.translate(z.center.x,z.center.y);m.rotate(z.angle);m.scale(1,z.ry/Math.max(.01,z.rx));m.globalCompositeOperation='lighter';
+ // Plateau Gaussian: broad, even centre and a long soft shoulder (an airbrush spray, not a dab).
+ const g=m.createRadialGradient(0,0,0,0,0,z.rx),scale=.58+.10*soft,pw=2.2+.6*(1-soft);
+ for(let i=0;i<=20;i++){const r=i/20,a=z.peak*Math.exp(-1.1*Math.pow(r/scale,pw))*(1-Math.pow(r,8));g.addColorStop(r,`rgba(255,255,255,${Math.max(0,a).toFixed(4)})`);}
+ m.fillStyle=g;m.beginPath();m.arc(0,0,z.rx,0,Math.PI*2);m.fill();m.restore();
 }
 
 function upperPoints(face,side,W,H){return points(face,EYE_UPPER[side],W,H);}
@@ -2260,17 +2272,26 @@ function v47CubicPoint(a,b,c,d,t){const q=1-t;return {x:q*q*q*a.x+3*q*q*t*b.x+3*
 // wide the eye is open; all dimensions remain tied to original-source geometry.
 // V4.23: on a frontal photo the upper lashes point toward the camera, so only a short,
 // foreshortened part of each hair is visible above the lid. Full "profile" lengths looked drawn on.
-const LASH_REAL=.80,LASH_MAX_REACH=.31;
+const LASH_REAL=1,LASH_MAX_REACH=.36;
+// V4.28 one-tap fit: lashes are sized from THIS eye, not from a fixed template. A narrow / hooded
+// eye gets a shorter, denser fringe (long strands look glued on there); a wide-open eye may carry
+// longer lashes. Very small eyes in the preview get slightly thicker strands so they stay readable.
+function lashFit(face,side,W,H,G){
+ const lower=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H);
+ let open=0;for(const u of [.35,.5,.65])open+=(v47SmoothEyeCurve(G,G.upper,u)-v47SmoothEyeCurve(G,lower,u))/G.width/3;
+ const previewW=G.width*(state.previewW||W)/W,narrow=clamp((.30-open)/.12,0,1),wide=clamp((open-.36)/.10,0,1);
+ return {open,len:(1-.20*narrow)*(1+.08*wide),dens:1+.18*narrow,thick:clamp(34/Math.max(1,previewW),1,1.6)};
+}
 const V45_LASH_PROFILES={
- natural:{count:24,height:.16,width:.010,spread:.80,curl:.58,lower:.072},
- length:{count:26,height:.255,width:.0105,spread:.94,curl:.65,lower:.115},
- volume:{count:38,height:.215,width:.0145,spread:.92,curl:.64,lower:.105},
+ natural:{count:42,height:.27,width:.011,spread:1.32,curl:.70,lower:.082},
+ length:{count:44,height:.32,width:.011,spread:1.38,curl:.74,lower:.115},
+ volume:{count:56,height:.28,width:.011,spread:1.30,curl:.72,lower:.105},
  curl:{count:27,height:.235,width:.0115,spread:.90,curl:.95,lower:.102},
  cluster:{count:10,height:.280,width:.013,spread:1.02,curl:.73,cluster:3,lower:.142},
- outer:{count:27,height:.260,width:.0115,spread:1.25,curl:.68,outer:true,lower:.112},
+ outer:{count:44,height:.31,width:.0115,spread:1.48,curl:.74,outer:true,lower:.112},
  korean:{count:10,height:.235,width:.0105,spread:.86,curl:.76,cluster:3,lower:.125},
  western:{count:34,height:.260,width:.014,spread:1.22,curl:.79,outer:true,lower:.120},
- mascara:{count:27,height:.205,width:.014,spread:.90,curl:.72,lower:.104,mascara:true},
+ mascara:{count:46,height:.26,width:.0115,spread:1.28,curl:.76,lower:.104,mascara:true},
  wispy:{count:13,height:.275,width:.0105,spread:1.10,curl:.74,cluster:3,wispy:true,lower:.128},
  doll:{count:13,height:.275,width:.012,spread:.88,curl:.86,cluster:3,doll:true,lower:.155},
  fox:{count:12,height:.270,width:.012,spread:1.48,curl:.62,cluster:3,outer:true,fox:true,lower:.118},
@@ -2344,7 +2365,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
   return {p:{x:t*G.width,y:-v},tan,n};
  };
  const addStrand=(R,angle,len,width,curve,tipAngle,sy,alpha,taper=.84)=>{
-  if(sy<0){const u=1-R.x/G.width,gap=v47SmoothEyeCurve(G,G.brow,u)+R.y;len=Math.min(len*LASH_REAL,G.width*LASH_MAX_REACH,Math.max(G.width*.07,gap*.58));}
+  if(sy<0){const u=1-R.x/G.width,gap=v47SmoothEyeCurve(G,G.brow,u)+R.y;len=Math.min(len*LASH_REAL,G.width*LASH_MAX_REACH,Math.max(G.width*.07,gap*.74));}
   const local=[{...R}],steps=14,ds=len/steps,ph0=angle*Math.PI/180,phT=tipAngle*Math.PI/180;
   let x=R.x,y=R.y;
   for(let k=1;k<=steps;k++){const s=(k-.5)/steps,ph=ph0+(phT-ph0)*curve*Math.pow(s,1.15);x=clamp(x+Math.sin(ph)*ds,-G.width*.02,G.width*1.02);y+=sy*Math.cos(ph)*ds;local.push({x,y});}
@@ -2402,7 +2423,7 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
 }
 function studioLashGeometry(face,side,setting,W,H,G,sty){
  const sourceGeometry=eyeGeometry(face,side,state.width||W,state.height||H),sourceWidth=sourceGeometry?.width||G.width;
- const lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),strands=studioLashStrands(G,lowerCurve,setting,sty,sourceWidth,side==='left'?11:29);
+ const lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),fit=lashFit(face,side,W,H,G),fitted={...setting,length:(Number(setting.length)||100)*fit.len,density:(Number(setting.density)||100)*fit.dens,thickness:(Number(setting.thickness)||100)*fit.thick},strands=studioLashStrands(G,lowerCurve,fitted,sty,sourceWidth,side==='left'?11:29);
  if(!strands.length)return null;
  const bandBottom=[],bandTop=[];
  for(let i=0;i<=24;i++){const u=.025+i/24*.94,v=v47SmoothEyeCurve(G,G.upper,u),gap=v47SmoothEyeCurve(G,G.brow,u)-v;bandBottom.push(G.at(u,v));bandTop.push(G.at(u,v+Math.max(0,Math.min(G.width*.25,gap*.86))));}
@@ -2440,7 +2461,7 @@ function v45LashGeometry(face,side,setting,W,H){
  }
  const style=setting.style||'natural',profile=V45_LASH_PROFILES[style]||V45_LASH_PROFILES.natural;
  const fraction=(key,fallback,min,max)=>clamp(Number(setting[key]??fallback)/100,min,max);
- const density=fraction('density',100,.4,1.8),lengthGain=fraction('length',100,.5,1.8),thickness=fraction('thickness',100,.5,1.8),curl=fraction('curl',65,0,1),mascara=fraction('mascara',80,0,1);
+ const fit=lashFit(face,side,W,H,G),density=fraction('density',100,.4,1.8)*fit.dens,lengthGain=fraction('length',100,.5,1.8)*fit.len,thickness=fraction('thickness',100,.5,1.8)*fit.thick,curl=fraction('curl',65,0,1),mascara=fraction('mascara',80,0,1);
  const sourceGeometry=eyeGeometry(face,side,state.width||W,state.height||H),sourceWidth=sourceGeometry?.width||G.width,sourceScale=G.width/Math.max(1,sourceWidth);
  const count=Math.min(profile.cluster?24:68,Math.max(6,Math.floor(sourceWidth*.72)),Math.max(profile.cluster?5:8,Math.round(profile.count*density))),strands=[];
  const seed=side==='left'?1:7,lowerCurve=points(face,(side==='left'?EYE_LEFT:EYE_RIGHT).slice(0,9),W,H),curve=clamp(curl*.70+profile.curl*.30,0,1);
@@ -2461,10 +2482,11 @@ function v45LashGeometry(face,side,setting,W,H){
    {const k=clamp((1-u)/.30,0,1);envelope*=.50+.50*k*k*(3-2*k);}
    const isCenter=Math.abs(rel)<.6,companion=profile.manga?.50+.16*noise:profile.wet?.78+.10*noise:.64+.20*v45LashNoise(i+j+47,seed);
    const spike=fibers>1?(isCenter?1:companion):(.56+.44*v45LashNoise(i+23,seed));
-   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*spike*LASH_REAL,clearance*.58);
+   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*spike*LASH_REAL,clearance*.74);
    const slope=(v47SmoothEyeCurve(G,G.upper,Math.min(.98,u+.025))-v47SmoothEyeCurve(G,G.upper,Math.max(.02,u-.025)))/(G.width*.05);
    let fan=(u-.51)*profile.spread*1.24-clamp(slope,-1.1,1.1)*.45-(profile.outer?.25:0)+(v45LashNoise(i+71,seed)-.5)*.16;
-   if(fan>0)fan=Math.min(fan*.45,.34);
+   if(fan>0)fan=Math.min(fan*.55,.38);
+   fan*=1+.35*Math.pow(clamp((.35-u)/.35,0,1),1.5);
    const tipSpread=fibers>1?(pinchSpike?rootSpread*.14:rootSpread*(profile.wispy?1.35:1.10)):0;
    const tipU=u0+fan*h/G.width*(1.20-.38*curve)+tipSpread,tip=G.at(tipU,v+h*(.86+.14*curve));
    const c1=G.at(u+fan*h/G.width*.28-(.032+.16*curve)*h/G.width+tipSpread*.25,v+h*(.14+.18*curve));
@@ -2477,7 +2499,7 @@ function v45LashGeometry(face,side,setting,W,H){
   if(fibers>1&&i<count-1){
    const u=clamp(u0+.48/count,.03,.96),v=v47SmoothEyeCurve(G,G.upper,u),p=G.at(u,v-G.width*.0012);
    const envelope=.42+.52*Math.sin(Math.PI*u)*(profile.outer?1.30-u*.68:1),clearance=Math.max(G.width*.09,v47SmoothEyeCurve(G,G.brow,u)-v);
-   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*(profile.manga?.42:.52)*LASH_REAL,clearance*.58);
+   const h=Math.min(G.width*LASH_MAX_REACH,G.width*profile.height*lengthGain*envelope*(profile.manga?.42:.52)*LASH_REAL,clearance*.74);
    const fan=(u-.51)*profile.spread*1.05-(profile.outer?.18:0),tipU=u+fan*h/G.width*(1.12-.35*curve);
    const c1=G.at(u+fan*h/G.width*.25,v+h*.22),c2=G.at(u+(tipU-u)*.88,v+h*.84),tip=G.at(tipU,v+h*(.86+.12*curve));
    strands.push({root:p,p,control:c1,c1,c2,tip,width:Math.max(G.width*profile.width*.38,sourceScale*.30)*thickness,alpha:upperAmount*.62*(.74+.26*mascara),u,height:h,lower:false,taper:.90,baby:true});
@@ -2505,6 +2527,16 @@ function v45LashGeometry(face,side,setting,W,H){
   }
  }
  if(!strands.length)return null;
+ // V4.28 mascara clumping: neighbouring upper hairs meet at the tips in twos and threes, the way
+ // real lashes do once coated. A perfectly even comb of parallel hairs is what reads as fake.
+ if(!profile.cluster){
+  const upper=strands.filter(st=>!st.lower&&!st.baby).sort((a,b)=>a.u-b.u),pull=.38+.22*mascara;
+  for(let i=0;i<upper.length;){
+   const n=v45LashNoise(i+311,seed)<.45?2:3,grp=upper.slice(i,i+n);i+=n;if(grp.length<2)continue;
+   const tx=grp.reduce((a,st)=>a+st.tip.x,0)/grp.length,ty=grp.reduce((a,st)=>a+st.tip.y,0)/grp.length;
+   for(const st of grp){st.tip={x:st.tip.x+(tx-st.tip.x)*pull,y:st.tip.y+(ty-st.tip.y)*pull};st.c2={x:st.c2.x+(tx-st.c2.x)*pull*.45,y:st.c2.y+(ty-st.c2.y)*pull*.45};st.control=st.c1;}
+  }
+ }
  const bandBottom=[],bandTop=[],tightline=[];
  for(let i=0;i<=24;i++){const u=.025+i/24*.94,v=v47SmoothEyeCurve(G,G.upper,u),gap=v47SmoothEyeCurve(G,G.brow,u)-v,pt=G.at(u,v);tightline.push(pt);bandBottom.push(pt);bandTop.push(G.at(u,v+Math.max(0,Math.min(G.width*.25,gap*.86))));}
  const nativePolygon=[...bandBottom,...bandTop.reverse()],bb=boundsPx([...nativePolygon,...strands.flatMap(s=>[s.p,s.c1,s.c2,s.tip])],W,H,G.width*.035);
@@ -2582,7 +2614,7 @@ function renderEyePop(c,W,H,face,side,s,G){
   if(bb)maskPatch(c,W,H,bb,m=>{m.save();clipOval(m,face,W,H);m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';for(let i=0;i<pts.length-1;i++){const t=i/(pts.length-1);m.globalAlpha=.85*(1-t*.75);m.lineWidth=ew*(.050-.026*t);m.beginPath();m.moveTo(pts[i].x,pts[i].y);m.lineTo(pts[i+1].x,pts[i+1].y);m.stroke();}m.restore();v4ProtectEyeFeatures(m,face,side,W,H);},
    {face,protectOcclusion:true,cosmetic:{sheer:55,coverage:45,texture:90,softness:80},color:s.color||'#291f1e',mode:'ink',strength:.34*amount,photoBlur:Math.max(photoMatchBlur(face,W,1),ew*.022)});}
  // (1) open the eye: smooth local magnification, fading to zero at the rim so nothing tears
- {const k=.085*amount,rx=ew*1.02,ry=ew*.66,x0=clamp(Math.floor(cx-rx-2),0,W),y0=clamp(Math.floor(cy-ry*1.25-2),0,H),x1=clamp(Math.ceil(cx+rx+2),0,W),y1=clamp(Math.ceil(cy+ry*1.25+2),0,H),w=x1-x0,h=y1-y0;
+ {const k=.11*amount,rx=ew*1.02,ry=ew*.66,x0=clamp(Math.floor(cx-rx-2),0,W),y0=clamp(Math.floor(cy-ry*1.25-2),0,H),x1=clamp(Math.ceil(cx+rx+2),0,W),y1=clamp(Math.ceil(cy+ry*1.25+2),0,H),w=x1-x0,h=y1-y0;
   if(k>.004&&w>6&&h>6){const src=c.getImageData(x0,y0,w,h),out=c.createImageData(w,h),sd=src.data,od=out.data;od.set(sd);
    for(let y=0;y<h;y++)for(let x=0;x<w;x++){
     const px=x0+x+.5-cx,py=y0+y+.5-cy,u=(px*G.tx+py*G.ty)/rx,v=(px*G.ux+py*G.uy)/ry,q=u*u+v*v;if(q>=1)continue;
