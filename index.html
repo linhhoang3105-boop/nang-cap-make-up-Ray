@@ -2035,48 +2035,62 @@ function browPigmentPatch(c,W,H,face,box,painter,setting,profile,strength,feathe
  }
  c.putImageData(rgba,x,y);
 }
+// Brow fibres follow the local lower/upper rims. The head grows upward;
+// the body and tail lie outward, with fine tapered ends rather than a comb.
+function browHairStrands(poly,setting,W,side){
+ const w=length(pair(poly[0],poly[9]),pair(poly[4],poly[5]));if(!Number.isFinite(w)||w<.5)return [];
+ const density=clamp(Number(setting.density??60)/100,0,1),sharpness=clamp(Number(setting.sharpness??65)/100,0,1),preset=setting.shape||'natural',seed=side==='left'?3:7;
+ const count=Math.round(density*(preset==='feather'?185:preset==='defined'?170:158)),floor=Math.min(lashMinWidth(W,.26),w*.006),strands=[];
+ for(let i=0;i<count;i++){
+  const n0=browNoise(i,seed),n1=browNoise(i,seed+1),n2=browNoise(i,seed+2),n3=browNoise(i,seed+6);
+  const u=clamp(.018+.964*((i*.618033988749895+n0*.085+seed*.13)%1),.018,.982),rim=browRimSample(poly,u),h0=clamp((u-.74)/.23,0,1),head=h0*h0*(3-2*h0);
+  const fromTop=u<.82&&browNoise(i,seed+5)<.20,along=(.055+.065*(1-u))*(.66+.66*n0)*(1-.87*head),tipRim=browRimSample(poly,Math.max(.004,u-along));
+  const rootV=fromTop?.78+.17*n1:.12+.48*n1,tipV=fromTop?Math.max(.30,rootV-.10-.20*n2):Math.min(1.12,rootV+.12+.26*n2+head*(.25+.13*n2));
+  const root=pair(rim.lo,rim.hi,rootV),tip=pair(tipRim.lo,tipRim.hi,tipV),bend=pair(root,tip,.52),up={x:rim.hi.x-rim.lo.x,y:rim.hi.y-rim.lo.y};
+  const control={x:bend.x+up.x*(.035+.055*n3)*(fromTop?-1:1),y:bend.y+up.y*(.035+.055*n3)*(fromTop?-1:1)};
+  const points=[];for(let j=0;j<=14;j++){const t=j/14,q=1-t;points.push({x:q*q*root.x+2*q*t*control.x+t*t*tip.x,y:q*q*root.y+2*q*t*control.y+t*t*tip.y});}
+  if(length(root,tip)<w*.012)continue;
+  const width=Math.max(floor,w*(.0028+.0018*sharpness))*(.72+.40*browNoise(i,seed+4))*(preset==='feather'?.92:1);
+  const tailFade=.48+.52*Math.sqrt(Math.max(0,Math.sin(Math.PI*u))),opacity=(.36+.48*browNoise(i,seed+3))*tailFade*(fromTop?.77:1);
+  strands.push({points,width,alpha:opacity,u,head,root,tip});
+ }
+ return strands;
+}
+function drawBrowHairStrand(m,strand){
+ const ps=strand.points;if(ps.length<2)return;const left=[],right=[];
+ for(let i=0;i<ps.length;i++){
+  const t=i/(ps.length-1),p=ps[i],a=ps[Math.max(0,i-1)],b=ps[Math.min(ps.length-1,i+1)],dx=b.x-a.x,dy=b.y-a.y,l=Math.hypot(dx,dy)||1;
+  const grow=.52+.48*Math.sin(Math.min(1,t/.32)*Math.PI/2),half=strand.width*.5*grow*Math.pow(1-t,1.08);
+  left.push({x:p.x-dy/l*half,y:p.y+dx/l*half});right.push({x:p.x+dy/l*half,y:p.y-dx/l*half});
+ }
+ const root=ps[0],tip=ps.at(-1),g=m.createLinearGradient(root.x,root.y,tip.x,tip.y);g.addColorStop(0,'rgba(255,255,255,.78)');g.addColorStop(.18,'rgba(255,255,255,1)');g.addColorStop(.64,'rgba(255,255,255,.82)');g.addColorStop(.90,'rgba(255,255,255,.38)');g.addColorStop(1,'rgba(255,255,255,0)');
+ m.globalAlpha=strand.alpha;m.fillStyle=g;m.beginPath();m.moveTo(left[0].x,left[0].y);for(let i=1;i<left.length;i++)m.lineTo(left[i].x,left[i].y);for(let i=right.length-1;i>=0;i--)m.lineTo(right[i].x,right[i].y);m.closePath();m.fill();
+}
 function renderBrows(c,W,H,face){for(const side of ['left','right']){
  const s=face.settings.brow[side];if(s.enabled===false)continue;renderNativeBrow(c,W,H,face,side,s);if(s.intensity<=0)continue;
  const ps=browPolygon(face,side,s,W,H),w=length(pair(ps[0],ps[9]),pair(ps[4],ps[5]));if(w<.5)continue;
  const bb=boundsPx(ps,W,H,w*.045);if(!bb)continue;
- const softness=clamp(Number(s.softness??65)/100,0,1),sharpness=clamp(Number(s.sharpness??65)/100,0,1),density=clamp(Number(s.density??60)/100,0,1),profile=browLightingResponse(face,side,W,H),
-  // V4.28 one-tap fit: dense, dark native brows need little pigment (or they turn into a block);
-  // sparse or light brows get more. nativeContrast is measured on the original photo.
-  fitK=clamp(1.30-profile.nativeContrast*.9,.85,1.25);
+ const softness=clamp(Number(s.softness??65)/100,0,1),sharpness=clamp(Number(s.sharpness??65)/100,0,1),density=clamp(Number(s.density??60)/100,0,1),profile=browLightingResponse(face,side,W,H),fitK=clamp(1.30-profile.nativeContrast*.9,.85,1.25);
  const tail=pair(ps[0],ps[9]),head=pair(ps[4],ps[5]),preset=s.shape||'natural';
+ // A translucent supporting wash leaves the photographed hairs and skin
+ // visible. Separated fibres, rather than a solid fill, carry the brow shape.
  browPigmentPatch(c,W,H,face,bb,m=>{
   m.save();m.beginPath();pathSmoothClosed(m,ps);m.clip();const g=m.createLinearGradient(tail.x,tail.y,head.x,head.y);
-  g.addColorStop(0,'rgba(255,255,255,.05)');g.addColorStop(.14,'rgba(255,255,255,.62)');g.addColorStop(.38,'rgba(255,255,255,.92)');g.addColorStop(.62,'rgba(255,255,255,.62)');g.addColorStop(.82,'rgba(255,255,255,.20)');g.addColorStop(1,'rgba(255,255,255,0)');
+  g.addColorStop(0,'rgba(255,255,255,.03)');g.addColorStop(.16,'rgba(255,255,255,.48)');g.addColorStop(.42,'rgba(255,255,255,.76)');g.addColorStop(.65,'rgba(255,255,255,.48)');g.addColorStop(.84,'rgba(255,255,255,.12)');g.addColorStop(1,'rgba(255,255,255,0)');
   m.fillStyle=g;m.fillRect(bb.x0,bb.y0,bb.x1-bb.x0,bb.y1-bb.y0);m.restore();
- },s,profile,s.intensity/100*fitK*(preset==='defined'?.62:preset==='feather'?.34:.44),w*(.006+.022*softness),true);
- // V4.39 real hairs: hairs may cross the outline a little (as real brows do), each hair is at least ~0.7
- // screen pixels wide so it reads as a hair instead of a smudge, and hair darkness varies hair to hair.
- const count=Math.round(density*230),seed=side==='left'?3:7,minHair=lashMinWidth(W,.72);
- const loose=ps.map((p,i)=>{const q=ps[9-i],m2=pair(p,q);return {x:m2.x+(p.x-m2.x)*1.32,y:m2.y+(p.y-m2.y)*1.32};});
- browPigmentPatch(c,W,H,face,boundsPx(loose,W,H,w*.06)||bb,m=>{
-  m.save();m.beginPath();pathSmoothClosed(m,loose);m.clip();m.lineCap='round';m.lineJoin='round';m.strokeStyle='#fff';
-  for(let i=0;i<count;i++){
-   // V4.40 real brow hair: random root positions (no comb rhythm), hairs lie mostly OUTWARD along the brow
-   // with only a small up (from the bottom) / down (from the top) slant, the head stands up; each hair is a
-   // tapered strand (full at the root, a fine point at the tip) with its own length, angle and darkness.
-   const rand=browNoise(i,seed),n1=browNoise(i,seed+1),n2=browNoise(i,seed+2),n3=browNoise(i,seed+6),u=clamp(.015+.97*browNoise(i,seed+11),.015,.985),rim=browRimSample(ps,u);
-   const headK=clamp((u-.80)/.17,0,1),fromTop=u<.80&&browNoise(i,seed+5)<.22,direction=(.07+.10*(1-u))*(.55+.9*rand)*(1-.80*headK),tipRim=browRimSample(ps,u-direction);
-   const rootV=fromTop?.92-.22*n1:.06+.55*n1,tipV=fromTop?Math.max(.25,rootV-.08-.16*n2):Math.min(1.10,rootV+(.14+.26*n2)+headK*(.45+.25*n2));
-   const root=pair(rim.lo,rim.hi,rootV),tip=pair(tipRim.lo,tipRim.hi,tipV),bend=pair(root,tip,.5),cross={x:(tipRim.hi.x-rim.hi.x)*(.06+.10*n3),y:(tipRim.hi.y-rim.hi.y)*(.06+.10*n3)},control={x:bend.x+cross.x,y:bend.y+cross.y};
-   const curve=t=>({x:(1-t)*(1-t)*root.x+2*(1-t)*t*control.x+t*t*tip.x,y:(1-t)*(1-t)*root.y+2*(1-t)*t*control.y+t*t*tip.y});
-   const opacity=(.22+.70*Math.pow(browNoise(i,seed+3),1.3))*(.40+.60*Math.sin(Math.PI*clamp(u*1.04,0,1)));
-   const w0=Math.max(minHair*(.95+.5*browNoise(i,seed+4)),w*(.0042+.0040*sharpness)*(.7+.6*browNoise(i,seed+4)))*(preset==='feather'?1.05:1);
-   const L=[],R2=[];for(let k2=0;k2<=10;k2++){const t=k2/10,p=curve(t),q=curve(Math.min(1,t+.05)),r0=curve(Math.max(0,t-.05)),dx=q.x-r0.x,dy=q.y-r0.y,len=Math.hypot(dx,dy)||1,half=w0*.5*(1-.78*Math.pow(t,1.1));L.push({x:p.x-dy/len*half,y:p.y+dx/len*half});R2.push({x:p.x+dy/len*half,y:p.y-dx/len*half});}
-   m.globalAlpha=opacity;m.fillStyle='#fff';m.beginPath();m.moveTo(L[0].x,L[0].y);for(const q of L)m.lineTo(q.x,q.y);for(let k2=R2.length-1;k2>=0;k2--)m.lineTo(R2[k2].x,R2[k2].y);m.closePath();m.fill();
-  }m.restore();
- },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*clamp(fitK*1.1,.8,1.25)*(.92+.20*sharpness),w*.0012*(1-sharpness),false,photoMatchBlur(face,W,.35));
- // V4.30 clean-up: a little light right under the brow (concealer along the lower edge) is what makes a
- // filled brow look crisp and finished instead of only darker.
- {const mid=pair(ps[2],ps[7]),upv={x:ps[2].x-ps[7].x,y:ps[2].y-ps[7].y},ul=Math.hypot(upv.x,upv.y)||1,ux=upv.x/ul,uy=upv.y/ul,under=ps.slice(5).map(p=>({x:p.x-ux*w*.07,y:p.y-uy*w*.07}));
-  const ub=boundsPx(under,W,H,w*.10);if(ub)maskPatch(c,W,H,ub,m=>{m.save();clipOval(m,face,W,H);m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';for(let i=0;i<under.length-1;i++){m.globalAlpha=.55+.45*Math.sin(Math.PI*(i+.5)/(under.length-1));m.lineWidth=w*.075;m.beginPath();m.moveTo(under[i].x,under[i].y);m.lineTo(under[i+1].x,under[i+1].y);m.stroke();}m.restore();v4ProtectEyeFeatures(m,face,side,W,H);},
-   {face,protectFace:true,protectOcclusion:true,mode:'illuminate',color:'#fff4ea',strength:s.intensity/100*.20,photoBlur:Math.max(photoMatchBlur(face,W,1),w*.03)});}
+ },s,profile,s.intensity/100*fitK*(preset==='defined'?.28:preset==='feather'?.12:.19)*(.40+.60*density),w*(.006+.022*softness),true);
+ const loose=ps.map((p,i)=>{const q=ps[9-i],mid=pair(p,q);return {x:mid.x+(p.x-mid.x)*1.22,y:mid.y+(p.y-mid.y)*1.22};}),strands=browHairStrands(ps,s,W,side);
+ browPigmentPatch(c,W,H,face,boundsPx(loose,W,H,w*.035)||bb,m=>{
+  m.save();m.beginPath();pathSmoothClosed(m,loose);m.clip();for(const strand of strands)drawBrowHairStrand(m,strand);m.restore();
+ },{...s,sheer:Math.min(Number(s.sheer??40),36)},profile,s.intensity/100*clamp(fitK*1.1,.8,1.25)*(.90+.16*sharpness),w*.0008*(1-sharpness),false,Math.min(photoMatchBlur(face,W,.28),Math.max(lashMinWidth(W,.16),w*.0032)));
+ // Keep a restrained lower-edge finish, without bleaching a wide halo
+ // beneath fine natural hairs.
+ {const upv={x:ps[2].x-ps[7].x,y:ps[2].y-ps[7].y},ul=Math.hypot(upv.x,upv.y)||1,ux=upv.x/ul,uy=upv.y/ul,under=ps.slice(5).map(p=>({x:p.x-ux*w*.032,y:p.y-uy*w*.032}));
+  const ub=boundsPx(under,W,H,w*.045);if(ub)maskPatch(c,W,H,ub,m=>{m.save();clipOval(m,face,W,H);m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';for(let i=0;i<under.length-1;i++){m.globalAlpha=.40+.35*Math.sin(Math.PI*(i+.5)/(under.length-1));m.lineWidth=w*.025;m.beginPath();m.moveTo(under[i].x,under[i].y);m.lineTo(under[i+1].x,under[i+1].y);m.stroke();}m.restore();v4ProtectEyeFeatures(m,face,side,W,H);},
+   {face,protectFace:true,protectOcclusion:true,mode:'illuminate',color:'#fff4ea',strength:s.intensity/100*.04*sharpness,photoBlur:Math.max(photoMatchBlur(face,W,.5),w*.012)});}
 }}
 // END V4.5 ADAPTIVE BROW RENDERER
+
 
 // Lip colour follows the vermilion ring, with the entire mouth aperture cut out.
 // The local frame is reconstructed from the corners so all material details
@@ -2630,7 +2644,7 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
  const hair=(x,y,deg0,deg1,len,dir)=>{const pts=[{x,y}],steps=14,ds=len/steps;for(let k=1;k<=steps;k++){const s=(k-.5)/steps,a=(deg0+(deg1-deg0)*Math.pow(s,1.15))*deg;x+=Math.sin(a)*ds;y+=dir*Math.cos(a)*ds;pts.push({x,y});}return pts;};
  const push=(pts,width,alpha,lower,len,taper,band=true)=>{const rp=pts.map(toImage);strands.push({root:rp[0],p:rp[0],control:rp[4],c1:rp[4],c2:rp[9],tip:rp[14],width:Math.max(width,minW),alpha:clamp(alpha*(.45+.55*dark),0,1),u:clamp(1-pts[0].x/W,0,1),height:len,lower,ribbonPoints:rp,taper,band});};
  const cap=(t,y,len)=>Math.min(len,W*.46,Math.max(W*.08,(v47SmoothEyeCurve(G,G.brow,1-clamp(t,0,1))-y)*.86));
- const slots=(n,a,b,pairChance)=>{const gaps=Array.from({length:n},()=>{const g=.6+rng()*.8;return rng()<pairChance?g*.45:g;}),total=gaps.reduce((x,y)=>x+y,0);let acc=0;return gaps.map(g=>{const mid=acc+g/2;acc+=g;return a+(b-a)*mid/total;});};
+ const slots=(n,a,b,pairChance,random=rng)=>{const gaps=Array.from({length:n},()=>{const g=.6+random()*.8;return random()<pairChance?g*.45:g;}),total=gaps.reduce((x,y)=>x+y,0);let acc=0;return gaps.map(g=>{const mid=acc+g/2;acc+=g;return a+(b-a)*mid/total;});};
  if(upperAmount>0){
   const fanAt=t=>mix(T.fan[0],T.fan[1],Math.pow(clamp(t,0,1),T.fan[2]||1))+(t>1?(t-1)*70:0);
   const rootDeg=t=>fanAt(t)-lidAngle(G.upper,t)/deg*.55,bend=d=>(16+30*T.curl*curlK)*Math.tanh(d/18),startDeg=d=>d+bend(d)*.45,tipDeg=d=>d-bend(d)*.55;
@@ -2660,8 +2674,9 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
   for(const f of fine)push(f.pts,f.width,upperAmount*clamp((f.t-.02)/.08,.45,1)*.94,false,f.len,.42);
  }
  if(lowerAmount>0&&T.low){
+  const rng=studioLashRandom(9001+sty.i*7919+sideSeed*131+52711);
   const L=T.low,mode=setting.lowerStyle||'follow',delicate=mode==='delicate',defined=mode==='defined',hairs=(mode==='spikes'||mode==='clusters')?3:L.hairs;
-  const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.58:defined?1.12:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.62:defined?1.55:1),curlL=frac('lowerCurl',40,0,1);
+  const n=Math.max(4,Math.min(Math.round(L.n*frac('lowerDensity',100,.4,1.8)),Math.max(5,Math.floor(sourceWidth*.4)))),roots=slots(n,Math.max(L.from,.08),Math.min(L.to,.99),.12,rng),lenL=frac('lowerLength',100,.5,1.8)*(delicate?.58:defined?1.12:1),thickL=frac('lowerThickness',100,.5,1.8)*(.78+.22*dark)*(delicate?.62:defined?1.55:1),curlL=frac('lowerCurl',40,0,1);
   for(let i=0;i<n;i++){
    const t=roots[i],y0=lidY(lowerCurve,t)-W*.004,d0=mix(L.fan[0],L.fan[1],t)+lidAngle(lowerCurve,t)/deg*.5+(rng()-.5)*7,len=W*studioLashProfile(L.len,t)*1.35*lenL*(.85+rng()*.3);
    // curl: the tip leans outward (+) or straightens (−) around the 40% default
@@ -2672,7 +2687,7 @@ function lashTemplateStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSe
    }
   }
  }
- return strands;
+ return v49RefineLashFibers(G,strands,setting,lowerCurve);
 }
 // V4.29: templates are part of the Mi Studio family (same picker, thumbnails and controls) and are
 // listed first. They use their own index range so the older styles keep their exact patterns.
@@ -2757,7 +2772,44 @@ function studioLashStrands(G,lowerCurve,setting,sty,sourceWidth=G.width,sideSeed
    }
   }
  }
- return strands;
+ return v49RefineLashFibers(G,strands,setting,lowerCurve);
+}
+// Fibers keep each preset's spacing, fan and curl, but share a real hair
+// cross-section. The anatomical frame is outer corner u=0, tear duct u=1.
+function v49RefineLashFibers(G,strands,setting,lowerCurve){
+ const style=String(setting.style||'natural'),bold=/manga|wet|cluster|doll|wispy/i.test(style);
+ const thickness=(lower)=>clamp(Number(setting[lower?'lowerThickness':'thickness']??100)/100,.5,1.8);
+ return strands.map(strand=>{
+  const raw=strand.ribbonPoints||Array.from({length:21},(_,i)=>v47CubicPoint(strand.p,strand.c1,strand.c2,strand.tip,i/20));
+  if(raw.length<2)return strand;
+  const local=raw.map(p=>G.project(p)),first=local[0],lower=!!strand.lower,sign=lower?-1:1;
+  const u=clamp(first.u,.018,.982),curve=lower?lowerCurve:G.upper,lid=v47SmoothEyeCurve(G,curve,u),rootV=lid+sign*G.width*.0007;
+  const clearance=lower?G.width*(bold?.17:.135):Math.max(G.width*.045,v47SmoothEyeCurve(G,G.brow,u)-lid)*.76;
+  const peak=Math.max(G.width*.001,...local.map(q=>sign*(q.v-first.v))),limit=Math.min(G.width*(lower?(bold?.17:.135):.36),clearance),scale=Math.min(1,limit/peak);
+  let ps=local.map(q=>G.at(u+(q.u-first.u)*scale,rootV+(q.v-first.v)*scale));
+  // A photographed extension rises from its follicle, then bends into the fan.
+  // Keep the authored endpoints/cluster convergence, but soften rigid diagonals
+  // and remove the S kink made when the old controls reverse near the root.
+  const start=G.project(ps[0]),end=G.project(ps.at(-1)),dx=(end.u-start.u)*G.width,dy=sign*(end.v-start.v),span=Math.hypot(dx,dy);
+  if(span>G.width*.008&&dy>G.width*.004){
+   const offsets=ps.slice(1,-1).map(p=>{const q=G.project(p),x=(q.u-start.u)*G.width,y=sign*(q.v-start.v);return (x*dy-y*dx)/span;});
+   const positive=Math.max(0,...offsets),negative=Math.max(0,...offsets.map(v=>-v)),straight=Math.max(positive,negative)<span*.065,kink=Math.min(positive,negative)>span*.012;
+   const tailReturn=Math.max(...ps.map(p=>sign*(G.project(p).v-start.v)))-dy>span*.045;
+   const special=/manga|wet|cluster|doll|wispy/i.test(style),curl=clamp(Number(setting[lower?'lowerCurl':'curl']??(lower?55:65))/100,0,1);
+   let blend=kink||tailReturn?1:straight?.65+.30*curl:0;
+   if(special&&!kink&&!tailReturn)blend*=.38;
+   if(blend){
+    const ua=clamp(u-.018,0,1),ub=clamp(u+.018,0,1),slope=(v47SmoothEyeCurve(G,curve,ub)-v47SmoothEyeCurve(G,curve,ua))/Math.max(G.width*.002,(ub-ua)*G.width),normal=-clamp(slope,-.7,.7)*sign;
+    const firstX=Math.abs(dx)>dy*.04?dx*(.15-.09*curl):normal*dy*.10;
+    const secondX=Math.abs(dx)>dy*.04?dx*(.62+.13*curl):dx+normal*dy*.075;
+    const c1=G.at(start.u+firstX/G.width,start.v+sign*dy*(.22+.12*curl)),c2=G.at(start.u+secondX/G.width,start.v+sign*dy*(.88+.08*curl));
+    ps=ps.map((p,i)=>{const t=i/(ps.length-1),q=v47CubicPoint(ps[0],c1,c2,ps.at(-1),t);return {x:p.x+(q.x-p.x)*blend,y:p.y+(q.y-p.y)*blend};});
+   }
+  }
+  const cap=G.width*(lower?(bold?.0078:.0066):(bold?.0090:.0074))*thickness(lower);
+  const width=Math.max(G.width*.0012,Math.min(cap,strand.width*(lower?.64:.68)));
+  return {...strand,root:ps[0],p:ps[0],c1:ps[Math.round((ps.length-1)*.28)],control:ps[Math.round((ps.length-1)*.28)],c2:ps[Math.round((ps.length-1)*.68)],tip:ps.at(-1),ribbonPoints:ps,width,u,height:peak*scale,taper:Math.max(.95,Number(strand.taper)||0)};
+ });
 }
 function studioLashGeometry(face,side,setting,W,H,G,sty){
  const sourceGeometry=eyeGeometry(face,side,state.width||W,state.height||H),sourceWidth=sourceGeometry?.width||G.width;
@@ -2772,7 +2824,7 @@ function softLashRibbon(m,strand,ps){
  const a=[],b=[];
  for(let i=0;i<ps.length;i++){
   const t=i/(ps.length-1),p=ps[i],prev=ps[Math.max(0,i-1)],next=ps[Math.min(ps.length-1,i+1)],dx=next.x-prev.x,dy=next.y-prev.y,len=Math.max(.00001,Math.hypot(dx,dy));
-  const rootEase=t<.10?.66+.34*t/.10:1,half=strand.width*.5*rootEase*Math.pow(1-t,(strand.taper??.76)+.32),nx=-dy/len,ny=dx/len;
+  const rootEase=.90+.10*Math.sin(Math.PI*t),half=strand.width*.5*rootEase*Math.pow(1-t,Math.max(1.05,(strand.taper??.95)+.18)),nx=-dy/len,ny=dx/len;
   a.push({x:p.x+nx*half,y:p.y+ny*half});b.push({x:p.x-nx*half,y:p.y-ny*half});
  }
  const p=ps[0],next=ps[1],dx=next.x-p.x,dy=next.y-p.y,len=Math.max(.00001,Math.hypot(dx,dy)),cap=strand.width*.34;
@@ -2780,7 +2832,7 @@ function softLashRibbon(m,strand,ps){
  m.quadraticCurveTo(p.x-dx/len*cap,p.y-dy/len*cap,a[0].x,a[0].y);m.closePath();
  // V4.38 soft, feathery lash: full density at the root, thinning out to a soft, almost transparent tip
  const end=ps[ps.length-1],old=m.fillStyle;let g=null;try{g=m.createLinearGradient(p.x,p.y,end.x,end.y);}catch(e){}
- if(g&&Math.hypot(end.x-p.x,end.y-p.y)>.5){g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.42,'rgba(255,255,255,.95)');g.addColorStop(.78,'rgba(255,255,255,.55)');g.addColorStop(1,'rgba(255,255,255,.12)');m.fillStyle=g;}
+ if(g&&Math.hypot(end.x-p.x,end.y-p.y)>.5){g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.36,'rgba(255,255,255,.94)');g.addColorStop(.74,'rgba(255,255,255,.66)');g.addColorStop(.94,'rgba(255,255,255,.24)');g.addColorStop(1,'rgba(255,255,255,0)');m.fillStyle=g;}
  m.fill();m.fillStyle=old;
 }
 function studioLashRibbon(c,strand){softLashRibbon(c,strand,strand.ribbonPoints);}
@@ -2879,6 +2931,7 @@ function v45LashGeometry(face,side,setting,W,H){
    for(const st of grp){st.tip={x:st.tip.x+(tx-st.tip.x)*pull,y:st.tip.y+(ty-st.tip.y)*pull};st.c2={x:st.c2.x+(tx-st.c2.x)*pull*.45,y:st.c2.y+(ty-st.c2.y)*pull*.45};st.control=st.c1;}
   }
  }
+ const shaped=v49RefineLashFibers(G,strands,setting,lowerCurve);strands.splice(0,strands.length,...shaped);
  const bandBottom=[],bandTop=[],tightline=[];
  for(let i=0;i<=24;i++){const u=.025+i/24*.94,v=v47SmoothEyeCurve(G,G.upper,u),gap=v47SmoothEyeCurve(G,G.brow,u)-v,pt=G.at(u,v);tightline.push(pt);bandBottom.push(pt);bandTop.push(G.at(u,v+Math.max(0,Math.min(G.width*.25,gap*.86))));}
  const nativePolygon=[...bandBottom,...bandTop.reverse()],bb=boundsPx([...nativePolygon,...strands.flatMap(s=>[s.p,s.c1,s.c2,s.tip])],W,H,G.width*.035);
@@ -3140,27 +3193,17 @@ function renderLashes(c,W,H,face){
    if(upperGain>0&&R.tightline?.length>2){
     m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';
     // V4.25: the lash root reads as a dark, slightly thicker line – this is what makes an eye look defined.
-    const popK=clamp(Number(s.eyePop??55)/100,0,1),sourceScale=R.G.width/Math.max(1,R.sourceEyeWidth),rootWidth=Math.max(.55*sourceScale,R.G.width*(.0055+.0045*mascaraGain))*(1+.7*popK);
+    const sourceScale=R.G.width/Math.max(1,R.sourceEyeWidth),rootWidth=Math.max(.28*sourceScale,R.G.width*(.0022+.0018*mascaraGain));
     for(let i=0;i<R.tightline.length-1;i++){
-     const u=i/(R.tightline.length-1),fade=Math.sin(Math.PI*clamp(u,.04,.96));m.globalAlpha=Math.min(1,upperGain*(.22+.28*mascaraGain+.26*popK)*fade);m.lineWidth=rootWidth*(.45+.55*fade)*(1+.35*popK*(1-u));
+     const u=i/(R.tightline.length-1),fade=Math.sin(Math.PI*clamp(u,.04,.96));m.globalAlpha=Math.min(1,upperGain*(.10+.17*mascaraGain)*fade);m.lineWidth=rootWidth*(.40+.60*fade);
      m.beginPath();m.moveTo(R.tightline[i].x,R.tightline[i].y);m.lineTo(R.tightline[i+1].x,R.tightline[i+1].y);m.stroke();
     }
    }
-   // V4.25 lash base: seen from the front, upper lashes overlap near the lid and read as one dark
-   // fringe that thins out into separate tips. Without it the hairs looked like faint scratches.
-   const upperStrands=R.strands.filter(st=>!st.lower&&!st.baby&&st.band!==false).concat(R.strands.some(st=>!st.lower&&st.band!==false)?[]:R.strands.filter(st=>!st.lower));
-   if(upperGain>0&&upperStrands.length>2&&R.tightline?.length>2){
-    const heightAt=u=>{let best=upperStrands[0],d=9;for(const st of upperStrands){const q=Math.abs(st.u-u);if(q<d){d=q;best=st;}}return best.height*clamp(best.alpha+.25,0,1);};
-    m.strokeStyle='#fff';m.lineCap='round';m.lineJoin='round';const layers=5;
-    for(let j=0;j<layers;j++){
-     const t=j/layers,pts=[];for(let i=0;i<=28;i++){const u=.035+i/28*.925,v=v47SmoothEyeCurve(R.G,R.G.upper,u),h=Math.min(R.G.width*.042,heightAt(u)*(.20+.16*mascaraGain));pts.push({p:R.G.at(u,v+h*(t+.10)),h,u});}
-     for(let i=0;i<pts.length-1;i++){const a=pts[i],b=pts[i+1],corner=clamp((.985-a.u)/.20,0,1)*clamp((a.u-.01)/.10,.35,1);
-      m.globalAlpha=clamp(upperGain*(.34+.34*mascaraGain)*Math.pow(1-t,1.35)*corner,0,1);m.lineWidth=Math.max(.5,(a.h+b.h)*.5/layers*1.55);m.beginPath();m.moveTo(a.p.x,a.p.y);m.lineTo(b.p.x,b.p.y);m.stroke();}
-    }
-   }
-   m.fillStyle='#fff';for(const strand of R.strands){m.globalAlpha=clamp(strand.alpha*(strand.lower?1:1.25),0,1);v45LashRibbon(m,strand);}
+   // Density now comes from overlapping individual roots. No opaque
+   // painted fringe is added above the photographed eyelid.
+   m.fillStyle='#fff';for(const strand of R.strands){m.globalAlpha=clamp(strand.alpha,0,1);v45LashRibbon(m,strand);}
    m.restore();v4ProtectEyeFeatures(m,face,side,W,H);
-  },{face,protectOcclusion:true,hairOnly:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.25,coverage:60+.4*Number(s.coverage??65),texture:35,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,inkSliders:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:LASH_STUDIO_BY_ID[s.style]?.tpl?.55:1.9});
+  },{face,protectOcclusion:true,hairOnly:true,cosmetic:{...s,sheer:Number(s.sheer??40)*.25,coverage:60+.4*Number(s.coverage??65),texture:35,softness:30},color,mode:'ink',strength:Math.min(1,s.intensity/100*.96*light.gain),softFibers:true,inkSliders:true,feather:Math.max(.08,R.G.width*.0015),photoBlur:photoMatchBlur(face,W,.30),inkBoost:LASH_STUDIO_BY_ID[s.style]?.tpl?.68:1.12});
   renderEyePop(c,W,H,face,side,s,R.G);
  }
 }
